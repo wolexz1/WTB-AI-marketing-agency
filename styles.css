@@ -622,6 +622,10 @@ h3 {
   gap: 16px;
 }
 
+.hidden-field {
+  display: none;
+}
+
 .contact-links {
   display: grid;
   gap: 10px;
@@ -767,6 +771,55 @@ textarea {
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+.thank-you-page {
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(21, 93, 252, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(21, 93, 252, 0.04) 1px, transparent 1px),
+    radial-gradient(circle at 78% 20%, rgba(21, 93, 252, 0.12), transparent 34%),
+    var(--paper);
+  background-size: 32px 32px, 32px 32px, auto, auto;
+}
+
+.thank-you-wrap {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 40px 20px;
+}
+
+.thank-you-card {
+  width: min(900px, 100%);
+  padding: clamp(28px, 6vw, 64px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: var(--shadow);
+}
+
+.thank-you-card .brand-lockup {
+  margin-bottom: 46px;
+}
+
+.thank-you-card h1 {
+  max-width: 780px;
+  font-size: clamp(2.6rem, 7vw, 5.8rem);
+}
+
+.thank-you-card p:not(.eyebrow) {
+  max-width: 650px;
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.75;
+}
+
+.thank-you-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
 }
 
 @keyframes brandSlide {
