@@ -238,14 +238,18 @@ h1 {
 
 .word-cycle {
   position: relative;
-  display: inline-grid;
-  min-width: min(100%, 0);
+  display: inline-block;
+  min-width: 7.8em;
+  min-height: 0.96em;
   vertical-align: baseline;
 }
 
 .word-cycle span {
-  grid-area: 1 / 1;
-  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  width: max-content;
   color: var(--blue);
   text-shadow: 0 14px 38px rgba(21, 93, 252, 0.2);
   animation: wordDropCycle 5.6s cubic-bezier(0.16, 1, 0.3, 1) infinite;
@@ -1209,7 +1213,18 @@ body.modal-open {
   }
 
   h1 {
-    font-size: clamp(3rem, 17vw, 4.8rem);
+    font-size: clamp(2.65rem, 14vw, 4.2rem);
+    line-height: 0.94;
+  }
+
+  .word-cycle {
+    display: block;
+    min-width: 100%;
+    min-height: 1.05em;
+  }
+
+  .word-cycle span {
+    width: 100%;
   }
 
   h2 {
