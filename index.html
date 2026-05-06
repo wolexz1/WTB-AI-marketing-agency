@@ -6,7 +6,7 @@
     <title>WTB AI Marketing Agency</title>
     <meta
       name="description"
-      content="We are an AI-powered marketing agency using AI workflows to deliver marketing strategy, content, influencer campaigns, UGC, SEO, Google Ads, funnels, and reporting faster."
+      content="We are an AI-powered marketing agency using AI workflows to deliver marketing strategy, content, influencer campaigns, UGC, SEO, Google Ads, website development, generative AI creative, funnels, and reporting faster."
     >
     <link rel="stylesheet" href="styles.css">
   </head>
@@ -29,7 +29,7 @@
         <a href="#brief">Contact Us</a>
       </nav>
 
-      <a class="button button-small" href="#brief">Send us a brief</a>
+      <button class="button button-small brief-modal-trigger" type="button">Send us a brief</button>
     </header>
 
     <main id="top">
@@ -94,11 +94,11 @@
       <section class="stats-section">
         <div class="section-shell stats-grid">
           <article class="reveal">
-            <strong>8+</strong>
+            <strong class="stat-number" data-count="10" data-suffix="+">0+</strong>
             <span>Core marketing services</span>
           </article>
           <article class="reveal">
-            <strong>7</strong>
+            <strong class="stat-number" data-count="7">0</strong>
             <span>Brand categories supported</span>
           </article>
           <article class="reveal">
@@ -132,7 +132,7 @@
           <article class="reveal">
             <span>03</span>
             <h3>X Trend Monitoring</h3>
-            <p>Daily trend signals, culture-fit ideas, brand-safe hooks, and fast campaign opportunities.</p>
+            <p>We help brands, companies, products, people, and situations trend on X, with campaigns built to push visibility into the top 5 trend table and drive awareness, traffic, and conversation.</p>
           </article>
           <article class="reveal">
             <span>04</span>
@@ -147,7 +147,7 @@
           <article class="reveal">
             <span>06</span>
             <h3>Ads, Funnels and Automation</h3>
-            <p>Landing pages, paid campaigns, lead capture, retargeting, chatbot flows, dashboards, and follow-up.</p>
+            <p>Landing pages, lead capture, retargeting, chatbot flows, dashboards, follow-up systems, and social media ads across Meta, TikTok, X, LinkedIn, YouTube, and Snapchat.</p>
           </article>
           <article class="reveal">
             <span>07</span>
@@ -157,7 +157,17 @@
           <article class="reveal">
             <span>08</span>
             <h3>Google Ads</h3>
-            <p>Search campaigns, conversion tracking, landing page alignment, keyword testing, and weekly campaign optimization.</p>
+            <p>Search, Display, YouTube, Performance Max, Shopping, App, Demand Gen, remarketing, conversion tracking, keyword testing, and weekly optimization.</p>
+          </article>
+          <article class="reveal">
+            <span>09</span>
+            <h3>Website Development</h3>
+            <p>Fast, conversion-focused websites, landing pages, portfolio pages, lead forms, booking flows, and tracking setup for campaigns.</p>
+          </article>
+          <article class="reveal">
+            <span>10</span>
+            <h3>Generative AI Creative</h3>
+            <p>Ad images, product visuals, campaign concepts, AI video with tools like Seedance 2.0, Runway, CapCut, Canva, ChatGPT, Gemini, Claude, Perplexity, Midjourney, and DALL-E for faster creative testing.</p>
           </article>
         </div>
       </section>
@@ -207,35 +217,46 @@
           <p class="eyebrow">Pricing</p>
           <h2>Flexible support for serious marketing work.</h2>
           <p>Send a brief and we will recommend the right scope based on your goals, timeline, channels, and budget.</p>
-          <p class="booking-note">For booking calls, we can connect a free Calendly link later. For now, the book/contact actions open WhatsApp.</p>
         </div>
 
         <div class="pricing-grid">
           <article class="reveal">
             <p>Starter</p>
             <h3>Strategy Sprint</h3>
+            <strong class="price-line">From ₦250k</strong>
+            <span class="package-note">One-time sprint for clarity and direction.</span>
             <ul>
-              <li>Marketing audit</li>
-              <li>30-day campaign direction</li>
-              <li>AI workflow map</li>
+              <li>Brand, funnel, content, and competitor audit</li>
+              <li>Audience research and positioning direction</li>
+              <li>30-day campaign and content plan</li>
+              <li>X trend angle and creator brief ideas</li>
+              <li>AI workflow map for faster execution</li>
             </ul>
           </article>
           <article class="featured-price reveal">
             <p>Growth</p>
             <h3>Campaign Execution</h3>
+            <strong class="price-line">From ₦750k/mo</strong>
+            <span class="package-note">For brands ready to launch and optimize every week.</span>
             <ul>
-              <li>Content, SEO, and campaign calendar</li>
-              <li>Influencer and mini UGC support</li>
-              <li>Weekly optimization</li>
+              <li>Monthly campaign strategy and content calendar</li>
+              <li>Influencer, mini UGC, and creator briefing support</li>
+              <li>Social media ads management across key platforms</li>
+              <li>SEO content direction and weekly optimization</li>
+              <li>Performance reports with next actions</li>
             </ul>
           </article>
           <article class="reveal">
             <p>Scale</p>
-            <h3>Marketing System</h3>
+            <h3>AI Growth System</h3>
+            <strong class="price-line">From ₦1.5m/mo</strong>
+            <span class="package-note">A complete growth system for serious brand momentum.</span>
             <ul>
-              <li>Google Ads, funnels, SEO, and automation</li>
-              <li>Reporting dashboard</li>
-              <li>Monthly growth planning</li>
+              <li>Google Ads, social ads, SEO, funnels, and automation</li>
+              <li>Website or landing page improvements</li>
+              <li>Generative AI creative for ads and video testing</li>
+              <li>X trend campaign planning and execution support</li>
+              <li>Dashboard, weekly optimization, and growth planning</li>
             </ul>
           </article>
         </div>
@@ -248,8 +269,8 @@
             <h2>Ready to build faster marketing?</h2>
             <p>Send the business goal, offer, audience, budget, and timeline. We will reply with the best next step.</p>
             <div class="contact-links">
-              <a href="https://wa.me/2348097585489" target="_blank" rel="noreferrer">WhatsApp: +234 809 758 5489</a>
-              <a href="https://wa.me/2348097585489?text=Hello%20WTB%2C%20I%20want%20to%20book%20a%20call%20about%20my%20marketing." target="_blank" rel="noreferrer">Book a call on WhatsApp</a>
+              <a href="tel:+2348097585489">Speak with us</a>
+              <a href="https://wa.me/2348097585489?text=Hello%20WTB%2C%20I%20want%20to%20book%20a%20call%20about%20my%20marketing." target="_blank" rel="noreferrer">Book a strategy call</a>
               <a href="mailto:wolexzthebrand@gmail.com">wolexzthebrand@gmail.com</a>
               <a href="https://wolexz.my.canva.site/wolexz" target="_blank" rel="noreferrer">View full portfolio</a>
             </div>
@@ -289,6 +310,8 @@
                 <option>Ads, funnels and automation</option>
                 <option>SEO</option>
                 <option>Google Ads</option>
+                <option>Website development</option>
+                <option>Generative AI creative</option>
               </select>
             </label>
             <label>
@@ -303,8 +326,58 @@
     </main>
 
     <a class="floating-whatsapp" href="https://wa.me/2348097585489?text=Hello%20WTB%2C%20I%20want%20to%20send%20a%20brief." target="_blank" rel="noreferrer" aria-label="Chat with WTB on WhatsApp">
-      <span>WhatsApp</span>
+      <span>Chat with us</span>
     </a>
+
+    <div class="brief-modal" id="briefModal" aria-hidden="true">
+      <div class="brief-modal-backdrop" data-modal-close></div>
+      <section class="brief-modal-panel" role="dialog" aria-modal="true" aria-labelledby="briefModalTitle">
+        <button class="modal-close" type="button" data-modal-close aria-label="Close brief form">Close</button>
+        <p class="eyebrow">Quick brief</p>
+        <h2 id="briefModalTitle">Tell us what you want to grow.</h2>
+        <form
+          id="quickBriefForm"
+          class="brief-form compact-brief-form"
+          action="https://formsubmit.co/wolexzthebrand@gmail.com"
+          method="POST"
+        >
+          <input type="hidden" name="_subject" value="New WTB quick project brief">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" value="https://wolexz1.github.io/WTB-AI-marketing-agency/thank-you.html">
+          <input type="text" name="_honey" class="hidden-field" tabindex="-1" autocomplete="off">
+          <label>
+            <span>Your name</span>
+            <input name="name" type="text" placeholder="Your name" required>
+          </label>
+          <label>
+            <span>Your email</span>
+            <input name="email" type="email" placeholder="name@email.com" required>
+          </label>
+          <label>
+            <span>What do you need?</span>
+            <select name="service" required>
+              <option value="">Choose a focus</option>
+              <option>Marketing strategy</option>
+              <option>Content marketing</option>
+              <option>X trend monitoring</option>
+              <option>Influencer marketing</option>
+              <option>Mini UGC marketing</option>
+              <option>Ads, funnels and automation</option>
+              <option>SEO</option>
+              <option>Google Ads</option>
+              <option>Website development</option>
+              <option>Generative AI creative</option>
+            </select>
+          </label>
+          <label>
+            <span>Your brief</span>
+            <textarea name="message" rows="4" placeholder="Tell us your goal, offer, audience, budget, and timeline." required></textarea>
+          </label>
+          <button class="button" type="submit">Send brief</button>
+          <p id="quickFormNote" class="form-note" role="status"></p>
+        </form>
+      </section>
+    </div>
 
     <footer class="site-footer">
       <div class="section-shell footer-grid">
