@@ -15,7 +15,7 @@ const animateStat = (stat) => {
 
   const target = Number(stat.dataset.count || 0);
   const suffix = stat.dataset.suffix || "";
-  const duration = 1200;
+  const duration = 2600;
   const start = performance.now();
 
   const tick = (now) => {

@@ -111,6 +111,18 @@ a {
   color: var(--blue);
 }
 
+.header-actions,
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-actions {
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
 .button {
   display: inline-flex;
   align-items: center;
@@ -139,6 +151,10 @@ a {
   min-height: 44px;
   padding: 0 18px;
   font-size: 0.86rem;
+}
+
+.calendly-button {
+  border-color: var(--gold);
 }
 
 .button-ghost {
@@ -217,7 +233,46 @@ h1 {
 
 .drop-line {
   display: block;
-  animation: dropIn 950ms cubic-bezier(0.16, 1, 0.3, 1) both 420ms;
+  animation: dropIn 1200ms cubic-bezier(0.16, 1, 0.3, 1) both 420ms;
+}
+
+.word-cycle {
+  position: relative;
+  display: inline-grid;
+  min-width: min(100%, 0);
+  vertical-align: baseline;
+}
+
+.word-cycle span {
+  grid-area: 1 / 1;
+  display: inline-block;
+  color: var(--blue);
+  text-shadow: 0 14px 38px rgba(21, 93, 252, 0.2);
+  animation: wordDropCycle 5.6s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.word-cycle span:nth-child(2) {
+  color: var(--gold);
+  animation-delay: 2.8s;
+}
+
+.hero-content .eyebrow,
+.hero-content h1,
+.hero-content p:not(.eyebrow),
+.hero-actions {
+  animation: heroRise 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-content h1 {
+  animation-delay: 120ms;
+}
+
+.hero-content p:not(.eyebrow) {
+  animation-delay: 240ms;
+}
+
+.hero-actions {
+  animation-delay: 360ms;
 }
 
 h2 {
@@ -245,7 +300,6 @@ h3 {
 
 .hero-content .button {
   width: max-content;
-  margin-top: 10px;
 }
 
 .ai-robot {
@@ -451,6 +505,8 @@ h3 {
 .service-grid article,
 .portfolio-grid article,
 .pricing-grid article {
+  position: relative;
+  overflow: hidden;
   min-height: 270px;
   padding: 28px;
   border: 1px solid var(--line);
@@ -583,6 +639,24 @@ h3 {
   min-height: 470px;
 }
 
+.service-grid article::before,
+.pricing-grid article::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 0%, rgba(21, 93, 252, 0.1) 45%, rgba(243, 181, 31, 0.14) 55%, transparent 100%);
+  opacity: 0;
+  transform: translateX(-110%);
+  transition: opacity 180ms ease;
+  pointer-events: none;
+}
+
+.service-grid article:hover::before,
+.pricing-grid article:hover::before {
+  opacity: 1;
+  animation: cardSweep 900ms ease;
+}
+
 .pricing-grid article > p {
   color: var(--blue);
   font-weight: 900;
@@ -702,8 +776,18 @@ textarea {
   font: inherit;
 }
 
+input[type="file"] {
+  cursor: pointer;
+}
+
 .brief-form textarea {
   resize: vertical;
+}
+
+.field-note {
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
 }
 
 .form-note {
@@ -869,13 +953,13 @@ body.modal-open {
 
 .reveal {
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 700ms ease, transform 700ms ease;
+  transform: translateY(34px) scale(0.985);
+  transition: opacity 900ms ease, transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
 
 .thank-you-page {
@@ -950,12 +1034,54 @@ body.modal-open {
 @keyframes dropIn {
   from {
     opacity: 0;
-    transform: translateY(-0.55em);
+    transform: translateY(-0.85em);
   }
 
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes wordDropCycle {
+  0%,
+  8% {
+    opacity: 0;
+    transform: translateY(-0.75em) scale(0.96);
+  }
+
+  14%,
+  42% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+    transform: translateY(0.55em) scale(0.98);
+  }
+}
+
+@keyframes heroRise {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cardSweep {
+  from {
+    transform: translateX(-110%);
+  }
+
+  to {
+    transform: translateX(110%);
   }
 }
 
@@ -1013,6 +1139,10 @@ body.modal-open {
     display: none;
   }
 
+  .header-actions {
+    gap: 8px;
+  }
+
   .problem-section,
   .difference-grid,
   .brief-card,
@@ -1052,8 +1182,12 @@ body.modal-open {
 
   .site-header .button {
     min-height: 40px;
-    padding: 0 14px;
+    padding: 0 12px;
     font-size: 0.8rem;
+  }
+
+  .header-actions .calendly-button {
+    display: none;
   }
 
   .brand-lockup img {
@@ -1083,6 +1217,7 @@ body.modal-open {
   }
 
   .hero-content .button,
+  .hero-actions,
   .button {
     width: 100%;
   }

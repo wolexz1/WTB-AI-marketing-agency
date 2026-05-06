@@ -29,7 +29,15 @@
         <a href="#brief">Contact Us</a>
       </nav>
 
-      <button class="button button-small brief-modal-trigger" type="button">Send us a brief</button>
+      <div class="header-actions">
+        <a
+          class="button button-ghost button-small calendly-button"
+          href="https://calendly.com/wolexxzzoluk/wtb-strategy-call-new"
+          target="_blank"
+          rel="noreferrer"
+        >Book a call</a>
+        <button class="button button-small brief-modal-trigger" type="button">Send us a brief</button>
+      </div>
     </header>
 
     <main id="top">
@@ -42,13 +50,27 @@
           <p class="eyebrow">AI-powered marketing agency</p>
           <h1>
             We use AI to make marketing faster, sharper,
-            <span class="drop-line">and more effective.</span>
+            <span class="drop-line">
+              and
+              <span class="word-cycle" aria-label="more effective and more converting">
+                <span>more effective.</span>
+                <span>more converting.</span>
+              </span>
+            </span>
           </h1>
           <p>
             WTB helps brands plan, create, launch, and optimize marketing with the speed of AI and
             the judgment of real marketing people.
           </p>
-          <a class="button" href="#brief">Send us a brief</a>
+          <div class="hero-actions">
+            <button class="button brief-modal-trigger" type="button">Send us a brief</button>
+            <a
+              class="button button-ghost calendly-button"
+              href="https://calendly.com/wolexxzzoluk/wtb-strategy-call-new"
+              target="_blank"
+              rel="noreferrer"
+            >Book a strategy call</a>
+          </div>
         </div>
       </section>
 
@@ -223,12 +245,14 @@
           <article class="reveal">
             <p>Starter</p>
             <h3>Strategy Sprint</h3>
-            <strong class="price-line">From ₦250k</strong>
+            <strong class="price-line">From &#8358;160k</strong>
             <span class="package-note">One-time sprint for clarity and direction.</span>
             <ul>
               <li>Brand, funnel, content, and competitor audit</li>
+              <li>Branding toolkit with colours, font direction, logo guidance, and social media look</li>
               <li>Audience research and positioning direction</li>
               <li>30-day campaign and content plan</li>
+              <li>Starter social media management structure</li>
               <li>X trend angle and creator brief ideas</li>
               <li>AI workflow map for faster execution</li>
             </ul>
@@ -236,22 +260,24 @@
           <article class="featured-price reveal">
             <p>Growth</p>
             <h3>Campaign Execution</h3>
-            <strong class="price-line">From ₦750k/mo</strong>
+            <strong class="price-line">From &#8358;550k/mo</strong>
             <span class="package-note">For brands ready to launch and optimize every week.</span>
             <ul>
+              <li>Everything in Strategy Sprint</li>
               <li>Monthly campaign strategy and content calendar</li>
               <li>Influencer, mini UGC, and creator briefing support</li>
               <li>Social media ads management across key platforms</li>
-              <li>SEO content direction and weekly optimization</li>
+              <li>Website SEO and top-ranking content direction</li>
               <li>Performance reports with next actions</li>
             </ul>
           </article>
           <article class="reveal">
             <p>Scale</p>
             <h3>AI Growth System</h3>
-            <strong class="price-line">From ₦1.5m/mo</strong>
+            <strong class="price-line">From &#8358;1m/mo</strong>
             <span class="package-note">A complete growth system for serious brand momentum.</span>
             <ul>
+              <li>Everything in Strategy Sprint and Campaign Execution</li>
               <li>Google Ads, social ads, SEO, funnels, and automation</li>
               <li>Website or landing page improvements</li>
               <li>Generative AI creative for ads and video testing</li>
@@ -270,7 +296,7 @@
             <p>Send the business goal, offer, audience, budget, and timeline. We will reply with the best next step.</p>
             <div class="contact-links">
               <a href="tel:+2348097585489">Speak with us</a>
-              <a href="https://wa.me/2348097585489?text=Hello%20WTB%2C%20I%20want%20to%20book%20a%20call%20about%20my%20marketing." target="_blank" rel="noreferrer">Book a strategy call</a>
+              <a class="calendly-button" href="https://calendly.com/wolexxzzoluk/wtb-strategy-call-new" target="_blank" rel="noreferrer">Book a strategy call</a>
               <a href="mailto:wolexzthebrand@gmail.com">wolexzthebrand@gmail.com</a>
               <a href="https://wolexz.my.canva.site/wolexz" target="_blank" rel="noreferrer">View full portfolio</a>
             </div>
@@ -281,6 +307,7 @@
             class="brief-form"
             action="https://formsubmit.co/wolexzthebrand@gmail.com"
             method="POST"
+            enctype="multipart/form-data"
           >
             <input type="hidden" name="_subject" value="New WTB project brief">
             <input type="hidden" name="_template" value="table">
@@ -318,6 +345,11 @@
               <span>Your brief</span>
               <textarea name="message" rows="5" placeholder="Tell us your goal, offer, audience, budget, and timeline." required></textarea>
             </label>
+            <label>
+              <span>Attach brief file</span>
+              <input name="attachment" type="file" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt,.png,.jpg,.jpeg">
+              <small class="field-note">Optional. PDF, DOC, image, spreadsheet, or deck. Keep files under 10MB.</small>
+            </label>
             <button class="button" type="submit">Send us a brief</button>
             <p id="formNote" class="form-note" role="status"></p>
           </form>
@@ -340,6 +372,7 @@
           class="brief-form compact-brief-form"
           action="https://formsubmit.co/wolexzthebrand@gmail.com"
           method="POST"
+          enctype="multipart/form-data"
         >
           <input type="hidden" name="_subject" value="New WTB quick project brief">
           <input type="hidden" name="_template" value="table">
@@ -372,6 +405,11 @@
           <label>
             <span>Your brief</span>
             <textarea name="message" rows="4" placeholder="Tell us your goal, offer, audience, budget, and timeline." required></textarea>
+          </label>
+          <label>
+            <span>Attach brief file</span>
+            <input name="attachment" type="file" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt,.png,.jpg,.jpeg">
+            <small class="field-note">Optional. Keep files under 10MB.</small>
           </label>
           <button class="button" type="submit">Send brief</button>
           <p id="quickFormNote" class="form-note" role="status"></p>
