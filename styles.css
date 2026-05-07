@@ -1220,11 +1220,16 @@ body.modal-open {
   .word-cycle {
     display: block;
     min-width: 100%;
-    min-height: 1.05em;
+    min-height: 1.28em;
+    margin-bottom: 0.08em;
   }
 
   .word-cycle span {
     width: 100%;
+  }
+
+  .hero-content p:not(.eyebrow) {
+    margin-top: 14px;
   }
 
   h2 {
