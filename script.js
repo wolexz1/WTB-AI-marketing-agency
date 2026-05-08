@@ -54,6 +54,11 @@ statNumbers.forEach((stat) => {
 });
 
 const openModal = () => {
+  if (!modal) {
+    document.querySelector("#briefForm")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    return;
+  }
+
   modal?.classList.add("is-open");
   modal?.setAttribute("aria-hidden", "false");
   document.body.classList.add("modal-open");

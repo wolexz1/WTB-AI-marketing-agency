@@ -424,6 +424,323 @@ h3 {
   padding: 110px 0;
 }
 
+.inner-page main {
+  padding-top: 18px;
+}
+
+.page-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 110px 0 86px;
+  background:
+    linear-gradient(90deg, rgba(251, 250, 247, 0.98) 0%, rgba(251, 250, 247, 0.88) 58%, rgba(251, 250, 247, 0.38) 100%),
+    url("assets/wtb-ai-marketing-hero.png") center / cover;
+}
+
+.page-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 0%, rgba(255, 255, 255, 0.36) 42%, transparent 58%);
+  transform: translateX(-120%);
+  animation: pageHeroSweep 7s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.page-hero .section-shell {
+  position: relative;
+  z-index: 1;
+}
+
+.page-hero h1 {
+  max-width: 980px;
+  margin-bottom: 20px;
+  font-size: clamp(3.3rem, 7vw, 7rem);
+}
+
+.page-hero p:not(.eyebrow) {
+  max-width: 760px;
+  color: var(--muted);
+  font-size: 1.12rem;
+  line-height: 1.75;
+}
+
+.page-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.content-section {
+  padding: 92px 0;
+}
+
+.content-section.alt {
+  background: rgba(255, 255, 255, 0.72);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.two-column {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 48px;
+  align-items: start;
+}
+
+.rich-copy p,
+.rich-copy li {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.rich-copy ul,
+.rich-copy ol {
+  display: grid;
+  gap: 12px;
+  margin: 20px 0 0;
+  padding-left: 20px;
+}
+
+.feature-list,
+.process-list,
+.faq-grid,
+.offer-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.feature-list {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.process-list,
+.faq-grid,
+.offer-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.feature-card,
+.process-card,
+.faq-card,
+.offer-card,
+.seo-card {
+  position: relative;
+  overflow: hidden;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 18px 60px rgba(21, 23, 28, 0.06);
+}
+
+.feature-card span,
+.process-card span,
+.offer-card span,
+.seo-card span {
+  display: inline-flex;
+  margin-bottom: 20px;
+  color: var(--blue);
+  font-size: 0.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.feature-card p,
+.process-card p,
+.faq-card p,
+.offer-card p,
+.seo-card p {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.dark-cta {
+  padding: 84px 0;
+  background: var(--charcoal);
+  color: #fff;
+}
+
+.dark-cta .section-shell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+.dark-cta p {
+  max-width: 660px;
+  color: rgba(255, 255, 255, 0.68);
+  line-height: 1.7;
+}
+
+.page-service-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.page-service-grid article {
+  min-height: 300px;
+}
+
+.price-detail {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.featured-price .price-detail {
+  border-color: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.contact-page-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
+  gap: 44px;
+  align-items: start;
+}
+
+.contact-panel {
+  display: grid;
+  gap: 18px;
+}
+
+.brand-proof-wall {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 34px;
+  align-items: center;
+}
+
+.logo-wall {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.logo-wall figure {
+  display: grid;
+  place-items: center;
+  min-height: 118px;
+  margin: 0;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 18px 48px rgba(21, 23, 28, 0.05);
+  animation: softBob 6s ease-in-out infinite;
+}
+
+.logo-wall figure:nth-child(2n) {
+  animation-delay: 900ms;
+}
+
+.logo-wall img {
+  max-width: 130px;
+  max-height: 58px;
+  object-fit: contain;
+}
+
+.logo-wall .round-logo {
+  max-width: 66px;
+  max-height: 66px;
+  border-radius: 50%;
+}
+
+.image-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 14px;
+  align-items: stretch;
+}
+
+.image-split figure {
+  position: relative;
+  min-height: 420px;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.image-split img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: heroFloat 16s ease-in-out infinite alternate;
+}
+
+.service-system-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 34px;
+  align-items: center;
+  padding: 36px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: var(--shadow);
+}
+
+.service-system-panel img {
+  width: 100%;
+  min-height: 360px;
+  border-radius: var(--radius);
+  object-fit: cover;
+}
+
+.tool-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.tool-cloud span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid rgba(21, 93, 252, 0.16);
+  border-radius: 999px;
+  background: rgba(21, 93, 252, 0.06);
+  color: var(--blue);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.included-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.included-strip article {
+  min-height: 180px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.included-strip strong {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--blue);
+  font-size: 0.88rem;
+  text-transform: uppercase;
+}
+
+.included-strip p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
 .problem-section {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1089,6 +1406,29 @@ body.modal-open {
   }
 }
 
+@keyframes pageHeroSweep {
+  0%,
+  36% {
+    transform: translateX(-120%);
+  }
+
+  58%,
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes softBob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
 @keyframes aiFloat {
   0%,
   100% {
@@ -1150,7 +1490,12 @@ body.modal-open {
   .problem-section,
   .difference-grid,
   .brief-card,
-  .testimonials-grid {
+  .testimonials-grid,
+  .two-column,
+  .contact-page-grid,
+  .brand-proof-wall,
+  .service-system-panel,
+  .image-split {
     grid-template-columns: 1fr;
   }
 
@@ -1166,7 +1511,13 @@ body.modal-open {
   .service-grid,
   .portfolio-grid,
   .pricing-grid,
-  .stats-grid {
+  .stats-grid,
+  .feature-list,
+  .process-list,
+  .faq-grid,
+  .offer-grid,
+  .page-service-grid,
+  .included-strip {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -1238,8 +1589,25 @@ body.modal-open {
 
   .hero-content .button,
   .hero-actions,
+  .page-actions,
+  .page-actions .button,
+  .dark-cta .button,
   .button {
     width: 100%;
+  }
+
+  .page-hero {
+    padding: 74px 0 58px;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(2.6rem, 13vw, 4.2rem);
+    line-height: 0.94;
+  }
+
+  .dark-cta .section-shell {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .floating-whatsapp {
@@ -1252,8 +1620,24 @@ body.modal-open {
   .portfolio-grid,
   .pricing-grid,
   .stats-grid,
-  .footer-grid {
+  .footer-grid,
+  .feature-list,
+  .process-list,
+  .faq-grid,
+  .offer-grid,
+  .page-service-grid,
+  .included-strip,
+  .logo-wall {
     grid-template-columns: 1fr;
+  }
+
+  .service-system-panel {
+    padding: 22px;
+  }
+
+  .service-system-panel img,
+  .image-split figure {
+    min-height: 280px;
   }
 
   .problem-section,
@@ -1263,7 +1647,8 @@ body.modal-open {
   .brief-section,
   .stats-section,
   .difference-section,
-  .testimonials-section {
+  .testimonials-section,
+  .content-section {
     padding: 72px 0;
   }
 

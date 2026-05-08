@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wolexz1.github.io/WTB-AI-marketing-agency/sitemap.xml
