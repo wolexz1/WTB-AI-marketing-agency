@@ -437,6 +437,30 @@ h3 {
     url("assets/wtb-ai-marketing-hero.png") center / cover;
 }
 
+.about-page .page-hero {
+  background:
+    linear-gradient(90deg, rgba(251, 250, 247, 0.98) 0%, rgba(251, 250, 247, 0.88) 58%, rgba(251, 250, 247, 0.38) 100%),
+    url("assets/wtb-about-strategy.png") center / cover;
+}
+
+.services-page .page-hero {
+  background:
+    linear-gradient(90deg, rgba(251, 250, 247, 0.98) 0%, rgba(251, 250, 247, 0.88) 58%, rgba(251, 250, 247, 0.38) 100%),
+    url("assets/wtb-services-studio.png") center / cover;
+}
+
+.pricing-page .page-hero {
+  background:
+    linear-gradient(90deg, rgba(251, 250, 247, 0.98) 0%, rgba(251, 250, 247, 0.88) 58%, rgba(251, 250, 247, 0.38) 100%),
+    url("assets/wtb-pricing-value.png") center / cover;
+}
+
+.contact-page .page-hero {
+  background:
+    linear-gradient(90deg, rgba(251, 250, 247, 0.98) 0%, rgba(251, 250, 247, 0.88) 58%, rgba(251, 250, 247, 0.38) 100%),
+    url("assets/wtb-contact-briefing.png") center / cover;
+}
+
 .page-hero::after {
   content: "";
   position: absolute;
@@ -1020,6 +1044,24 @@ h3 {
 
 .featured-price li {
   color: rgba(255, 255, 255, 0.7);
+}
+
+.package-highlight {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  margin: 0 2px;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: rgba(21, 93, 252, 0.1);
+  color: var(--blue);
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.featured-price .package-highlight {
+  background: rgba(243, 181, 31, 0.15);
+  color: var(--gold);
 }
 
 .booking-note {
