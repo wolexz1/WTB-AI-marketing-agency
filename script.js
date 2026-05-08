@@ -5,6 +5,8 @@ const modalTriggers = Array.from(document.querySelectorAll(".brief-modal-trigger
 const modalClosers = Array.from(document.querySelectorAll("[data-modal-close]"));
 const revealItems = Array.from(document.querySelectorAll(".reveal"));
 const statNumbers = Array.from(document.querySelectorAll(".stat-number"));
+const navToggle = document.querySelector(".nav-toggle");
+const navLinks = document.querySelector(".nav-links");
 
 const animateStat = (stat) => {
   if (stat.dataset.counted === "true") {
@@ -83,6 +85,26 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && modal?.classList.contains("is-open")) {
     closeModal();
   }
+
+  if (event.key === "Escape" && navLinks?.classList.contains("is-open")) {
+    navLinks.classList.remove("is-open");
+    navToggle?.classList.remove("is-open");
+    navToggle?.setAttribute("aria-expanded", "false");
+  }
+});
+
+navToggle?.addEventListener("click", () => {
+  const isOpen = navLinks?.classList.toggle("is-open") || false;
+  navToggle.classList.toggle("is-open", isOpen);
+  navToggle.setAttribute("aria-expanded", String(isOpen));
+});
+
+navLinks?.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("is-open");
+    navToggle?.classList.remove("is-open");
+    navToggle?.setAttribute("aria-expanded", "false");
+  });
 });
 
 document.querySelector("#briefForm")?.addEventListener("submit", () => {
