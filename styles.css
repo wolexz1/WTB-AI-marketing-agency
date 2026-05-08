@@ -1326,24 +1326,14 @@ body.modal-open {
   align-items: center;
   gap: 10px;
   width: 100%;
-  min-height: 42px;
-  padding: 0 12px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.035);
+  min-height: 30px;
 }
 
-.social-icon {
-  display: inline-grid;
+.social-logo {
   flex: 0 0 auto;
-  place-items: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: rgba(21, 93, 252, 0.16);
-  color: #fff;
-  font-size: 0.68rem;
-  font-weight: 900;
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
 }
 
 .footer-column a:hover,
