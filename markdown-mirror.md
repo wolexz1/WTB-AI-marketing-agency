@@ -50,7 +50,7 @@ The website brief form collects client details, website goals, target audience, 
 
 If the client does not have copy, images, brand colours, logo direction, SEO keywords, website structure, or reference materials, WTB can create those missing pieces so the project does not waste time.
 
-The form calculates special add-ons automatically. SEO setup adds NGN 100,000 to the base website budget. Ecommerce setup or product checkout adds NGN 400,000. Payment gateway integration adds NGN 150,000. Newsletter setup adds NGN 80,000. Blog setup adds NGN 120,000. Live chat setup adds NGN 75,000. User login or member access adds NGN 500,000. File upload adds NGN 250,000. Google Analytics setup adds NGN 50,000. Google Search Console setup adds NGN 50,000. Social preview image setup adds NGN 50,000. After submission, the client receives payment instructions by email with the final calculated payment amount.
+Basic websites start from NGN 150,000. If a client does not enter a base budget in the website brief form, NGN 150,000 is used as the default base amount. The form keeps SEO and ecommerce visible as optional add-ons so clients can choose them intentionally. SEO setup adds NGN 100,000 to the base website budget. Ecommerce setup, shop pages, or product checkout adds NGN 400,000. Payment gateway integration adds NGN 150,000. Newsletter setup adds NGN 80,000. Blog setup adds NGN 120,000. Live chat setup adds NGN 75,000. User login or member access adds NGN 500,000. File upload adds NGN 250,000. Google Analytics setup adds NGN 50,000. Google Search Console setup adds NGN 50,000. Social preview image setup adds NGN 50,000. After submission, the client receives payment instructions by email with the final calculated payment amount.
 
 ### Generative AI Creative
 

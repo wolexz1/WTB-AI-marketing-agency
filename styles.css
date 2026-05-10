@@ -1203,12 +1203,35 @@ h3 {
   accent-color: var(--blue);
 }
 
-.conditional-section[hidden] {
-  display: none;
-}
-
 .checkbox-grid small {
   margin-left: auto;
+  color: var(--blue);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.addon-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: max-content;
+  max-width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid rgba(21, 93, 252, 0.24);
+  border-radius: var(--radius);
+  background: rgba(21, 93, 252, 0.08);
+  color: var(--ink);
+  font-weight: 900;
+}
+
+.addon-toggle input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--blue);
+}
+
+.addon-toggle small {
   color: var(--blue);
   font-size: 0.78rem;
   font-weight: 900;

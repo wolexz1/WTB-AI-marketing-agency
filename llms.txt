@@ -30,6 +30,8 @@ WTB is built for businesses searching for a Nigerian marketing agency that can h
 - X trend campaigns for brand awareness, brand traffic, product launches, public conversations, and visibility on the X trend table
 - Website development and landing pages for Nigerian businesses
 - Website brief form for business websites, ecommerce websites, portfolio websites, landing pages, booking websites, and SEO-ready websites
+- Basic website pricing starts from NGN 150,000, which is used as the default base amount when no higher budget is entered in the website brief form
+- Visible optional SEO and ecommerce add-ons inside the website brief form, with SEO setup adding NGN 100,000 and ecommerce setup adding NGN 400,000 when selected
 - Funnels, lead capture, automation, dashboards, retargeting, and reporting
 - Generative AI creative for ad images, campaign concepts, and video ideas
 

@@ -119,20 +119,25 @@ document.querySelector("#quickBriefForm")?.addEventListener("submit", () => {
 const websiteBriefForm = document.querySelector("#websiteBriefForm");
 
 const formatNaira = (amount) => `\u20a6${Number(amount || 0).toLocaleString("en-NG")}`;
+const basicWebsitePrice = 150000;
 
 const updateWebsiteBriefPricing = () => {
   if (!websiteBriefForm) {
     return null;
   }
 
-  const baseValue = Number(websiteBriefForm.querySelector("[name='budget']")?.value || 0);
+  const enteredBaseValue = Number(websiteBriefForm.querySelector("[name='budget']")?.value || 0);
+  const baseValue = enteredBaseValue > 0 ? Math.max(enteredBaseValue, basicWebsitePrice) : basicWebsitePrice;
   const websiteType = websiteBriefForm.querySelector("[name='website_type']")?.value || "";
   const pages = Array.from(websiteBriefForm.querySelectorAll("[name='pages[]']:checked")).map((item) => item.value);
   const features = Array.from(websiteBriefForm.querySelectorAll("[name='features[]']:checked")).map((item) => item.value);
-  const ecommerceSelected = websiteType === "Ecommerce store" || pages.includes("Shop") || features.includes("Product checkout");
-  const seoSelected = features.includes("SEO setup");
-  const ecommerceSection = websiteBriefForm.querySelector("[data-conditional='ecommerce']");
-  const seoSection = websiteBriefForm.querySelector("[data-conditional='seo']");
+  const premiumAddons = Array.from(websiteBriefForm.querySelectorAll("[name='premium_addons[]']:checked")).map((item) => item.value);
+  const ecommerceAddon = websiteBriefForm.querySelector("[name='ecommerce_addon']")?.value || "";
+  const seoAddon = websiteBriefForm.querySelector("[name='seo_addon']")?.value || "";
+  const ecommerceSuggested = websiteType === "Ecommerce store" || pages.includes("Shop") || features.includes("Product checkout");
+  const seoSuggested = features.includes("SEO setup");
+  const ecommerceSelected = premiumAddons.includes("Ecommerce setup") || ecommerceAddon === "Ecommerce setup" || ecommerceSuggested;
+  const seoSelected = premiumAddons.includes("SEO setup") || seoAddon === "SEO setup" || seoSuggested;
   const addonRules = [
     { feature: "SEO setup", label: "SEO setup", amount: 100000 },
     { feature: "Payment gateway", label: "Payment gateway integration", amount: 150000 },
@@ -149,8 +154,9 @@ const updateWebsiteBriefPricing = () => {
     .filter((rule) => features.includes(rule.feature))
     .map(({ label, amount }) => ({ label, amount }));
 
-  ecommerceSection?.toggleAttribute("hidden", !ecommerceSelected);
-  seoSection?.toggleAttribute("hidden", !seoSelected);
+  if (seoSelected && !addons.some((item) => item.label === "SEO setup")) {
+    addons.push({ label: "SEO setup", amount: 100000 });
+  }
 
   if (ecommerceSelected) {
     addons.push({ label: "Ecommerce setup", amount: 400000 });
@@ -160,14 +166,14 @@ const updateWebsiteBriefPricing = () => {
   const finalTotal = baseValue + addonTotal;
   const addonText = addons.length
     ? addons.map((item) => `${item.label}: ${formatNaira(item.amount)}`).join("; ")
-    : "No SEO or ecommerce add-ons selected.";
+    : "No paid add-ons selected.";
   const totalText = baseValue
     ? `${formatNaira(finalTotal)} total (${formatNaira(baseValue)} base + ${formatNaira(addonTotal)} add-ons)`
-    : "Enter a base budget to calculate total.";
+    : `Basic website base starts from ${formatNaira(basicWebsitePrice)}.`;
 
-  websiteBriefForm.querySelector("[name='base_budget_amount']").value = baseValue ? formatNaira(baseValue) : "";
+  websiteBriefForm.querySelector("[name='base_budget_amount']").value = formatNaira(baseValue);
   websiteBriefForm.querySelector("[name='selected_addons']").value = addonText;
-  websiteBriefForm.querySelector("[name='final_budget_amount']").value = baseValue ? formatNaira(finalTotal) : "";
+  websiteBriefForm.querySelector("[name='final_budget_amount']").value = formatNaira(finalTotal);
   websiteBriefForm.querySelector("[data-budget-total]").textContent = totalText;
   websiteBriefForm.querySelector("[data-budget-addons]").textContent = addonText;
 
@@ -180,9 +186,9 @@ updateWebsiteBriefPricing();
 
 websiteBriefForm?.addEventListener("submit", (event) => {
   const pricing = updateWebsiteBriefPricing();
-  const finalBudget = pricing?.baseValue ? formatNaira(pricing.finalTotal) : "the final budget amount calculated from your brief";
-  const baseBudget = pricing?.baseValue ? formatNaira(pricing.baseValue) : "the base budget amount entered in your brief";
-  const addons = pricing?.addonText || "No SEO or ecommerce add-ons selected.";
+  const finalBudget = pricing?.baseValue ? formatNaira(pricing.finalTotal) : formatNaira(basicWebsitePrice);
+  const baseBudget = pricing?.baseValue ? formatNaira(pricing.baseValue) : formatNaira(basicWebsitePrice);
+  const addons = pricing?.addonText || "No paid add-ons selected.";
   const autoresponse = websiteBriefForm.querySelector("[name='_autoresponse']");
 
   if (autoresponse) {
