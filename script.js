@@ -1,5 +1,6 @@
 const formNote = document.querySelector("#formNote");
 const quickFormNote = document.querySelector("#quickFormNote");
+const websiteBriefNote = document.querySelector("#websiteBriefNote");
 const modal = document.querySelector("#briefModal");
 const modalTriggers = Array.from(document.querySelectorAll(".brief-modal-trigger"));
 const modalClosers = Array.from(document.querySelectorAll("[data-modal-close]"));
@@ -113,4 +114,19 @@ document.querySelector("#briefForm")?.addEventListener("submit", () => {
 
 document.querySelector("#quickBriefForm")?.addEventListener("submit", () => {
   quickFormNote.textContent = "Sending your brief securely now.";
+});
+
+document.querySelector("#websiteBriefForm")?.addEventListener("submit", (event) => {
+  const form = event.currentTarget;
+  const budgetValue = form.querySelector("[name='budget']")?.value || "";
+  const budget = budgetValue
+    ? `₦${Number(budgetValue).toLocaleString("en-NG")}`
+    : "the budget amount entered in your brief";
+  const autoresponse = form.querySelector("[name='_autoresponse']");
+
+  if (autoresponse) {
+    autoresponse.value = `Thank you for sending your website brief to WTB AI Marketing Agency. We have received your details and will review your project. Your selected website budget amount is: ${budget}. If anything is missing, do not worry; we can create the missing copy, images, brand direction, page structure, SEO keywords, and other website materials for you so we do not waste time. To proceed, kindly make payment of ${budget} to: Bank: GT Bank. Account Name: Olukoya Oluwole. Account Number: 0116506079. After payment, please send your payment confirmation receipt to wolexzthebrand@gmail.com or WhatsApp +234 809 758 5489. Once confirmed, we will advise the next step for your website project.`;
+  }
+
+  websiteBriefNote.textContent = `Sending your website brief securely now. Check your email after submission for payment details matching: ${budget}.`;
 });

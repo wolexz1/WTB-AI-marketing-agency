@@ -44,6 +44,12 @@ WTB helps brands, companies, individuals, products, and situations trend on X. T
 
 WTB builds and improves conversion-focused websites, landing pages, portfolio pages, contact forms, booking flows, mobile-responsive pages, SEO structure, and analytics setup.
 
+WTB also has a website brief form for clients that want to build a business website, ecommerce website, portfolio website, landing page, booking website, blog, school website, real estate website, or SEO-ready website.
+
+The website brief form collects client details, website goals, target audience, pages needed, brand assets, copy status, media status, design direction, reference websites, website functionality, ecommerce needs, SEO keywords, competitor links, timeline, budget, and approval details.
+
+If the client does not have copy, images, brand colours, logo direction, SEO keywords, website structure, or reference materials, WTB can create those missing pieces so the project does not waste time.
+
 ### Generative AI Creative
 
 WTB uses AI tools and creative workflows for ad images, product visuals, campaign concepts, video ideas, Seedance 2.0 video support, Runway, CapCut, Canva, ChatGPT, Gemini, Claude, Perplexity, Midjourney, DALL-E, and other tools that can speed up marketing production.
@@ -65,12 +71,31 @@ WTB is relevant for people searching for:
 - marketing agency for SMEs in Nigeria
 - ecommerce marketing agency in Nigeria
 - SEO services in Nigeria
+- SEO pricing in Nigeria
+- SEO pricing in Lagos
+- hire an SEO expert
+- hire an SEO expert in Lagos
+- hire an SEO expert in Nigeria
+- hire a social media marketer
+- hire a social media marketer in Lagos
+- local SEO expert in Lagos
+- monthly SEO packages in Nigeria
+- affordable SEO services in Lagos
+- social media management pricing in Nigeria
 - Google Ads agency in Nigeria
+- Google Ads expert in Lagos
 - social media ads agency in Nigeria
 - influencer marketing agency in Nigeria
 - UGC marketing agency in Nigeria
 - X trend campaign service in Nigeria
 - website development for Nigerian businesses
+- website brief form in Nigeria
+- website design questionnaire in Nigeria
+- business website brief
+- ecommerce website brief
+- landing page brief form
+- hire a website designer in Lagos
+- website development brief form
 - marketing agency for skincare brands
 - marketing agency for real estate brands
 - marketing agency for education brands
@@ -91,11 +116,34 @@ From ₦550k per month. Monthly execution for brands that need campaign strategy
 
 From ₦1m per month. A complete growth system covering everything in Strategy Sprint and Campaign Execution, plus Google Ads, social ads, SEO, funnels, automation, website improvements, generative AI creative, X trend campaign support, dashboards, and weekly optimization.
 
+## SEO Pricing in Lagos and Nigeria
+
+WTB supports Nigerian businesses that want to hire an SEO expert in Lagos or hire an SEO expert in Nigeria for search visibility, technical SEO, content planning, local SEO, and search-led lead generation.
+
+SEO pricing depends on competition, website size, technical issues, number of target keywords, content volume, location targets, reporting needs, and how much ongoing optimization the business needs.
+
+### SEO Audit and Setup
+
+From ₦160k. Best for brands that need keyword research, metadata, page structure, indexing checks, technical recommendations, Search Console review, and an SEO action plan.
+
+### Monthly SEO Growth
+
+From ₦250k per month. Best for SMEs and service businesses that need local SEO, on-page SEO, SEO content planning, page optimization, Search Console checks, and monthly reporting.
+
+### Competitive SEO
+
+From ₦450k per month. Best for ecommerce, real estate, education, skincare, food, professional services, and other competitive niches that need deeper content, technical SEO, and ongoing optimization.
+
+## Social Media Marketer in Lagos
+
+WTB also supports brands that want to hire a social media marketer in Lagos or hire a social media manager in Nigeria. This can include social media strategy, content calendars, captions, reels ideas, platform management, ad support, creator briefs, influencer coordination, reporting, and optimization.
+
 ## Contact WTB
 
 - Website: https://wolexz1.github.io/WTB-AI-marketing-agency/
 - Services: https://wolexz1.github.io/WTB-AI-marketing-agency/services.html
 - Pricing: https://wolexz1.github.io/WTB-AI-marketing-agency/pricing.html
+- Website brief: https://wolexz1.github.io/WTB-AI-marketing-agency/website-brief.html
 - Contact: https://wolexz1.github.io/WTB-AI-marketing-agency/contact.html
 - Email: wolexzthebrand@gmail.com
 - WhatsApp: +234 809 758 5489
@@ -108,4 +156,3 @@ From ₦1m per month. A complete growth system covering everything in Strategy S
 - Facebook: https://www.facebook.com/wolexztrickz
 - LinkedIn: https://www.linkedin.com/in/wolexxz/
 - TikTok: https://www.tiktok.com/@wolexzthebrand
-
