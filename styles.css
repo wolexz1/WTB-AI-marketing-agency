@@ -1203,6 +1203,43 @@ h3 {
   accent-color: var(--blue);
 }
 
+.conditional-section[hidden] {
+  display: none;
+}
+
+.checkbox-grid small {
+  margin-left: auto;
+  color: var(--blue);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.budget-estimator {
+  display: grid;
+  gap: 8px;
+  padding: 18px;
+  border: 1px solid rgba(243, 181, 31, 0.42);
+  border-radius: var(--radius);
+  background: rgba(243, 181, 31, 0.12);
+}
+
+.budget-estimator strong {
+  color: var(--ink);
+}
+
+.budget-estimator span {
+  color: var(--blue);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.7rem, 4vw, 2.7rem);
+  font-weight: 900;
+  line-height: 1;
+}
+
+.budget-estimator small {
+  color: var(--muted);
+  line-height: 1.5;
+}
+
 .form-payment-note {
   padding: 18px;
   border: 1px solid rgba(21, 93, 252, 0.22);

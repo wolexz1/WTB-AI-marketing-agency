@@ -116,17 +116,78 @@ document.querySelector("#quickBriefForm")?.addEventListener("submit", () => {
   quickFormNote.textContent = "Sending your brief securely now.";
 });
 
-document.querySelector("#websiteBriefForm")?.addEventListener("submit", (event) => {
-  const form = event.currentTarget;
-  const budgetValue = form.querySelector("[name='budget']")?.value || "";
-  const budget = budgetValue
-    ? `₦${Number(budgetValue).toLocaleString("en-NG")}`
-    : "the budget amount entered in your brief";
-  const autoresponse = form.querySelector("[name='_autoresponse']");
+const websiteBriefForm = document.querySelector("#websiteBriefForm");
 
-  if (autoresponse) {
-    autoresponse.value = `Thank you for sending your website brief to WTB AI Marketing Agency. We have received your details and will review your project. Your selected website budget amount is: ${budget}. If anything is missing, do not worry; we can create the missing copy, images, brand direction, page structure, SEO keywords, and other website materials for you so we do not waste time. To proceed, kindly make payment of ${budget} to: Bank: GT Bank. Account Name: Olukoya Oluwole. Account Number: 0116506079. After payment, please send your payment confirmation receipt to wolexzthebrand@gmail.com or WhatsApp +234 809 758 5489. Once confirmed, we will advise the next step for your website project.`;
+const formatNaira = (amount) => `\u20a6${Number(amount || 0).toLocaleString("en-NG")}`;
+
+const updateWebsiteBriefPricing = () => {
+  if (!websiteBriefForm) {
+    return null;
   }
 
-  websiteBriefNote.textContent = `Sending your website brief securely now. Check your email after submission for payment details matching: ${budget}.`;
+  const baseValue = Number(websiteBriefForm.querySelector("[name='budget']")?.value || 0);
+  const websiteType = websiteBriefForm.querySelector("[name='website_type']")?.value || "";
+  const pages = Array.from(websiteBriefForm.querySelectorAll("[name='pages[]']:checked")).map((item) => item.value);
+  const features = Array.from(websiteBriefForm.querySelectorAll("[name='features[]']:checked")).map((item) => item.value);
+  const ecommerceSelected = websiteType === "Ecommerce store" || pages.includes("Shop") || features.includes("Product checkout");
+  const seoSelected = features.includes("SEO setup");
+  const ecommerceSection = websiteBriefForm.querySelector("[data-conditional='ecommerce']");
+  const seoSection = websiteBriefForm.querySelector("[data-conditional='seo']");
+  const addonRules = [
+    { feature: "SEO setup", label: "SEO setup", amount: 100000 },
+    { feature: "Payment gateway", label: "Payment gateway integration", amount: 150000 },
+    { feature: "Newsletter", label: "Newsletter signup setup", amount: 80000 },
+    { feature: "Blog", label: "Blog setup", amount: 120000 },
+    { feature: "Live chat", label: "Live chat setup", amount: 75000 },
+    { feature: "User login", label: "User login/member access", amount: 500000 },
+    { feature: "File upload", label: "File upload system", amount: 250000 },
+    { feature: "Google Analytics", label: "Google Analytics setup", amount: 50000 },
+    { feature: "Search Console", label: "Google Search Console setup", amount: 50000 },
+    { feature: "Social preview", label: "Social preview image setup", amount: 50000 },
+  ];
+  const addons = addonRules
+    .filter((rule) => features.includes(rule.feature))
+    .map(({ label, amount }) => ({ label, amount }));
+
+  ecommerceSection?.toggleAttribute("hidden", !ecommerceSelected);
+  seoSection?.toggleAttribute("hidden", !seoSelected);
+
+  if (ecommerceSelected) {
+    addons.push({ label: "Ecommerce setup", amount: 400000 });
+  }
+
+  const addonTotal = addons.reduce((sum, item) => sum + item.amount, 0);
+  const finalTotal = baseValue + addonTotal;
+  const addonText = addons.length
+    ? addons.map((item) => `${item.label}: ${formatNaira(item.amount)}`).join("; ")
+    : "No SEO or ecommerce add-ons selected.";
+  const totalText = baseValue
+    ? `${formatNaira(finalTotal)} total (${formatNaira(baseValue)} base + ${formatNaira(addonTotal)} add-ons)`
+    : "Enter a base budget to calculate total.";
+
+  websiteBriefForm.querySelector("[name='base_budget_amount']").value = baseValue ? formatNaira(baseValue) : "";
+  websiteBriefForm.querySelector("[name='selected_addons']").value = addonText;
+  websiteBriefForm.querySelector("[name='final_budget_amount']").value = baseValue ? formatNaira(finalTotal) : "";
+  websiteBriefForm.querySelector("[data-budget-total]").textContent = totalText;
+  websiteBriefForm.querySelector("[data-budget-addons]").textContent = addonText;
+
+  return { baseValue, addonTotal, finalTotal, addonText };
+};
+
+websiteBriefForm?.addEventListener("input", updateWebsiteBriefPricing);
+websiteBriefForm?.addEventListener("change", updateWebsiteBriefPricing);
+updateWebsiteBriefPricing();
+
+websiteBriefForm?.addEventListener("submit", (event) => {
+  const pricing = updateWebsiteBriefPricing();
+  const finalBudget = pricing?.baseValue ? formatNaira(pricing.finalTotal) : "the final budget amount calculated from your brief";
+  const baseBudget = pricing?.baseValue ? formatNaira(pricing.baseValue) : "the base budget amount entered in your brief";
+  const addons = pricing?.addonText || "No SEO or ecommerce add-ons selected.";
+  const autoresponse = websiteBriefForm.querySelector("[name='_autoresponse']");
+
+  if (autoresponse) {
+    autoresponse.value = `Thank you for sending your website brief to WTB AI Marketing Agency. We have received your details and will review your project. Your base website budget is: ${baseBudget}. Add-ons selected: ${addons}. Your final calculated payment amount is: ${finalBudget}. If anything is missing, do not worry; we can create the missing copy, images, brand direction, page structure, SEO keywords, and other website materials for you so we do not waste time. To proceed, kindly make payment of ${finalBudget} to: Bank: GT Bank. Account Name: Olukoya Oluwole. Account Number: 0116506079. After payment, please send your payment confirmation receipt to wolexzthebrand@gmail.com or WhatsApp +234 809 758 5489. Once confirmed, we will advise the next step for your website project.`;
+  }
+
+  websiteBriefNote.textContent = `Sending your website brief securely now. Check your email after submission for payment details matching: ${finalBudget}.`;
 });

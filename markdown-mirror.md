@@ -50,6 +50,8 @@ The website brief form collects client details, website goals, target audience, 
 
 If the client does not have copy, images, brand colours, logo direction, SEO keywords, website structure, or reference materials, WTB can create those missing pieces so the project does not waste time.
 
+The form calculates special add-ons automatically. SEO setup adds NGN 100,000 to the base website budget. Ecommerce setup or product checkout adds NGN 400,000. Payment gateway integration adds NGN 150,000. Newsletter setup adds NGN 80,000. Blog setup adds NGN 120,000. Live chat setup adds NGN 75,000. User login or member access adds NGN 500,000. File upload adds NGN 250,000. Google Analytics setup adds NGN 50,000. Google Search Console setup adds NGN 50,000. Social preview image setup adds NGN 50,000. After submission, the client receives payment instructions by email with the final calculated payment amount.
+
 ### Generative AI Creative
 
 WTB uses AI tools and creative workflows for ad images, product visuals, campaign concepts, video ideas, Seedance 2.0 video support, Runway, CapCut, Canva, ChatGPT, Gemini, Claude, Perplexity, Midjourney, DALL-E, and other tools that can speed up marketing production.
@@ -93,6 +95,8 @@ WTB is relevant for people searching for:
 - website design questionnaire in Nigeria
 - business website brief
 - ecommerce website brief
+- ecommerce website setup add-on in Nigeria
+- SEO setup add-on for websites
 - landing page brief form
 - hire a website designer in Lagos
 - website development brief form
