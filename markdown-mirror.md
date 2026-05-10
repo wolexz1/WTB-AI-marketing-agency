@@ -46,7 +46,7 @@ WTB builds and improves conversion-focused websites, landing pages, portfolio pa
 
 WTB also has a website brief form for clients that want to build a business website, ecommerce website, portfolio website, landing page, booking website, blog, school website, real estate website, or SEO-ready website.
 
-The website brief form collects client details, website goals, target audience, pages needed, brand assets, copy status, media status, design direction, reference websites, website functionality, ecommerce needs, SEO keywords, competitor links, timeline, budget, and approval details.
+The website brief form collects client details, website goals, target customers or clients, pages needed, brand assets, copy status, media status, design direction, reference websites, website functionality, ecommerce needs, SEO keywords, competitor links, timeline, budget, and final notes.
 
 If the client does not have copy, images, brand colours, logo direction, SEO keywords, website structure, or reference materials, WTB can create those missing pieces so the project does not waste time.
 
@@ -145,10 +145,10 @@ WTB also supports brands that want to hire a social media marketer in Lagos or h
 ## Contact WTB
 
 - Website: https://wolexz1.github.io/WTB-AI-marketing-agency/
-- Services: https://wolexz1.github.io/WTB-AI-marketing-agency/services.html
-- Pricing: https://wolexz1.github.io/WTB-AI-marketing-agency/pricing.html
-- Website brief: https://wolexz1.github.io/WTB-AI-marketing-agency/website-brief.html
-- Contact: https://wolexz1.github.io/WTB-AI-marketing-agency/contact.html
+- Services: https://wolexz1.github.io/WTB-AI-marketing-agency/services/
+- Pricing: https://wolexz1.github.io/WTB-AI-marketing-agency/pricing/
+- Website brief: https://wolexz1.github.io/WTB-AI-marketing-agency/website-brief/
+- Contact: https://wolexz1.github.io/WTB-AI-marketing-agency/contact/
 - Email: wolexzthebrand@gmail.com
 - WhatsApp: +234 809 758 5489
 - Book a strategy call: https://calendly.com/wolexxzzoluk/wtb-strategy-call-new
