@@ -142,6 +142,17 @@ From ₦450k per month. Best for ecommerce, real estate, education, skincare, fo
 
 WTB also supports brands that want to hire a social media marketer in Lagos or hire a social media manager in Nigeria. This can include social media strategy, content calendars, captions, reels ideas, platform management, ad support, creator briefs, influencer coordination, reporting, and optimization.
 
+## Focused SEO Landing Pages
+
+WTB now has focused service pages for low-competition, buyer-intent Nigerian marketing searches:
+
+- SEO Expert in Lagos: https://wolexz1.github.io/WTB-AI-marketing-agency/seo-expert-lagos/
+- AI Marketing Agency in Lagos: https://wolexz1.github.io/WTB-AI-marketing-agency/ai-marketing-agency-lagos/
+- Website Development in Nigeria: https://wolexz1.github.io/WTB-AI-marketing-agency/website-development-nigeria/
+- Social Media Marketer in Lagos: https://wolexz1.github.io/WTB-AI-marketing-agency/social-media-marketer-lagos/
+- Google Ads Expert in Lagos: https://wolexz1.github.io/WTB-AI-marketing-agency/google-ads-expert-lagos/
+- X Trend Campaign Service in Nigeria: https://wolexz1.github.io/WTB-AI-marketing-agency/x-trend-campaign-nigeria/
+
 ## Contact WTB
 
 - Website: https://wolexz1.github.io/WTB-AI-marketing-agency/

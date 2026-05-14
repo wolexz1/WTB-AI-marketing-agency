@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /WTB-AI-marketing-agency-upload-20260505-200008/
+Disallow: /WTB-AI-marketing-agency/WTB-AI-marketing-agency-upload-20260505-200008/
 
 User-agent: GPTBot
 Allow: /
