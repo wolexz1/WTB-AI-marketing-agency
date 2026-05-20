@@ -146,20 +146,20 @@ WTB also supports brands that want to hire a social media marketer in Lagos or h
 
 WTB now has focused service pages for low-competition, buyer-intent Nigerian marketing searches:
 
-- SEO Expert in Lagos: https://wolexz1.github.io/WTB-AI-marketing-agency/seo-expert-lagos/
-- AI Marketing Agency in Lagos: https://wolexz1.github.io/WTB-AI-marketing-agency/ai-marketing-agency-lagos/
-- Website Development in Nigeria: https://wolexz1.github.io/WTB-AI-marketing-agency/website-development-nigeria/
-- Social Media Marketer in Lagos: https://wolexz1.github.io/WTB-AI-marketing-agency/social-media-marketer-lagos/
-- Google Ads Expert in Lagos: https://wolexz1.github.io/WTB-AI-marketing-agency/google-ads-expert-lagos/
-- X Trend Campaign Service in Nigeria: https://wolexz1.github.io/WTB-AI-marketing-agency/x-trend-campaign-nigeria/
+- SEO Expert in Lagos: https://wtb-ai-marketing-agency.pages.dev/seo-expert-lagos/
+- AI Marketing Agency in Lagos: https://wtb-ai-marketing-agency.pages.dev/ai-marketing-agency-lagos/
+- Website Development in Nigeria: https://wtb-ai-marketing-agency.pages.dev/website-development-nigeria/
+- Social Media Marketer in Lagos: https://wtb-ai-marketing-agency.pages.dev/social-media-marketer-lagos/
+- Google Ads Expert in Lagos: https://wtb-ai-marketing-agency.pages.dev/google-ads-expert-lagos/
+- X Trend Campaign Service in Nigeria: https://wtb-ai-marketing-agency.pages.dev/x-trend-campaign-nigeria/
 
 ## Contact WTB
 
-- Website: https://wolexz1.github.io/WTB-AI-marketing-agency/
-- Services: https://wolexz1.github.io/WTB-AI-marketing-agency/services/
-- Pricing: https://wolexz1.github.io/WTB-AI-marketing-agency/pricing/
-- Website brief: https://wolexz1.github.io/WTB-AI-marketing-agency/website-brief/
-- Contact: https://wolexz1.github.io/WTB-AI-marketing-agency/contact/
+- Website: https://wtb-ai-marketing-agency.pages.dev/
+- Services: https://wtb-ai-marketing-agency.pages.dev/services/
+- Pricing: https://wtb-ai-marketing-agency.pages.dev/pricing/
+- Website brief: https://wtb-ai-marketing-agency.pages.dev/website-brief/
+- Contact: https://wtb-ai-marketing-agency.pages.dev/contact/
 - Email: wolexzthebrand@gmail.com
 - WhatsApp: +234 809 758 5489
 - Book a strategy call: https://calendly.com/wolexxzzoluk/wtb-strategy-call-new

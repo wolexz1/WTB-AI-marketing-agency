@@ -8,6 +8,27 @@ const revealItems = Array.from(document.querySelectorAll(".reveal"));
 const statNumbers = Array.from(document.querySelectorAll(".stat-number"));
 const navToggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelector(".nav-links");
+const heroVideo = document.querySelector(".hero-video");
+
+const loadHeroVideo = () => {
+  if (!heroVideo || heroVideo.dataset.loaded === "true") {
+    return;
+  }
+
+  heroVideo.querySelectorAll("source[data-src]").forEach((source) => {
+    source.src = source.dataset.src;
+    source.removeAttribute("data-src");
+  });
+  heroVideo.dataset.loaded = "true";
+  heroVideo.load();
+  heroVideo.play().catch(() => {});
+};
+
+if (heroVideo && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  window.addEventListener("load", () => {
+    window.setTimeout(loadHeroVideo, 1200);
+  }, { once: true });
+}
 
 const animateStat = (stat) => {
   if (stat.dataset.counted === "true") {

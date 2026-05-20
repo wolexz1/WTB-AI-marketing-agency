@@ -15,4 +15,4 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
-Sitemap: https://wolexz1.github.io/WTB-AI-marketing-agency/sitemap.xml
+Sitemap: https://wtb-ai-marketing-agency.pages.dev/sitemap.xml

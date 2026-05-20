@@ -468,19 +468,19 @@ h3 {
   padding: 110px 0 86px;
   background:
     linear-gradient(90deg, rgba(251, 250, 247, 0.98) 0%, rgba(251, 250, 247, 0.88) 58%, rgba(251, 250, 247, 0.38) 100%),
-    url("assets/wtb-ai-marketing-hero.png") center / cover;
+    url("assets/wtb-ai-marketing-hero.jpg") center / cover;
 }
 
 .about-page .page-hero {
   background:
     linear-gradient(90deg, rgba(251, 250, 247, 0.98) 0%, rgba(251, 250, 247, 0.88) 58%, rgba(251, 250, 247, 0.38) 100%),
-    url("assets/wtb-about-strategy.png") center / cover;
+    url("assets/wtb-about-strategy.jpg") center / cover;
 }
 
 .services-page .page-hero {
   background:
     linear-gradient(90deg, rgba(251, 250, 247, 0.98) 0%, rgba(251, 250, 247, 0.88) 58%, rgba(251, 250, 247, 0.38) 100%),
-    url("assets/wtb-services-studio.png") center / cover;
+    url("assets/wtb-services-studio.jpg") center / cover;
 }
 
 .pricing-page .page-hero {
