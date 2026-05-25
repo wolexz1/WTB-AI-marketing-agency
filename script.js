@@ -9,6 +9,7 @@ const statNumbers = Array.from(document.querySelectorAll(".stat-number"));
 const navToggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelector(".nav-links");
 const heroVideo = document.querySelector(".hero-video");
+const motionAllowed = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const loadHeroVideo = () => {
   if (!heroVideo || heroVideo.dataset.loaded === "true") {
@@ -24,11 +25,16 @@ const loadHeroVideo = () => {
   heroVideo.play().catch(() => {});
 };
 
-if (heroVideo && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+if (heroVideo && motionAllowed) {
   window.addEventListener("load", () => {
     window.setTimeout(loadHeroVideo, 1200);
   }, { once: true });
 }
+
+revealItems.forEach((item, index) => {
+  const delay = Math.min((index % 6) * 70, 350);
+  item.style.setProperty("--reveal-delay", `${delay}ms`);
+});
 
 const animateStat = (stat) => {
   if (stat.dataset.counted === "true") {
