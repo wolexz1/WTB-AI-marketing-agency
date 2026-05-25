@@ -1883,6 +1883,8 @@ body.modal-open {
 }
 
 .thank-you-card {
+  position: relative;
+  overflow: hidden;
   width: min(900px, 100%);
   padding: clamp(28px, 6vw, 64px);
   border: 1px solid var(--line);
@@ -1891,8 +1893,49 @@ body.modal-open {
   box-shadow: var(--shadow);
 }
 
+.thank-you-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(115deg, transparent 0 52%, rgba(21, 93, 252, 0.08) 52.2%, transparent 53% 100%),
+    linear-gradient(145deg, transparent 0 72%, rgba(243, 181, 31, 0.14) 72.2%, transparent 73% 100%);
+  pointer-events: none;
+}
+
+.thank-you-card > * {
+  position: relative;
+  z-index: 1;
+}
+
 .thank-you-card .brand-lockup {
   margin-bottom: 46px;
+}
+
+.thank-you-status {
+  display: inline-grid;
+  grid-template-columns: repeat(3, 42px);
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.thank-you-status span {
+  display: block;
+  height: 42px;
+  border: 1px solid rgba(21, 93, 252, 0.18);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(243, 181, 31, 0.92), rgba(21, 93, 252, 0.94));
+  box-shadow: 0 14px 36px rgba(21, 93, 252, 0.16);
+  animation: footerPulse 3s ease-in-out infinite;
+}
+
+.thank-you-status span:nth-child(2) {
+  animation-delay: 0.25s;
+}
+
+.thank-you-status span:nth-child(3) {
+  animation-delay: 0.5s;
 }
 
 .thank-you-card h1 {
@@ -1905,6 +1948,35 @@ body.modal-open {
   color: var(--muted);
   font-size: 1.08rem;
   line-height: 1.75;
+}
+
+.thank-you-next {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 30px 0 0;
+}
+
+.thank-you-next article {
+  min-height: 150px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.thank-you-next strong {
+  display: block;
+  margin-bottom: 16px;
+  color: var(--blue);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.thank-you-next span {
+  color: var(--muted);
+  line-height: 1.6;
 }
 
 .thank-you-actions {
@@ -2286,6 +2358,10 @@ body.modal-open {
 
   .website-brief-form fieldset {
     padding: 18px;
+  }
+
+  .thank-you-next {
+    grid-template-columns: 1fr;
   }
 
   .service-system-panel {
