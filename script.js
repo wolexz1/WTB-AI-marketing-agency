@@ -1,3 +1,14 @@
+(() => {
+  const cloudflareOrigin = "https://wtb-ai-marketing-agency.pages.dev";
+  const oldGitHubHost = "wolexz1.github.io";
+  const oldGitHubBase = /^\/WTB-AI-marketing-agency\/?/;
+
+  if (window.location.hostname === oldGitHubHost) {
+    const cleanPath = window.location.pathname.replace(oldGitHubBase, "/");
+    window.location.replace(`${cloudflareOrigin}${cleanPath}${window.location.search}${window.location.hash}`);
+  }
+})();
+
 const formNote = document.querySelector("#formNote");
 const quickFormNote = document.querySelector("#quickFormNote");
 const websiteBriefNote = document.querySelector("#websiteBriefNote");
