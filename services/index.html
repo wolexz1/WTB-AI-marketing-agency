@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action https://formsubmit.co; frame-ancestors 'none'; upgrade-insecure-requests;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests;">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -355,7 +355,7 @@
         <button class="modal-close" type="button" data-modal-close aria-label="Close brief form">Close</button>
         <p class="eyebrow">Quick brief</p>
         <h2 id="briefModalTitle">Tell us what you want to grow.</h2>
-        <form id="quickBriefForm" class="brief-form compact-brief-form" action="https://formsubmit.co/wolexzthebrand@gmail.com" method="POST" enctype="multipart/form-data">
+        <form id="quickBriefForm" class="brief-form compact-brief-form" action="/api/submit" method="POST" enctype="multipart/form-data">
           <input type="hidden" name="_subject" value="New WTB quick project brief">
           <input type="hidden" name="_template" value="table">
           <input type="hidden" name="_next" value="https://wtb-ai-marketing-agency.pages.dev/thank-you/"><input type="hidden" name="_autoresponse" value="Thank you for contacting WTB AI Marketing Agency. We have received your brief and will review your goal, audience, timeline, and budget. Our team will reply with the best next step. For urgent follow-up, message us on WhatsApp: +234 809 758 5489.">

@@ -21,17 +21,6 @@ const navToggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelector(".nav-links");
 const heroVideo = document.querySelector(".hero-video");
 const motionAllowed = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const defaultBriefAutoResponse = "Thank you for contacting WTB AI Marketing Agency. We have received your brief and will review your goal, audience, timeline, and budget. Our team will reply with the best next step. For urgent follow-up, message us on WhatsApp: +234 809 758 5489.";
-
-document.querySelectorAll("form[action*='formsubmit.co']").forEach((form) => {
-  if (!form.querySelector("[name='_autoresponse']")) {
-    const autoResponse = document.createElement("input");
-    autoResponse.type = "hidden";
-    autoResponse.name = "_autoresponse";
-    autoResponse.value = defaultBriefAutoResponse;
-    form.prepend(autoResponse);
-  }
-});
 
 const loadHeroVideo = () => {
   if (!heroVideo || heroVideo.dataset.loaded === "true") {
