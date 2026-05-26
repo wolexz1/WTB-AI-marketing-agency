@@ -31,14 +31,6 @@ document.querySelectorAll("form[action*='formsubmit.co']").forEach((form) => {
     autoResponse.value = defaultBriefAutoResponse;
     form.prepend(autoResponse);
   }
-
-  if (!form.querySelector("[name='_captcha']")) {
-    const captcha = document.createElement("input");
-    captcha.type = "hidden";
-    captcha.name = "_captcha";
-    captcha.value = "false";
-    form.prepend(captcha);
-  }
 });
 
 const loadHeroVideo = () => {
