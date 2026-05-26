@@ -201,6 +201,8 @@ a {
   color: #fff;
   font-weight: 900;
   line-height: 1;
+  text-align: center;
+  white-space: nowrap;
   box-shadow: 0 14px 36px rgba(21, 93, 252, 0.22);
   transition: transform 220ms var(--ease-out), box-shadow 220ms ease, border-color 220ms ease, color 220ms ease, background 220ms ease;
 }
@@ -737,6 +739,12 @@ h3 {
   max-width: 660px;
   color: rgba(255, 255, 255, 0.68);
   line-height: 1.7;
+}
+
+.dark-cta .button {
+  flex: 0 0 auto;
+  min-width: 156px;
+  padding-inline: 28px;
 }
 
 .alt-hero-grid {
@@ -1672,8 +1680,8 @@ body.modal-open {
   margin: 0;
   color: #fff;
   font-family: var(--display);
-  font-size: clamp(2.7rem, 8vw, 6rem);
-  line-height: 0.9;
+  font-size: clamp(2.6rem, 7vw, 5.25rem);
+  line-height: 1.03;
 }
 
 .footer-cta p {
@@ -2285,6 +2293,21 @@ body.modal-open {
   .checkbox-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .footer-cta {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-cta-copy,
+  .footer-system-card {
+    min-height: auto;
+  }
+
+  .footer-cta h2 {
+    max-width: 760px;
+    font-size: clamp(2.35rem, 9vw, 4.15rem);
+    line-height: 1.08;
+  }
 }
 
 @media (max-width: 680px) {
@@ -2350,6 +2373,7 @@ body.modal-open {
 
   h2 {
     font-size: clamp(2.2rem, 13vw, 3.4rem);
+    line-height: 1.04;
   }
 
   .hero-content .button,
@@ -2378,6 +2402,11 @@ body.modal-open {
   .footer-cta {
     grid-template-columns: 1fr;
     padding: 54px 0 28px;
+  }
+
+  .footer-cta h2 {
+    font-size: clamp(2.2rem, 11vw, 3.2rem);
+    line-height: 1.1;
   }
 
   .footer-cta-copy,
