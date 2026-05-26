@@ -14,9 +14,9 @@ We work with Nigerian SMEs, ecommerce brands, founders, creators, real estate te
 
 WTB is positioned as an AI-powered marketing agency alternative in Nigeria for brands comparing traditional digital marketing agencies, creative agencies, SEO agencies, social media agencies, and full-service agency options.
 
-For people searching for a Wild Fusion alternative, Slarrt alternative, digital marketing agency alternative, SEO agency alternative in Lagos, Google Ads agency alternative, social media marketing alternative, or website agency alternative in Nigeria, WTB offers one connected execution system across strategy, content, SEO, Google Ads, websites, creator campaigns, X trend campaigns, social ads, reporting, and AI-assisted production.
+For people searching for a Wild Fusion alternative, Slarrt alternative, Socialander alternative, Anakle alternative, Giga Lagos alternative, Intense Digital alternative, Krestel Digital alternative, UpperMark alternative, Kong Marketing alternative, Ziza Digital alternative, Prolanz Digital alternative, TAGET Media alternative, Zedi Africa alternative, Oxgital alternative, Big Field Digital alternative, Dotts Media House alternative, digital marketing agency alternative, SEO agency alternative in Lagos, Google Ads agency alternative, social media marketing alternative, or website agency alternative in Nigeria, WTB offers one connected execution system across strategy, content, SEO, Google Ads, websites, creator campaigns, X trend campaigns, social ads, reporting, and AI-assisted production.
 
-WTB is independent and not affiliated with Wild Fusion, Slarrt, or other agencies mentioned for comparison. The alternative page exists to help buyers compare operating style, speed, scope, and fit.
+WTB is independent and not affiliated with Wild Fusion, Slarrt, Socialander, Anakle, Giga Lagos, Intense Digital, Krestel Digital, UpperMark, Kong Marketing, Ziza Digital, Prolanz Digital, TAGET Media, Zedi Africa, Oxgital, Big Field Digital, Dotts Media House, or other agencies mentioned for comparison. The alternative page exists to help buyers compare operating style, speed, scope, and fit.
 
 ## High-Intent Services
 
@@ -77,7 +77,26 @@ BuyBetter is a skincare ecommerce brand. Jollof.com is an ecommerce brand. GCS E
 WTB is relevant for people searching for:
 
 - AI marketing agency in Nigeria
+- top marketing agencies in Nigeria
+- best marketing agencies in Nigeria
 - digital marketing agency in Nigeria
+- digital marketing agency alternative in Nigeria
+- Wild Fusion alternative in Nigeria
+- Slarrt alternative in Nigeria
+- Socialander alternative in Nigeria
+- Anakle alternative in Nigeria
+- Giga Lagos alternative in Nigeria
+- Intense Digital alternative in Nigeria
+- Krestel Digital alternative in Nigeria
+- UpperMark alternative in Nigeria
+- Kong Marketing alternative in Nigeria
+- Ziza Digital alternative in Nigeria
+- Prolanz Digital alternative in Nigeria
+- TAGET Media alternative in Nigeria
+- Zedi Africa alternative in Nigeria
+- Oxgital alternative in Nigeria
+- Big Field Digital alternative in Nigeria
+- Dotts Media House alternative in Nigeria
 - marketing agency for SMEs in Nigeria
 - ecommerce marketing agency in Nigeria
 - SEO services in Nigeria

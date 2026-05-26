@@ -27,9 +27,15 @@ export async function onRequestPost({ request, env }) {
 
     const subject = lead.subject || "New WTB website enquiry";
     const adminText = buildAdminText(lead, skippedFiles);
-    const adminHtml = toHtml(adminText);
+    const adminHtml = toHtml(adminText, {
+      title: "New WTB form submission",
+      preview: "A new website visitor has sent a brief from wtbaimarketing.com.",
+    });
     const visitorText = buildVisitorText(lead);
-    const visitorHtml = toHtml(visitorText);
+    const visitorHtml = toHtml(visitorText, {
+      title: lead.isWebsiteBrief ? "We received your website brief" : "We received your brief",
+      preview: "Thank you for contacting WTB AI Marketing Agency.",
+    });
 
     const adminResult = await sendEmail({
       apiKey,
@@ -226,8 +232,65 @@ function safeNextUrl(value, requestUrl) {
   }
 }
 
-function toHtml(text) {
-  return `<div style="font-family:Arial,sans-serif;font-size:16px;line-height:1.6;color:#111827;max-width:680px">${escapeHtml(text).replace(/\n/g, "<br>")}</div>`;
+function toHtml(text, options = {}) {
+  const title = options.title || "WTB AI Marketing Agency";
+  const preview = options.preview || "WTB AI Marketing Agency update";
+  const body = escapeHtml(text).replace(/\n/g, "<br>");
+
+  return `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${escapeHtml(title)}</title>
+</head>
+<body style="margin:0;background:#f4f7fb;color:#111827;font-family:Arial,Helvetica,sans-serif;">
+  <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">${escapeHtml(preview)}</div>
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f4f7fb;padding:28px 12px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:680px;background:#ffffff;border:1px solid #dce5f2;border-radius:18px;overflow:hidden;">
+          <tr>
+            <td style="background:#071629;padding:24px 28px;">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td style="vertical-align:middle;">
+                    <img src="https://wtbaimarketing.com/assets/logo-wtb.png" width="58" height="58" alt="WTB AI Marketing Agency" style="display:block;border-radius:50%;border:2px solid #f2b91b;background:#ffffff;">
+                  </td>
+                  <td style="vertical-align:middle;padding-left:14px;">
+                    <div style="font-size:18px;font-weight:800;color:#ffffff;line-height:1.2;">WTB AI Marketing Agency</div>
+                    <div style="font-size:13px;color:#b9c7da;margin-top:4px;">Marketing execution powered by smarter workflows</div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:30px 28px 10px;">
+              <h1 style="margin:0 0 18px;font-family:Georgia,'Times New Roman',serif;font-size:32px;line-height:1.05;color:#101828;">${escapeHtml(title)}</h1>
+              <div style="font-size:16px;line-height:1.7;color:#24364f;">${body}</div>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:22px 28px 30px;">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#eef6ff;border:1px solid #cfe4ff;border-radius:14px;">
+                <tr>
+                  <td style="padding:18px 20px;font-size:14px;line-height:1.6;color:#18324f;">
+                    <strong style="color:#071629;">WTB AI Marketing Agency</strong><br>
+                    <a href="mailto:hello@wtbaimarketing.com" style="color:#145eff;text-decoration:none;">hello@wtbaimarketing.com</a><br>
+                    <a href="https://wtbaimarketing.com" style="color:#145eff;text-decoration:none;">wtbaimarketing.com</a><br>
+                    <a href="https://wa.me/2348097585489" style="color:#145eff;text-decoration:none;">+234 809 758 5489</a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
 }
 
 function escapeHtml(value) {
