@@ -15,4 +15,4 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
-Sitemap: https://wtb-ai-marketing-agency.pages.dev/sitemap.xml
+Sitemap: https://wtbaimarketing.com/sitemap.xml

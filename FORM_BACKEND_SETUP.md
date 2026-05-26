@@ -7,7 +7,7 @@ The website forms now submit to the Cloudflare endpoint at `/api/submit`.
 Add these in Cloudflare Pages:
 
 - `RESEND_API_KEY` - secret value from Resend.
-- `FROM_EMAIL` - a verified sender, for example `WTB AI Marketing Agency <hello@yourdomain.com>`.
+- `FROM_EMAIL` - a verified sender, for example `WTB AI Marketing Agency <hello@wtbaimarketing.com>`.
 - `ADMIN_EMAIL` - optional. Defaults to `wolexzthebrand@gmail.com`.
 
 ## Resend setup

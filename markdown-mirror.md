@@ -10,6 +10,14 @@ WTB helps brands that need a full marketing system, not random content. We suppo
 
 We work with Nigerian SMEs, ecommerce brands, founders, creators, real estate teams, education brands, food brands, skincare stores, legal service brands, professional service companies, and businesses that need faster marketing execution.
 
+## Marketing Agency Alternatives
+
+WTB is positioned as an AI-powered marketing agency alternative in Nigeria for brands comparing traditional digital marketing agencies, creative agencies, SEO agencies, social media agencies, and full-service agency options.
+
+For people searching for a Wild Fusion alternative, Slarrt alternative, digital marketing agency alternative, SEO agency alternative in Lagos, Google Ads agency alternative, social media marketing alternative, or website agency alternative in Nigeria, WTB offers one connected execution system across strategy, content, SEO, Google Ads, websites, creator campaigns, X trend campaigns, social ads, reporting, and AI-assisted production.
+
+WTB is independent and not affiliated with Wild Fusion, Slarrt, or other agencies mentioned for comparison. The alternative page exists to help buyers compare operating style, speed, scope, and fit.
+
 ## High-Intent Services
 
 ### AI Marketing Agency Services in Nigeria
@@ -146,20 +154,22 @@ WTB also supports brands that want to hire a social media marketer in Lagos or h
 
 WTB now has focused service pages for low-competition, buyer-intent Nigerian marketing searches:
 
-- SEO Expert in Lagos: https://wtb-ai-marketing-agency.pages.dev/seo-expert-lagos/
-- AI Marketing Agency in Lagos: https://wtb-ai-marketing-agency.pages.dev/ai-marketing-agency-lagos/
-- Website Development in Nigeria: https://wtb-ai-marketing-agency.pages.dev/website-development-nigeria/
-- Social Media Marketer in Lagos: https://wtb-ai-marketing-agency.pages.dev/social-media-marketer-lagos/
-- Google Ads Expert in Lagos: https://wtb-ai-marketing-agency.pages.dev/google-ads-expert-lagos/
-- X Trend Campaign Service in Nigeria: https://wtb-ai-marketing-agency.pages.dev/x-trend-campaign-nigeria/
+- SEO Expert in Lagos: https://wtbaimarketing.com/seo-expert-lagos/
+- AI Marketing Agency in Lagos: https://wtbaimarketing.com/ai-marketing-agency-lagos/
+- Website Development in Nigeria: https://wtbaimarketing.com/website-development-nigeria/
+- Social Media Marketer in Lagos: https://wtbaimarketing.com/social-media-marketer-lagos/
+- Google Ads Expert in Lagos: https://wtbaimarketing.com/google-ads-expert-lagos/
+- X Trend Campaign Service in Nigeria: https://wtbaimarketing.com/x-trend-campaign-nigeria/
+- Marketing Agency Alternatives in Nigeria: https://wtbaimarketing.com/alternative/
 
 ## Contact WTB
 
-- Website: https://wtb-ai-marketing-agency.pages.dev/
-- Services: https://wtb-ai-marketing-agency.pages.dev/services/
-- Pricing: https://wtb-ai-marketing-agency.pages.dev/pricing/
-- Website brief: https://wtb-ai-marketing-agency.pages.dev/website-brief/
-- Contact: https://wtb-ai-marketing-agency.pages.dev/contact/
+- Website: https://wtbaimarketing.com/
+- Services: https://wtbaimarketing.com/services/
+- Alternatives: https://wtbaimarketing.com/alternative/
+- Pricing: https://wtbaimarketing.com/pricing/
+- Website brief: https://wtbaimarketing.com/website-brief/
+- Contact: https://wtbaimarketing.com/contact/
 - Email: wolexzthebrand@gmail.com
 - WhatsApp: +234 809 758 5489
 - Book a strategy call: https://calendly.com/wolexxzzoluk/wtb-strategy-call-new

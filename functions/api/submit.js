@@ -217,7 +217,8 @@ function safeNextUrl(value, requestUrl) {
     const current = new URL(requestUrl);
     const allowedHosts = new Set([
       current.hostname,
-      "wtb-ai-marketing-agency.pages.dev",
+      "wtbaimarketing.com",
+      "www.wtbaimarketing.com",
     ]);
     return allowedHosts.has(next.hostname) ? next : fallback;
   } catch {

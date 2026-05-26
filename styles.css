@@ -739,6 +739,70 @@ h3 {
   line-height: 1.7;
 }
 
+.alt-hero-grid {
+  align-items: center;
+  display: grid;
+  gap: 36px;
+  grid-template-columns: minmax(0, 0.92fr) minmax(320px, 1.08fr);
+}
+
+.alternative-hero {
+  overflow: hidden;
+}
+
+.alt-hero-visual,
+.alt-choice-section .image-split {
+  margin: 0;
+}
+
+.alt-hero-visual img,
+.alt-choice-section img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 24px 80px rgba(8, 23, 45, 0.18);
+}
+
+.alternative-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.alternative-card {
+  min-height: 280px;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 18px 60px rgba(21, 23, 28, 0.06);
+}
+
+.alternative-card span {
+  display: block;
+  margin-bottom: 28px;
+  color: var(--blue);
+  font-weight: 900;
+  letter-spacing: 0.14em;
+}
+
+.alternative-card h3 {
+  margin: 0 0 14px;
+  font-size: clamp(1.35rem, 2vw, 1.85rem);
+}
+
+.alternative-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.alt-choice-section {
+  align-items: center;
+}
+
 .page-service-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -2192,7 +2256,8 @@ body.modal-open {
   .contact-page-grid,
   .brand-proof-wall,
   .service-system-panel,
-  .image-split {
+  .image-split,
+  .alt-hero-grid {
     grid-template-columns: 1fr;
   }
 
@@ -2210,6 +2275,7 @@ body.modal-open {
   .pricing-grid,
   .stats-grid,
   .feature-list,
+  .alternative-grid,
   .process-list,
   .faq-grid,
   .offer-grid,
@@ -2341,6 +2407,7 @@ body.modal-open {
   .stats-grid,
   .footer-grid,
   .feature-list,
+  .alternative-grid,
   .process-list,
   .faq-grid,
   .offer-grid,

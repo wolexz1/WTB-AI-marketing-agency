@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Agency alternative comparison board</title>
+  <desc id="desc">A comparison board showing classic agency support beside WTB AI-assisted marketing execution.</desc>
+  <defs>
+    <linearGradient id="panel" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#e8f3ff"/>
+    </linearGradient>
+    <linearGradient id="dark" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#07111d"/>
+      <stop offset="1" stop-color="#102a4d"/>
+    </linearGradient>
+    <linearGradient id="bar" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#ffd25a"/>
+      <stop offset="1" stop-color="#145eff"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0v48" fill="none" stroke="#1e3a5f" stroke-opacity=".1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="760" rx="34" fill="#f8fbff"/>
+  <rect width="1200" height="760" rx="34" fill="url(#grid)"/>
+  <g transform="translate(72 72)">
+    <rect width="482" height="548" rx="30" fill="url(#panel)" stroke="#bed7f6"/>
+    <text x="42" y="76" fill="#07111d" font-family="Georgia, serif" font-size="52" font-weight="800">Traditional agency</text>
+    <g font-family="Inter, Arial, sans-serif" fill="#38516d" font-size="25" font-weight="700">
+      <text x="42" y="154">Separate strategy</text>
+      <text x="42" y="218">Separate creative</text>
+      <text x="42" y="282">Separate ads</text>
+      <text x="42" y="346">Separate reports</text>
+      <text x="42" y="410">More handoffs</text>
+    </g>
+    <g transform="translate(58 455)" fill="#dbeafe">
+      <rect x="0" y="0" width="96" height="56" rx="14" fill="#d9e7f8"/>
+      <rect x="112" y="-28" width="96" height="84" rx="14" fill="#ccdff4"/>
+      <rect x="224" y="-8" width="96" height="64" rx="14" fill="#bfd7ef"/>
+      <rect x="336" y="-54" width="96" height="110" rx="14" fill="#b4d1ed"/>
+    </g>
+  </g>
+  <g transform="translate(646 72)">
+    <rect width="482" height="548" rx="30" fill="url(#dark)" stroke="#4d85ff"/>
+    <text x="42" y="76" fill="#f8fafc" font-family="Georgia, serif" font-size="52" font-weight="800">WTB alternative</text>
+    <g font-family="Inter, Arial, sans-serif" fill="#dbeafe" font-size="25" font-weight="800">
+      <text x="42" y="154">AI-assisted research</text>
+      <text x="42" y="218">Strategy + content</text>
+      <text x="42" y="282">Ads + SEO + websites</text>
+      <text x="42" y="346">Creator proof + trends</text>
+      <text x="42" y="410">One faster system</text>
+    </g>
+    <g transform="translate(60 455)">
+      <rect x="0" y="8" width="92" height="48" rx="14" fill="url(#bar)"/>
+      <rect x="108" y="-36" width="92" height="92" rx="14" fill="url(#bar)"/>
+      <rect x="216" y="-10" width="92" height="66" rx="14" fill="url(#bar)"/>
+      <rect x="324" y="-82" width="92" height="138" rx="14" fill="url(#bar)"/>
+    </g>
+  </g>
+  <g transform="translate(454 302)">
+    <circle cx="146" cy="76" r="76" fill="#145eff"/>
+    <path d="M116 76h60M150 46l30 30-30 30" fill="none" stroke="#fff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="74" y="700" fill="#07111d" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="900">For brands comparing agency options in Nigeria: choose the system built for speed, search, content, campaigns, and AI execution.</text>
+</svg>

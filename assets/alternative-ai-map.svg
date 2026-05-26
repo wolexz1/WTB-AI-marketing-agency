@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820" viewBox="0 0 1200 820" role="img" aria-labelledby="title desc">
+  <title id="title">WTB alternative agency intelligence map</title>
+  <desc id="desc">An abstract AI marketing command map showing strategy, content, ads, SEO, creators, websites, and reporting connected into one system.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#07121f"/>
+      <stop offset="0.5" stop-color="#0d2340"/>
+      <stop offset="1" stop-color="#061017"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#ffd66b"/>
+      <stop offset="1" stop-color="#1f66ff"/>
+    </linearGradient>
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="18" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.1 0 0 0 0 0.38 0 0 0 0 1 0 0 0 .45 0"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <pattern id="grid" width="52" height="52" patternUnits="userSpaceOnUse">
+      <path d="M52 0H0v52" fill="none" stroke="#dbeafe" stroke-opacity=".08"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="820" rx="36" fill="url(#bg)"/>
+  <rect width="1200" height="820" rx="36" fill="url(#grid)"/>
+  <circle cx="1010" cy="134" r="190" fill="#145eff" opacity=".18" filter="url(#softGlow)"/>
+  <circle cx="214" cy="705" r="210" fill="#22c55e" opacity=".12" filter="url(#softGlow)"/>
+  <g fill="none" stroke="#bcd8ff" stroke-opacity=".36" stroke-width="2">
+    <path d="M247 412C360 268 505 226 652 325s285 88 391-61"/>
+    <path d="M170 245c160 30 256 162 398 186 169 28 265-95 463-58"/>
+    <path d="M215 618c140-116 285-138 436-67 129 61 245 33 349-80"/>
+  </g>
+  <g transform="translate(378 190)" filter="url(#softGlow)">
+    <rect x="0" y="0" width="444" height="444" rx="44" fill="#091827" stroke="#7fb2ff" stroke-opacity=".42"/>
+    <circle cx="222" cy="222" r="106" fill="#0f2c4b" stroke="#ffd25a" stroke-width="4"/>
+    <circle cx="222" cy="222" r="58" fill="#145eff"/>
+    <path d="M222 131v-66M222 379v-66M131 222H65M379 222h-66M158 158l-48-48M286 286l48 48M286 158l48-48M158 286l-48 48" stroke="#ffd25a" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="222" cy="222" r="18" fill="#fff"/>
+  </g>
+  <g font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800">
+    <g transform="translate(78 132)">
+      <rect width="264" height="112" rx="20" fill="#ffffff" fill-opacity=".08" stroke="#ffffff" stroke-opacity=".14"/>
+      <text x="28" y="48" fill="#ffd25a">Strategy</text>
+      <text x="28" y="82" fill="#dbeafe" font-size="18" font-weight="600">positioning + plans</text>
+    </g>
+    <g transform="translate(858 188)">
+      <rect width="258" height="112" rx="20" fill="#ffffff" fill-opacity=".08" stroke="#ffffff" stroke-opacity=".14"/>
+      <text x="28" y="48" fill="#ffd25a">Content</text>
+      <text x="28" y="82" fill="#dbeafe" font-size="18" font-weight="600">hooks + calendars</text>
+    </g>
+    <g transform="translate(86 476)">
+      <rect width="264" height="112" rx="20" fill="#ffffff" fill-opacity=".08" stroke="#ffffff" stroke-opacity=".14"/>
+      <text x="28" y="48" fill="#ffd25a">SEO</text>
+      <text x="28" y="82" fill="#dbeafe" font-size="18" font-weight="600">pages + visibility</text>
+    </g>
+    <g transform="translate(842 526)">
+      <rect width="282" height="112" rx="20" fill="#ffffff" fill-opacity=".08" stroke="#ffffff" stroke-opacity=".14"/>
+      <text x="28" y="48" fill="#ffd25a">Ads</text>
+      <text x="28" y="82" fill="#dbeafe" font-size="18" font-weight="600">traffic + retargeting</text>
+    </g>
+  </g>
+  <g transform="translate(78 680)">
+    <rect width="1044" height="72" rx="22" fill="#f8fafc"/>
+    <text x="32" y="46" fill="#061017" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="900">WTB alternative advantage: one faster AI-assisted marketing system</text>
+  </g>
+</svg>
