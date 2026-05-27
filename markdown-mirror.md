@@ -1,4 +1,4 @@
-# WTB AI Marketing Agency in Nigeria
+﻿# WTB AI Marketing Agency in Nigeria
 
 WTB, also known as Wolexzthebrand, is an AI-powered marketing agency in Nigeria. We help businesses plan, create, launch, and optimize marketing faster by combining human marketing judgment with AI-assisted workflows.
 
@@ -6,7 +6,7 @@ This markdown mirror is provided for search engines, AI answer engines, and cont
 
 ## What WTB Does
 
-WTB helps brands that need a full marketing system, not random content. We support strategy, social media management, content marketing, SEO, Google Ads, social media ads, influencer campaigns, mini UGC marketing, X trend campaigns, website development, landing pages, funnels, automation, dashboards, reporting, and generative AI creative.
+WTB helps brands that need a full marketing system, not random content. We support strategy, social media management, content marketing, email/SMS marketing designed to convert, SEO, Google Ads, social media ads, influencer campaigns, mini UGC marketing, X trend campaigns, website development, landing pages, funnels, automation, dashboards, reporting, and generative AI creative.
 
 We work with Nigerian SMEs, ecommerce brands, founders, creators, real estate teams, education brands, food brands, skincare stores, legal service brands, professional service companies, and businesses that need faster marketing execution.
 
@@ -40,6 +40,10 @@ We support Google Search Ads, Display Ads, YouTube Ads, Performance Max, Shoppin
 
 WTB supports paid campaigns across Meta, TikTok, X, LinkedIn, YouTube, and Snapchat. This includes campaign planning, audience direction, creative testing, retargeting, lead capture, and reporting.
 
+### Email/SMS Marketing Designed to Convert
+
+WTB supports email and SMS capture, newsletter planning, SMS broadcasts, welcome sequences, customer follow-up, offer campaigns, reactivation messages, segmentation, and campaign reporting for brands that want to convert leads and bring customers back.
+
 ### Influencer Marketing and Mini UGC Marketing
 
 We help brands plan creator campaigns, influencer briefs, UGC scripts, product demos, testimonials, creator-style video ideas, content hooks, and ad-ready short-form content batches.
@@ -58,7 +62,7 @@ The website brief form collects client details, website goals, target customers 
 
 If the client does not have copy, images, brand colours, logo direction, SEO keywords, website structure, or reference materials, WTB can create those missing pieces so the project does not waste time.
 
-Basic websites start from NGN 150,000. If a client does not enter a base budget in the website brief form, NGN 150,000 is used as the default base amount. The form keeps SEO and ecommerce visible as optional add-ons so clients can choose them intentionally. SEO setup adds NGN 100,000 to the base website budget. Ecommerce setup, shop pages, or product checkout adds NGN 400,000. Payment gateway integration adds NGN 150,000. Newsletter setup adds NGN 80,000. Blog setup adds NGN 120,000. Live chat setup adds NGN 75,000. User login or member access adds NGN 500,000. File upload adds NGN 250,000. Google Analytics setup adds NGN 50,000. Google Search Console setup adds NGN 50,000. Social preview image setup adds NGN 50,000. After submission, the client receives payment instructions by email with the final calculated payment amount.
+Basic websites start from NGN 150,000. If a client does not enter a base budget in the website brief form, NGN 150,000 is used as the default base amount. The form keeps SEO, ecommerce, and custom domain payment visible as optional add-ons so clients can choose them intentionally. SEO setup adds NGN 100,000 to the base website budget. Ecommerce setup, shop pages, or product checkout adds NGN 400,000. Custom domain payment for one year adds NGN 70,000. Payment gateway integration adds NGN 150,000. Newsletter setup adds NGN 80,000. Blog setup adds NGN 120,000. Live chat setup adds NGN 75,000. User login or member access adds NGN 500,000. File upload adds NGN 250,000. Google Analytics setup adds NGN 50,000. Google Search Console setup adds NGN 50,000. Social preview image setup adds NGN 50,000. After submission, the client receives payment instructions by email with the final calculated payment amount.
 
 ### Generative AI Creative
 
@@ -137,15 +141,15 @@ WTB is relevant for people searching for:
 
 ### Strategy Sprint
 
-From ₦160k. A one-time sprint for brand audit, positioning, campaign direction, content planning, branding toolkit direction, social media structure, X trend angles, creator ideas, and AI workflow mapping.
+From â‚¦160k. A one-time sprint for brand audit, positioning, campaign direction, content planning, branding toolkit direction, social media structure, X trend angles, creator ideas, and AI workflow mapping.
 
 ### Campaign Execution
 
-From ₦550k per month. Monthly execution for brands that need campaign strategy, content calendar, influencer support, mini UGC support, social media ads management, website SEO direction, and performance reporting.
+From â‚¦550k per month. Monthly execution for brands that need campaign strategy, content calendar, influencer support, mini UGC support, social media ads management, website SEO direction, and performance reporting.
 
 ### AI Growth System
 
-From ₦1m per month. A complete growth system covering everything in Strategy Sprint and Campaign Execution, plus Google Ads, social ads, SEO, funnels, automation, website improvements, generative AI creative, X trend campaign support, dashboards, and weekly optimization.
+From â‚¦1m per month. A complete growth system covering everything in Strategy Sprint and Campaign Execution, plus Google Ads, social ads, SEO, funnels, automation, website improvements, generative AI creative, X trend campaign support, dashboards, and weekly optimization.
 
 ## SEO Pricing in Lagos and Nigeria
 
@@ -155,15 +159,15 @@ SEO pricing depends on competition, website size, technical issues, number of ta
 
 ### SEO Audit and Setup
 
-From ₦160k. Best for brands that need keyword research, metadata, page structure, indexing checks, technical recommendations, Search Console review, and an SEO action plan.
+From â‚¦160k. Best for brands that need keyword research, metadata, page structure, indexing checks, technical recommendations, Search Console review, and an SEO action plan.
 
 ### Monthly SEO Growth
 
-From ₦250k per month. Best for SMEs and service businesses that need local SEO, on-page SEO, SEO content planning, page optimization, Search Console checks, and monthly reporting.
+From â‚¦250k per month. Best for SMEs and service businesses that need local SEO, on-page SEO, SEO content planning, page optimization, Search Console checks, and monthly reporting.
 
 ### Competitive SEO
 
-From ₦450k per month. Best for ecommerce, real estate, education, skincare, food, professional services, and other competitive niches that need deeper content, technical SEO, and ongoing optimization.
+From â‚¦450k per month. Best for ecommerce, real estate, education, skincare, food, professional services, and other competitive niches that need deeper content, technical SEO, and ongoing optimization.
 
 ## Social Media Marketer in Lagos
 
@@ -200,3 +204,23 @@ WTB now has focused service pages for low-competition, buyer-intent Nigerian mar
 - Facebook: https://www.facebook.com/wolexztrickz
 - LinkedIn: https://www.linkedin.com/in/wolexxz/
 - TikTok: https://www.tiktok.com/@wolexzthebrand
+
+## Blog and Answer Engine Content
+
+The WTB blog is written by the WTB Team and structured for search engines, AI answer engines, and Nigerian commercial intent. Each article includes a short answer, practical decision points, internal links, and next-step calls to action.
+
+- Blog hub: https://wtbaimarketing.com/blog/
+- How to Hire an SEO Expert in Lagos or Abuja Without Wasting Money: https://wtbaimarketing.com/blog/hire-seo-expert-lagos-abuja/
+- How Much Does Website Design Cost in Nigeria in 2026?: https://wtbaimarketing.com/blog/website-design-cost-nigeria-2026/
+
+## New Local SEO Landing Pages
+
+- SEO Expert in Abuja: https://wtbaimarketing.com/seo-expert-abuja/
+- Website Development in Abuja: https://wtbaimarketing.com/website-development-abuja/
+- Social Media Marketer in Abuja: https://wtbaimarketing.com/social-media-marketer-abuja/
+
+## Case Studies and Brand Proof
+
+WTB has a dedicated proof page for ecommerce, skincare, food, education, legal services, and revenue-focused marketing experience.
+
+- Case studies: https://wtbaimarketing.com/case-studies/

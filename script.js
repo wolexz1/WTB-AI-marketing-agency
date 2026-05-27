@@ -192,6 +192,7 @@ const updateWebsiteBriefPricing = () => {
     { feature: "Google Analytics", label: "Google Analytics setup", amount: 50000 },
     { feature: "Search Console", label: "Google Search Console setup", amount: 50000 },
     { feature: "Social preview", label: "Social preview image setup", amount: 50000 },
+    { feature: "Custom domain", label: "Custom domain payment for 1 year", amount: 70000 },
   ];
   const addons = addonRules
     .filter((rule) => features.includes(rule.feature))
