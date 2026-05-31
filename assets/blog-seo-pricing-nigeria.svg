@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">SEO pricing Nigeria cover</title>
+  <desc id="desc">A branded SEO pricing ladder and deliverables illustration.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#080b16"/><stop offset=".7" stop-color="#142740"/><stop offset="1" stop-color="#0f4bd6"/></linearGradient>
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M80 0H0v80" fill="none" stroke="#fff" stroke-opacity=".08"/></pattern>
+    <filter id="shadow"><feDropShadow dx="0" dy="22" stdDeviation="24" flood-color="#000" flood-opacity=".28"/></filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/><rect width="1600" height="900" fill="url(#grid)"/>
+  <text x="100" y="170" fill="#fff" font-family="Arial, sans-serif" font-size="76" font-weight="800">SEO pricing system</text>
+  <text x="105" y="250" fill="#c2d1e2" font-family="Arial, sans-serif" font-size="34">Budget tied to audit depth, content, local ranking work,</text>
+  <text x="105" y="296" fill="#c2d1e2" font-family="Arial, sans-serif" font-size="34">and monthly growth signals.</text>
+  <g filter="url(#shadow)" font-family="Arial, sans-serif" font-weight="800">
+    <rect x="150" y="520" width="190" height="220" rx="28" fill="#155dfc"/><text x="170" y="780" fill="#fff" font-size="28">NGN 160k+</text><text x="162" y="490" fill="#fff" font-size="28">Audit</text>
+    <rect x="430" y="420" width="190" height="320" rx="28" fill="#f7b51b"/><text x="450" y="780" fill="#fff" font-size="28">NGN 250k+</text><text x="442" y="390" fill="#fff" font-size="28">Monthly</text>
+    <rect x="710" y="300" width="190" height="440" rx="28" fill="#22c55e"/><text x="730" y="780" fill="#fff" font-size="28">NGN 450k+</text><text x="708" y="270" fill="#fff" font-size="28">Competitive</text>
+  </g>
+  <rect x="1000" y="135" width="468" height="620" rx="34" fill="#08182e" stroke="#6a84a8" stroke-opacity=".5" filter="url(#shadow)"/>
+  <g font-family="Arial, sans-serif" font-size="34" fill="#fff">
+    <circle cx="1062" cy="228" r="15" fill="#f7b51b"/><text x="1100" y="240">Keyword map</text>
+    <circle cx="1062" cy="322" r="15" fill="#155dfc"/><text x="1100" y="334">Technical fixes</text>
+    <circle cx="1062" cy="416" r="15" fill="#22c55e"/><text x="1100" y="428">Content plan</text>
+    <circle cx="1062" cy="510" r="15" fill="#f7b51b"/><text x="1100" y="522">Local SEO</text>
+    <circle cx="1062" cy="604" r="15" fill="#155dfc"/><text x="1100" y="616">Reporting</text>
+  </g>
+  <path d="M998 700c210-16 360-150 430-398" fill="none" stroke="#155dfc" stroke-opacity=".4" stroke-width="12" stroke-linecap="round"/>
+</svg>

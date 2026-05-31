@@ -1,0 +1,38 @@
+# Canonical URL cleanup for Google indexing.
+# Keep one indexable version of every page: clean folder URLs.
+/index.html / 301
+/about.html /about/ 301
+/about/index.html /about/ 301
+/services.html /services/ 301
+/services/index.html /services/ 301
+/pricing.html /pricing/ 301
+/pricing/index.html /pricing/ 301
+/contact.html /contact/ 301
+/contact/index.html /contact/ 301
+/website-brief.html /website-brief/ 301
+/website-brief/index.html /website-brief/ 301
+/thank-you.html /thank-you/ 301
+/thank-you/index.html /thank-you/ 301
+/blog.html /blog/ 301
+/blog/index.html /blog/ 301
+/case-studies.html /case-studies/ 301
+/case-studies/index.html /case-studies/ 301
+/alternative.html /alternative/ 301
+/alternative/index.html /alternative/ 301
+/ai-marketing-agency-lagos/index.html /ai-marketing-agency-lagos/ 301
+/seo-expert-lagos/index.html /seo-expert-lagos/ 301
+/seo-expert-abuja/index.html /seo-expert-abuja/ 301
+/website-development-nigeria/index.html /website-development-nigeria/ 301
+/website-development-abuja/index.html /website-development-abuja/ 301
+/social-media-marketer-lagos/index.html /social-media-marketer-lagos/ 301
+/social-media-marketer-abuja/index.html /social-media-marketer-abuja/ 301
+/google-ads-expert-lagos/index.html /google-ads-expert-lagos/ 301
+/x-trend-campaign-nigeria/index.html /x-trend-campaign-nigeria/ 301
+/blog/hire-seo-expert-lagos-abuja/index.html /blog/hire-seo-expert-lagos-abuja/ 301
+/blog/website-design-cost-nigeria-2026/index.html /blog/website-design-cost-nigeria-2026/ 301
+/blog/seo-pricing-nigeria-2026/index.html /blog/seo-pricing-nigeria-2026/ 301
+/blog/social-media-manager-cost-nigeria-2026/index.html /blog/social-media-manager-cost-nigeria-2026/ 301
+
+# Keep old upload bundles out of the public index.
+/WTB-AI-marketing-agency-upload-20260505-200008/* / 404
+/WTB-AI-marketing-agency/WTB-AI-marketing-agency-upload-20260505-200008/* / 404

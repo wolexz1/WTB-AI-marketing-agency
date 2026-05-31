@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">AI marketing agency Nigeria cover</title>
+  <desc id="desc">A branded AI-assisted marketing system illustration.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#070a14"/><stop offset=".65" stop-color="#0c294f"/><stop offset="1" stop-color="#155dfc"/></linearGradient>
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M80 0H0v80" fill="none" stroke="#fff" stroke-opacity=".08"/></pattern>
+    <filter id="shadow"><feDropShadow dx="0" dy="22" stdDeviation="24" flood-color="#000" flood-opacity=".26"/></filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/><rect width="1600" height="900" fill="url(#grid)"/>
+  <text x="95" y="170" fill="#fff" font-family="Arial, sans-serif" font-size="76" font-weight="800">AI marketing agency</text>
+  <text x="100" y="250" fill="#c2d1e2" font-family="Arial, sans-serif" font-size="34">Speed, strategy, creative testing, ads, SEO,</text>
+  <text x="100" y="296" fill="#c2d1e2" font-family="Arial, sans-serif" font-size="34">and reporting in one workflow.</text>
+  <rect x="104" y="350" width="620" height="386" rx="34" fill="#08182e" stroke="#6a84a8" stroke-opacity=".5" filter="url(#shadow)"/>
+  <g font-family="Arial, sans-serif" font-size="30" font-weight="800" fill="#fff">
+    <rect x="155" y="420" width="220" height="62" rx="18" fill="#155dfc" opacity=".45" stroke="#155dfc"/><text x="185" y="461">Strategy</text>
+    <rect x="430" y="420" width="220" height="62" rx="18" fill="#155dfc" opacity=".45" stroke="#155dfc"/><text x="462" y="461">Content</text>
+    <rect x="155" y="520" width="220" height="62" rx="18" fill="#155dfc" opacity=".45" stroke="#155dfc"/><text x="205" y="561">Ads</text>
+    <rect x="430" y="520" width="220" height="62" rx="18" fill="#155dfc" opacity=".45" stroke="#155dfc"/><text x="488" y="561">SEO</text>
+    <rect x="155" y="620" width="220" height="62" rx="18" fill="#155dfc" opacity=".45" stroke="#155dfc"/><text x="186" y="661">Creators</text>
+    <rect x="430" y="620" width="220" height="62" rx="18" fill="#155dfc" opacity=".45" stroke="#155dfc"/><text x="462" y="661">Reports</text>
+  </g>
+  <g stroke="#fff" stroke-opacity=".24" stroke-width="3">
+    <line x1="1145" y1="450" x2="930" y2="315"/><line x1="1145" y1="450" x2="950" y2="610"/><line x1="1145" y1="450" x2="1145" y2="188"/><line x1="1145" y1="450" x2="1352" y2="310"/><line x1="1145" y1="450" x2="1366" y2="612"/>
+  </g>
+  <circle cx="1145" cy="450" r="86" fill="#22c55e" filter="url(#shadow)"/>
+  <text x="1096" y="478" fill="#07101f" font-family="Arial, sans-serif" font-size="58" font-weight="900">AI</text>
+  <g fill="#155dfc"><circle cx="930" cy="315" r="28"/><circle cx="950" cy="610" r="28"/><circle cx="1145" cy="188" r="28"/><circle cx="1352" cy="310" r="28"/><circle cx="1366" cy="612" r="28"/></g>
+  <g fill="#f7b51b"><circle cx="1020" cy="230" r="18"/><circle cx="1285" cy="510" r="18"/><circle cx="1210" cy="695" r="18"/></g>
+</svg>

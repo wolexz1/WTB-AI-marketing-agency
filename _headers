@@ -1,0 +1,103 @@
+# Extra crawler instructions for duplicate legacy paths.
+# These are backups in case a crawler sees an old .html or /index.html URL before the redirect settles.
+/index.html
+  X-Robots-Tag: noindex, follow
+
+/about.html
+  X-Robots-Tag: noindex, follow
+
+/about/index.html
+  X-Robots-Tag: noindex, follow
+
+/services.html
+  X-Robots-Tag: noindex, follow
+
+/services/index.html
+  X-Robots-Tag: noindex, follow
+
+/pricing.html
+  X-Robots-Tag: noindex, follow
+
+/pricing/index.html
+  X-Robots-Tag: noindex, follow
+
+/contact.html
+  X-Robots-Tag: noindex, follow
+
+/contact/index.html
+  X-Robots-Tag: noindex, follow
+
+/website-brief.html
+  X-Robots-Tag: noindex, follow
+
+/website-brief/index.html
+  X-Robots-Tag: noindex, follow
+
+/thank-you.html
+  X-Robots-Tag: noindex, follow
+
+/thank-you/index.html
+  X-Robots-Tag: noindex, follow
+
+/blog.html
+  X-Robots-Tag: noindex, follow
+
+/blog/index.html
+  X-Robots-Tag: noindex, follow
+
+/case-studies.html
+  X-Robots-Tag: noindex, follow
+
+/case-studies/index.html
+  X-Robots-Tag: noindex, follow
+
+/alternative.html
+  X-Robots-Tag: noindex, follow
+
+/alternative/index.html
+  X-Robots-Tag: noindex, follow
+
+/ai-marketing-agency-lagos/index.html
+  X-Robots-Tag: noindex, follow
+
+/seo-expert-lagos/index.html
+  X-Robots-Tag: noindex, follow
+
+/seo-expert-abuja/index.html
+  X-Robots-Tag: noindex, follow
+
+/website-development-nigeria/index.html
+  X-Robots-Tag: noindex, follow
+
+/website-development-abuja/index.html
+  X-Robots-Tag: noindex, follow
+
+/social-media-marketer-lagos/index.html
+  X-Robots-Tag: noindex, follow
+
+/social-media-marketer-abuja/index.html
+  X-Robots-Tag: noindex, follow
+
+/google-ads-expert-lagos/index.html
+  X-Robots-Tag: noindex, follow
+
+/x-trend-campaign-nigeria/index.html
+  X-Robots-Tag: noindex, follow
+
+/blog/hire-seo-expert-lagos-abuja/index.html
+  X-Robots-Tag: noindex, follow
+
+/blog/website-design-cost-nigeria-2026/index.html
+  X-Robots-Tag: noindex, follow
+
+/blog/seo-pricing-nigeria-2026/index.html
+  X-Robots-Tag: noindex, follow
+
+/blog/social-media-manager-cost-nigeria-2026/index.html
+  X-Robots-Tag: noindex, follow
+
+/WTB-AI-marketing-agency-upload-20260505-200008/*
+  X-Robots-Tag: noindex, nofollow
+
+/WTB-AI-marketing-agency/WTB-AI-marketing-agency-upload-20260505-200008/*
+  X-Robots-Tag: noindex, nofollow

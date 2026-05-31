@@ -212,6 +212,8 @@ The WTB blog is written by the WTB Team and structured for search engines, AI an
 - Blog hub: https://wtbaimarketing.com/blog/
 - How to Hire an SEO Expert in Lagos or Abuja Without Wasting Money: https://wtbaimarketing.com/blog/hire-seo-expert-lagos-abuja/
 - How Much Does Website Design Cost in Nigeria in 2026?: https://wtbaimarketing.com/blog/website-design-cost-nigeria-2026/
+- SEO Pricing in Nigeria: How Much Should a Serious Business Budget?: https://wtbaimarketing.com/blog/seo-pricing-nigeria-2026/
+- How Much Do Social Media Managers Charge in Nigeria?: https://wtbaimarketing.com/blog/social-media-manager-cost-nigeria-2026/
 
 ## New Local SEO Landing Pages
 
