@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">AI marketing agency Abuja campaign system</title>
+  <desc id="desc">A fresh WTB visual showing Abuja marketing strategy, AI workflows, content, ads, SEO, and reporting connected into one operating system.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fbfaf7"/>
+      <stop offset=".46" stop-color="#eef4ff"/>
+      <stop offset="1" stop-color="#dfeaff"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" x2="1">
+      <stop offset="0" stop-color="#155dfc"/>
+      <stop offset="1" stop-color="#0c3bbd"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" x2="1">
+      <stop offset="0" stop-color="#f3b51f"/>
+      <stop offset="1" stop-color="#ffd86b"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="28" stdDeviation="32" flood-color="#0c3bbd" flood-opacity=".18"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="760" rx="44" fill="url(#bg)"/>
+  <g opacity=".38" stroke="#155dfc">
+    <path d="M0 108h1200M0 216h1200M0 324h1200M0 432h1200M0 540h1200M0 648h1200"/>
+    <path d="M120 0v760M240 0v760M360 0v760M480 0v760M600 0v760M720 0v760M840 0v760M960 0v760M1080 0v760"/>
+  </g>
+  <g filter="url(#soft)">
+    <rect x="76" y="76" width="454" height="608" rx="36" fill="#fff"/>
+    <rect x="604" y="118" width="520" height="520" rx="36" fill="#0d1018"/>
+  </g>
+  <text x="116" y="145" fill="#155dfc" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="900" letter-spacing="4">ABUJA GROWTH SYSTEM</text>
+  <text x="116" y="230" fill="#15171c" font-family="Georgia, serif" font-size="72" font-weight="800">AI-assisted</text>
+  <text x="116" y="306" fill="#15171c" font-family="Georgia, serif" font-size="72" font-weight="800">marketing for</text>
+  <text x="116" y="382" fill="#15171c" font-family="Georgia, serif" font-size="72" font-weight="800">serious brands.</text>
+  <text x="116" y="458" fill="#4b5563" font-family="Inter, Arial, sans-serif" font-size="26">Strategy, content, ads, SEO, creators,</text>
+  <text x="116" y="496" fill="#4b5563" font-family="Inter, Arial, sans-serif" font-size="26">and reporting connected through one</text>
+  <text x="116" y="534" fill="#4b5563" font-family="Inter, Arial, sans-serif" font-size="26">faster execution workflow.</text>
+  <g transform="translate(676 178)">
+    <circle cx="190" cy="170" r="120" fill="url(#blue)" opacity=".9"/>
+    <circle cx="190" cy="170" r="70" fill="#fff" opacity=".12"/>
+    <path d="M86 362h208M86 410h315M86 458h255" stroke="#fff" stroke-width="24" stroke-linecap="round" opacity=".18"/>
+    <g fill="#f3b51f">
+      <rect x="74" y="82" width="92" height="92" rx="20"/>
+      <rect x="306" y="96" width="92" height="92" rx="20"/>
+      <rect x="220" y="292" width="92" height="92" rx="20"/>
+    </g>
+    <path d="M166 128c58-52 106-46 150 8M318 184c16 76-13 118-72 142M219 323c-82-5-116-41-101-110" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" opacity=".9"/>
+  </g>
+</svg>

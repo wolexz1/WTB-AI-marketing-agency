@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Social media management pricing Nigeria</title>
+  <desc id="desc">A WTB visual showing social media pricing tiers, content planning, campaign management, ads, and reporting for Nigerian brands.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0d1018"/>
+      <stop offset=".56" stop-color="#10233f"/>
+      <stop offset="1" stop-color="#07111e"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" x2="1">
+      <stop offset="0" stop-color="#155dfc"/>
+      <stop offset=".55" stop-color="#f3b51f"/>
+      <stop offset="1" stop-color="#20d36b"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="30" stdDeviation="28" flood-color="#000" flood-opacity=".34"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="760" rx="44" fill="url(#bg)"/>
+  <path d="M80 620C244 462 386 506 538 410c169-106 270-284 582-230" fill="none" stroke="url(#accent)" stroke-width="18" stroke-linecap="round" opacity=".75"/>
+  <text x="84" y="118" fill="#7db5ff" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="900" letter-spacing="4">SOCIAL MEDIA PRICING</text>
+  <text x="84" y="200" fill="#fff" font-family="Georgia, serif" font-size="78" font-weight="800">Pay for output,</text>
+  <text x="84" y="284" fill="#fff" font-family="Georgia, serif" font-size="78" font-weight="800">not random posting.</text>
+  <g filter="url(#shadow)" font-family="Inter, Arial, sans-serif">
+    <rect x="92" y="380" width="300" height="230" rx="26" fill="#fff"/>
+    <rect x="450" y="340" width="300" height="270" rx="26" fill="#fff"/>
+    <rect x="808" y="300" width="300" height="310" rx="26" fill="#fff"/>
+    <text x="128" y="438" fill="#155dfc" font-size="24" font-weight="900">MANAGEMENT</text>
+    <text x="128" y="492" fill="#111827" font-size="38" font-weight="900">Calendar</text>
+    <text x="128" y="534" fill="#4b5563" font-size="22">captions, ideas,</text>
+    <text x="128" y="565" fill="#4b5563" font-size="22">platform planning</text>
+    <text x="486" y="398" fill="#155dfc" font-size="24" font-weight="900">CAMPAIGNS</text>
+    <text x="486" y="452" fill="#111827" font-size="38" font-weight="900">Creators</text>
+    <text x="486" y="494" fill="#4b5563" font-size="22">UGC, influencers,</text>
+    <text x="486" y="525" fill="#4b5563" font-size="22">content testing</text>
+    <text x="844" y="358" fill="#155dfc" font-size="24" font-weight="900">GROWTH</text>
+    <text x="844" y="412" fill="#111827" font-size="38" font-weight="900">Ads + reports</text>
+    <text x="844" y="456" fill="#4b5563" font-size="22">paid social, tracking,</text>
+    <text x="844" y="487" fill="#4b5563" font-size="22">weekly next actions</text>
+  </g>
+  <circle cx="980" cy="160" r="56" fill="#20d36b"/>
+  <path d="M952 162l22 22 40-54" fill="none" stroke="#07111e" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

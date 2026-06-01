@@ -106,15 +106,19 @@ WTB is relevant for people searching for:
 - SEO services in Nigeria
 - SEO pricing in Nigeria
 - SEO pricing in Lagos
+- SEO pricing Lagos for SMEs
 - hire an SEO expert
 - hire an SEO expert in Lagos
 - hire an SEO expert in Nigeria
 - hire a social media marketer
 - hire a social media marketer in Lagos
+- AI marketing agency in Abuja
+- AI marketing agency for Abuja businesses
 - local SEO expert in Lagos
 - monthly SEO packages in Nigeria
 - affordable SEO services in Lagos
 - social media management pricing in Nigeria
+- social media management cost in Nigeria
 - Google Ads agency in Nigeria
 - Google Ads expert in Lagos
 - social media ads agency in Nigeria
@@ -178,11 +182,18 @@ WTB also supports brands that want to hire a social media marketer in Lagos or h
 WTB now has focused service pages for low-competition, buyer-intent Nigerian marketing searches:
 
 - SEO Expert in Lagos: https://wtbaimarketing.com/seo-expert-lagos/
+- SEO Pricing in Lagos: https://wtbaimarketing.com/seo-pricing-lagos/
 - AI Marketing Agency in Lagos: https://wtbaimarketing.com/ai-marketing-agency-lagos/
+- AI Marketing Agency in Abuja: https://wtbaimarketing.com/ai-marketing-agency-abuja/
 - Website Development in Nigeria: https://wtbaimarketing.com/website-development-nigeria/
 - Social Media Marketer in Lagos: https://wtbaimarketing.com/social-media-marketer-lagos/
+- Social Media Management Pricing in Nigeria: https://wtbaimarketing.com/social-media-management-pricing-nigeria/
 - Google Ads Expert in Lagos: https://wtbaimarketing.com/google-ads-expert-lagos/
 - X Trend Campaign Service in Nigeria: https://wtbaimarketing.com/x-trend-campaign-nigeria/
+- Email/SMS Marketing in Nigeria: https://wtbaimarketing.com/email-sms-marketing-nigeria/
+- Influencer Marketing in Nigeria: https://wtbaimarketing.com/influencer-marketing-nigeria/
+- UGC Marketing in Nigeria: https://wtbaimarketing.com/ugc-marketing-nigeria/
+- Marketing Automation in Nigeria: https://wtbaimarketing.com/marketing-automation-nigeria/
 - Marketing Agency Alternatives in Nigeria: https://wtbaimarketing.com/alternative/
 
 ## Contact WTB
@@ -214,6 +225,16 @@ The WTB blog is written by the WTB Team and structured for search engines, AI an
 - How Much Does Website Design Cost in Nigeria in 2026?: https://wtbaimarketing.com/blog/website-design-cost-nigeria-2026/
 - SEO Pricing in Nigeria: How Much Should a Serious Business Budget?: https://wtbaimarketing.com/blog/seo-pricing-nigeria-2026/
 - How Much Do Social Media Managers Charge in Nigeria?: https://wtbaimarketing.com/blog/social-media-manager-cost-nigeria-2026/
+
+## New SEO Landing Pages Added June 1, 2026
+
+WTB added three focused buyer-intent pages:
+
+- SEO Pricing in Lagos: https://wtbaimarketing.com/seo-pricing-lagos/
+- AI Marketing Agency in Abuja: https://wtbaimarketing.com/ai-marketing-agency-abuja/
+- Social Media Management Pricing in Nigeria: https://wtbaimarketing.com/social-media-management-pricing-nigeria/
+
+These pages support buyers searching for location-specific agency help, practical pricing guidance, and service scope before they request a quote.
 
 ## New Local SEO Landing Pages
 

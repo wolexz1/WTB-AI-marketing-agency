@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Marketing automation and funnel system</title>
+  <desc id="desc">A WTB-style automation flow visual for leads, ads, WhatsApp, and reporting.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#06101d"/><stop offset=".65" stop-color="#122d4f"/><stop offset="1" stop-color="#155dfc"/></linearGradient>
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M80 0H0v80" fill="none" stroke="#fff" stroke-opacity=".08"/></pattern>
+    <filter id="shadow"><feDropShadow dx="0" dy="22" stdDeviation="24" flood-color="#000" flood-opacity=".25"/></filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/><rect width="1600" height="900" fill="url(#grid)"/>
+  <text x="96" y="165" fill="#fff" font-family="Arial, sans-serif" font-size="74" font-weight="800">Funnels and automation</text>
+  <text x="102" y="244" fill="#c4d3e5" font-family="Arial, sans-serif" font-size="34">Lead capture, retargeting, WhatsApp follow-up, email/SMS, and reporting.</text>
+  <g filter="url(#shadow)">
+    <rect x="110" y="360" width="285" height="180" rx="32" fill="#f8fbff"/><text x="168" y="465" fill="#07101f" font-family="Arial, sans-serif" font-size="34" font-weight="800">Traffic</text>
+    <rect x="500" y="360" width="285" height="180" rx="32" fill="#08182e" stroke="#6a84a8" stroke-opacity=".55"/><text x="552" y="465" fill="#fff" font-family="Arial, sans-serif" font-size="34" font-weight="800">Landing page</text>
+    <rect x="890" y="360" width="285" height="180" rx="32" fill="#f8fbff"/><text x="950" y="465" fill="#07101f" font-family="Arial, sans-serif" font-size="34" font-weight="800">Follow-up</text>
+    <rect x="1280" y="360" width="285" height="180" rx="32" fill="#08182e" stroke="#6a84a8" stroke-opacity=".55"/><text x="1340" y="465" fill="#fff" font-family="Arial, sans-serif" font-size="34" font-weight="800">Report</text>
+  </g>
+  <path d="M405 450h80M795 450h80M1185 450h80" stroke="#f7b51b" stroke-width="12" stroke-linecap="round"/>
+  <g fill="#22c55e"><circle cx="450" cy="450" r="16"/><circle cx="840" cy="450" r="16"/><circle cx="1230" cy="450" r="16"/></g>
+  <path d="M640 600c130 90 370 90 510 0" fill="none" stroke="#155dfc" stroke-width="10" stroke-linecap="round"/>
+</svg>

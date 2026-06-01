@@ -14,6 +14,93 @@
   }
 })();
 
+const createPageLoader = () => {
+  const loaderText = "WOLEXZTHEBRAND";
+  const loader = document.createElement("div");
+  loader.className = "page-loader is-active";
+  loader.setAttribute("aria-hidden", "true");
+  loader.innerHTML = `
+    <div class="page-loader-inner">
+      <div class="page-loader-word">${loaderText
+        .split("")
+        .map((letter, index) => `<span style="--letter-index:${index}">${letter}</span>`)
+        .join("")}</div>
+      <div class="page-loader-line"></div>
+    </div>
+  `;
+
+  document.body.appendChild(loader);
+  document.body.classList.add("page-is-loading");
+
+  const show = () => {
+    document.body.classList.add("page-is-loading");
+    loader.classList.add("is-active");
+  };
+
+  const hide = () => {
+    window.setTimeout(() => {
+      loader.classList.remove("is-active");
+      document.body.classList.remove("page-is-loading");
+    }, 420);
+  };
+
+  window.addEventListener("load", hide, { once: true });
+  window.addEventListener("pageshow", hide);
+
+  document.addEventListener(
+    "click",
+    (event) => {
+      const link = event.target.closest("a[href]");
+
+      if (
+        !link ||
+        event.defaultPrevented ||
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey ||
+        link.target === "_blank" ||
+        link.hasAttribute("download")
+      ) {
+        return;
+      }
+
+      const href = link.getAttribute("href") || "";
+
+      if (
+        href.startsWith("#") ||
+        href.startsWith("mailto:") ||
+        href.startsWith("tel:") ||
+        href.startsWith("javascript:")
+      ) {
+        return;
+      }
+
+      const nextUrl = new URL(link.href, window.location.href);
+
+      if (nextUrl.origin !== window.location.origin) {
+        return;
+      }
+
+      const samePage =
+        nextUrl.pathname === window.location.pathname &&
+        nextUrl.search === window.location.search;
+
+      if (samePage && nextUrl.hash) {
+        return;
+      }
+
+      show();
+    },
+    true
+  );
+};
+
+if (document.body) {
+  createPageLoader();
+}
+
 const formNote = document.querySelector("#formNote");
 const quickFormNote = document.querySelector("#quickFormNote");
 const websiteBriefNote = document.querySelector("#websiteBriefNote");

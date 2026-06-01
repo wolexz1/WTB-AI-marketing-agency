@@ -36,6 +36,128 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+body.page-is-loading {
+  cursor: wait;
+}
+
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(21, 93, 252, 0.34), transparent 34%),
+    radial-gradient(circle at 58% 58%, rgba(243, 181, 31, 0.16), transparent 24%),
+    rgba(5, 9, 16, 0.88);
+  opacity: 0;
+  pointer-events: none;
+  backdrop-filter: blur(12px);
+  transition: opacity 260ms ease;
+}
+
+.page-loader.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.page-loader-inner {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+  min-width: min(520px, 86vw);
+  padding: 36px 30px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 28px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.035));
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.36);
+}
+
+.page-loader-inner::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: conic-gradient(from 90deg, transparent, rgba(21, 93, 252, 0.26), transparent, rgba(243, 181, 31, 0.2), transparent);
+  animation: loaderSweep 4s linear infinite;
+}
+
+.page-loader-word,
+.page-loader-line {
+  position: relative;
+  z-index: 1;
+}
+
+.page-loader-word {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.12em;
+  color: #f8fbff;
+  font-size: clamp(1.35rem, 4.2vw, 3rem);
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.page-loader-word span {
+  display: inline-block;
+  opacity: 0.38;
+  text-shadow: 0 0 22px rgba(21, 93, 252, 0.4);
+  animation: loaderLetter 1.65s ease-in-out infinite;
+  animation-delay: calc(var(--letter-index) * 70ms);
+}
+
+.page-loader-line {
+  width: min(260px, 64vw);
+  height: 3px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.page-loader-line::after {
+  content: "";
+  display: block;
+  width: 42%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--blue), var(--gold));
+  animation: loaderLine 1.15s ease-in-out infinite;
+}
+
+@keyframes loaderSweep {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes loaderLetter {
+  0%,
+  100% {
+    opacity: 0.34;
+    transform: translateY(0);
+  }
+
+  42% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes loaderLine {
+  0% {
+    transform: translateX(-120%);
+  }
+
+  100% {
+    transform: translateX(260%);
+  }
+}
+
 img {
   display: block;
   max-width: 100%;
