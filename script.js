@@ -238,6 +238,44 @@ navLinks?.querySelectorAll("a").forEach((link) => {
   });
 });
 
+const setupFormSpamGuards = () => {
+  const forms = Array.from(document.querySelectorAll("form[action='/api/submit']"));
+  const startedAt = Date.now();
+  const tokenValue = `wtb-${startedAt}-${window.location.hostname.replace(/[^a-z0-9.-]/gi, "")}`;
+
+  forms.forEach((form) => {
+    [
+      ["_form_started_at", String(startedAt)],
+      ["_form_token", tokenValue],
+      ["_contact_url", ""],
+      ["company_url", ""],
+    ].forEach(([name, value]) => {
+      if (form.querySelector(`[name="${name}"]`)) {
+        return;
+      }
+
+      const input = document.createElement("input");
+      input.type = name === "_contact_url" || name === "company_url" ? "text" : "hidden";
+      input.name = name;
+      input.value = value;
+      input.className = "hidden-field";
+      input.tabIndex = -1;
+      input.autocomplete = "off";
+      input.setAttribute("aria-hidden", "true");
+      form.appendChild(input);
+    });
+
+    const select = form.querySelector("select[name='service']");
+    if (select && !Array.from(select.options).some((option) => option.value === "AI marketing consultancy" || option.textContent === "AI marketing consultancy")) {
+      const option = document.createElement("option");
+      option.textContent = "AI marketing consultancy";
+      select.appendChild(option);
+    }
+  });
+};
+
+setupFormSpamGuards();
+
 document.querySelector("#briefForm")?.addEventListener("submit", () => {
   formNote.textContent = "Sending your brief securely now.";
 });

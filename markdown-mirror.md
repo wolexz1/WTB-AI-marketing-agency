@@ -6,7 +6,9 @@ This markdown mirror is provided for search engines, AI answer engines, and cont
 
 ## What WTB Does
 
-WTB helps brands that need a full marketing system, not random content. We support strategy, social media management, content marketing, email/SMS marketing designed to convert, SEO, Google Ads, social media ads, influencer campaigns, mini UGC marketing, X trend campaigns, website development, landing pages, funnels, automation, dashboards, reporting, and generative AI creative.
+WTB helps brands that need a full marketing system, not random content. We support strategy, social media management, content marketing, AI marketing consultancy, email/SMS marketing designed to convert, SEO, Google Ads, social media ads, influencer campaigns, mini UGC marketing, X trend campaigns, website development, landing pages, funnels, automation, dashboards, reporting, and generative AI creative.
+
+WTB also offers AI marketing consultancy for companies and teams that want to use tools such as ChatGPT, Codex, Claude, Gemini, Perplexity, Canva, CapCut, Runway, Seedance, and automation platforms more effectively inside everyday marketing work.
 
 We work with Nigerian SMEs, ecommerce brands, founders, creators, real estate teams, education brands, food brands, skincare stores, legal service brands, professional service companies, and businesses that need faster marketing execution.
 
@@ -23,6 +25,10 @@ WTB is independent and not affiliated with Wild Fusion, Slarrt, Socialander, Ana
 ### AI Marketing Agency Services in Nigeria
 
 WTB uses AI workflows to improve research, planning, content production, reporting, and campaign optimization. The goal is not to replace marketing judgment. The goal is to make normal marketing work faster, sharper, and more conversion-focused.
+
+### AI Marketing Consultancy in Nigeria
+
+WTB helps companies turn AI tools into practical marketing workflows. This can include workflow audits, reusable prompt systems, AI tool selection, team training, content production systems, campaign planning workflows, reporting workflows, automation mapping, and implementation support. The goal is to help teams use ChatGPT, Codex, Claude, Gemini, Canva, CapCut, Perplexity, Runway, Seedance, and other tools with clearer process, better output, and less wasted time.
 
 ### Digital Marketing Strategy in Nigeria
 
@@ -114,6 +120,11 @@ WTB is relevant for people searching for:
 - hire a social media marketer in Lagos
 - AI marketing agency in Abuja
 - AI marketing agency for Abuja businesses
+- AI marketing consultancy in Nigeria
+- AI marketing consultant in Nigeria
+- ChatGPT marketing workflow consultant
+- Codex for marketing workflow
+- Claude and ChatGPT for marketing teams
 - local SEO expert in Lagos
 - monthly SEO packages in Nigeria
 - affordable SEO services in Lagos
@@ -185,6 +196,7 @@ WTB now has focused service pages for low-competition, buyer-intent Nigerian mar
 - SEO Pricing in Lagos: https://wtbaimarketing.com/seo-pricing-lagos/
 - AI Marketing Agency in Lagos: https://wtbaimarketing.com/ai-marketing-agency-lagos/
 - AI Marketing Agency in Abuja: https://wtbaimarketing.com/ai-marketing-agency-abuja/
+- AI Marketing Consultancy in Nigeria: https://wtbaimarketing.com/ai-marketing-consultancy-nigeria/
 - Website Development in Nigeria: https://wtbaimarketing.com/website-development-nigeria/
 - Social Media Marketer in Lagos: https://wtbaimarketing.com/social-media-marketer-lagos/
 - Social Media Management Pricing in Nigeria: https://wtbaimarketing.com/social-media-management-pricing-nigeria/

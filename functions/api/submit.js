@@ -6,7 +6,7 @@ export async function onRequestPost({ request, env }) {
   try {
     const formData = await request.formData();
 
-    if (String(formData.get("_honey") || "").trim()) {
+    if (isLikelySpam(formData, request)) {
       return Response.redirect(new URL(THANK_YOU_PATH, request.url), 303);
     }
 
@@ -73,6 +73,33 @@ export async function onRequestPost({ request, env }) {
     console.error("WTB form handler error", error);
     return friendlyError("Something interrupted the form", "Please message us on WhatsApp so we can collect your brief immediately.");
   }
+}
+
+function isLikelySpam(formData, request) {
+  const baitFields = ["_honey", "_contact_url", "company_url", "url", "website_url"];
+  const baitFilled = baitFields.some((field) => String(formData.get(field) || "").trim());
+
+  if (baitFilled) {
+    return true;
+  }
+
+  const startedAt = Number(formData.get("_form_started_at") || 0);
+  const token = String(formData.get("_form_token") || "");
+  const host = new URL(request.url).hostname;
+  const elapsed = Date.now() - startedAt;
+  const hasValidToken = token.startsWith(`wtb-${startedAt}-`) && token.includes(host.replace(/^www\./, ""));
+
+  if (!startedAt || !hasValidToken || elapsed < 2500 || elapsed > 3 * 60 * 60 * 1000) {
+    return true;
+  }
+
+  const combinedText = Array.from(formData.entries())
+    .filter(([, value]) => !(value instanceof File))
+    .map(([, value]) => String(value || ""))
+    .join(" ");
+  const linkCount = (combinedText.match(/https?:\/\/|www\./gi) || []).length;
+
+  return linkCount >= 5;
 }
 
 export function onRequestGet({ request }) {
