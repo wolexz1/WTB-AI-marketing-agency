@@ -2183,17 +2183,44 @@ body.modal-open {
 
 .footer-contact {
   display: grid;
-  gap: 8px;
+  gap: 10px;
   margin-top: 18px;
 }
 
 .footer-contact a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
   color: rgba(255, 255, 255, 0.78);
   transition: color 180ms ease;
 }
 
 .footer-contact a:hover {
   color: var(--gold);
+}
+
+.footer-contact-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--gold);
+  font-size: 0;
+}
+
+.footer-contact-icon::before {
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.footer-contact-icon::before {
+  content: attr(data-icon);
 }
 
 .site-footer .brand-lockup small {

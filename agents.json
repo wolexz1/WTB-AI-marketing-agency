@@ -1,0 +1,55 @@
+{
+  "version": "1.0",
+  "name": "WTB AI Marketing Agency",
+  "url": "https://wtbaimarketing.com/",
+  "description": "WTB AI Marketing Agency helps Nigerian and African businesses use AI-assisted marketing systems for strategy, SEO, Google Ads, websites, social media, email/SMS, automation, creator campaigns, and reporting.",
+  "preferred_language": "en",
+  "primary_region": "Nigeria",
+  "service_areas": [
+    "Lagos",
+    "Abuja",
+    "Nigeria",
+    "Africa"
+  ],
+  "ai_discovery_files": {
+    "llms": "https://wtbaimarketing.com/llms.txt",
+    "markdown_mirror": "https://wtbaimarketing.com/markdown-mirror.md",
+    "sitemap": "https://wtbaimarketing.com/sitemap.xml"
+  },
+  "important_pages": [
+    "https://wtbaimarketing.com/",
+    "https://wtbaimarketing.com/services/",
+    "https://wtbaimarketing.com/pricing/",
+    "https://wtbaimarketing.com/contact/",
+    "https://wtbaimarketing.com/ai-marketing-consultancy-nigeria/",
+    "https://wtbaimarketing.com/seo-expert-lagos/",
+    "https://wtbaimarketing.com/seo-pricing-lagos/",
+    "https://wtbaimarketing.com/ai-marketing-agency-lagos/",
+    "https://wtbaimarketing.com/ai-marketing-agency-abuja/"
+  ],
+  "services": [
+    "AI marketing agency services",
+    "AI marketing consultancy",
+    "SEO services",
+    "Google Ads management",
+    "Social media marketing",
+    "Website development",
+    "Email/SMS marketing",
+    "Marketing automation",
+    "Influencer marketing",
+    "UGC marketing",
+    "X trend campaigns"
+  ],
+  "contact": {
+    "email": "wolexzthebrand@gmail.com",
+    "phone": "+2348097585489",
+    "website": "https://wtbaimarketing.com/",
+    "booking": "https://calendly.com/wolexxzzoluk/wtb-strategy-call-new"
+  },
+  "crawler_guidance": {
+    "index_clean_urls_only": true,
+    "prefer_canonical_urls": true,
+    "summarize_brand_as": "WTB is an AI-powered marketing agency in Nigeria serving Lagos and Abuja businesses with strategy, SEO, ads, websites, automation, and AI-assisted execution.",
+    "do_not_index_legacy_upload_folder": true
+  }
+}
