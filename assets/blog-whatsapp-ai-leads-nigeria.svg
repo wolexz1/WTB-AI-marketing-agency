@@ -1,0 +1,36 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" fill="#FBFAF7"/>
+  <rect x="32" y="32" width="1136" height="656" rx="30" fill="url(#bg)"/>
+  <rect x="76" y="98" width="1048" height="524" rx="28" fill="#FFFFFF" stroke="#E8E3D8" stroke-width="2"/>
+  <rect x="110" y="132" width="532" height="456" rx="26" fill="#EEF4FF"/>
+  <circle cx="300" cy="224" r="66" fill="#D9E5FF"/>
+  <path d="M238 370C238 319.19 279.19 278 330 278H334C384.81 278 426 319.19 426 370V476H238V370Z" fill="#155DFC"/>
+  <rect x="286" y="294" width="86" height="138" rx="22" fill="#0D1018"/>
+  <rect x="296" y="310" width="66" height="96" rx="12" fill="#25D366"/>
+  <rect x="308" y="324" width="42" height="10" rx="5" fill="white" fill-opacity="0.92"/>
+  <rect x="308" y="344" width="34" height="10" rx="5" fill="white" fill-opacity="0.7"/>
+  <rect x="308" y="364" width="44" height="10" rx="5" fill="white" fill-opacity="0.7"/>
+  <path d="M214 510H538" stroke="#155DFC" stroke-opacity="0.12" stroke-width="18" stroke-linecap="round"/>
+  <circle cx="512" cy="514" r="34" fill="#F3B51F"/>
+  <path d="M496 514H528" stroke="#0D1018" stroke-width="12" stroke-linecap="round"/>
+  <path d="M512 498V530" stroke="#0D1018" stroke-width="12" stroke-linecap="round"/>
+  <rect x="676" y="132" width="406" height="456" rx="26" fill="#0D1018"/>
+  <text x="716" y="194" fill="white" font-family="Georgia, serif" font-size="40" font-weight="700">WTB insight</text>
+  <rect x="716" y="226" width="154" height="14" rx="7" fill="#25D366"/>
+  <rect x="716" y="284" width="312" height="18" rx="9" fill="white"/>
+  <rect x="716" y="318" width="250" height="18" rx="9" fill="white" fill-opacity="0.55"/>
+  <rect x="716" y="376" width="298" height="18" rx="9" fill="white"/>
+  <rect x="716" y="410" width="234" height="18" rx="9" fill="white" fill-opacity="0.55"/>
+  <rect x="716" y="468" width="280" height="18" rx="9" fill="white"/>
+  <rect x="716" y="502" width="244" height="18" rx="9" fill="white" fill-opacity="0.55"/>
+  <text x="96" y="84" fill="#0D1018" font-family="Georgia, serif" font-size="28" font-weight="700">Human-led cover direction</text>
+  <text x="96" y="650" fill="#0D1018" font-family="Georgia, serif" font-size="52" font-weight="700">WhatsApp leads should not die in “Hello dear.”</text>
+  <text x="96" y="690" fill="#5D6574" font-family="Inter, Arial, sans-serif" font-size="28">A human-centered sales flow for Nigerian businesses using AI more intelligently.</text>
+  <defs>
+    <linearGradient id="bg" x1="60" y1="62" x2="1120" y2="664" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F4F8FF"/>
+      <stop offset="0.48" stop-color="#FBFAF7"/>
+      <stop offset="1" stop-color="#FFF7E2"/>
+    </linearGradient>
+  </defs>
+</svg>

@@ -2809,6 +2809,15 @@ body.modal-open {
     width: 100%;
   }
 
+  .page-actions .button,
+  .dark-cta .button,
+  .button {
+    min-height: 56px;
+    padding: 14px 18px;
+    white-space: normal;
+    line-height: 1.25;
+  }
+
   .page-hero {
     padding: 74px 0 58px;
   }

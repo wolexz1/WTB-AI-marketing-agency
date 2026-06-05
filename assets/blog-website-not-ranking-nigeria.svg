@@ -1,0 +1,36 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" fill="#FBFAF7"/>
+  <rect x="32" y="32" width="1136" height="656" rx="30" fill="url(#bg)"/>
+  <rect x="72" y="96" width="1056" height="528" rx="28" fill="#FFFFFF" stroke="#E8E3D8" stroke-width="2"/>
+  <rect x="108" y="132" width="586" height="458" rx="26" fill="#F8FBFF"/>
+  <rect x="144" y="166" width="514" height="54" rx="18" fill="#0D1018"/>
+  <circle cx="178" cy="193" r="10" fill="#F3B51F"/>
+  <rect x="206" y="181" width="260" height="24" rx="12" fill="white" fill-opacity="0.9"/>
+  <circle cx="268" cy="324" r="66" fill="#E3EBFF"/>
+  <path d="M206 468C206 417.19 247.19 376 298 376H302C352.81 376 394 417.19 394 468V510H206V468Z" fill="#155DFC"/>
+  <rect x="428" y="272" width="186" height="126" rx="22" fill="#FFF4D4"/>
+  <path d="M458 364L492 330L524 348L578 296" stroke="#0D1018" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="578" cy="296" r="16" fill="#F3B51F"/>
+  <rect x="428" y="426" width="186" height="108" rx="22" fill="#EEF4FF"/>
+  <path d="M460 480H574" stroke="#155DFC" stroke-width="14" stroke-linecap="round"/>
+  <path d="M460 510H550" stroke="#155DFC" stroke-width="14" stroke-linecap="round" opacity="0.5"/>
+  <rect x="730" y="132" width="362" height="458" rx="26" fill="#0D1018"/>
+  <text x="766" y="192" fill="white" font-family="Georgia, serif" font-size="38" font-weight="700">Ranking clues</text>
+  <rect x="766" y="226" width="138" height="14" rx="7" fill="#155DFC"/>
+  <rect x="766" y="284" width="250" height="18" rx="9" fill="white"/>
+  <rect x="766" y="318" width="206" height="18" rx="9" fill="white" fill-opacity="0.52"/>
+  <rect x="766" y="370" width="258" height="18" rx="9" fill="white"/>
+  <rect x="766" y="404" width="224" height="18" rx="9" fill="white" fill-opacity="0.52"/>
+  <rect x="766" y="456" width="270" height="18" rx="9" fill="white"/>
+  <rect x="766" y="490" width="204" height="18" rx="9" fill="white" fill-opacity="0.52"/>
+  <text x="94" y="84" fill="#0D1018" font-family="Georgia, serif" font-size="28" font-weight="700">Human-led cover direction</text>
+  <text x="94" y="650" fill="#0D1018" font-family="Georgia, serif" font-size="50" font-weight="700">If your website is invisible, the problem is usually not magic.</text>
+  <text x="94" y="690" fill="#5D6574" font-family="Inter, Arial, sans-serif" font-size="28">A clearer ranking diagnosis for Lagos, Abuja, and Nigeria businesses in 2026.</text>
+  <defs>
+    <linearGradient id="bg" x1="62" y1="62" x2="1122" y2="664" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EEF4FF"/>
+      <stop offset="0.5" stop-color="#FBFAF7"/>
+      <stop offset="1" stop-color="#FFF7E2"/>
+    </linearGradient>
+  </defs>
+</svg>

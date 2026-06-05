@@ -237,6 +237,14 @@ The WTB blog is written by the WTB Team and structured for search engines, AI an
 - How Much Does Website Design Cost in Nigeria in 2026?: https://wtbaimarketing.com/blog/website-design-cost-nigeria-2026/
 - SEO Pricing in Nigeria: How Much Should a Serious Business Budget?: https://wtbaimarketing.com/blog/seo-pricing-nigeria-2026/
 - How Much Do Social Media Managers Charge in Nigeria?: https://wtbaimarketing.com/blog/social-media-manager-cost-nigeria-2026/
+- How Nigerian Businesses Can Use WhatsApp AI to Qualify Leads and Close Sales Faster: https://wtbaimarketing.com/blog/whatsapp-ai-lead-generation-nigeria-2026/
+- Why Your Website Is Not Ranking on Google in Nigeria in 2026: https://wtbaimarketing.com/blog/why-website-not-ranking-google-nigeria-2026/
+- Google Ads vs Meta Ads in Nigeria in 2026: Which Should Your Business Start With?: https://wtbaimarketing.com/blog/google-ads-vs-meta-ads-nigeria-2026/
+- How Visual Search Is Changing Ecommerce Marketing in Nigeria: https://wtbaimarketing.com/blog/visual-search-ecommerce-nigeria-2026/
+
+These two new articles are designed to support both buyer-intent SEO and answer-engine visibility. The WhatsApp AI article connects current messaging and AI trends to WTB's AI consultancy, automation, and conversion support. The website ranking article connects SEO, website structure, local search relevance, and conversion logic back to WTB's SEO and website services.
+
+The Google Ads versus Meta Ads article supports WTB's paid media strategy, landing page, and lead generation positioning. The visual search article supports WTB's ecommerce, UGC, product-page, and content direction for Nigerian brands adapting to camera-led and video-led discovery.
 
 ## New SEO Landing Pages Added June 1, 2026
 

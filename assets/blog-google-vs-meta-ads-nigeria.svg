@@ -1,0 +1,43 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" fill="#FBFAF7"/>
+  <rect x="36" y="36" width="1128" height="648" rx="30" fill="url(#bg)"/>
+  <rect x="88" y="108" width="1024" height="500" rx="28" fill="#FFFFFF" stroke="#E8E3D8" stroke-width="2"/>
+  <rect x="132" y="150" width="324" height="416" rx="28" fill="#EEF4FF"/>
+  <circle cx="224" cy="252" r="64" fill="#D7E4FF"/>
+  <path d="M168 360C168 314.712 204.712 278 250 278H252C297.288 278 334 314.712 334 360V420H168V360Z" fill="#155DFC"/>
+  <rect x="198" y="316" width="78" height="132" rx="18" fill="#0D1018"/>
+  <rect x="208" y="332" width="58" height="88" rx="10" fill="#25D366"/>
+  <rect x="220" y="346" width="34" height="10" rx="5" fill="white" fill-opacity="0.9"/>
+  <rect x="220" y="366" width="26" height="10" rx="5" fill="white" fill-opacity="0.6"/>
+  <text x="162" y="510" fill="#0D1018" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">Intent-heavy search buyers</text>
+  <text x="162" y="540" fill="#5D6574" font-family="Inter, Arial, sans-serif" font-size="18">Google Ads side</text>
+  <rect x="494" y="150" width="324" height="416" rx="28" fill="#FFF6DE"/>
+  <circle cx="598" cy="252" r="64" fill="#FFE4A3"/>
+  <path d="M544 360C544 314.712 580.712 278 626 278H628C673.288 278 710 314.712 710 360V420H544V360Z" fill="#F3B51F"/>
+  <rect x="566" y="306" width="90" height="150" rx="22" fill="#FFFFFF"/>
+  <circle cx="611" cy="352" r="22" fill="#F04438"/>
+  <circle cx="611" cy="352" r="10" fill="white"/>
+  <rect x="585" y="390" width="52" height="10" rx="5" fill="#B28A19"/>
+  <rect x="585" y="412" width="44" height="10" rx="5" fill="#B28A19" fill-opacity="0.6"/>
+  <text x="524" y="510" fill="#0D1018" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">Interruptive demand capture</text>
+  <text x="524" y="540" fill="#5D6574" font-family="Inter, Arial, sans-serif" font-size="18">Meta Ads side</text>
+  <rect x="856" y="150" width="212" height="416" rx="28" fill="#0D1018"/>
+  <text x="892" y="206" fill="white" font-family="Georgia, serif" font-size="34" font-weight="700">WTB take</text>
+  <rect x="892" y="240" width="136" height="16" rx="8" fill="#155DFC"/>
+  <rect x="892" y="282" width="140" height="12" rx="6" fill="white" fill-opacity="0.86"/>
+  <rect x="892" y="308" width="118" height="12" rx="6" fill="white" fill-opacity="0.52"/>
+  <rect x="892" y="360" width="140" height="12" rx="6" fill="white" fill-opacity="0.86"/>
+  <rect x="892" y="386" width="118" height="12" rx="6" fill="white" fill-opacity="0.52"/>
+  <rect x="892" y="438" width="140" height="12" rx="6" fill="white" fill-opacity="0.86"/>
+  <rect x="892" y="464" width="118" height="12" rx="6" fill="white" fill-opacity="0.52"/>
+  <text x="104" y="88" fill="#0D1018" font-family="Georgia, serif" font-size="28" font-weight="700">WTB blog cover</text>
+  <text x="104" y="650" fill="#0D1018" font-family="Georgia, serif" font-size="52" font-weight="700">Google Ads vs Meta Ads in Nigeria is really a buyer-stage question.</text>
+  <text x="104" y="690" fill="#5D6574" font-family="Inter, Arial, sans-serif" font-size="28">Where should your money go first if you actually want leads, not drama?</text>
+  <defs>
+    <linearGradient id="bg" x1="72" y1="72" x2="1128" y2="670" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F3F8FF"/>
+      <stop offset="0.48" stop-color="#FBFAF7"/>
+      <stop offset="1" stop-color="#FFF8E8"/>
+    </linearGradient>
+  </defs>
+</svg>

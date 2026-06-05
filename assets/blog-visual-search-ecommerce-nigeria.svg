@@ -1,0 +1,39 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" fill="#FBFAF7"/>
+  <rect x="32" y="32" width="1136" height="656" rx="30" fill="url(#bg)"/>
+  <rect x="74" y="98" width="1052" height="524" rx="28" fill="#FFFFFF" stroke="#E8E3D8" stroke-width="2"/>
+  <rect x="108" y="132" width="560" height="456" rx="26" fill="#FFF7E2"/>
+  <circle cx="270" cy="226" r="68" fill="#FFE0A2"/>
+  <path d="M206 386C206 331.876 249.876 288 304 288H310C364.124 288 408 331.876 408 386V500H206V386Z" fill="#F3B51F"/>
+  <rect x="340" y="286" width="128" height="210" rx="20" fill="#0D1018"/>
+  <rect x="352" y="304" width="104" height="168" rx="14" fill="#EAF1FF"/>
+  <circle cx="404" cy="388" r="40" stroke="#155DFC" stroke-width="10"/>
+  <path d="M432 416L458 442" stroke="#155DFC" stroke-width="10" stroke-linecap="round"/>
+  <rect x="142" y="472" width="144" height="74" rx="20" fill="#FFFFFF"/>
+  <circle cx="182" cy="509" r="22" fill="#F3B51F"/>
+  <rect x="218" y="494" width="44" height="10" rx="5" fill="#0D1018"/>
+  <rect x="218" y="516" width="36" height="10" rx="5" fill="#5D6574" fill-opacity="0.6"/>
+  <rect x="304" y="472" width="144" height="74" rx="20" fill="#FFFFFF"/>
+  <circle cx="344" cy="509" r="22" fill="#155DFC"/>
+  <rect x="380" y="494" width="44" height="10" rx="5" fill="#0D1018"/>
+  <rect x="380" y="516" width="36" height="10" rx="5" fill="#5D6574" fill-opacity="0.6"/>
+  <rect x="702" y="132" width="390" height="456" rx="26" fill="#0D1018"/>
+  <text x="738" y="190" fill="white" font-family="Georgia, serif" font-size="38" font-weight="700">Visual search</text>
+  <rect x="738" y="224" width="150" height="14" rx="7" fill="#155DFC"/>
+  <rect x="738" y="282" width="282" height="18" rx="9" fill="white"/>
+  <rect x="738" y="316" width="230" height="18" rx="9" fill="white" fill-opacity="0.55"/>
+  <rect x="738" y="370" width="294" height="18" rx="9" fill="white"/>
+  <rect x="738" y="404" width="218" height="18" rx="9" fill="white" fill-opacity="0.55"/>
+  <rect x="738" y="458" width="276" height="18" rx="9" fill="white"/>
+  <rect x="738" y="492" width="210" height="18" rx="9" fill="white" fill-opacity="0.55"/>
+  <text x="94" y="84" fill="#0D1018" font-family="Georgia, serif" font-size="28" font-weight="700">Human-led cover direction</text>
+  <text x="94" y="650" fill="#0D1018" font-family="Georgia, serif" font-size="50" font-weight="700">Shoppers are starting to search with their cameras, not just their keyboards.</text>
+  <text x="94" y="690" fill="#5D6574" font-family="Inter, Arial, sans-serif" font-size="28">A more human visual story for Nigerian ecommerce discovery in 2026.</text>
+  <defs>
+    <linearGradient id="bg" x1="58" y1="62" x2="1122" y2="664" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF7E2"/>
+      <stop offset="0.48" stop-color="#FBFAF7"/>
+      <stop offset="1" stop-color="#EEF4FF"/>
+    </linearGradient>
+  </defs>
+</svg>
