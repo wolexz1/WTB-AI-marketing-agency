@@ -38,6 +38,9 @@ Use this checklist before publishing any new blog on `wtbaimarketing.com`.
 - Use human-led visuals, not random shapes alone.
 - Show a person, customer, founder, marketer, or business moment connected to the topic.
 - Make the image feel story-driven and emotionally relevant.
+- Make sure the visual clearly relates to the exact content of the blog.
+- Avoid awkward crops, cut-off heads, or compositions that hide the human subject.
+- For blog listing cards, prefer full-scene human images that still read clearly at smaller sizes.
 - Use strong alt text.
 
 ## Technical SEO Check

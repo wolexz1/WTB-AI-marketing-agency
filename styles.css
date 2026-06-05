@@ -827,6 +827,13 @@ h3 {
   margin-bottom: 20px;
 }
 
+.blog-card img {
+  object-fit: contain;
+  object-position: center top;
+  padding: 10px;
+  background: linear-gradient(180deg, #f8fbff, #fff9ef);
+}
+
 .blog-card span,
 .case-study-card span,
 .article-meta,
