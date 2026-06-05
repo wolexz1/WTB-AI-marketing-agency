@@ -972,6 +972,27 @@ h3 {
   padding-top: 58px;
 }
 
+.article-inline-media {
+  display: grid;
+  gap: 14px;
+  margin: 14px 0 6px;
+}
+
+.article-inline-media img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) - 2px);
+  box-shadow: 0 24px 80px rgba(21, 23, 28, 0.1);
+}
+
+.article-inline-media figcaption {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
 .blog-article-page .article-body h2 {
   font-size: clamp(1.75rem, 3.5vw, 2.75rem);
   line-height: 1.12;
@@ -2856,6 +2877,11 @@ body.modal-open {
 
   .blog-article-page .article-body {
     padding-top: 42px;
+  }
+
+  .article-inline-media {
+    gap: 12px;
+    margin: 10px 0 2px;
   }
 
   .dark-cta .section-shell {
