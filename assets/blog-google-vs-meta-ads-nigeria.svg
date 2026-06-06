@@ -1,43 +1,48 @@
-<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="720" fill="#FBFAF7"/>
-  <rect x="36" y="36" width="1128" height="648" rx="30" fill="url(#bg)"/>
-  <rect x="88" y="108" width="1024" height="500" rx="28" fill="#FFFFFF" stroke="#E8E3D8" stroke-width="2"/>
-  <rect x="132" y="150" width="324" height="416" rx="28" fill="#EEF4FF"/>
-  <circle cx="224" cy="252" r="64" fill="#D7E4FF"/>
-  <path d="M168 360C168 314.712 204.712 278 250 278H252C297.288 278 334 314.712 334 360V420H168V360Z" fill="#155DFC"/>
-  <rect x="198" y="316" width="78" height="132" rx="18" fill="#0D1018"/>
-  <rect x="208" y="332" width="58" height="88" rx="10" fill="#25D366"/>
-  <rect x="220" y="346" width="34" height="10" rx="5" fill="white" fill-opacity="0.9"/>
-  <rect x="220" y="366" width="26" height="10" rx="5" fill="white" fill-opacity="0.6"/>
-  <text x="162" y="510" fill="#0D1018" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">Intent-heavy search buyers</text>
-  <text x="162" y="540" fill="#5D6574" font-family="Inter, Arial, sans-serif" font-size="18">Google Ads side</text>
-  <rect x="494" y="150" width="324" height="416" rx="28" fill="#FFF6DE"/>
-  <circle cx="598" cy="252" r="64" fill="#FFE4A3"/>
-  <path d="M544 360C544 314.712 580.712 278 626 278H628C673.288 278 710 314.712 710 360V420H544V360Z" fill="#F3B51F"/>
-  <rect x="566" y="306" width="90" height="150" rx="22" fill="#FFFFFF"/>
-  <circle cx="611" cy="352" r="22" fill="#F04438"/>
-  <circle cx="611" cy="352" r="10" fill="white"/>
-  <rect x="585" y="390" width="52" height="10" rx="5" fill="#B28A19"/>
-  <rect x="585" y="412" width="44" height="10" rx="5" fill="#B28A19" fill-opacity="0.6"/>
-  <text x="524" y="510" fill="#0D1018" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">Interruptive demand capture</text>
-  <text x="524" y="540" fill="#5D6574" font-family="Inter, Arial, sans-serif" font-size="18">Meta Ads side</text>
-  <rect x="856" y="150" width="212" height="416" rx="28" fill="#0D1018"/>
-  <text x="892" y="206" fill="white" font-family="Georgia, serif" font-size="34" font-weight="700">WTB take</text>
-  <rect x="892" y="240" width="136" height="16" rx="8" fill="#155DFC"/>
-  <rect x="892" y="282" width="140" height="12" rx="6" fill="white" fill-opacity="0.86"/>
-  <rect x="892" y="308" width="118" height="12" rx="6" fill="white" fill-opacity="0.52"/>
-  <rect x="892" y="360" width="140" height="12" rx="6" fill="white" fill-opacity="0.86"/>
-  <rect x="892" y="386" width="118" height="12" rx="6" fill="white" fill-opacity="0.52"/>
-  <rect x="892" y="438" width="140" height="12" rx="6" fill="white" fill-opacity="0.86"/>
-  <rect x="892" y="464" width="118" height="12" rx="6" fill="white" fill-opacity="0.52"/>
-  <text x="104" y="88" fill="#0D1018" font-family="Georgia, serif" font-size="28" font-weight="700">WTB blog cover</text>
-  <text x="104" y="650" fill="#0D1018" font-family="Georgia, serif" font-size="52" font-weight="700">Google Ads vs Meta Ads in Nigeria is really a buyer-stage question.</text>
-  <text x="104" y="690" fill="#5D6574" font-family="Inter, Arial, sans-serif" font-size="28">Where should your money go first if you actually want leads, not drama?</text>
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#0D1018"/>
+  <rect x="38" y="38" width="1524" height="824" rx="34" fill="url(#bg)"/>
+  <rect x="96" y="94" width="1408" height="712" rx="32" fill="#F7F3EA"/>
+  <text x="128" y="156" fill="#145EFF" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="2">WTB BLOG COVER</text>
+  <text x="128" y="218" fill="#111111" font-family="Georgia, serif" font-size="56" font-weight="700">Google Ads vs Meta Ads in Nigeria</text>
+  <text x="128" y="260" fill="#576072" font-family="Inter, Arial, sans-serif" font-size="26">One side captures existing demand. The other creates attention and interest.</text>
+  <rect x="128" y="302" width="568" height="328" rx="28" fill="#EEF4FF" stroke="#C7D8FF" stroke-width="2"/>
+  <text x="170" y="358" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800">GOOGLE ADS</text>
+  <circle cx="244" cy="446" r="58" fill="#FFFFFF"/>
+  <path d="M243 392C256 392 267 397 276 405L256 426C252 423 248 421 243 421C227 421 213 434 213 451C213 468 227 481 243 481C257 481 269 472 272 460H243V432H304C305 438 306 444 306 451C306 489 279 516 243 516C207 516 178 487 178 451C178 415 207 392 243 392Z" fill="#4285F4"/>
+  <path d="M213 421L234 437" stroke="#34A853" stroke-width="18" stroke-linecap="round"/>
+  <path d="M213 481L234 465" stroke="#FBBC05" stroke-width="18" stroke-linecap="round"/>
+  <path d="M276 405L292 388" stroke="#EA4335" stroke-width="18" stroke-linecap="round"/>
+  <rect x="346" y="400" width="300" height="42" rx="21" fill="#FFFFFF"/>
+  <rect x="346" y="456" width="220" height="20" rx="10" fill="#A8C6FF"/>
+  <rect x="346" y="488" width="248" height="20" rx="10" fill="#C8DBFF"/>
+  <text x="170" y="570" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">Search demand already exists</text>
+  <text x="170" y="606" fill="#576072" font-family="Inter, Arial, sans-serif" font-size="22">Best when buyers are already typing what they want.</text>
+  <rect x="904" y="302" width="568" height="328" rx="28" fill="#F4F1FF" stroke="#D7D0FF" stroke-width="2"/>
+  <text x="946" y="358" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800">META ADS</text>
+  <circle cx="1020" cy="446" r="58" fill="#FFFFFF"/>
+  <path d="M972 450C983 405 1007 394 1024 424C1038 394 1065 405 1076 450C1081 470 1105 470 1104 450C1100 404 1076 375 1047 375C1034 375 1027 382 1024 389C1021 382 1014 375 1001 375C972 375 948 404 944 450C943 470 967 470 972 450Z" fill="#0866FF"/>
+  <rect x="1122" y="396" width="300" height="52" rx="18" fill="#FFFFFF"/>
+  <rect x="1122" y="464" width="258" height="20" rx="10" fill="#9DB9FF"/>
+  <rect x="1122" y="496" width="220" height="20" rx="10" fill="#CFDAFF"/>
+  <circle cx="1152" cy="422" r="12" fill="#145EFF"/>
+  <circle cx="1190" cy="422" r="12" fill="#34A853"/>
+  <circle cx="1228" cy="422" r="12" fill="#EA4335"/>
+  <text x="946" y="570" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">Attention and demand creation</text>
+  <text x="946" y="606" fill="#576072" font-family="Inter, Arial, sans-serif" font-size="22">Best when people need to see, feel, and want the offer first.</text>
+  <circle cx="800" cy="470" r="84" fill="#111111"/>
+  <rect x="758" y="430" width="84" height="84" rx="18" fill="#F7F3EA"/>
+  <text x="786" y="483" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="44" font-weight="900">₦</text>
+  <path d="M696 470H738" stroke="#111111" stroke-width="18" stroke-linecap="round"/>
+  <path d="M862 470H904" stroke="#111111" stroke-width="18" stroke-linecap="round"/>
+  <path d="M720 442L694 470L720 498" stroke="#111111" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M880 442L906 470L880 498" stroke="#111111" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="128" y="742" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800">Quick insight:</text>
+  <text x="315" y="742" fill="#576072" font-family="Inter, Arial, sans-serif" font-size="28">Google captures people searching now. Meta helps you create interest before the search happens.</text>
   <defs>
-    <linearGradient id="bg" x1="72" y1="72" x2="1128" y2="670" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#F3F8FF"/>
-      <stop offset="0.48" stop-color="#FBFAF7"/>
-      <stop offset="1" stop-color="#FFF8E8"/>
+    <linearGradient id="bg" x1="84" y1="84" x2="1516" y2="838" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF8EA"/>
+      <stop offset="0.52" stop-color="#F7F3EA"/>
+      <stop offset="1" stop-color="#EEF4FF"/>
     </linearGradient>
   </defs>
 </svg>

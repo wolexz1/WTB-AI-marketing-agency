@@ -1,36 +1,44 @@
-<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="720" fill="#FBFAF7"/>
-  <rect x="32" y="32" width="1136" height="656" rx="30" fill="url(#bg)"/>
-  <rect x="76" y="98" width="1048" height="524" rx="28" fill="#FFFFFF" stroke="#E8E3D8" stroke-width="2"/>
-  <rect x="110" y="132" width="532" height="456" rx="26" fill="#EEF4FF"/>
-  <circle cx="300" cy="224" r="66" fill="#D9E5FF"/>
-  <path d="M238 370C238 319.19 279.19 278 330 278H334C384.81 278 426 319.19 426 370V476H238V370Z" fill="#155DFC"/>
-  <rect x="286" y="294" width="86" height="138" rx="22" fill="#0D1018"/>
-  <rect x="296" y="310" width="66" height="96" rx="12" fill="#25D366"/>
-  <rect x="308" y="324" width="42" height="10" rx="5" fill="white" fill-opacity="0.92"/>
-  <rect x="308" y="344" width="34" height="10" rx="5" fill="white" fill-opacity="0.7"/>
-  <rect x="308" y="364" width="44" height="10" rx="5" fill="white" fill-opacity="0.7"/>
-  <path d="M214 510H538" stroke="#155DFC" stroke-opacity="0.12" stroke-width="18" stroke-linecap="round"/>
-  <circle cx="512" cy="514" r="34" fill="#F3B51F"/>
-  <path d="M496 514H528" stroke="#0D1018" stroke-width="12" stroke-linecap="round"/>
-  <path d="M512 498V530" stroke="#0D1018" stroke-width="12" stroke-linecap="round"/>
-  <rect x="676" y="132" width="406" height="456" rx="26" fill="#0D1018"/>
-  <text x="716" y="194" fill="white" font-family="Georgia, serif" font-size="40" font-weight="700">WTB insight</text>
-  <rect x="716" y="226" width="154" height="14" rx="7" fill="#25D366"/>
-  <rect x="716" y="284" width="312" height="18" rx="9" fill="white"/>
-  <rect x="716" y="318" width="250" height="18" rx="9" fill="white" fill-opacity="0.55"/>
-  <rect x="716" y="376" width="298" height="18" rx="9" fill="white"/>
-  <rect x="716" y="410" width="234" height="18" rx="9" fill="white" fill-opacity="0.55"/>
-  <rect x="716" y="468" width="280" height="18" rx="9" fill="white"/>
-  <rect x="716" y="502" width="244" height="18" rx="9" fill="white" fill-opacity="0.55"/>
-  <text x="96" y="84" fill="#0D1018" font-family="Georgia, serif" font-size="28" font-weight="700">Human-led cover direction</text>
-  <text x="96" y="650" fill="#0D1018" font-family="Georgia, serif" font-size="52" font-weight="700">WhatsApp leads should not die in “Hello dear.”</text>
-  <text x="96" y="690" fill="#5D6574" font-family="Inter, Arial, sans-serif" font-size="28">A human-centered sales flow for Nigerian businesses using AI more intelligently.</text>
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#0F121A"/>
+  <rect x="40" y="40" width="1520" height="820" rx="34" fill="url(#bg)"/>
+  <rect x="96" y="96" width="1408" height="708" rx="32" fill="#FAF7F0"/>
+  <text x="128" y="156" fill="#25D366" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="2">WTB BLOG COVER</text>
+  <text x="128" y="218" fill="#111111" font-family="Georgia, serif" font-size="54" font-weight="700">WhatsApp AI for Faster Lead Qualification</text>
+  <text x="128" y="260" fill="#576072" font-family="Inter, Arial, sans-serif" font-size="26">Show the offer, ask the right questions, and move the lead to the next step.</text>
+  <rect x="134" y="318" width="410" height="390" rx="28" fill="#FFF4D9" stroke="#E5D7AB" stroke-width="2"/>
+  <circle cx="258" cy="442" r="66" fill="#F3C75E"/>
+  <path d="M186 608C186 539.517 241.517 484 310 484H316C384.483 484 440 539.517 440 608V676H186V608Z" fill="#145EFF"/>
+  <rect x="214" y="552" width="136" height="110" rx="24" fill="#FFFFFF"/>
+  <rect x="228" y="566" width="108" height="82" rx="18" fill="#25D366"/>
+  <path d="M279 592C271 592 264 599 264 608C264 611 265 615 267 618L262 634L279 629C282 631 286 632 290 632C307 632 321 620 321 604C321 598 319 593 315 589" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="170" y="360" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800">BUSINESS OWNER</text>
+  <text x="170" y="400" fill="#576072" font-family="Inter, Arial, sans-serif" font-size="22">Phone-first sales flow</text>
+  <rect x="620" y="300" width="352" height="420" rx="42" fill="#131821"/>
+  <rect x="650" y="334" width="292" height="356" rx="28" fill="#EAFBF0"/>
+  <rect x="728" y="316" width="136" height="12" rx="6" fill="#2C3343"/>
+  <rect x="676" y="362" width="242" height="58" rx="20" fill="#25D366"/>
+  <text x="728" y="400" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800">WhatsApp AI</text>
+  <rect x="676" y="446" width="216" height="68" rx="20" fill="#FFFFFF"/>
+  <text x="700" y="486" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">What do you need?</text>
+  <rect x="710" y="534" width="196" height="62" rx="20" fill="#DCF8C6"/>
+  <text x="734" y="572" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">Website + SEO</text>
+  <rect x="676" y="612" width="182" height="54" rx="18" fill="#FFFFFF"/>
+  <text x="700" y="646" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700">Budget range?</text>
+  <rect x="1030" y="318" width="404" height="390" rx="28" fill="#FFFFFF" stroke="#D8E8DA" stroke-width="2"/>
+  <text x="1066" y="370" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800">WHAT THE IMAGE TELLS YOU</text>
+  <rect x="1066" y="408" width="332" height="70" rx="22" fill="#EAFBF0"/>
+  <text x="1094" y="450" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">1. Lead enters through WhatsApp</text>
+  <rect x="1066" y="494" width="332" height="70" rx="22" fill="#FFF4D9"/>
+  <text x="1094" y="536" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">2. AI asks qualifying questions</text>
+  <rect x="1066" y="580" width="332" height="70" rx="22" fill="#EEF4FF"/>
+  <text x="1094" y="622" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">3. Team books the right follow-up</text>
+  <text x="128" y="760" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800">Quick insight:</text>
+  <text x="315" y="760" fill="#576072" font-family="Inter, Arial, sans-serif" font-size="28">This is about WhatsApp doing the first qualification work clearly in the chat, not sitting quietly in the background.</text>
   <defs>
-    <linearGradient id="bg" x1="60" y1="62" x2="1120" y2="664" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#F4F8FF"/>
-      <stop offset="0.48" stop-color="#FBFAF7"/>
-      <stop offset="1" stop-color="#FFF7E2"/>
+    <linearGradient id="bg" x1="84" y1="84" x2="1524" y2="844" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F1FFF4"/>
+      <stop offset="0.58" stop-color="#FAF7F0"/>
+      <stop offset="1" stop-color="#EEF4FF"/>
     </linearGradient>
   </defs>
 </svg>

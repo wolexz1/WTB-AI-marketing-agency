@@ -1,39 +1,37 @@
-<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="720" fill="#FBFAF7"/>
-  <rect x="32" y="32" width="1136" height="656" rx="30" fill="url(#bg)"/>
-  <rect x="74" y="98" width="1052" height="524" rx="28" fill="#FFFFFF" stroke="#E8E3D8" stroke-width="2"/>
-  <rect x="108" y="132" width="560" height="456" rx="26" fill="#FFF7E2"/>
-  <circle cx="270" cy="226" r="68" fill="#FFE0A2"/>
-  <path d="M206 386C206 331.876 249.876 288 304 288H310C364.124 288 408 331.876 408 386V500H206V386Z" fill="#F3B51F"/>
-  <rect x="340" y="286" width="128" height="210" rx="20" fill="#0D1018"/>
-  <rect x="352" y="304" width="104" height="168" rx="14" fill="#EAF1FF"/>
-  <circle cx="404" cy="388" r="40" stroke="#155DFC" stroke-width="10"/>
-  <path d="M432 416L458 442" stroke="#155DFC" stroke-width="10" stroke-linecap="round"/>
-  <rect x="142" y="472" width="144" height="74" rx="20" fill="#FFFFFF"/>
-  <circle cx="182" cy="509" r="22" fill="#F3B51F"/>
-  <rect x="218" y="494" width="44" height="10" rx="5" fill="#0D1018"/>
-  <rect x="218" y="516" width="36" height="10" rx="5" fill="#5D6574" fill-opacity="0.6"/>
-  <rect x="304" y="472" width="144" height="74" rx="20" fill="#FFFFFF"/>
-  <circle cx="344" cy="509" r="22" fill="#155DFC"/>
-  <rect x="380" y="494" width="44" height="10" rx="5" fill="#0D1018"/>
-  <rect x="380" y="516" width="36" height="10" rx="5" fill="#5D6574" fill-opacity="0.6"/>
-  <rect x="702" y="132" width="390" height="456" rx="26" fill="#0D1018"/>
-  <text x="738" y="190" fill="white" font-family="Georgia, serif" font-size="38" font-weight="700">Visual search</text>
-  <rect x="738" y="224" width="150" height="14" rx="7" fill="#155DFC"/>
-  <rect x="738" y="282" width="282" height="18" rx="9" fill="white"/>
-  <rect x="738" y="316" width="230" height="18" rx="9" fill="white" fill-opacity="0.55"/>
-  <rect x="738" y="370" width="294" height="18" rx="9" fill="white"/>
-  <rect x="738" y="404" width="218" height="18" rx="9" fill="white" fill-opacity="0.55"/>
-  <rect x="738" y="458" width="276" height="18" rx="9" fill="white"/>
-  <rect x="738" y="492" width="210" height="18" rx="9" fill="white" fill-opacity="0.55"/>
-  <text x="94" y="84" fill="#0D1018" font-family="Georgia, serif" font-size="28" font-weight="700">Human-led cover direction</text>
-  <text x="94" y="650" fill="#0D1018" font-family="Georgia, serif" font-size="50" font-weight="700">Shoppers are starting to search with their cameras, not just their keyboards.</text>
-  <text x="94" y="690" fill="#5D6574" font-family="Inter, Arial, sans-serif" font-size="28">A more human visual story for Nigerian ecommerce discovery in 2026.</text>
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#0D1018"/>
+  <rect x="40" y="40" width="1520" height="820" rx="34" fill="url(#bg)"/>
+  <rect x="96" y="96" width="1408" height="708" rx="32" fill="#FAF7F0"/>
+  <text x="128" y="156" fill="#145EFF" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="2">WTB BLOG COVER</text>
+  <text x="128" y="218" fill="#111111" font-family="Georgia, serif" font-size="52" font-weight="700">How Visual Search Is Changing Ecommerce Marketing in Nigeria</text>
+  <text x="128" y="260" fill="#576072" font-family="Inter, Arial, sans-serif" font-size="26">The image shows a shopper using a phone camera to discover a product, not just typing a keyword.</text>
+  <rect x="128" y="312" width="508" height="372" rx="28" fill="#FFF4D9" stroke="#E7D7A7" stroke-width="2"/>
+  <circle cx="288" cy="450" r="70" fill="#D9B56A"/>
+  <path d="M204 626C204 547.576 267.576 484 346 484H352C430.424 484 494 547.576 494 626V684H204V626Z" fill="#145EFF"/>
+  <rect x="256" y="530" width="156" height="118" rx="24" fill="#FFFFFF"/>
+  <rect x="272" y="548" width="124" height="84" rx="18" fill="#121821"/>
+  <rect x="302" y="570" width="64" height="40" rx="12" fill="#F5C86A"/>
+  <text x="170" y="372" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800">SHOPPER + PHONE CAMERA</text>
+  <text x="170" y="408" fill="#576072" font-family="Inter, Arial, sans-serif" font-size="22">Discovery starts visually</text>
+  <rect x="686" y="312" width="316" height="372" rx="34" fill="#111111"/>
+  <rect x="714" y="344" width="260" height="308" rx="24" fill="#F7F3EA"/>
+  <rect x="774" y="404" width="140" height="108" rx="22" fill="#D9A35C"/>
+  <rect x="754" y="384" width="180" height="148" rx="26" stroke="#145EFF" stroke-width="10" stroke-dasharray="18 14"/>
+  <circle cx="924" cy="528" r="30" fill="#145EFF"/>
+  <path d="M943 547L975 579" stroke="#145EFF" stroke-width="12" stroke-linecap="round"/>
+  <rect x="1058" y="312" width="318" height="372" rx="28" fill="#FFFFFF" stroke="#D9D1C5" stroke-width="2"/>
+  <text x="1092" y="366" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800">WHAT THE IMAGE SAYS</text>
+  <rect x="1092" y="406" width="246" height="70" rx="22" fill="#EEF4FF"/>
+  <text x="1122" y="448" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">Product image matters</text>
+  <rect x="1092" y="496" width="246" height="70" rx="22" fill="#FFF4D9"/>
+  <text x="1130" y="538" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">Phone camera search</text>
+  <rect x="1092" y="586" width="246" height="70" rx="22" fill="#EEF4FF"/>
+  <text x="1118" y="628" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">Faster discovery path</text>
   <defs>
-    <linearGradient id="bg" x1="58" y1="62" x2="1122" y2="664" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FFF7E2"/>
-      <stop offset="0.48" stop-color="#FBFAF7"/>
-      <stop offset="1" stop-color="#EEF4FF"/>
+    <linearGradient id="bg" x1="84" y1="84" x2="1518" y2="842" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F4F8FF"/>
+      <stop offset="0.58" stop-color="#FAF7F0"/>
+      <stop offset="1" stop-color="#FFF6E6"/>
     </linearGradient>
   </defs>
 </svg>

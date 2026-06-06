@@ -1,29 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
-  <title id="title">Website design cost planning cover</title>
-  <desc id="desc">A branded website budget and wireframe planning illustration.</desc>
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#0D1018"/>
+  <rect x="40" y="40" width="1520" height="820" rx="34" fill="url(#bg)"/>
+  <rect x="96" y="96" width="1408" height="708" rx="32" fill="#FAF7F0"/>
+  <text x="128" y="156" fill="#145EFF" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="2">WTB BLOG COVER</text>
+  <text x="128" y="218" fill="#111111" font-family="Georgia, serif" font-size="54" font-weight="700">How Much Does Website Design Cost in Nigeria?</text>
+  <text x="128" y="260" fill="#576072" font-family="Inter, Arial, sans-serif" font-size="26">The cost depends on page count, ecommerce, SEO, and what the build actually needs.</text>
+  <rect x="128" y="316" width="610" height="350" rx="28" fill="#EEF4FF" stroke="#C9DBFF" stroke-width="2"/>
+  <text x="164" y="368" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800">WEBSITE SCOPE</text>
+  <rect x="164" y="398" width="538" height="232" rx="22" fill="#FFFFFF"/>
+  <rect x="196" y="434" width="160" height="16" rx="8" fill="#145EFF"/>
+  <rect x="196" y="466" width="272" height="16" rx="8" fill="#D3E0FF"/>
+  <rect x="196" y="498" width="232" height="16" rx="8" fill="#D3E0FF"/>
+  <rect x="196" y="530" width="188" height="16" rx="8" fill="#D3E0FF"/>
+  <rect x="490" y="432" width="170" height="144" rx="18" fill="#FFF4D9"/>
+  <text x="522" y="494" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800">₦₦₦</text>
+  <text x="518" y="532" fill="#576072" font-family="Inter, Arial, sans-serif" font-size="20">budget range</text>
+  <rect x="804" y="316" width="572" height="350" rx="28" fill="#FFFFFF" stroke="#D9D1C5" stroke-width="2"/>
+  <text x="840" y="368" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800">WHAT DRIVES PRICE</text>
+  <rect x="840" y="404" width="232" height="72" rx="22" fill="#FFF4D9"/>
+  <text x="876" y="448" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">Page count</text>
+  <rect x="1094" y="404" width="232" height="72" rx="22" fill="#EEF4FF"/>
+  <text x="1148" y="448" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">Ecommerce</text>
+  <rect x="840" y="496" width="232" height="72" rx="22" fill="#EEF4FF"/>
+  <text x="906" y="540" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">SEO setup</text>
+  <rect x="1094" y="496" width="232" height="72" rx="22" fill="#FFF4D9"/>
+  <text x="1142" y="540" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">Domain + hosting</text>
+  <text x="128" y="736" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800">Quick insight:</text>
+  <text x="315" y="736" fill="#576072" font-family="Inter, Arial, sans-serif" font-size="28">A simple site is one thing. A sales-ready site with SEO, forms, content, and ecommerce costs more for good reason.</text>
   <defs>
-    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#0b1220"/><stop offset=".65" stop-color="#102f52"/><stop offset="1" stop-color="#155dfc"/></linearGradient>
-    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M80 0H0v80" fill="none" stroke="#fff" stroke-opacity=".08"/></pattern>
-    <filter id="shadow"><feDropShadow dx="0" dy="22" stdDeviation="24" flood-color="#000" flood-opacity=".25"/></filter>
+    <linearGradient id="bg" x1="84" y1="84" x2="1518" y2="842" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F4F8FF"/>
+      <stop offset="0.58" stop-color="#FAF7F0"/>
+      <stop offset="1" stop-color="#FFF6E6"/>
+    </linearGradient>
   </defs>
-  <rect width="1600" height="900" fill="url(#bg)"/><rect width="1600" height="900" fill="url(#grid)"/>
-  <text x="100" y="175" fill="#fff" font-family="Arial, sans-serif" font-size="76" font-weight="800">Website cost planning</text>
-  <text x="105" y="252" fill="#c2d1e2" font-family="Arial, sans-serif" font-size="34">Pages, features, domain, SEO, ecommerce,</text>
-  <text x="105" y="298" fill="#c2d1e2" font-family="Arial, sans-serif" font-size="34">and launch budget in one clean brief.</text>
-  <rect x="92" y="372" width="585" height="382" rx="32" fill="#08182e" stroke="#6d83a2" stroke-opacity=".5" filter="url(#shadow)"/>
-  <g font-family="Arial, sans-serif" font-size="26" fill="#fff">
-    <text x="140" y="430">Business pages</text><rect x="140" y="454" width="390" height="32" rx="16" fill="#155dfc"/>
-    <text x="140" y="526">SEO setup</text><rect x="140" y="550" width="250" height="32" rx="16" fill="#f7b51b"/>
-    <text x="140" y="622">Ecommerce</text><rect x="140" y="646" width="456" height="32" rx="16" fill="#22c55e"/>
-    <text x="140" y="718">Domain + email</text><rect x="140" y="742" width="315" height="32" rx="16" fill="#155dfc"/>
-  </g>
-  <g filter="url(#shadow)">
-    <rect x="795" y="120" width="642" height="250" rx="30" fill="#f8fbff"/>
-    <rect x="845" y="168" width="542" height="45" rx="12" fill="#155dfc"/><rect x="845" y="250" width="456" height="16" fill="#07101f" opacity=".55"/><rect x="845" y="288" width="340" height="16" fill="#07101f" opacity=".35"/>
-    <rect x="795" y="450" width="292" height="282" rx="30" fill="#f8fbff"/>
-    <rect x="833" y="495" width="216" height="76" rx="16" fill="#f7b51b"/><rect x="833" y="616" width="190" height="14" fill="#07101f" opacity=".5"/><rect x="833" y="648" width="134" height="14" fill="#07101f" opacity=".32"/>
-    <rect x="1145" y="450" width="292" height="282" rx="30" fill="#f8fbff"/>
-    <rect x="1183" y="495" width="216" height="76" rx="16" fill="#155dfc"/><rect x="1183" y="616" width="190" height="14" fill="#07101f" opacity=".5"/><rect x="1183" y="648" width="134" height="14" fill="#07101f" opacity=".32"/>
-  </g>
-  <text x="875" y="810" fill="#f7b51b" font-family="Arial, sans-serif" font-size="48" font-weight="800">Specific budget, specific scope</text>
 </svg>

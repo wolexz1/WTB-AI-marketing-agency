@@ -1,27 +1,36 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
-  <title id="title">SEO pricing Nigeria cover</title>
-  <desc id="desc">A branded SEO pricing ladder and deliverables illustration.</desc>
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#0D1018"/>
+  <rect x="40" y="40" width="1520" height="820" rx="34" fill="url(#bg)"/>
+  <rect x="96" y="96" width="1408" height="708" rx="32" fill="#FAF7F0"/>
+  <text x="128" y="156" fill="#145EFF" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="2">WTB BLOG COVER</text>
+  <text x="128" y="218" fill="#111111" font-family="Georgia, serif" font-size="54" font-weight="700">SEO Pricing in Nigeria</text>
+  <text x="128" y="260" fill="#576072" font-family="Inter, Arial, sans-serif" font-size="26">The image explains the three common budget levels: audit, monthly growth, and competitive SEO.</text>
+  <rect x="128" y="318" width="400" height="344" rx="30" fill="#EEF4FF" stroke="#C9DBFF" stroke-width="2"/>
+  <text x="164" y="378" fill="#145EFF" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800">AUDIT</text>
+  <text x="164" y="432" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="800">₦</text>
+  <text x="210" y="432" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700">one-time foundation check</text>
+  <rect x="164" y="476" width="292" height="18" rx="9" fill="#145EFF"/>
+  <rect x="164" y="512" width="248" height="18" rx="9" fill="#BFD2FF"/>
+  <text x="164" y="586" fill="#576072" font-family="Inter, Arial, sans-serif" font-size="22">Best when you need clarity before a bigger SEO push.</text>
+  <rect x="600" y="318" width="400" height="344" rx="30" fill="#FFF4D9" stroke="#E7D7A7" stroke-width="2"/>
+  <text x="636" y="378" fill="#C18E06" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800">MONTHLY SEO</text>
+  <text x="636" y="432" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="800">₦₦</text>
+  <text x="720" y="432" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700">ongoing content and optimisation</text>
+  <rect x="636" y="476" width="308" height="18" rx="9" fill="#C18E06"/>
+  <rect x="636" y="512" width="262" height="18" rx="9" fill="#F3D37A"/>
+  <text x="636" y="586" fill="#576072" font-family="Inter, Arial, sans-serif" font-size="22">Best when you want steady growth, reporting, and stronger visibility.</text>
+  <rect x="1072" y="318" width="304" height="344" rx="30" fill="#F1ECFF" stroke="#D5CAFF" stroke-width="2"/>
+  <text x="1108" y="378" fill="#6E56CF" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800">COMPETITIVE SEO</text>
+  <text x="1108" y="432" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="800">₦₦₦</text>
+  <text x="1108" y="480" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">harder keywords, more content, more technical work</text>
+  <path d="M1112 558L1162 522L1212 542L1262 494L1312 466" stroke="#6E56CF" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="128" y="736" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800">Quick insight:</text>
+  <text x="315" y="736" fill="#576072" font-family="Inter, Arial, sans-serif" font-size="28">SEO pricing rises with competition, content depth, local targeting, and the amount of technical clean-up needed.</text>
   <defs>
-    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#080b16"/><stop offset=".7" stop-color="#142740"/><stop offset="1" stop-color="#0f4bd6"/></linearGradient>
-    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M80 0H0v80" fill="none" stroke="#fff" stroke-opacity=".08"/></pattern>
-    <filter id="shadow"><feDropShadow dx="0" dy="22" stdDeviation="24" flood-color="#000" flood-opacity=".28"/></filter>
+    <linearGradient id="bg" x1="84" y1="84" x2="1518" y2="842" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F4F8FF"/>
+      <stop offset="0.58" stop-color="#FAF7F0"/>
+      <stop offset="1" stop-color="#FFF6E6"/>
+    </linearGradient>
   </defs>
-  <rect width="1600" height="900" fill="url(#bg)"/><rect width="1600" height="900" fill="url(#grid)"/>
-  <text x="100" y="170" fill="#fff" font-family="Arial, sans-serif" font-size="76" font-weight="800">SEO pricing system</text>
-  <text x="105" y="250" fill="#c2d1e2" font-family="Arial, sans-serif" font-size="34">Budget tied to audit depth, content, local ranking work,</text>
-  <text x="105" y="296" fill="#c2d1e2" font-family="Arial, sans-serif" font-size="34">and monthly growth signals.</text>
-  <g filter="url(#shadow)" font-family="Arial, sans-serif" font-weight="800">
-    <rect x="150" y="520" width="190" height="220" rx="28" fill="#155dfc"/><text x="170" y="780" fill="#fff" font-size="28">NGN 160k+</text><text x="162" y="490" fill="#fff" font-size="28">Audit</text>
-    <rect x="430" y="420" width="190" height="320" rx="28" fill="#f7b51b"/><text x="450" y="780" fill="#fff" font-size="28">NGN 250k+</text><text x="442" y="390" fill="#fff" font-size="28">Monthly</text>
-    <rect x="710" y="300" width="190" height="440" rx="28" fill="#22c55e"/><text x="730" y="780" fill="#fff" font-size="28">NGN 450k+</text><text x="708" y="270" fill="#fff" font-size="28">Competitive</text>
-  </g>
-  <rect x="1000" y="135" width="468" height="620" rx="34" fill="#08182e" stroke="#6a84a8" stroke-opacity=".5" filter="url(#shadow)"/>
-  <g font-family="Arial, sans-serif" font-size="34" fill="#fff">
-    <circle cx="1062" cy="228" r="15" fill="#f7b51b"/><text x="1100" y="240">Keyword map</text>
-    <circle cx="1062" cy="322" r="15" fill="#155dfc"/><text x="1100" y="334">Technical fixes</text>
-    <circle cx="1062" cy="416" r="15" fill="#22c55e"/><text x="1100" y="428">Content plan</text>
-    <circle cx="1062" cy="510" r="15" fill="#f7b51b"/><text x="1100" y="522">Local SEO</text>
-    <circle cx="1062" cy="604" r="15" fill="#155dfc"/><text x="1100" y="616">Reporting</text>
-  </g>
-  <path d="M998 700c210-16 360-150 430-398" fill="none" stroke="#155dfc" stroke-opacity=".4" stroke-width="12" stroke-linecap="round"/>
 </svg>

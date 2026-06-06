@@ -1,53 +1,41 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
-  <title id="title">SEO expert strategy cover</title>
-  <desc id="desc">A branded abstract search strategy dashboard for a Nigerian SEO hiring article.</desc>
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#0D1018"/>
+  <rect x="40" y="40" width="1520" height="820" rx="34" fill="url(#bg)"/>
+  <rect x="96" y="96" width="1408" height="708" rx="32" fill="#FAF7F0"/>
+  <text x="128" y="156" fill="#145EFF" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="2">WTB BLOG COVER</text>
+  <text x="128" y="218" fill="#111111" font-family="Georgia, serif" font-size="54" font-weight="700">How to Hire an SEO Expert in Lagos or Abuja</text>
+  <text x="128" y="260" fill="#576072" font-family="Inter, Arial, sans-serif" font-size="26">The image shows what to check before spending money: proof, process, and local fit.</text>
+  <rect x="128" y="314" width="664" height="360" rx="28" fill="#FFFFFF" stroke="#D8D0C2" stroke-width="2"/>
+  <text x="166" y="370" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800">SEO PROPOSAL CHECKLIST</text>
+  <rect x="166" y="404" width="22" height="22" rx="6" fill="#145EFF"/>
+  <path d="M172 415L178 421L186 409" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="202" y="421" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">Case studies and ranking proof</text>
+  <rect x="166" y="454" width="22" height="22" rx="6" fill="#145EFF"/>
+  <path d="M172 465L178 471L186 459" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="202" y="471" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">Clear deliverables and reporting</text>
+  <rect x="166" y="504" width="22" height="22" rx="6" fill="#145EFF"/>
+  <path d="M172 515L178 521L186 509" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="202" y="521" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">Local market understanding</text>
+  <rect x="166" y="554" width="22" height="22" rx="6" fill="#F3B51F"/>
+  <path d="M172 565L178 571L186 559" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="202" y="571" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">Realistic SEO timelines and budget</text>
+  <rect x="850" y="314" width="526" height="360" rx="28" fill="#EEF4FF" stroke="#C9DBFF" stroke-width="2"/>
+  <text x="886" y="370" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800">LOCAL FIT MATTERS</text>
+  <circle cx="986" cy="468" r="24" fill="#145EFF"/>
+  <path d="M986 492C1002 492 1014 479 1014 462C1014 445 1002 432 986 432C970 432 958 445 958 462C958 479 970 492 986 492Z" fill="#145EFF"/>
+  <path d="M986 520L986 492" stroke="#145EFF" stroke-width="12" stroke-linecap="round"/>
+  <text x="942" y="564" fill="#145EFF" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800">Lagos</text>
+  <circle cx="1204" cy="468" r="24" fill="#F3B51F"/>
+  <path d="M1204 492C1220 492 1232 479 1232 462C1232 445 1220 432 1204 432C1188 432 1176 445 1176 462C1176 479 1188 492 1204 492Z" fill="#F3B51F"/>
+  <path d="M1204 520L1204 492" stroke="#F3B51F" stroke-width="12" stroke-linecap="round"/>
+  <text x="1160" y="564" fill="#C18E06" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800">Abuja</text>
+  <path d="M1010 468H1180" stroke="#111111" stroke-width="10" stroke-linecap="round"/>
+  <text x="886" y="624" fill="#576072" font-family="Inter, Arial, sans-serif" font-size="22">A serious SEO hire should understand local search intent, service pages, proof, and reporting.</text>
   <defs>
-    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
-      <stop offset="0" stop-color="#07101f"/>
-      <stop offset="0.58" stop-color="#0c2748"/>
-      <stop offset="1" stop-color="#155dfc"/>
+    <linearGradient id="bg" x1="84" y1="84" x2="1518" y2="842" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F4F8FF"/>
+      <stop offset="0.58" stop-color="#FAF7F0"/>
+      <stop offset="1" stop-color="#FFF6E6"/>
     </linearGradient>
-    <linearGradient id="gold" x1="0" x2="0" y1="0" y2="1">
-      <stop offset="0" stop-color="#ffd66b"/>
-      <stop offset="1" stop-color="#f5a400"/>
-    </linearGradient>
-    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
-      <path d="M80 0H0v80" fill="none" stroke="#ffffff" stroke-opacity=".08"/>
-    </pattern>
-    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="24" stdDeviation="26" flood-color="#000" flood-opacity=".28"/>
-    </filter>
   </defs>
-  <rect width="1600" height="900" fill="url(#bg)"/>
-  <rect width="1600" height="900" fill="url(#grid)"/>
-  <circle cx="1280" cy="180" r="270" fill="#ffffff" opacity=".08"/>
-  <rect x="86" y="112" width="654" height="660" rx="34" fill="#08182e" stroke="#6a84a8" stroke-opacity=".5" filter="url(#shadow)"/>
-  <text x="132" y="206" fill="#f8fbff" font-family="Arial, sans-serif" font-size="72" font-weight="800">SEO expert hiring</text>
-  <text x="136" y="285" fill="#b9c8da" font-family="Arial, sans-serif" font-size="34">Local search, audit, keywords,</text>
-  <text x="136" y="330" fill="#b9c8da" font-family="Arial, sans-serif" font-size="34">and proof before payment.</text>
-  <g font-family="Arial, sans-serif" font-size="28">
-    <rect x="135" y="394" width="535" height="66" rx="20" fill="#fff" opacity=".09"/>
-    <text x="165" y="437" fill="#c9d7e8">Audit score</text><text x="540" y="438" fill="#f7b51b" font-weight="800">82%</text>
-    <rect x="135" y="492" width="535" height="66" rx="20" fill="#fff" opacity=".09"/>
-    <text x="165" y="535" fill="#c9d7e8">Local intent</text><text x="520" y="536" fill="#f7b51b" font-weight="800">High</text>
-    <rect x="135" y="590" width="535" height="66" rx="20" fill="#fff" opacity=".09"/>
-    <text x="165" y="633" fill="#c9d7e8">Lead pages</text><text x="550" y="634" fill="#f7b51b" font-weight="800">14</text>
-  </g>
-  <rect x="830" y="128" width="684" height="620" rx="34" fill="#091a31" stroke="#6a84a8" stroke-opacity=".5" filter="url(#shadow)"/>
-  <text x="892" y="220" fill="#f8fbff" font-family="Arial, sans-serif" font-size="46" font-weight="800">Search visibility map</text>
-  <g fill="#155dfc">
-    <rect x="925" y="500" width="58" height="142" rx="12"/>
-    <rect x="1022" y="424" width="58" height="218" rx="12"/>
-    <rect x="1119" y="548" width="58" height="94" rx="12"/>
-    <rect x="1313" y="454" width="58" height="188" rx="12"/>
-  </g>
-  <rect x="1216" y="338" width="58" height="304" rx="12" fill="url(#gold)"/>
-  <polyline points="910,584 1010,520 1110,545 1215,382 1320,430 1435,314" fill="none" stroke="#22c55e" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
-  <g fill="#fff">
-    <circle cx="910" cy="584" r="9"/><circle cx="1010" cy="520" r="9"/><circle cx="1110" cy="545" r="9"/><circle cx="1215" cy="382" r="9"/><circle cx="1320" cy="430" r="9"/><circle cx="1435" cy="314" r="9"/>
-  </g>
-  <g font-family="Arial, sans-serif" font-size="26" font-weight="700">
-    <circle cx="1080" cy="294" r="22" fill="#155dfc"/><text x="1118" y="304" fill="#fff">Lagos</text>
-    <circle cx="1248" cy="404" r="22" fill="#f7b51b"/><text x="1288" y="414" fill="#fff">Abuja</text>
-  </g>
 </svg>
