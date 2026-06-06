@@ -26,6 +26,10 @@ Use this checklist before publishing any new blog on `wtbaimarketing.com`.
 - Add useful comparison, mistake, or "best for" sections when relevant.
 - Make the writing sound human, practical, sharp, and slightly spicy when it helps.
 - Avoid boring corporate filler.
+- Keep the article reader-first. The blog body should be about the user's business, decisions, risks, opportunities, and next steps, not about WTB.
+- Do not add sections centered on "what this means for WTB" or similar self-focused framing.
+- Only bring WTB in where it helps the reader take action through a relevant CTA, service link, brief, or strategy call.
+- The goal is transformation for the reader first, then conversion second.
 
 ## WTB Relevance Check
 
@@ -35,13 +39,25 @@ Use this checklist before publishing any new blog on `wtbaimarketing.com`.
 
 ## Visual Check
 
-- Use human-led visuals, not random shapes alone.
-- Show a person, customer, founder, marketer, or business moment connected to the topic.
-- Make the image feel story-driven and emotionally relevant.
-- Make sure the visual clearly relates to the exact content of the blog.
-- Avoid awkward crops, cut-off heads, or compositions that hide the human subject.
-- For blog listing cards, prefer full-scene human images that still read clearly at smaller sizes.
-- Use strong alt text.
+- Use real-world, human-led visuals for blog covers whenever possible.
+- Do not use random abstract shapes, generic vector scenes, or decorative filler as the main blog cover image.
+- Make the image explain the article at a glance. A reader should understand the core topic before opening the post.
+- Show a person, customer, founder, marketer, or business moment connected directly to the topic.
+- When a platform or brand is central to the article, show the platform or brand context clearly in the image.
+- For comparison posts, make both sides of the comparison obvious in the scene.
+- For workflow posts, make the actual workflow visible in the foreground, not hidden in the background.
+- Use strong composition, clean spacing, and proper visual hierarchy. Nothing should feel scattered, cramped, or randomly placed.
+- Avoid awkward crops, cut-off heads, weak alignment, messy text placement, or compositions that confuse the message.
+- For blog listing cards, use clean editorial-style cover images that still read clearly at smaller sizes.
+- Use strong, specific alt text that matches what the image is actually showing.
+
+## Cover Image Rule
+
+- Blog cover images should be created or selected with the same care as an ad creative.
+- Prefer premium, photorealistic editorial scenes over abstract illustration for business blog covers.
+- The cover image must match the exact message of the article, not just the general industry.
+- Before publishing, ask: "If someone only saw this image, would they understand what the blog is about?"
+- If the answer is no, redo the image.
 
 ## Technical SEO Check
 

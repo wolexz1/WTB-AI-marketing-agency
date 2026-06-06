@@ -1,6 +1,6 @@
 ﻿# WTB AI Marketing Agency in Nigeria
 
-WTB, also known as Wolexzthebrand, is an AI-powered marketing agency in Nigeria. We help businesses plan, create, launch, and optimize marketing faster by combining human marketing judgment with AI-assisted workflows.
+WTB, also known as Wolexzthebrand, is an AI-powered marketing agency in Nigeria. We help businesses plan, create, launch, and optimize marketing faster by combining AI-assisted workflows, human marketing judgment, and a strong understanding of Nigerian and African buyers.
 
 This markdown mirror is provided for search engines, AI answer engines, and content crawlers that need a clean text version of the website's main positioning, services, proof, and contact details.
 

@@ -114,6 +114,28 @@ const navLinks = document.querySelector(".nav-links");
 const heroVideo = document.querySelector(".hero-video");
 const motionAllowed = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+if (motionAllowed) {
+  let cursorFrame = null;
+
+  window.addEventListener(
+    "pointermove",
+    (event) => {
+      if (cursorFrame) {
+        return;
+      }
+
+      cursorFrame = window.requestAnimationFrame(() => {
+        const x = (event.clientX / window.innerWidth - 0.5).toFixed(3);
+        const y = (event.clientY / window.innerHeight - 0.5).toFixed(3);
+        document.documentElement.style.setProperty("--cursor-x", x);
+        document.documentElement.style.setProperty("--cursor-y", y);
+        cursorFrame = null;
+      });
+    },
+    { passive: true }
+  );
+}
+
 const loadHeroVideo = () => {
   if (!heroVideo || heroVideo.dataset.loaded === "true") {
     return;
