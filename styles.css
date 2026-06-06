@@ -828,6 +828,8 @@ h3 {
 }
 
 .blog-card img {
+  height: auto;
+  aspect-ratio: auto;
   object-fit: contain;
   object-position: center top;
   padding: 10px;
