@@ -298,6 +298,138 @@ const setupFormSpamGuards = () => {
 
 setupFormSpamGuards();
 
+const buildShareLinks = ({ url, title, text, image }) => {
+  const shareUrl = encodeURIComponent(url);
+  const shareTitle = encodeURIComponent(title);
+  const shareText = encodeURIComponent(text || title);
+  const shareImage = encodeURIComponent(image || "");
+
+  return [
+    {
+      label: "WhatsApp",
+      href: `https://wa.me/?text=${shareText}%20${shareUrl}`,
+    },
+    {
+      label: "X",
+      href: `https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareTitle}`,
+    },
+    {
+      label: "Facebook",
+      href: `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`,
+    },
+    {
+      label: "LinkedIn",
+      href: `https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`,
+    },
+    {
+      label: "Threads",
+      href: `https://www.threads.net/intent/post?text=${shareTitle}%20${shareUrl}`,
+    },
+    {
+      label: "Telegram",
+      href: `https://t.me/share/url?url=${shareUrl}&text=${shareTitle}`,
+    },
+    {
+      label: "Pinterest",
+      href: `https://pinterest.com/pin/create/button/?url=${shareUrl}&media=${shareImage}&description=${shareTitle}`,
+    },
+    {
+      label: "Email",
+      href: `mailto:?subject=${shareTitle}&body=${shareText}%0A%0A${shareUrl}`,
+      sameTab: true,
+    },
+  ];
+};
+
+const createSharePanel = ({ compact = false } = {}) => {
+  const canonical = document.querySelector("link[rel='canonical']")?.href || window.location.href;
+  const title =
+    document.querySelector("meta[property='og:title']")?.content ||
+    document.title ||
+    "WTB AI Marketing Agency";
+  const description =
+    document.querySelector("meta[property='og:description']")?.content ||
+    document.querySelector("meta[name='description']")?.content ||
+    "Useful marketing insight from WTB AI Marketing Agency.";
+  const shareImage = document.querySelector("meta[property='og:image']")?.content;
+  const panel = document.createElement("section");
+  panel.className = compact ? "share-panel share-panel-compact" : "share-panel";
+  panel.setAttribute("aria-label", "Share this article");
+
+  const links = buildShareLinks({ url: canonical, title, text: description, image: shareImage })
+    .map(
+      (item) =>
+        `<a href="${item.href}" ${item.sameTab ? "" : 'target="_blank" rel="noopener noreferrer"'}>${item.label}</a>`
+    )
+    .join("");
+
+  panel.innerHTML = `
+    <div class="share-copy">
+      <span>Share this insight</span>
+      <h2>Help another founder find this.</h2>
+      <p>Share the article on your favourite platform. The blog image is already attached through the page preview.</p>
+    </div>
+    ${shareImage ? `<img class="share-preview" src="${shareImage}" alt="" aria-hidden="true" loading="lazy" decoding="async">` : ""}
+    <div class="share-actions">
+      <button class="share-native" type="button">Share</button>
+      ${links}
+      <button class="share-copy-link" type="button">Copy link</button>
+    </div>
+    <p class="share-status" role="status" aria-live="polite"></p>
+  `;
+
+  const nativeButton = panel.querySelector(".share-native");
+  const copyButton = panel.querySelector(".share-copy-link");
+  const status = panel.querySelector(".share-status");
+
+  if (!navigator.share) {
+    nativeButton?.remove();
+  } else {
+    nativeButton?.addEventListener("click", async () => {
+      try {
+        await navigator.share({ title, text: description, url: canonical });
+        status.textContent = "Thanks for sharing.";
+      } catch {
+        status.textContent = "";
+      }
+    });
+  }
+
+  copyButton?.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(canonical);
+      status.textContent = "Link copied.";
+    } catch {
+      status.textContent = "Copy this link: " + canonical;
+    }
+  });
+
+  return panel;
+};
+
+const setupBlogSharing = () => {
+  if (document.body.classList.contains("blog-article-page")) {
+    const articleHero = document.querySelector(".article-hero-image")?.closest(".article-shell");
+    const articleBody = document.querySelector(".article-body");
+    const sharePanel = createSharePanel();
+
+    if (articleHero?.parentNode) {
+      articleHero.insertAdjacentElement("afterend", sharePanel);
+    } else if (articleBody?.parentNode) {
+      articleBody.insertAdjacentElement("beforebegin", sharePanel);
+    }
+
+    articleBody?.insertAdjacentElement("afterend", createSharePanel({ compact: true }));
+  }
+
+  if (document.body.classList.contains("blog-page")) {
+    const blogGrid = document.querySelector(".blog-grid");
+    blogGrid?.insertAdjacentElement("afterend", createSharePanel({ compact: true }));
+  }
+};
+
+setupBlogSharing();
+
 document.querySelector("#briefForm")?.addEventListener("submit", () => {
   formNote.textContent = "Sending your brief securely now.";
 });

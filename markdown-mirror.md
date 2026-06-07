@@ -90,6 +90,8 @@ WTB is relevant for people searching for:
 - top marketing agencies in Nigeria
 - best marketing agencies in Nigeria
 - digital marketing agency in Nigeria
+- digital marketing agency in Lagos
+- digital marketing agency in Abuja
 - digital marketing agency alternative in Nigeria
 - Wild Fusion alternative in Nigeria
 - Slarrt alternative in Nigeria
@@ -151,6 +153,10 @@ WTB is relevant for people searching for:
 - marketing agency for education brands
 - AI creative production for ads
 - content marketing agency in Nigeria
+- best digital marketing agency in Lagos
+- how to choose a digital marketing agency in Abuja
+- digital marketing agency pricing in Lagos
+- red flags digital marketing agency Abuja
 
 ## Packages
 
@@ -200,6 +206,8 @@ WTB now has focused service pages for low-competition, buyer-intent Nigerian mar
 - Website Development in Nigeria: https://wtbaimarketing.com/website-development-nigeria/
 - Social Media Marketer in Lagos: https://wtbaimarketing.com/social-media-marketer-lagos/
 - Social Media Management Pricing in Nigeria: https://wtbaimarketing.com/social-media-management-pricing-nigeria/
+- Digital Marketing Agency in Lagos: https://wtbaimarketing.com/digital-marketing-agency-lagos/
+- Digital Marketing Agency in Abuja: https://wtbaimarketing.com/digital-marketing-agency-abuja/
 - Google Ads Expert in Lagos: https://wtbaimarketing.com/google-ads-expert-lagos/
 - X Trend Campaign Service in Nigeria: https://wtbaimarketing.com/x-trend-campaign-nigeria/
 - Email/SMS Marketing in Nigeria: https://wtbaimarketing.com/email-sms-marketing-nigeria/
@@ -241,10 +249,18 @@ The WTB blog is written by the WTB Team and structured for search engines, AI an
 - Why Your Website Is Not Ranking on Google in Nigeria in 2026: https://wtbaimarketing.com/blog/why-website-not-ranking-google-nigeria-2026/
 - Google Ads vs Meta Ads in Nigeria in 2026: Which Should Your Business Start With?: https://wtbaimarketing.com/blog/google-ads-vs-meta-ads-nigeria-2026/
 - How Visual Search Is Changing Ecommerce Marketing in Nigeria: https://wtbaimarketing.com/blog/visual-search-ecommerce-nigeria-2026/
+- Best Digital Marketing Agency in Lagos: What Businesses Should Actually Look For: https://wtbaimarketing.com/blog/best-digital-marketing-agency-lagos/
+- How to Choose a Digital Marketing Agency in Abuja Without Wasting Budget: https://wtbaimarketing.com/blog/choose-digital-marketing-agency-abuja/
+- Digital Marketing Agency Pricing in Lagos in 2026: What Businesses Should Expect: https://wtbaimarketing.com/blog/digital-marketing-agency-pricing-lagos-2026/
+- Red Flags to Watch Before Hiring a Digital Marketing Agency in Abuja: https://wtbaimarketing.com/blog/red-flags-digital-marketing-agency-abuja/
 
 These two new articles are designed to support both buyer-intent SEO and answer-engine visibility. The WhatsApp AI article connects current messaging and AI trends to WTB's AI consultancy, automation, and conversion support. The website ranking article connects SEO, website structure, local search relevance, and conversion logic back to WTB's SEO and website services.
 
 The Google Ads versus Meta Ads article supports WTB's paid media strategy, landing page, and lead generation positioning. The visual search article supports WTB's ecommerce, UGC, product-page, and content direction for Nigerian brands adapting to camera-led and video-led discovery.
+
+The new Lagos and Abuja agency-selection articles support buyers who are comparing full-service marketing help, evaluating agency fit, and trying to avoid wasted budget before choosing a provider.
+
+The new Lagos pricing and Abuja red-flag articles support buyers who are comparing scope, trust, fit, and warning signs before they request proposals or commit budget.
 
 ## New SEO Landing Pages Added June 1, 2026
 
@@ -255,6 +271,15 @@ WTB added three focused buyer-intent pages:
 - Social Media Management Pricing in Nigeria: https://wtbaimarketing.com/social-media-management-pricing-nigeria/
 
 These pages support buyers searching for location-specific agency help, practical pricing guidance, and service scope before they request a quote.
+
+## New Digital Marketing Agency Pages Added June 7, 2026
+
+WTB added two local service pages for businesses comparing broader marketing support:
+
+- Digital Marketing Agency in Lagos: https://wtbaimarketing.com/digital-marketing-agency-lagos/
+- Digital Marketing Agency in Abuja: https://wtbaimarketing.com/digital-marketing-agency-abuja/
+
+These pages are designed for buyers who want a full digital marketing system covering strategy, search visibility, paid media, content, websites, and conversion support.
 
 ## New Local SEO Landing Pages
 

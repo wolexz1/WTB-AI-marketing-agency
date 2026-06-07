@@ -38,38 +38,87 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Service",
-        "name": "AI Marketing Services in Nigeria",
-        "serviceType": "AI-powered digital marketing services",
-        "provider": {
-          "@type": "Organization",
-          "name": "WTB AI Marketing Agency",
-          "url": "https://wtbaimarketing.com/"
-        },
-        "areaServed": {
-          "@type": "Country",
-          "name": "Nigeria"
-        },
-        "url": "https://wtbaimarketing.com/services/",
-        "description": "WTB provides marketing strategy, content marketing, email/SMS marketing, AI marketing consultancy, X trend campaigns, influencer marketing, mini UGC, social media ads, SEO, Google Ads, website development, funnels, and generative AI creative for Nigerian brands.",
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "WTB AI Marketing Services",
-          "itemListElement": [
-            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Marketing Strategy"}},
-            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Content Marketing"}},
-            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Email and SMS Marketing Designed to Convert"}},
-            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "X Trend Campaigns"}},
-            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Influencer Marketing"}},
-            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Mini UGC Marketing"}},
-            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Social Media Ads"}},
-            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "SEO Services"}},
-            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Google Ads Management"}},
-            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Website Development"}},
-            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "AI Marketing Consultancy"}},
-            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Generative AI Creative"}}
-          ]
-        }
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": "https://wtbaimarketing.com/services/#webpage",
+            "url": "https://wtbaimarketing.com/services/",
+            "name": "AI Marketing Services in Nigeria | WTB",
+            "description": "WTB AI marketing services in Nigeria: strategy, SEO, Google Ads, email/SMS, social ads, influencers, UGC, websites, and AI creative."
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://wtbaimarketing.com/services/#breadcrumb",
+            "itemListElement": [
+              {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://wtbaimarketing.com/"},
+              {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://wtbaimarketing.com/services/"}
+            ]
+          },
+          {
+            "@type": "Service",
+            "name": "AI Marketing Services in Nigeria",
+            "serviceType": "AI-powered digital marketing services",
+            "provider": {
+              "@type": "Organization",
+              "name": "WTB AI Marketing Agency",
+              "url": "https://wtbaimarketing.com/"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "Nigeria"
+            },
+            "url": "https://wtbaimarketing.com/services/",
+            "description": "WTB provides marketing strategy, content marketing, email/SMS marketing, AI marketing consultancy, X trend campaigns, influencer marketing, mini UGC, social media ads, SEO, Google Ads, website development, funnels, and generative AI creative for Nigerian brands.",
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "WTB AI Marketing Services",
+              "itemListElement": [
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Marketing Strategy"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Content Marketing"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Email and SMS Marketing Designed to Convert"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "X Trend Campaigns"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Influencer Marketing"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Mini UGC Marketing"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Social Media Ads"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "SEO Services"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Google Ads Management"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Website Development"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "AI Marketing Consultancy"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Generative AI Creative"}}
+              ]
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://wtbaimarketing.com/services/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What services does WTB offer in Nigeria?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "WTB offers strategy, SEO, Google Ads, social ads, websites, email and SMS marketing, influencer campaigns, UGC support, automation, and AI marketing consultancy in Nigeria."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I hire only one service instead of the full system?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Each service can stand alone, but the strongest results usually come when strategy, content, ads, search, and reporting work together."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Who are these services best for?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "These services are best for Nigerian SMEs, founders, ecommerce brands, service businesses, education brands, real estate teams, and companies that want stronger visibility and conversion."
+                }
+              }
+            ]
+          }
+        ]
       }
     </script>
     <link rel="stylesheet" href="../styles.css">
@@ -106,6 +155,13 @@
             <button class="button brief-modal-trigger" type="button">Send us a brief</button>
             <a class="button button-ghost" href="../pricing/">View pricing</a>
           </div>
+        </div>
+      </section>
+
+      <section class="content-section section-shell">
+        <div class="answer-panel reveal">
+          <span>Short answer</span>
+          <p>WTB offers connected AI marketing services in Nigeria for businesses that need strategy, SEO, paid ads, websites, content, automation, and reporting to work together instead of in silos.</p>
         </div>
       </section>
 
@@ -177,6 +233,30 @@
               <p>Get social media strategy, content calendars, captions, reels ideas, platform management, ad support, reporting, and creator coordination.</p>
             </article>
           </div>
+        </div>
+      </section>
+
+      <section class="content-section section-shell">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Quick answers</p>
+          <h2>What most buyers want to know first.</h2>
+        </div>
+        <div class="feature-list">
+          <article class="feature-card reveal">
+            <span>Coverage</span>
+            <h3>What services can you hire from WTB?</h3>
+            <p>You can hire strategy, SEO, Google Ads, social ads, websites, creator support, email and SMS marketing, automation, and AI marketing consultancy.</p>
+          </article>
+          <article class="feature-card reveal">
+            <span>Flexibility</span>
+            <h3>Can one service work on its own?</h3>
+            <p>Yes, but most businesses get better results when search, content, paid traffic, and follow-up are connected instead of scattered.</p>
+          </article>
+          <article class="feature-card reveal">
+            <span>Fit</span>
+            <h3>Who is this built for?</h3>
+            <p>This is built for Nigerian businesses that want more than random activity and need a practical system for growth, visibility, and conversion.</p>
+          </article>
         </div>
       </section>
 
@@ -322,6 +402,16 @@
               <span>AI marketing</span>
               <h3><a href="../ai-marketing-agency-lagos/">AI Marketing Agency in Lagos</a></h3>
               <p>For brands that want strategy, content, ads, SEO, websites, and reporting to move faster with AI workflows.</p>
+            </article>
+            <article class="feature-card reveal">
+              <span>Full service</span>
+              <h3><a href="../digital-marketing-agency-lagos/">Digital Marketing Agency in Lagos</a></h3>
+              <p>For businesses that need a connected system across strategy, SEO, content, ads, websites, and lead follow-up.</p>
+            </article>
+            <article class="feature-card reveal">
+              <span>Full service</span>
+              <h3><a href="../digital-marketing-agency-abuja/">Digital Marketing Agency in Abuja</a></h3>
+              <p>For Abuja brands that need stronger visibility, clearer messaging, and better conversion across all key channels.</p>
             </article>
             <article class="feature-card reveal">
               <span>Alternatives</span>
@@ -488,6 +578,8 @@
           <h3>What we sell</h3>
           <a href="../seo-expert-lagos/">SEO Expert Lagos</a>
           <a href="../seo-expert-abuja/">SEO Expert Abuja</a>
+          <a href="../digital-marketing-agency-lagos/">Digital Marketing Agency Lagos</a>
+          <a href="../digital-marketing-agency-abuja/">Digital Marketing Agency Abuja</a>
           <a href="../seo-pricing-lagos/">SEO Pricing Lagos</a>
           <a href="../ai-marketing-agency-lagos/">AI Marketing Agency Lagos</a>
           <a href="../ai-marketing-agency-abuja/">AI Marketing Agency Abuja</a>

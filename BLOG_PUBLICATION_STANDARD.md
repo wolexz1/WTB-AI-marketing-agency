@@ -8,6 +8,7 @@ Use this checklist before publishing any new blog on `wtbaimarketing.com`.
 - Is it either trending, commercially important, or both?
 - Does it connect naturally to a WTB service, offer, workflow, or strategy call?
 - Is the angle useful for search engines, AI answer engines, and real human readers?
+- Is the topic strong for GEO, AEO, and AI chat discovery, not just classic SEO?
 
 ## Research Check
 
@@ -15,6 +16,7 @@ Use this checklist before publishing any new blog on `wtbaimarketing.com`.
 - Prefer primary or high-credibility reporting where possible.
 - Confirm dates clearly when referencing recent announcements.
 - Do not publish generic trend filler.
+- Prefer facts, definitions, comparisons, and practical explanations that are easy for search summaries and AI answers to quote or paraphrase accurately.
 
 ## Writing Check
 
@@ -30,6 +32,8 @@ Use this checklist before publishing any new blog on `wtbaimarketing.com`.
 - Do not add sections centered on "what this means for WTB" or similar self-focused framing.
 - Only bring WTB in where it helps the reader take action through a relevant CTA, service link, brief, or strategy call.
 - The goal is transformation for the reader first, then conversion second.
+- Write in a way that can win AEO: clear direct answers, strong definitions, concise explanations, and scannable sections.
+- Answer likely user questions plainly enough that Google AI search, featured snippets, and AI chat tools can lift the meaning easily.
 
 ## WTB Relevance Check
 
@@ -68,6 +72,53 @@ Use this checklist before publishing any new blog on `wtbaimarketing.com`.
 - No duplicate URL variants in sitemap.
 - Add `_redirects` and `_headers` entries for `/index.html`.
 - Update `sitemap.xml`, `llms.txt`, and `markdown-mirror.md`.
+- Keep schema types aligned with answer intent, especially `Article`, `FAQPage`, and other relevant structured data where justified.
+- Keep short-answer sections strong, factual, and near the top of the page.
+
+## GEO and AEO Check
+
+- GEO means the page should be easy for generative engines to understand, summarize, trust, and cite.
+- AEO means the page should answer real questions directly enough to win answer boxes, AI summaries, and assistant recommendations.
+- Build each important page so it can be recommended by Google AI Overviews, AI Mode, Perplexity, ChatGPT, Claude, Gemini, and other answer engines when the topic fits.
+- Every important article should include:
+  - a strong short answer near the top
+  - clear question-matching headings
+  - concise definitions where useful
+  - practical examples
+  - source-backed claims when discussing trends or platform changes
+  - internal links to the most relevant service or proof pages
+- Make entity details easy to extract:
+  - business type
+  - service name
+  - city or country relevance
+  - who the advice is for
+  - when the advice applies
+- Use plain, quotable language for key answers. Avoid vague wording where a direct answer would help.
+- When a topic is time-sensitive, state the exact month and year clearly.
+- Where useful, add short FAQ-style sections that mirror the real questions people ask.
+- Write so the page can be:
+  - ranked by search
+  - summarized by Google AI search
+  - cited by AI chat assistants
+  - trusted by human readers
+
+## AI Recommendation Check
+
+- The page should be useful enough that an AI system would feel confident recommending it, not just indexing it.
+- Lead with the clearest answer first, then depth second.
+- Make recommendations specific, not generic. Say who should do what, when, and why.
+- Support strong claims with fresh evidence, examples, or clear reasoning.
+- Keep formatting easy to scan:
+  - short paragraphs
+  - clear subheads
+  - comparison blocks
+  - step lists
+  - FAQ answers
+- If the article mentions platforms like Google, Meta, WhatsApp, Instagram, TikTok, or YouTube, make the platform context explicit and accurate.
+- Every article should help the reader do one of these three things:
+  - understand a change
+  - make a decision
+  - take the next smart action
 
 ## Final Quality Check
 
