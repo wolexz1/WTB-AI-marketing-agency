@@ -341,7 +341,29 @@ const buildShareLinks = ({ url, title, text, image }) => {
   ];
 };
 
-const createSharePanel = ({ compact = false } = {}) => {
+const getShareAssetPath = (fileName) => {
+  const prefix = document.body.classList.contains("blog-article-page") ? "../../assets/" : "../assets/";
+  return `${prefix}${fileName}`;
+};
+
+const shareIcons = {
+  WhatsApp: "icon-whatsapp.svg",
+  X: "icon-x.svg",
+  Facebook: "icon-facebook.svg",
+  LinkedIn: "icon-linkedin.svg",
+  Threads: "icon-threads.svg",
+  Telegram: "icon-telegram.svg",
+  Pinterest: "icon-pinterest.svg",
+  Email: "icon-email.svg",
+};
+
+const renderShareAction = (item) => {
+  const icon = shareIcons[item.label];
+  const iconMarkup = icon ? `<img src="${getShareAssetPath(icon)}" alt="" aria-hidden="true" loading="lazy" decoding="async">` : "";
+  return `<a href="${item.href}" ${item.sameTab ? "" : 'target="_blank" rel="noopener noreferrer"'}>${iconMarkup}<span>${item.label}</span></a>`;
+};
+
+const createSharePanel = ({ compact = false, rail = false } = {}) => {
   const canonical = document.querySelector("link[rel='canonical']")?.href || window.location.href;
   const title =
     document.querySelector("meta[property='og:title']")?.content ||
@@ -353,33 +375,49 @@ const createSharePanel = ({ compact = false } = {}) => {
     "Useful marketing insight from WTB AI Marketing Agency.";
   const shareImage = document.querySelector("meta[property='og:image']")?.content;
   const panel = document.createElement("section");
-  panel.className = compact ? "share-panel share-panel-compact" : "share-panel";
+  panel.className = rail ? "share-panel share-rail" : compact ? "share-panel share-panel-compact" : "share-panel";
   panel.setAttribute("aria-label", "Share this article");
 
   const links = buildShareLinks({ url: canonical, title, text: description, image: shareImage })
-    .map(
-      (item) =>
-        `<a href="${item.href}" ${item.sameTab ? "" : 'target="_blank" rel="noopener noreferrer"'}>${item.label}</a>`
-    )
+    .map(renderShareAction)
     .join("");
 
-  panel.innerHTML = `
-    <div class="share-copy">
-      <span>Share this insight</span>
-      <h2>Help another founder find this.</h2>
-      <p>Share the article on your favourite platform. The blog image is already attached through the page preview.</p>
+  const copyIcon = `<img src="${getShareAssetPath("icon-copy.svg")}" alt="" aria-hidden="true" loading="lazy" decoding="async">`;
+
+  panel.innerHTML = rail
+    ? `
+    <button class="share-rail-toggle" type="button" aria-expanded="false">
+      <span>Share blog</span>
+    </button>
+    <div class="share-popover">
+      <div class="share-rail-copy">
+        <strong>Share this blog</strong>
+        <span>Send this article to someone who needs better marketing clarity.</span>
+      </div>
+      <div class="share-actions" aria-label="Share links">
+        ${links}
+        <button class="share-copy-link" type="button">${copyIcon}<span>Copy link</span></button>
+      </div>
     </div>
-    ${shareImage ? `<img class="share-preview" src="${shareImage}" alt="" aria-hidden="true" loading="lazy" decoding="async">` : ""}
+    <p class="share-status" role="status" aria-live="polite"></p>
+  `
+    : `
+    <div class="share-copy">
+      <span>Share</span>
+      <h2>Found this useful?</h2>
+      <p>Share it with someone who needs better marketing clarity.</p>
+    </div>
     <div class="share-actions">
       <button class="share-native" type="button">Share</button>
       ${links}
-      <button class="share-copy-link" type="button">Copy link</button>
+      <button class="share-copy-link" type="button">${copyIcon}<span>Copy link</span></button>
     </div>
     <p class="share-status" role="status" aria-live="polite"></p>
   `;
 
   const nativeButton = panel.querySelector(".share-native");
   const copyButton = panel.querySelector(".share-copy-link");
+  const railToggle = panel.querySelector(".share-rail-toggle");
   const status = panel.querySelector(".share-status");
 
   if (!navigator.share) {
@@ -404,27 +442,30 @@ const createSharePanel = ({ compact = false } = {}) => {
     }
   });
 
+  railToggle?.addEventListener("click", () => {
+    const isOpen = panel.classList.toggle("is-open");
+    railToggle.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  if (rail) {
+    document.addEventListener("click", (event) => {
+      if (!panel.contains(event.target)) {
+        panel.classList.remove("is-open");
+        railToggle?.setAttribute("aria-expanded", "false");
+      }
+    });
+  }
+
   return panel;
 };
 
 const setupBlogSharing = () => {
   if (document.body.classList.contains("blog-article-page")) {
-    const articleHero = document.querySelector(".article-hero-image")?.closest(".article-shell");
-    const articleBody = document.querySelector(".article-body");
-    const sharePanel = createSharePanel();
-
-    if (articleHero?.parentNode) {
-      articleHero.insertAdjacentElement("afterend", sharePanel);
-    } else if (articleBody?.parentNode) {
-      articleBody.insertAdjacentElement("beforebegin", sharePanel);
-    }
-
-    articleBody?.insertAdjacentElement("afterend", createSharePanel({ compact: true }));
+    document.body.appendChild(createSharePanel({ rail: true }));
   }
 
   if (document.body.classList.contains("blog-page")) {
-    const blogGrid = document.querySelector(".blog-grid");
-    blogGrid?.insertAdjacentElement("afterend", createSharePanel({ compact: true }));
+    document.body.appendChild(createSharePanel({ rail: true }));
   }
 };
 
