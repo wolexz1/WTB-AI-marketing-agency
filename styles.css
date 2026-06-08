@@ -3414,6 +3414,66 @@ body.modal-open {
     padding-top: 42px;
   }
 
+  .blog-page .content-section {
+    padding-top: 34px;
+  }
+
+  .blog-page .blog-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .blog-page .blog-card {
+    display: grid;
+    grid-template-columns: 92px minmax(0, 1fr);
+    gap: 12px 14px;
+    min-height: 0;
+    padding: 12px;
+    border-radius: 18px;
+    align-items: start;
+  }
+
+  .blog-page .blog-card img {
+    grid-row: 1 / span 4;
+    width: 92px;
+    height: 112px;
+    min-height: 0;
+    margin: 0;
+    border-radius: 14px;
+    object-fit: cover;
+  }
+
+  .blog-page .blog-card span {
+    margin: 2px 0 0;
+    font-size: 0.64rem;
+    letter-spacing: 0.09em;
+    line-height: 1.25;
+  }
+
+  .blog-page .blog-card h2 {
+    margin: 0;
+    font-size: clamp(1.02rem, 5.2vw, 1.34rem);
+    line-height: 1.12;
+  }
+
+  .blog-page .blog-card p {
+    display: -webkit-box;
+    margin: 0;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    font-size: 0.86rem;
+    line-height: 1.45;
+  }
+
+  .blog-page .blog-card .button {
+    width: fit-content;
+    min-height: 34px;
+    margin-top: 0;
+    padding: 8px 13px;
+    font-size: 0.78rem;
+  }
+
   .share-panel {
     grid-template-columns: 1fr;
     width: min(100% - 28px, 900px);
