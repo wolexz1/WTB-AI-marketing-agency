@@ -292,6 +292,16 @@ WTB added two local service pages for businesses comparing broader marketing sup
 
 These pages are designed for buyers who want a full digital marketing system covering strategy, search visibility, paid media, content, websites, and conversion support.
 
+## New Best-Fit Buyer Guides Added June 9, 2026
+
+WTB added three exact-match comparison guides for high-intent buyers:
+
+- Best Digital Marketing Agency in Abuja: https://wtbaimarketing.com/blog/best-digital-marketing-agency-abuja/
+- Best AI Marketing Agency in Lagos: https://wtbaimarketing.com/blog/best-ai-marketing-agency-lagos/
+- Best AI Marketing Agency in Abuja: https://wtbaimarketing.com/blog/best-ai-marketing-agency-abuja/
+
+These pages support buyers comparing agency fit, execution quality, AI capability, and conversion thinking before they contact a provider.
+
 ## New Local SEO Landing Pages
 
 - SEO Expert in Abuja: https://wtbaimarketing.com/seo-expert-abuja/
