@@ -292,6 +292,24 @@ WTB added two local service pages for businesses comparing broader marketing sup
 
 These pages are designed for buyers who want a full digital marketing system covering strategy, search visibility, paid media, content, websites, and conversion support.
 
+## New National Agency Pages Added June 9, 2026
+
+WTB added two broader commercial pages for businesses comparing support across Nigeria:
+
+- Digital Marketing Agency in Nigeria: https://wtbaimarketing.com/digital-marketing-agency-nigeria/
+- AI Marketing Agency in Nigeria: https://wtbaimarketing.com/ai-marketing-agency-nigeria/
+
+These pages are designed for buyers who want stronger national visibility, clearer execution, and connected growth systems across multiple channels and locations.
+
+## New Nigeria Market Entry Pages Added June 9, 2026
+
+WTB added two international-entry support pages:
+
+- Go-To-Market Strategy for Nigeria: https://wtbaimarketing.com/go-to-market-strategy-nigeria/
+- Digital Market Entry Support in Nigeria: https://wtbaimarketing.com/digital-market-entry-support-nigeria/
+
+These pages are designed for foreign brands and expansion teams that need stronger launch messaging, landing pages, visibility, localization, and digital demand support in Nigeria.
+
 ## New Best-Fit Buyer Guides Added June 9, 2026
 
 WTB added three exact-match comparison guides for high-intent buyers:
