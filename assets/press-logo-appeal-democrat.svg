@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 74" role="img" aria-labelledby="title">
+  <title id="title">Appeal-Democrat</title>
+  <rect width="260" height="74" rx="10" fill="#ffffff"/>
+  <path d="M24 51l13-29 13 29h-8l-2-5H34l-2 5zm12-12h7l-3-8z" fill="#111827"/>
+  <text x="64" y="35" fill="#111827" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="700">Appeal</text>
+  <text x="64" y="55" fill="#111827" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700">Democrat</text>
+</svg>

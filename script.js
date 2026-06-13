@@ -483,6 +483,316 @@ const websiteBriefForm = document.querySelector("#websiteBriefForm");
 
 const formatNaira = (amount) => `\u20a6${Number(amount || 0).toLocaleString("en-NG")}`;
 const basicWebsitePrice = 150000;
+const adsBudgetForm = document.querySelector("#adsBudgetForm");
+const adsEstimateLeadForm = document.querySelector("#adsEstimateLeadForm");
+const adsEstimateNote = document.querySelector("#adsEstimateNote");
+
+const formatCompactNumber = (value) => {
+  const number = Math.max(0, Math.round(value || 0));
+
+  if (number >= 1000000) {
+    return `${(number / 1000000).toFixed(number >= 10000000 ? 0 : 1)}M`;
+  }
+
+  if (number >= 1000) {
+    return `${(number / 1000).toFixed(number >= 10000 ? 0 : 1)}k`;
+  }
+
+  return number.toLocaleString("en-NG");
+};
+
+const calculateAdsEstimate = () => {
+  if (!adsBudgetForm) {
+    return null;
+  }
+
+  const values = Object.fromEntries(new FormData(adsBudgetForm).entries());
+  const budget = Math.max(Number(values.budget || 0), 0);
+  const durationValue = Math.max(Number(values.duration_value || 30), 1);
+  const durationUnit = values.duration_unit || "days";
+  const campaignDays =
+    durationUnit === "weeks"
+      ? durationValue * 7
+      : durationUnit === "months"
+        ? durationValue * 30
+        : durationValue;
+  const industryFactors = {
+    ecommerce: { cost: 1.12, conversion: 0.92, label: "Ecommerce" },
+    real_estate: { cost: 1.72, conversion: 0.72, label: "Real estate" },
+    education: { cost: 1.18, conversion: 1.03, label: "Education" },
+    food: { cost: 0.92, conversion: 1.1, label: "Food and hospitality" },
+    professional: { cost: 1.36, conversion: 0.88, label: "Professional service" },
+    legal: { cost: 1.58, conversion: 0.82, label: "Legal or consulting" },
+    personal_brand: { cost: 0.96, conversion: 1.0, label: "Personal brand" },
+  };
+  const locationFactors = {
+    lagos: { cost: 1.24, label: "Lagos" },
+    abuja: { cost: 1.15, label: "Abuja" },
+    nigeria: { cost: 1.0, label: "Nigeria-wide" },
+    outside_major: { cost: 0.9, label: "Outside Lagos/Abuja" },
+  };
+  const creativeFactors = {
+    weak: { ctr: 0.72, conversion: 0.76, label: "weak or untested creative" },
+    average: { ctr: 1, conversion: 1, label: "average creative" },
+    strong: { ctr: 1.35, conversion: 1.22, label: "strong creative and offer" },
+  };
+  const destinationFactors = {
+    whatsapp: { conversion: 1.16, label: "WhatsApp chat" },
+    landing: { conversion: 1.05, label: "landing page" },
+    website: { conversion: 0.9, label: "website page" },
+    form: { conversion: 1.1, label: "lead form" },
+  };
+  const followupFactors = {
+    slow: { conversion: 0.72, label: "slow follow-up" },
+    average: { conversion: 1, label: "same-day follow-up" },
+    fast: { conversion: 1.2, label: "fast follow-up" },
+  };
+  const goalFactors = {
+    awareness: { conversion: 0.45, label: "brand awareness" },
+    traffic: { conversion: 0.65, label: "website traffic" },
+    leads: { conversion: 1, label: "leads" },
+    whatsapp: { conversion: 1.1, label: "WhatsApp messages" },
+    sales: { conversion: 0.52, label: "online sales" },
+    bookings: { conversion: 0.84, label: "bookings or calls" },
+  };
+  const platformMetrics = {
+    meta: { label: "Meta", cpm: 2800, ctr: 0.012, cvr: 0.072 },
+    google: { label: "Google", cpc: 520, ctr: 0.05, cvr: 0.095 },
+    tiktok: { label: "TikTok", cpm: 1900, ctr: 0.009, cvr: 0.045 },
+    retargeting: { label: "Retargeting", cpm: 2300, ctr: 0.018, cvr: 0.12 },
+  };
+  const recommendedSplits = {
+    awareness: { meta: 0.5, google: 0.1, tiktok: 0.3, retargeting: 0.1 },
+    traffic: { meta: 0.4, google: 0.35, tiktok: 0.15, retargeting: 0.1 },
+    leads: { meta: 0.38, google: 0.37, tiktok: 0.1, retargeting: 0.15 },
+    whatsapp: { meta: 0.58, google: 0.18, tiktok: 0.08, retargeting: 0.16 },
+    sales: { meta: 0.42, google: 0.32, tiktok: 0.08, retargeting: 0.18 },
+    bookings: { meta: 0.34, google: 0.46, tiktok: 0.05, retargeting: 0.15 },
+  };
+  const singlePlatformSplits = {
+    meta: { meta: 0.82, retargeting: 0.18 },
+    google: { google: 0.84, retargeting: 0.16 },
+    tiktok: { tiktok: 0.82, retargeting: 0.18 },
+  };
+
+  const industry = industryFactors[values.industry] || industryFactors.ecommerce;
+  const location = locationFactors[values.location] || locationFactors.nigeria;
+  const creative = creativeFactors[values.creative] || creativeFactors.average;
+  const destination = destinationFactors[values.destination] || destinationFactors.whatsapp;
+  const followup = followupFactors[values.followup] || followupFactors.average;
+  const goal = goalFactors[values.goal] || goalFactors.leads;
+  const split = values.platform === "recommend" ? recommendedSplits[values.goal] || recommendedSplits.leads : singlePlatformSplits[values.platform] || recommendedSplits.leads;
+  const dailyBudget = budget / campaignDays;
+  const durationEfficiency =
+    campaignDays < 7
+      ? 0.76
+      : campaignDays < 14
+        ? 0.88
+        : campaignDays > 120
+          ? 0.9
+          : 1;
+  const deliveryPressure =
+    dailyBudget < 5000
+      ? 0.86
+      : dailyBudget > 100000
+        ? 0.94
+        : 1;
+
+  const qualityMultiplier = industry.conversion * creative.conversion * destination.conversion * followup.conversion * goal.conversion * durationEfficiency * deliveryPressure;
+  const costMultiplier = industry.cost * location.cost;
+  let impressions = 0;
+  let clicks = 0;
+  let actions = 0;
+
+  Object.entries(split).forEach(([platform, ratio]) => {
+    const spend = budget * ratio;
+    const metric = platformMetrics[platform];
+    const ctr = metric.ctr * creative.ctr;
+    let platformClicks = 0;
+    let platformImpressions = 0;
+
+    if (metric.cpc) {
+      const cpc = metric.cpc * costMultiplier;
+      platformClicks = spend / cpc;
+      platformImpressions = platformClicks / Math.max(ctr, 0.001);
+    } else {
+      const cpm = metric.cpm * costMultiplier;
+      platformImpressions = (spend / cpm) * 1000;
+      platformClicks = platformImpressions * ctr;
+    }
+
+    impressions += platformImpressions;
+    clicks += platformClicks;
+    actions += platformClicks * metric.cvr * qualityMultiplier;
+  });
+
+  const conservative = Math.max(1, Math.round(actions * 0.62));
+  const expected = Math.max(1, Math.round(actions));
+  const strong = Math.max(expected, Math.round(actions * 1.38));
+  const cpl = expected ? budget / expected : 0;
+  const retargetingBudget = budget * (split.retargeting || 0);
+  const runway =
+    campaignDays < 7
+      ? "Too short"
+      : campaignDays < 14
+        ? "Tight"
+        : campaignDays < 45
+          ? "Good"
+          : "Long enough";
+  const budgetAdvice =
+    dailyBudget < 5000
+      ? "Your daily budget is tight. Focus on one clear objective, one strong offer, and fewer platforms."
+      : campaignDays < 7
+        ? "The campaign window is short. Expect higher pressure and less learning time."
+        : budget < 500000
+          ? "This is a useful testing budget. Use it to validate creative, offer, and lead quality."
+          : "This budget can support stronger testing, retargeting, and weekly optimization.";
+  const splitText = Object.entries(split)
+    .map(([platform, ratio]) => `${platformMetrics[platform].label}: ${Math.round(ratio * 100)}%`)
+    .join(", ");
+  const durationLabel = `${campaignDays} day${campaignDays === 1 ? "" : "s"}`;
+  const objectiveAdvice =
+    values.goal === "awareness"
+      ? "Objective setup: optimize for reach, video views, or engagement before asking cold audiences to buy."
+      : values.goal === "traffic"
+        ? "Objective setup: optimize for quality traffic and retarget people who visit the page."
+        : values.goal === "sales"
+          ? "Objective setup: use conversion or sales campaigns only when tracking, offer, and product page are ready."
+          : values.goal === "whatsapp"
+            ? "Objective setup: keep the WhatsApp path fast, direct, and ready for immediate replies."
+            : "Objective setup: optimize for leads or enquiries, then qualify and follow up quickly.";
+  const summary = `${formatNaira(budget)} over ${durationLabel} for ${industry.label.toLowerCase()} in ${location.label} may generate about ${formatCompactNumber(impressions)} impressions, ${formatCompactNumber(clicks)} clicks, and ${conservative}-${strong} ${goal.label}.`;
+  const improvementLever =
+    values.creative === "weak"
+      ? "Biggest lever: improve the creative and offer before increasing budget."
+      : values.followup === "slow"
+        ? "Biggest lever: speed up follow-up so leads do not go cold."
+        : values.destination === "website"
+          ? "Biggest lever: improve the landing page or lead path before scaling spend."
+          : "Biggest lever: keep testing creative angles and retarget warm audiences.";
+
+  return {
+    budget,
+    impressions,
+    clicks,
+    conservative,
+    expected,
+    strong,
+    cpl,
+    dailyBudget,
+    retargetingBudget,
+    campaignDays,
+    runway,
+    split,
+    splitText,
+    budgetAdvice,
+    summary,
+    improvementLever,
+    objectiveAdvice,
+    hiddenSummary: `${summary} Daily budget: ${formatNaira(Math.round(dailyBudget))}. Platform split: ${splitText}. Creative: ${creative.label}. Destination: ${destination.label}. Follow-up: ${followup.label}. ${objectiveAdvice} This is a planning estimate, not a guaranteed result.`,
+  };
+};
+
+const renderAdsEstimate = () => {
+  const estimate = calculateAdsEstimate();
+
+  if (!estimate) {
+    return;
+  }
+
+  const setText = (selector, value) => {
+    const element = document.querySelector(selector);
+    if (element) {
+      element.textContent = value;
+    }
+  };
+
+  setText("[data-ads-summary]", estimate.budgetAdvice);
+  setText("[data-ads-impressions]", formatCompactNumber(estimate.impressions));
+  setText("[data-ads-clicks]", formatCompactNumber(estimate.clicks));
+  setText("[data-ads-leads]", `${estimate.conservative}-${estimate.strong}`);
+  setText("[data-ads-cpl]", formatNaira(Math.round(estimate.cpl)));
+  setText("[data-ads-daily]", formatNaira(Math.round(estimate.dailyBudget)));
+  setText("[data-ads-duration]", `${estimate.campaignDays} days`);
+  setText("[data-ads-retargeting]", estimate.retargetingBudget ? formatNaira(Math.round(estimate.retargetingBudget)) : "Not included");
+  setText("[data-ads-runway]", estimate.runway);
+  setText("[data-ads-range]", `Conservative: ${estimate.conservative}. Expected: ${estimate.expected}. Strong campaign: ${estimate.strong}.`);
+  setText("[data-ads-lever]", estimate.improvementLever);
+  setText("[data-ads-objective]", estimate.objectiveAdvice);
+
+  const splitContainer = document.querySelector("[data-platform-split]");
+  if (splitContainer) {
+    splitContainer.innerHTML = Object.entries(estimate.split)
+      .map(([platform, ratio]) => {
+        const label = { meta: "Meta", google: "Google", tiktok: "TikTok", retargeting: "Retarget" }[platform] || platform;
+        const percent = Math.round(ratio * 100);
+        return `<div class="split-row"><span>${label}</span><div class="split-bar"><span style="width:${percent}%"></span></div><strong>${percent}%</strong></div>`;
+      })
+      .join("");
+  }
+
+  const hiddenEstimate = document.querySelector("[data-ads-hidden-estimate]");
+  if (hiddenEstimate) {
+    hiddenEstimate.value = estimate.hiddenSummary;
+  }
+};
+
+adsBudgetForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const resultCard = document.querySelector("[data-ads-result-card]");
+  const submitButton = adsBudgetForm.querySelector(".calculator-submit");
+
+  if (resultCard) {
+    resultCard.classList.add("is-calculating");
+  }
+
+  if (submitButton) {
+    submitButton.disabled = true;
+    submitButton.textContent = "Calculating...";
+  }
+
+  setTimeout(() => {
+    renderAdsEstimate();
+
+    if (resultCard) {
+      resultCard.classList.remove("is-calculating");
+      resultCard.classList.add("has-calculated");
+    }
+
+    if (submitButton) {
+      submitButton.disabled = false;
+      submitButton.textContent = "Calculate estimate";
+    }
+  }, 900);
+});
+
+if (adsBudgetForm) {
+  const resultCard = document.querySelector("[data-ads-result-card]");
+  resultCard?.classList.remove("has-calculated");
+}
+
+document.querySelector("[data-copy-estimate]")?.addEventListener("click", async () => {
+  const estimate = calculateAdsEstimate();
+
+  if (!estimate) {
+    return;
+  }
+
+  try {
+    await navigator.clipboard.writeText(estimate.hiddenSummary);
+    document.querySelector("[data-copy-estimate]").textContent = "Estimate copied";
+  } catch {
+    document.querySelector("[data-copy-estimate]").textContent = "Copy unavailable";
+  }
+});
+
+adsEstimateLeadForm?.addEventListener("submit", () => {
+  renderAdsEstimate();
+
+  if (adsEstimateNote) {
+    adsEstimateNote.textContent = "Sending your estimate and campaign details securely now.";
+  }
+});
 
 const updateWebsiteBriefPricing = () => {
   if (!websiteBriefForm) {

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 74" role="img" aria-labelledby="title">
+  <title id="title">MarketersMEDIA</title>
+  <rect width="260" height="74" rx="10" fill="#ffffff"/>
+  <circle cx="34" cy="37" r="18" fill="#155dfc"/>
+  <path d="M25 46V28h6l4 7 4-7h6v18h-6V37l-4 6-4-6v9z" fill="#fff"/>
+  <text x="64" y="34" fill="#111827" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="700">Marketers</text>
+  <text x="64" y="55" fill="#155dfc" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="800" letter-spacing="1">MEDIA</text>
+</svg>

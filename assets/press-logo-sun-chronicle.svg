@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 74" role="img" aria-labelledby="title">
+  <title id="title">The Sun Chronicle</title>
+  <rect width="260" height="74" rx="10" fill="#ffffff"/>
+  <circle cx="38" cy="37" r="16" fill="#fbb91a"/>
+  <path d="M38 14v10M38 50v10M15 37h10M51 37h10M22 21l7 7M47 46l7 7M54 21l-7 7M29 46l-7 7" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+  <text x="70" y="34" fill="#111827" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700">The Sun</text>
+  <text x="70" y="55" fill="#111827" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700">Chronicle</text>
+</svg>
