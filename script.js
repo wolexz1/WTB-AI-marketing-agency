@@ -486,6 +486,60 @@ const basicWebsitePrice = 150000;
 const adsBudgetForm = document.querySelector("#adsBudgetForm");
 const adsEstimateLeadForm = document.querySelector("#adsEstimateLeadForm");
 const adsEstimateNote = document.querySelector("#adsEstimateNote");
+const adsCalculatorShareButtons = Array.from(document.querySelectorAll("[data-share-calculator]"));
+
+const getCleanAdsCalculatorUrl = () => {
+  const canonical = document.querySelector("link[rel='canonical']")?.href;
+  return canonical || `${window.location.origin}${window.location.pathname}`;
+};
+
+const hydrateAdsCalculatorFromUrl = () => {
+  if (!adsBudgetForm || !window.location.search) {
+    return false;
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const allowedFields = [
+    "industry",
+    "goal",
+    "budget",
+    "duration_value",
+    "duration_unit",
+    "location",
+    "platform",
+    "creative",
+    "destination",
+    "followup",
+  ];
+  let hydrated = false;
+
+  allowedFields.forEach((field) => {
+    const value = params.get(field);
+    const control = adsBudgetForm.elements[field];
+
+    if (!value || !control) {
+      return;
+    }
+
+    if (control.tagName === "SELECT" && !Array.from(control.options).some((option) => option.value === value)) {
+      return;
+    }
+
+    control.value = value;
+    hydrated = true;
+  });
+
+  return hydrated;
+};
+
+const cleanAdsCalculatorUrl = () => {
+  if (!adsBudgetForm || !window.history?.replaceState || !window.location.search) {
+    return;
+  }
+
+  const cleanUrl = `${window.location.pathname}${window.location.hash || ""}`;
+  window.history.replaceState({}, document.title, cleanUrl);
+};
 
 const formatCompactNumber = (value) => {
   const number = Math.max(0, Math.round(value || 0));
@@ -519,17 +573,37 @@ const calculateAdsEstimate = () => {
   const industryFactors = {
     ecommerce: { cost: 1.12, conversion: 0.92, label: "Ecommerce" },
     real_estate: { cost: 1.72, conversion: 0.72, label: "Real estate" },
+    fashion_beauty: { cost: 1.08, conversion: 0.98, label: "Fashion, beauty, or cosmetics" },
     education: { cost: 1.18, conversion: 1.03, label: "Education" },
     food: { cost: 0.92, conversion: 1.1, label: "Food and hospitality" },
+    healthcare: { cost: 1.34, conversion: 0.86, label: "Healthcare or wellness" },
+    fintech: { cost: 1.62, conversion: 0.74, label: "Fintech or finance" },
+    logistics: { cost: 1.22, conversion: 0.9, label: "Logistics or delivery service" },
+    travel_hospitality: { cost: 1.26, conversion: 0.88, label: "Travel, hotel, or short-let" },
+    events_entertainment: { cost: 1.02, conversion: 1.04, label: "Events or entertainment" },
+    automotive: { cost: 1.46, conversion: 0.78, label: "Automotive or car sales" },
+    construction: { cost: 1.42, conversion: 0.8, label: "Construction or home services" },
     professional: { cost: 1.36, conversion: 0.88, label: "Professional service" },
     legal: { cost: 1.58, conversion: 0.82, label: "Legal or consulting" },
     personal_brand: { cost: 0.96, conversion: 1.0, label: "Personal brand" },
   };
   const locationFactors = {
     lagos: { cost: 1.24, label: "Lagos" },
-    abuja: { cost: 1.15, label: "Abuja" },
+    abuja: { cost: 1.15, label: "Abuja / FCT" },
+    rivers: { cost: 1.1, label: "Rivers State / Port Harcourt" },
+    oyo: { cost: 1.05, label: "Oyo State" },
+    ogun: { cost: 1.04, label: "Ogun State" },
+    kano: { cost: 1.08, label: "Kano State" },
+    kaduna: { cost: 1.03, label: "Kaduna State" },
+    edo: { cost: 1.02, label: "Edo State" },
+    delta: { cost: 1.01, label: "Delta State" },
+    anambra: { cost: 1.03, label: "Anambra State" },
+    enugu: { cost: 0.99, label: "Enugu State" },
+    akwa_ibom: { cost: 0.98, label: "Akwa Ibom State" },
+    kwara: { cost: 0.96, label: "Kwara State" },
+    imo: { cost: 0.97, label: "Imo State" },
     nigeria: { cost: 1.0, label: "Nigeria-wide" },
-    outside_major: { cost: 0.9, label: "Outside Lagos/Abuja" },
+    outside_major: { cost: 0.9, label: "Other Nigerian states" },
   };
   const creativeFactors = {
     weak: { ctr: 0.72, conversion: 0.76, label: "weak or untested creative" },
@@ -647,10 +721,29 @@ const calculateAdsEstimate = () => {
         : budget < 500000
           ? "This is a useful testing budget. Use it to validate creative, offer, and lead quality."
           : "This budget can support stronger testing, retargeting, and weekly optimization.";
+  const durationLabel = `${campaignDays} day${campaignDays === 1 ? "" : "s"}`;
+  const difficultyScore =
+    industry.cost * location.cost * (1 / Math.max(industry.conversion, 0.45)) * (1 / Math.max(goal.conversion, 0.45));
+  const difficultyLevel =
+    difficultyScore >= 3.2
+      ? "Very high"
+      : difficultyScore >= 2.2
+        ? "High"
+        : difficultyScore >= 1.35
+          ? "Moderate"
+          : "Lower";
+  const difficultyNote =
+    difficultyLevel === "Very high"
+      ? `${industry.label} in ${location.label} is a difficult lead environment. Use stronger proof, sharper creative, fast follow-up, and retargeting before scaling.`
+      : difficultyLevel === "High"
+        ? `${industry.label} in ${location.label} is competitive, so weak creative or slow replies can raise your cost per lead quickly.`
+        : difficultyLevel === "Moderate"
+          ? `${industry.label} in ${location.label} has normal campaign pressure. Creative quality, offer clarity, and follow-up speed will decide how close you get to the strong range.`
+          : `${industry.label} in ${location.label} usually gives more room to test, but the offer and creative still need to be clear.`;
+  const methodologyNote = `Adjusted for ${industry.label.toLowerCase()} difficulty, ${location.label} competition, ${goal.label}, ${creative.label}, ${destination.label}, ${followup.label}, and ${durationLabel}.`;
   const splitText = Object.entries(split)
     .map(([platform, ratio]) => `${platformMetrics[platform].label}: ${Math.round(ratio * 100)}%`)
     .join(", ");
-  const durationLabel = `${campaignDays} day${campaignDays === 1 ? "" : "s"}`;
   const objectiveAdvice =
     values.goal === "awareness"
       ? "Objective setup: optimize for reach, video views, or engagement before asking cold audiences to buy."
@@ -685,11 +778,15 @@ const calculateAdsEstimate = () => {
     runway,
     split,
     splitText,
+    goal,
     budgetAdvice,
     summary,
     improvementLever,
     objectiveAdvice,
-    hiddenSummary: `${summary} Daily budget: ${formatNaira(Math.round(dailyBudget))}. Platform split: ${splitText}. Creative: ${creative.label}. Destination: ${destination.label}. Follow-up: ${followup.label}. ${objectiveAdvice} This is a planning estimate, not a guaranteed result.`,
+    difficultyLevel,
+    difficultyNote,
+    methodologyNote,
+    hiddenSummary: `${summary} Daily budget: ${formatNaira(Math.round(dailyBudget))}. Platform split: ${splitText}. Lead difficulty: ${difficultyLevel}. ${difficultyNote} Creative: ${creative.label}. Destination: ${destination.label}. Follow-up: ${followup.label}. ${objectiveAdvice} This is a planning estimate, not a guaranteed result.`,
   };
 };
 
@@ -707,7 +804,8 @@ const renderAdsEstimate = () => {
     }
   };
 
-  setText("[data-ads-summary]", estimate.budgetAdvice);
+  setText("[data-ads-summary]", estimate.summary);
+  setText("[data-ads-fit]", estimate.budgetAdvice);
   setText("[data-ads-impressions]", formatCompactNumber(estimate.impressions));
   setText("[data-ads-clicks]", formatCompactNumber(estimate.clicks));
   setText("[data-ads-leads]", `${estimate.conservative}-${estimate.strong}`);
@@ -716,7 +814,12 @@ const renderAdsEstimate = () => {
   setText("[data-ads-duration]", `${estimate.campaignDays} days`);
   setText("[data-ads-retargeting]", estimate.retargetingBudget ? formatNaira(Math.round(estimate.retargetingBudget)) : "Not included");
   setText("[data-ads-runway]", estimate.runway);
-  setText("[data-ads-range]", `Conservative: ${estimate.conservative}. Expected: ${estimate.expected}. Strong campaign: ${estimate.strong}.`);
+  setText("[data-ads-conservative]", estimate.conservative);
+  setText("[data-ads-expected]", estimate.expected);
+  setText("[data-ads-strong]", estimate.strong);
+  setText("[data-ads-range]", `These are planning estimates for ${estimate.goal.label.toLowerCase()}, not guaranteed campaign results.`);
+  setText("[data-ads-difficulty]", estimate.difficultyLevel);
+  setText("[data-ads-methodology]", `${estimate.difficultyNote} ${estimate.methodologyNote}`);
   setText("[data-ads-lever]", estimate.improvementLever);
   setText("[data-ads-objective]", estimate.objectiveAdvice);
 
@@ -753,6 +856,7 @@ adsBudgetForm?.addEventListener("submit", (event) => {
 
   setTimeout(() => {
     renderAdsEstimate();
+    cleanAdsCalculatorUrl();
 
     if (resultCard) {
       resultCard.classList.remove("is-calculating");
@@ -769,6 +873,12 @@ adsBudgetForm?.addEventListener("submit", (event) => {
 if (adsBudgetForm) {
   const resultCard = document.querySelector("[data-ads-result-card]");
   resultCard?.classList.remove("has-calculated");
+
+  if (hydrateAdsCalculatorFromUrl()) {
+    renderAdsEstimate();
+    resultCard?.classList.add("has-calculated");
+    cleanAdsCalculatorUrl();
+  }
 }
 
 document.querySelector("[data-copy-estimate]")?.addEventListener("click", async () => {
@@ -784,6 +894,31 @@ document.querySelector("[data-copy-estimate]")?.addEventListener("click", async 
   } catch {
     document.querySelector("[data-copy-estimate]").textContent = "Copy unavailable";
   }
+});
+
+adsCalculatorShareButtons.forEach((button) => {
+  button.addEventListener("click", async () => {
+    const shareData = {
+      title: "Ads Budget Calculator Nigeria",
+      text: "Use this free Nigerian ads budget calculator to estimate reach, clicks, leads, CPL, and campaign pressure before spending.",
+      url: getCleanAdsCalculatorUrl(),
+    };
+
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+        return;
+      }
+
+      await navigator.clipboard.writeText(shareData.url);
+      button.textContent = "Link copied";
+      window.setTimeout(() => {
+        button.textContent = "Share calculator";
+      }, 1800);
+    } catch {
+      button.textContent = "Copy link";
+    }
+  });
 });
 
 adsEstimateLeadForm?.addEventListener("submit", () => {
