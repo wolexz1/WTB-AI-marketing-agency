@@ -509,7 +509,6 @@ const hydrateAdsCalculatorFromUrl = () => {
     "platform",
     "creative",
     "destination",
-    "followup",
   ];
   let hydrated = false;
 
@@ -616,11 +615,6 @@ const calculateAdsEstimate = () => {
     website: { conversion: 0.9, label: "website page" },
     form: { conversion: 1.1, label: "lead form" },
   };
-  const followupFactors = {
-    slow: { conversion: 0.72, label: "slow follow-up" },
-    average: { conversion: 1, label: "same-day follow-up" },
-    fast: { conversion: 1.2, label: "fast follow-up" },
-  };
   const goalFactors = {
     awareness: { conversion: 0.45, label: "brand awareness" },
     traffic: { conversion: 0.65, label: "website traffic" },
@@ -653,7 +647,6 @@ const calculateAdsEstimate = () => {
   const location = locationFactors[values.location] || locationFactors.nigeria;
   const creative = creativeFactors[values.creative] || creativeFactors.average;
   const destination = destinationFactors[values.destination] || destinationFactors.whatsapp;
-  const followup = followupFactors[values.followup] || followupFactors.average;
   const goal = goalFactors[values.goal] || goalFactors.leads;
   const split = values.platform === "recommend" ? recommendedSplits[values.goal] || recommendedSplits.leads : singlePlatformSplits[values.platform] || recommendedSplits.leads;
   const dailyBudget = budget / campaignDays;
@@ -672,7 +665,7 @@ const calculateAdsEstimate = () => {
         ? 0.94
         : 1;
 
-  const qualityMultiplier = industry.conversion * creative.conversion * destination.conversion * followup.conversion * goal.conversion * durationEfficiency * deliveryPressure;
+  const qualityMultiplier = industry.conversion * creative.conversion * destination.conversion * goal.conversion * durationEfficiency * deliveryPressure;
   const costMultiplier = industry.cost * location.cost;
   let impressions = 0;
   let clicks = 0;
@@ -734,13 +727,13 @@ const calculateAdsEstimate = () => {
           : "Lower";
   const difficultyNote =
     difficultyLevel === "Very high"
-      ? `${industry.label} in ${location.label} is a difficult lead environment. Use stronger proof, sharper creative, fast follow-up, and retargeting before scaling.`
+      ? `${industry.label} in ${location.label} is a difficult lead environment. Use stronger proof, sharper creative, clearer conversion paths, and retargeting before scaling.`
       : difficultyLevel === "High"
-        ? `${industry.label} in ${location.label} is competitive, so weak creative or slow replies can raise your cost per lead quickly.`
+        ? `${industry.label} in ${location.label} is competitive, so weak creative, unclear offers, or weak conversion pages can raise your cost per lead quickly.`
         : difficultyLevel === "Moderate"
-          ? `${industry.label} in ${location.label} has normal campaign pressure. Creative quality, offer clarity, and follow-up speed will decide how close you get to the strong range.`
+          ? `${industry.label} in ${location.label} has normal campaign pressure. Creative quality, offer clarity, and destination quality will decide how close you get to the strong range.`
           : `${industry.label} in ${location.label} usually gives more room to test, but the offer and creative still need to be clear.`;
-  const methodologyNote = `Adjusted for ${industry.label.toLowerCase()} difficulty, ${location.label} competition, ${goal.label}, ${creative.label}, ${destination.label}, ${followup.label}, and ${durationLabel}.`;
+  const methodologyNote = `Adjusted for ${industry.label.toLowerCase()} difficulty, ${location.label} competition, ${goal.label}, ${creative.label}, ${destination.label}, platform mix, budget, and ${durationLabel}.`;
   const splitText = Object.entries(split)
     .map(([platform, ratio]) => `${platformMetrics[platform].label}: ${Math.round(ratio * 100)}%`)
     .join(", ");
@@ -758,9 +751,7 @@ const calculateAdsEstimate = () => {
   const improvementLever =
     values.creative === "weak"
       ? "Biggest lever: improve the creative and offer before increasing budget."
-      : values.followup === "slow"
-        ? "Biggest lever: speed up follow-up so leads do not go cold."
-        : values.destination === "website"
+      : values.destination === "website"
           ? "Biggest lever: improve the landing page or lead path before scaling spend."
           : "Biggest lever: keep testing creative angles and retarget warm audiences.";
 
@@ -786,7 +777,7 @@ const calculateAdsEstimate = () => {
     difficultyLevel,
     difficultyNote,
     methodologyNote,
-    hiddenSummary: `${summary} Daily budget: ${formatNaira(Math.round(dailyBudget))}. Platform split: ${splitText}. Lead difficulty: ${difficultyLevel}. ${difficultyNote} Creative: ${creative.label}. Destination: ${destination.label}. Follow-up: ${followup.label}. ${objectiveAdvice} This is a planning estimate, not a guaranteed result.`,
+    hiddenSummary: `${summary} Daily budget: ${formatNaira(Math.round(dailyBudget))}. Platform split: ${splitText}. Lead difficulty: ${difficultyLevel}. ${difficultyNote} Creative: ${creative.label}. Destination: ${destination.label}. ${objectiveAdvice} This is a planning estimate, not a guaranteed result.`,
   };
 };
 

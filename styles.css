@@ -4754,3 +4754,271 @@ body.modal-open {
     gap: 12px;
   }
 }
+
+/* Premium soft-upgrade layer: more refined rhythm, depth, and micro-interactions. */
+:root {
+  --premium-border: rgba(21, 23, 28, 0.095);
+  --premium-border-dark: rgba(255, 255, 255, 0.13);
+  --premium-lift: 0 26px 80px rgba(21, 23, 28, 0.12);
+  --premium-lift-dark: 0 30px 90px rgba(0, 0, 0, 0.34);
+}
+
+.section-heading,
+.section-copy,
+.rich-copy,
+.article-body {
+  text-wrap: pretty;
+}
+
+.eyebrow,
+.footer-system-label,
+.pricing-card > span,
+.feature-card > span,
+.process-card > span,
+.faq-card > span,
+.offer-card > span,
+.blog-card span,
+.case-study-card span,
+.answer-panel span,
+.article-meta {
+  letter-spacing: 0.105em;
+}
+
+.site-header {
+  border-color: rgba(232, 227, 216, 0.78);
+  background: rgba(251, 250, 247, 0.88);
+  box-shadow: 0 18px 56px rgba(21, 23, 28, 0.075);
+  transition: border-color 220ms ease, box-shadow 220ms ease, background 220ms ease;
+}
+
+.site-header:hover {
+  border-color: rgba(21, 93, 252, 0.18);
+  box-shadow: 0 22px 70px rgba(21, 23, 28, 0.105);
+}
+
+.nav-links a {
+  padding-block: 8px;
+}
+
+.button {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(115deg, transparent 0 34%, rgba(255, 255, 255, 0.24) 50%, transparent 66% 100%);
+  opacity: 0;
+  transform: translateX(-120%);
+  transition: opacity 220ms ease, transform 620ms var(--ease-out);
+}
+
+.button:hover::before {
+  opacity: 1;
+  transform: translateX(120%);
+}
+
+.button-ghost::before {
+  background: linear-gradient(115deg, transparent 0 34%, rgba(21, 93, 252, 0.1) 50%, transparent 66% 100%);
+}
+
+.blog-card,
+.case-study-card,
+.answer-panel,
+.feature-card,
+.process-card,
+.faq-card,
+.offer-card,
+.pricing-card,
+.included-strip article,
+.press-logo-card,
+.trust-badge,
+.result-metrics article,
+.estimate-range,
+.estimate-insight,
+.platform-split,
+.estimate-factor-grid article {
+  border-color: var(--premium-border);
+  transition: transform 260ms var(--ease-out), box-shadow 260ms ease, border-color 260ms ease, background 260ms ease;
+}
+
+.blog-card:hover,
+.case-study-card:hover,
+.answer-panel:hover,
+.feature-card:hover,
+.process-card:hover,
+.faq-card:hover,
+.offer-card:hover,
+.pricing-card:hover,
+.included-strip article:hover,
+.press-logo-card:hover,
+.trust-badge:hover,
+.estimate-factor-grid article:hover {
+  transform: translateY(-4px);
+  border-color: rgba(21, 93, 252, 0.2);
+  box-shadow: var(--premium-lift);
+}
+
+.featured-price:hover,
+.footer-system-card:hover,
+.footer-cta-copy:hover {
+  border-color: rgba(243, 181, 31, 0.28);
+  box-shadow: var(--premium-lift-dark);
+}
+
+.feature-image,
+.image-split figure,
+.tool-hero-visual,
+.article-inline-media,
+.article-hero-image {
+  border-color: rgba(21, 23, 28, 0.085);
+  box-shadow: 0 26px 84px rgba(21, 23, 28, 0.115);
+}
+
+.feature-image img,
+.image-split img,
+.tool-hero-visual img,
+.blog-card img,
+.case-study-card img,
+.article-hero-image,
+.article-inline-media img {
+  transition: transform 900ms var(--ease-out), filter 700ms ease;
+}
+
+.feature-image:hover img,
+.image-split figure:hover img,
+.tool-hero-visual:hover img,
+.blog-card:hover img,
+.case-study-card:hover img,
+.article-hero-image:hover,
+.article-inline-media:hover img {
+  transform: scale(1.025);
+  filter: saturate(1.07) contrast(1.035);
+}
+
+.footer-column a,
+.footer-contact a,
+.brand-logo-card,
+.press-logo-card {
+  transition: transform 220ms var(--ease-out), color 180ms ease, border-color 220ms ease, background 220ms ease, opacity 220ms ease;
+}
+
+.footer-column a:hover,
+.footer-contact a:hover {
+  transform: translateX(4px);
+}
+
+.brand-logo-card:hover,
+.press-logo-card:hover {
+  background: rgba(255, 255, 255, 0.96);
+}
+
+.site-footer {
+  background:
+    radial-gradient(circle at 14% 22%, rgba(21, 93, 252, 0.2), transparent 24%),
+    radial-gradient(circle at 84% 30%, rgba(243, 181, 31, 0.13), transparent 22%),
+    linear-gradient(180deg, #090d15, #05070d 76%);
+}
+
+.footer-cta-copy,
+.footer-system-card {
+  backdrop-filter: blur(12px);
+}
+
+.footer-chip-grid span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  transition: border-color 220ms ease, background 220ms ease, color 220ms ease;
+}
+
+.footer-chip-grid span:hover {
+  border-color: rgba(243, 181, 31, 0.28);
+  background: rgba(243, 181, 31, 0.08);
+  color: #fff;
+}
+
+.floating-whatsapp {
+  transition: transform 220ms var(--ease-out), box-shadow 220ms ease, filter 220ms ease;
+}
+
+.floating-whatsapp:hover {
+  filter: saturate(1.08);
+}
+
+@media (min-width: 981px) {
+  .content-section,
+  .services-section,
+  .pricing-section,
+  .stats-section,
+  .difference-section,
+  .testimonials-section,
+  .brief-section {
+    scroll-margin-top: 104px;
+  }
+
+  .blog-grid,
+  .case-study-grid,
+  .feature-list,
+  .process-list,
+  .faq-grid,
+  .offer-grid,
+  .pricing-grid,
+  .page-service-grid {
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 680px) {
+  .site-header {
+    border-radius: 14px;
+    box-shadow: 0 12px 38px rgba(21, 23, 28, 0.09);
+  }
+
+  .nav-toggle {
+    width: 44px;
+    height: 44px;
+    box-shadow: 0 10px 28px rgba(21, 93, 252, 0.11);
+  }
+
+  .button:hover,
+  .blog-card:hover,
+  .case-study-card:hover,
+  .answer-panel:hover,
+  .feature-card:hover,
+  .process-card:hover,
+  .faq-card:hover,
+  .offer-card:hover,
+  .pricing-card:hover,
+  .included-strip article:hover {
+    transform: none;
+  }
+
+  .feature-image:hover img,
+  .image-split figure:hover img,
+  .tool-hero-visual:hover img,
+  .blog-card:hover img,
+  .case-study-card:hover img,
+  .article-hero-image:hover,
+  .article-inline-media:hover img {
+    transform: none;
+  }
+}
+
+/* Ads calculator hero fix: keep the tool title premium and unbroken. */
+.ads-calculator-page .tool-hero-copy h1 {
+  max-width: 960px;
+  font-size: clamp(3.4rem, 6.4vw, 6.25rem);
+  line-height: 0.96;
+}
+
+@media (max-width: 680px) {
+  .ads-calculator-page .tool-hero-copy h1 {
+    font-size: clamp(2.55rem, 11.5vw, 3.85rem);
+    line-height: 1;
+  }
+}
