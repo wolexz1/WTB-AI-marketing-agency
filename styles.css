@@ -16,6 +16,186 @@
   --display: Georgia, "Times New Roman", serif;
 }
 
+/* Site-wide design QA polish: keep shared components tidy across every page. */
+h1,
+h2,
+h3,
+h4,
+p,
+li,
+a,
+button,
+strong,
+span {
+  overflow-wrap: break-word;
+}
+
+.button {
+  gap: 8px;
+}
+
+.button::after {
+  display: none;
+}
+
+.site-header {
+  flex-wrap: nowrap;
+}
+
+.nav-links {
+  flex: 1 1 auto;
+  min-width: 0;
+  justify-content: center;
+}
+
+.nav-links a,
+.site-header .button,
+.header-actions {
+  white-space: nowrap;
+}
+
+.header-actions {
+  flex: 0 0 auto;
+}
+
+.dark-cta .section-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(24px, 5vw, 58px);
+}
+
+.dark-cta h2,
+.footer-cta h2,
+.page-hero h1,
+.tool-hero-copy h1,
+.article-body h2 {
+  text-wrap: balance;
+}
+
+.dark-cta .button {
+  justify-self: end;
+  max-width: 280px;
+}
+
+.footer-cta {
+  gap: clamp(24px, 4vw, 44px);
+}
+
+.footer-cta-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footer-cta h2 {
+  max-width: 720px;
+  font-size: clamp(2.45rem, 5.7vw, 4.65rem);
+  line-height: 1.06;
+}
+
+.footer-cta p {
+  max-width: 620px;
+  line-height: 1.65;
+}
+
+.footer-cta-actions {
+  align-items: center;
+}
+
+.footer-system-card {
+  min-width: 0;
+}
+
+.footer-column a,
+.footer-contact a,
+.footer-bottom {
+  overflow-wrap: anywhere;
+}
+
+.feature-image,
+.image-split figure,
+.tool-hero-visual,
+.article-inline-media {
+  min-width: 0;
+}
+
+.feature-image img,
+.image-split img,
+.tool-hero-visual img,
+.article-inline-media img,
+.article-hero-image {
+  display: block;
+  max-width: 100%;
+}
+
+.feature-card,
+.process-card,
+.faq-card,
+.offer-card,
+.pricing-card,
+.answer-panel,
+.blog-card,
+.case-study-card {
+  min-width: 0;
+}
+
+.result-metrics strong {
+  overflow-wrap: normal;
+}
+
+@media (max-width: 980px) {
+  .site-header {
+    gap: 12px;
+  }
+
+  .nav-toggle {
+    flex: 0 0 48px;
+  }
+}
+
+@media (max-width: 680px) {
+  .site-header .button {
+    width: auto;
+    min-height: 40px;
+    padding: 0 12px;
+    white-space: nowrap;
+    line-height: 1.1;
+  }
+
+  .header-actions {
+    margin-left: auto;
+  }
+
+  .dark-cta .section-shell {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .dark-cta .button {
+    justify-self: stretch;
+    max-width: none;
+  }
+
+  .footer-cta-copy,
+  .footer-system-card {
+    padding: 24px 20px;
+  }
+
+  .footer-cta h2 {
+    font-size: clamp(2.05rem, 10vw, 3.05rem);
+    line-height: 1.12;
+  }
+
+  .footer-cta p {
+    margin-top: 16px;
+  }
+
+  .footer-bottom {
+    padding-bottom: 84px;
+  }
+}
+
 * {
   box-sizing: border-box;
 }
@@ -4364,5 +4544,213 @@ body.modal-open {
   .footer-bottom {
     align-items: flex-start;
     flex-direction: column;
+  }
+}
+
+/* Final alignment guardrails for QA across all generated pages. */
+.button::after {
+  display: none;
+}
+
+.site-header .button,
+.nav-links a,
+.header-actions {
+  white-space: nowrap;
+}
+
+.dark-cta .section-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(24px, 5vw, 58px);
+}
+
+.dark-cta .button {
+  justify-self: end;
+  max-width: 280px;
+}
+
+.footer-cta h2 {
+  font-size: clamp(2.45rem, 5.7vw, 4.65rem);
+  line-height: 1.06;
+}
+
+.footer-cta-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (max-width: 680px) {
+  .site-header .button {
+    width: auto;
+    min-height: 40px;
+    padding: 0 12px;
+    white-space: nowrap;
+    line-height: 1.1;
+  }
+
+  .dark-cta .section-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .dark-cta .button {
+    justify-self: stretch;
+    max-width: none;
+  }
+
+  .footer-cta h2 {
+    font-size: clamp(2.05rem, 10vw, 3.05rem);
+    line-height: 1.12;
+  }
+}
+
+/* Card, table, and calculator spacing polish. */
+.brand-strip-inner,
+.service-grid,
+.portfolio-grid,
+.pricing-grid,
+.stats-grid,
+.feature-list,
+.process-list,
+.faq-grid,
+.offer-grid,
+.page-service-grid,
+.blog-grid,
+.case-study-grid,
+.logo-wall,
+.included-strip,
+.estimate-range-grid,
+.estimate-factor-grid,
+.formula-strip,
+.result-metrics {
+  gap: clamp(14px, 2.4vw, 24px);
+}
+
+.feature-card,
+.process-card,
+.faq-card,
+.offer-card,
+.seo-card,
+.pricing-card,
+.blog-card,
+.case-study-card,
+.answer-panel,
+.included-strip article,
+.result-metrics article,
+.estimate-range,
+.estimate-insight,
+.platform-split,
+.estimate-range-grid article,
+.estimate-factor-grid article {
+  overflow: hidden;
+}
+
+.result-metrics article,
+.estimate-range-grid article,
+.estimate-factor-grid article {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+}
+
+.result-metrics strong,
+.estimate-range-grid strong {
+  overflow-wrap: normal;
+  word-break: normal;
+  white-space: normal;
+}
+
+.split-row {
+  gap: 10px;
+  align-items: center;
+}
+
+.ads-result-card,
+.ads-calculator-form,
+.ads-lead-card {
+  gap: clamp(14px, 2vw, 20px);
+}
+
+.ads-calculator-form label,
+.ads-lead-card label,
+.website-brief-form label,
+.brief-form label {
+  min-width: 0;
+}
+
+.ads-calculator-form select,
+.ads-calculator-form input,
+.brief-form input,
+.brief-form select,
+.brief-form textarea,
+.website-brief-form input,
+.website-brief-form select,
+.website-brief-form textarea {
+  min-width: 0;
+}
+
+.press-trust-proof {
+  gap: clamp(10px, 2vw, 16px);
+}
+
+.press-logo-card {
+  min-width: 0;
+}
+
+.footer-grid {
+  align-items: start;
+}
+
+@media (max-width: 980px) {
+  .brand-strip-inner,
+  .service-grid,
+  .portfolio-grid,
+  .pricing-grid,
+  .stats-grid,
+  .feature-list,
+  .process-list,
+  .faq-grid,
+  .offer-grid,
+  .page-service-grid,
+  .blog-grid,
+  .case-study-grid,
+  .logo-wall,
+  .included-strip {
+    gap: 16px;
+  }
+
+  .two-column,
+  .problem-section,
+  .service-system-panel,
+  .ads-calculator-shell,
+  .tool-hero-grid {
+    gap: clamp(24px, 5vw, 40px);
+  }
+}
+
+@media (max-width: 680px) {
+  .result-metrics,
+  .estimate-range-grid,
+  .estimate-factor-grid,
+  .formula-strip {
+    gap: 12px;
+  }
+
+  .result-metrics article,
+  .estimate-range-grid article,
+  .estimate-factor-grid article,
+  .formula-strip span {
+    min-height: auto;
+    padding: 13px;
+  }
+
+  .split-row {
+    grid-template-columns: minmax(72px, 0.8fr) minmax(0, 1.2fr) minmax(34px, 0.45fr);
+    gap: 8px;
+  }
+
+  .brand-strip-inner {
+    gap: 12px;
   }
 }
