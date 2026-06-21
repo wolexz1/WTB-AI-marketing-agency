@@ -360,3 +360,5 @@ These pages support buyers comparing agency fit, execution quality, AI capabilit
 WTB has a dedicated proof page for ecommerce, skincare, food, education, legal services, and revenue-focused marketing experience.
 
 - Case studies: https://wtbaimarketing.com/case-studies/
+
+The case-study page now documents client proof across Cold Stone Creamery, Domino's Pizza, BuyBetter, Olisa Agbakoba Legal, Jollof.com, GCS Education, and Pinkberry. The proof covers food retail foot traffic, experiential campaigns, UGC, Google Display, YouTube, Meta Ads, Instagram and Facebook Ads, skincare ecommerce SEO, legal-sector SEO visibility, ecommerce platform optimization, product experience guidance, vendor and user acquisition, study-abroad student recruitment, and product-awareness campaigns.

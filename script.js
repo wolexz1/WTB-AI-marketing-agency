@@ -14,6 +14,24 @@
   }
 })();
 
+const setupTestimonialSlider = () => {
+  const track = document.querySelector(".testimonial-track");
+
+  if (!track || track.dataset.cloned === "true") {
+    return;
+  }
+
+  Array.from(track.children).forEach((card) => {
+    const clone = card.cloneNode(true);
+    clone.setAttribute("aria-hidden", "true");
+    track.appendChild(clone);
+  });
+
+  track.dataset.cloned = "true";
+};
+
+setupTestimonialSlider();
+
 const createPageLoader = () => {
   const loaderText = "WOLEXZTHEBRAND";
   const loader = document.createElement("div");
