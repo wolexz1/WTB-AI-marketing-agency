@@ -1002,6 +1002,72 @@ websiteBriefForm?.addEventListener("input", updateWebsiteBriefPricing);
 websiteBriefForm?.addEventListener("change", updateWebsiteBriefPricing);
 updateWebsiteBriefPricing();
 
+const hydrateLatestBlogStrips = async () => {
+  const strips = document.querySelectorAll(".top-posts-strip");
+
+  if (!strips.length) {
+    return;
+  }
+
+  try {
+    const response = await fetch("/blog/", { credentials: "same-origin" });
+
+    if (!response.ok) {
+      return;
+    }
+
+    const blogHtml = await response.text();
+    const blogDoc = new DOMParser().parseFromString(blogHtml, "text/html");
+    const blogCards = Array.from(blogDoc.querySelectorAll(".blog-card-link"))
+      .map((card) => {
+        const href = card.getAttribute("href");
+        const absoluteUrl = new URL(href, `${window.location.origin}/blog/`);
+
+        if (absoluteUrl.origin !== window.location.origin || !absoluteUrl.pathname.startsWith("/blog/")) {
+          return null;
+        }
+
+        const title = card.querySelector("h2")?.textContent?.trim();
+        const category = card.querySelector("span")?.textContent?.trim() || "WTB blog";
+
+        if (!title) {
+          return null;
+        }
+
+        return {
+          href: absoluteUrl.pathname,
+          title,
+          category,
+        };
+      })
+      .filter(Boolean)
+      .slice(0, 5);
+
+    if (blogCards.length < 5) {
+      return;
+    }
+
+    const renderCards = [...blogCards, ...blogCards]
+      .map((post, index) => {
+        const hiddenAttrs = index >= blogCards.length ? ' aria-hidden="true" tabindex="-1"' : "";
+        return `<a class="top-post-card" href="${post.href}"${hiddenAttrs}><span>${post.category}</span><strong>${post.title}</strong><small>Read the guide</small></a>`;
+      })
+      .join("");
+
+    strips.forEach((strip) => {
+      const track = strip.querySelector(".top-posts-track");
+
+      if (track) {
+        track.innerHTML = renderCards;
+      }
+    });
+  } catch {
+    // Keep the static fallback cards if the blog index cannot be read, such as local file previews.
+  }
+};
+
+hydrateLatestBlogStrips();
+
 websiteBriefForm?.addEventListener("submit", (event) => {
   const pricing = updateWebsiteBriefPricing();
   const finalBudget = pricing?.baseValue ? formatNaira(pricing.finalTotal) : formatNaira(basicWebsitePrice);

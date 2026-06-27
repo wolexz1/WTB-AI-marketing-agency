@@ -18,11 +18,12 @@
     <meta property="og:site_name" content="WTB AI Marketing Agency">
     <meta property="og:title" content="Contact WTB AI Marketing Agency">
     <meta property="og:description" content="Send a brief, book a strategy call, or speak with WTB about your next marketing project.">
-    <meta property="og:image" content="https://wtbaimarketing.com/assets/social-preview.jpg">
+    <meta property="og:image" content="https://wtbaimarketing.com/assets/wtb-visual-contact-human.jpg">
+    <meta property="og:image:alt" content="WTB team reviewing a client brief, campaign goals, and contact options for a marketing project">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Contact WTB AI Marketing Agency">
     <meta name="twitter:description" content="Send a brief, attach files, and get a clear next step for your marketing project.">
-    <meta name="twitter:image" content="https://wtbaimarketing.com/assets/social-preview.jpg">
+    <meta name="twitter:image" content="https://wtbaimarketing.com/assets/wtb-visual-contact-human.jpg">
     <link rel="icon" type="image/png" sizes="48x48" href="../assets/favicon-48.png">
     <link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon-192.png">
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
@@ -40,29 +41,71 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "ContactPage",
-        "name": "Contact WTB AI Marketing Agency",
-        "url": "https://wtbaimarketing.com/contact/",
-        "description": "Contact WTB for AI-powered marketing strategy, SEO, Google Ads, content, creator campaigns, websites, and campaign execution in Lagos, Abuja, and across Nigeria.",
-        "mainEntity": {
-          "@type": "Organization",
-          "name": "WTB AI Marketing Agency",
-          "email": "wolexzthebrand@gmail.com",
-          "telephone": "+2348097585489",
-          "url": "https://wtbaimarketing.com/",
-          "areaServed": [
-            {"@type": "City", "name": "Lagos"},
-            {"@type": "City", "name": "Abuja"},
-            {"@type": "Country", "name": "Nigeria"}
-          ],
-          "contactPoint": {
-            "@type": "ContactPoint",
+        "@graph": [
+          {
+            "@type": "ContactPage",
+            "@id": "https://wtbaimarketing.com/contact/#webpage",
+            "name": "Contact WTB AI Marketing Agency",
+            "url": "https://wtbaimarketing.com/contact/",
+            "description": "Contact WTB for AI-powered marketing strategy, SEO, Google Ads, content, creator campaigns, websites, and campaign execution in Lagos, Abuja, and across Nigeria.",
+            "mainEntity": {
+              "@id": "https://wtbaimarketing.com/#organization"
+            }
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://wtbaimarketing.com/#organization",
+            "name": "WTB AI Marketing Agency",
+            "url": "https://wtbaimarketing.com/",
+            "email": "wolexzthebrand@gmail.com",
             "telephone": "+2348097585489",
-            "contactType": "sales",
-            "areaServed": "NG",
-            "availableLanguage": "English"
+            "areaServed": [
+              {"@type": "City", "name": "Lagos"},
+              {"@type": "City", "name": "Abuja"},
+              {"@type": "Country", "name": "Nigeria"}
+            ],
+            "sameAs": [
+              "https://www.instagram.com/wolexzthebrand/",
+              "https://www.facebook.com/wolexztrickz",
+              "https://www.linkedin.com/in/wolexxz/",
+              "https://www.tiktok.com/@wolexzthebrand",
+              "https://wolexz.my.canva.site/wolexz"
+            ],
+            "knowsAbout": [
+              "AI marketing in Nigeria",
+              "Digital marketing in Lagos",
+              "Digital marketing in Abuja",
+              "SEO services in Nigeria",
+              "Google Ads management",
+              "Website development",
+              "Content marketing",
+              "Marketing automation"
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+2348097585489",
+              "contactType": "sales",
+              "areaServed": "NG",
+              "availableLanguage": "English"
+            }
+          },
+          {
+            "@type": "ProfessionalService",
+            "@id": "https://wtbaimarketing.com/#local-service",
+            "name": "WTB AI Marketing Agency",
+            "url": "https://wtbaimarketing.com/",
+            "serviceArea": [
+              {"@type": "City", "name": "Lagos"},
+              {"@type": "City", "name": "Abuja"},
+              {"@type": "Country", "name": "Nigeria"}
+            ],
+            "telephone": "+2348097585489",
+            "email": "wolexzthebrand@gmail.com",
+            "provider": {
+              "@id": "https://wtbaimarketing.com/#organization"
+            }
           }
-        }
+        ]
       }
     </script>
     <link rel="stylesheet" href="../styles.css">
@@ -220,6 +263,32 @@
     </main>
 
     <a class="floating-whatsapp" href="https://wa.me/2348097585489?text=Hello%20WTB%2C%20I%20want%20to%20send%20a%20brief." target="_blank" rel="noopener noreferrer" aria-label="Chat with WTB on WhatsApp"><span>Chat with us</span></a>
+
+    <!-- TOP_POSTS_START: auto-refreshes from the first five blog cards on /blog/ when the site is live -->
+    <section class="top-posts-strip" aria-label="Latest WTB marketing reads">
+      <div class="section-shell top-posts-head">
+        <div>
+          <p class="eyebrow">Latest marketing reads</p>
+          <h2>Fresh guides from the WTB blog.</h2>
+        </div>
+        <p>New and useful reads for Nigerian brands planning SEO, ads, AI search visibility, WhatsApp follow-up, and smarter marketing budgets.</p>
+      </div>
+      <div class="top-posts-marquee" aria-label="Scrolling list of top marketing articles">
+        <div class="top-posts-track">
+          <a class="top-post-card" href="../blog/why-website-not-ranking-google-nigeria-2026/"><span>SEO visibility</span><strong>Why your website is not ranking on Google in Nigeria</strong><small>Read the guide</small></a>
+          <a class="top-post-card" href="../blog/google-ads-vs-meta-ads-nigeria-2026/"><span>Ads budget</span><strong>Google Ads vs Meta Ads in Nigeria: which should you start with?</strong><small>Read the guide</small></a>
+          <a class="top-post-card" href="../blog/seo-pricing-nigeria-2026/"><span>SEO pricing</span><strong>SEO pricing in Nigeria: how much should a serious business budget?</strong><small>Read the guide</small></a>
+          <a class="top-post-card" href="../blog/google-ai-search-nigeria-businesses-2026/"><span>AI search</span><strong>Google AI is answering before customers reach your website</strong><small>Read the guide</small></a>
+          <a class="top-post-card" href="../blog/whatsapp-ai-lead-generation-nigeria-2026/"><span>Lead follow-up</span><strong>How Nigerian businesses can use WhatsApp AI to close faster</strong><small>Read the guide</small></a>
+          <a class="top-post-card" href="../blog/why-website-not-ranking-google-nigeria-2026/" aria-hidden="true" tabindex="-1"><span>SEO visibility</span><strong>Why your website is not ranking on Google in Nigeria</strong><small>Read the guide</small></a>
+          <a class="top-post-card" href="../blog/google-ads-vs-meta-ads-nigeria-2026/" aria-hidden="true" tabindex="-1"><span>Ads budget</span><strong>Google Ads vs Meta Ads in Nigeria: which should you start with?</strong><small>Read the guide</small></a>
+          <a class="top-post-card" href="../blog/seo-pricing-nigeria-2026/" aria-hidden="true" tabindex="-1"><span>SEO pricing</span><strong>SEO pricing in Nigeria: how much should a serious business budget?</strong><small>Read the guide</small></a>
+          <a class="top-post-card" href="../blog/google-ai-search-nigeria-businesses-2026/" aria-hidden="true" tabindex="-1"><span>AI search</span><strong>Google AI is answering before customers reach your website</strong><small>Read the guide</small></a>
+          <a class="top-post-card" href="../blog/whatsapp-ai-lead-generation-nigeria-2026/" aria-hidden="true" tabindex="-1"><span>Lead follow-up</span><strong>How Nigerian businesses can use WhatsApp AI to close faster</strong><small>Read the guide</small></a>
+        </div>
+      </div>
+    </section>
+    <!-- TOP_POSTS_END -->
     <footer class="site-footer">
       <div class="section-shell footer-cta reveal">
         <div class="footer-cta-copy">
