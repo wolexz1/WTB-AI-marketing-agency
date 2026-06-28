@@ -5711,6 +5711,50 @@ body.modal-open {
   font-weight: 800;
 }
 
+.seo-support-details {
+  border: 1px solid rgba(21, 23, 28, 0.1);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 18px 60px rgba(21, 23, 28, 0.06);
+  overflow: hidden;
+}
+
+.seo-support-details summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 22px 24px;
+  font-size: 1rem;
+  font-weight: 900;
+  color: var(--ink);
+}
+
+.seo-support-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.seo-support-details summary::after {
+  content: "+";
+  float: right;
+  color: var(--blue);
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.seo-support-details[open] summary::after {
+  content: "-";
+}
+
+.seo-support-details-body {
+  display: grid;
+  gap: 22px;
+  padding: 0 24px 24px;
+}
+
+.seo-support-links {
+  margin: 0;
+  color: var(--muted);
+}
+
 @keyframes topPostsSlide {
   from {
     transform: translate3d(0, 0, 0);
