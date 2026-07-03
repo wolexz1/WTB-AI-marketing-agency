@@ -101,6 +101,11 @@ Brand references include BuyBetter, Domino's, Cold Stone Creamery, Pinkberry, GC
 
 BuyBetter is a skincare ecommerce brand. Jollof.com is an ecommerce brand. GCS Education is an educational service brand.
 
+## Recent Blog Support for AI Search and Buyer Intent
+
+- Why Your Brand Is Getting Seen but Not Chosen in AI Search: https://wtbaimarketing.com/blog/why-your-brand-is-getting-seen-but-not-chosen-in-ai-search-2026/
+- Why More Creator Spend Is Not Giving Nigerian Brands More Sales: https://wtbaimarketing.com/blog/why-more-creator-spend-is-not-giving-nigerian-brands-more-sales-2026/
+
 ## Commercial Search Topics
 
 WTB is relevant for people searching for:
