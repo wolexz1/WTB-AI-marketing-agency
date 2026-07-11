@@ -5801,3 +5801,136 @@ body.modal-open {
     height: 58px;
   }
 }
+
+/* Site-wide readability audit: consistent hierarchy, calmer rhythm, and safer wrapping. */
+:where(h1, h2, h3, h4, p, li, blockquote, a, button, summary) {
+  hyphens: none;
+  word-break: normal;
+}
+
+:where(h1, h2, h3, h4, .button, .nav-links a, .footer-column a, .footer-contact a) {
+  overflow-wrap: normal;
+}
+
+:where(h1, h2, h3, h4, .section-heading h2, .rich-copy h2, .dark-cta h2, .footer-cta h2) {
+  text-wrap: balance;
+}
+
+:where(.section-heading p, .rich-copy p, .article-body p, .article-body li, .feature-card p, .process-card p, .faq-card p, .offer-card p, .pricing-card p, .blog-card p, .case-study-card p) {
+  text-wrap: pretty;
+}
+
+.page-hero h1,
+.tool-hero-copy h1,
+.case-hero h1 {
+  max-width: 18ch;
+  line-height: 0.98;
+}
+
+.blog-page .page-hero h1,
+.blog-article-page .page-hero h1 {
+  max-width: 24ch;
+  line-height: 1.04;
+}
+
+.section-heading {
+  max-width: 920px;
+  margin-bottom: clamp(28px, 4vw, 46px);
+}
+
+.section-heading h2,
+.rich-copy h2,
+.dark-cta h2,
+.footer-cta h2 {
+  max-width: 20ch;
+  line-height: 1.04;
+}
+
+.section-heading p:not(.eyebrow),
+.rich-copy p,
+.article-body p,
+.article-body li {
+  max-width: 68ch;
+}
+
+.feature-card h3,
+.process-card h3,
+.faq-card h3,
+.offer-card h3,
+.pricing-card h3,
+.case-study-card h2 {
+  letter-spacing: 0;
+  line-height: 1.18;
+}
+
+.blog-card h2 {
+  letter-spacing: 0;
+  line-height: 1.13;
+}
+
+.content-section,
+.services-section,
+.pricing-section,
+.stats-section,
+.difference-section,
+.testimonials-section,
+.brief-section {
+  padding-block: clamp(64px, 7vw, 96px);
+}
+
+.feature-card,
+.process-card,
+.faq-card,
+.offer-card,
+.pricing-card,
+.blog-card,
+.case-study-card {
+  min-width: 0;
+}
+
+@media (max-width: 680px) {
+  .page-hero h1,
+  .tool-hero-copy h1,
+  .case-hero h1 {
+    max-width: 13ch;
+    line-height: 1.02;
+  }
+
+  .blog-page .page-hero h1,
+  .blog-article-page .page-hero h1 {
+    max-width: 17ch;
+    line-height: 1.08;
+  }
+
+  .section-heading {
+    margin-bottom: 28px;
+  }
+
+  .section-heading h2,
+  .rich-copy h2,
+  .dark-cta h2,
+  .footer-cta h2 {
+    max-width: 15ch;
+    line-height: 1.08;
+  }
+
+  .feature-card h3,
+  .process-card h3,
+  .faq-card h3,
+  .offer-card h3,
+  .pricing-card h3,
+  .blog-card h2,
+  .case-study-card h2 {
+    line-height: 1.22;
+  }
+
+  .content-section,
+  .services-section,
+  .pricing-section,
+  .stats-section,
+  .difference-section,
+  .testimonials-section,
+  .brief-section {
+    padding-block: 56px;
+  }
+}

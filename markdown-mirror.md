@@ -413,3 +413,13 @@ WTB added three more buyer-intent pages:
 - Website Design Agency in Abuja: https://wtbaimarketing.com/website-design-agency-abuja/
 - Social Media Management Pricing in Abuja: https://wtbaimarketing.com/social-media-management-pricing-abuja/
 
+
+## New July 2026 articles
+
+### Why Nigerian businesses are losing WhatsApp leads
+URL: https://wtbaimarketing.com/blog/why-nigerian-businesses-lose-whatsapp-leads-2026/
+Summary: Reader-first guide to faster WhatsApp replies, AI-assisted lead qualification, human handoff, and disciplined follow-up for Nigerian businesses.
+
+### Why your ads are getting clicks but not customers in Nigeria
+URL: https://wtbaimarketing.com/blog/why-ads-get-clicks-not-customers-nigeria-2026/
+Summary: Practical guide to fixing targeting, offers, landing pages, tracking, and follow-up before increasing Google Ads or Meta Ads spend.
