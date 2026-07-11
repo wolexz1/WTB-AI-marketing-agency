@@ -261,6 +261,7 @@ document.addEventListener("keydown", (event) => {
     navLinks.classList.remove("is-open");
     navToggle?.classList.remove("is-open");
     navToggle?.setAttribute("aria-expanded", "false");
+    navToggle?.setAttribute("aria-label", "Open navigation menu");
   }
 });
 
@@ -268,6 +269,7 @@ navToggle?.addEventListener("click", () => {
   const isOpen = navLinks?.classList.toggle("is-open") || false;
   navToggle.classList.toggle("is-open", isOpen);
   navToggle.setAttribute("aria-expanded", String(isOpen));
+  navToggle.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
 });
 
 navLinks?.querySelectorAll("a").forEach((link) => {
@@ -275,6 +277,7 @@ navLinks?.querySelectorAll("a").forEach((link) => {
     navLinks.classList.remove("is-open");
     navToggle?.classList.remove("is-open");
     navToggle?.setAttribute("aria-expanded", "false");
+    navToggle?.setAttribute("aria-label", "Open navigation menu");
   });
 });
 
