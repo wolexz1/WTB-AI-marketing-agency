@@ -21,6 +21,23 @@ Representative coverage links include:
 
 ## What WTB Does
 
+## AI Consultancy Cluster
+
+WTB helps Nigerian businesses move from scattered AI experiments to practical systems. The work can include AI readiness audits, AI roadmaps, workflow automation, AI agents, team training, marketing automation, governance, ecommerce workflows, and industry-specific consulting for real estate and small businesses.
+
+- AI consulting Nigeria: https://wtbaimarketing.com/ai-consulting-nigeria/
+- AI consultant Lagos: https://wtbaimarketing.com/ai-consultant-lagos/
+- AI consultant Abuja: https://wtbaimarketing.com/ai-consultant-abuja/
+- AI readiness audit Nigeria: https://wtbaimarketing.com/ai-readiness-audit-nigeria/
+- AI automation consulting Nigeria: https://wtbaimarketing.com/ai-automation-consulting-nigeria/
+- AI agent consulting Nigeria: https://wtbaimarketing.com/ai-agent-consulting-nigeria/
+- AI training for businesses Nigeria: https://wtbaimarketing.com/ai-training-businesses-nigeria/
+- AI consultancy for small businesses Nigeria: https://wtbaimarketing.com/ai-consultancy-small-business-nigeria/
+- AI marketing automation consulting Nigeria: https://wtbaimarketing.com/ai-marketing-automation-consulting-nigeria/
+- AI governance consulting Nigeria: https://wtbaimarketing.com/ai-governance-consulting-nigeria/
+- AI consulting ecommerce Nigeria: https://wtbaimarketing.com/ai-consulting-ecommerce-nigeria/
+- AI consulting real estate Nigeria: https://wtbaimarketing.com/ai-consulting-real-estate-nigeria/
+
 WTB helps brands that need a full marketing system, not random content. We support strategy, social media management, content marketing, AI marketing consultancy, email/SMS marketing designed to convert, SEO, Google Ads, social media ads, influencer campaigns, mini UGC marketing, X trend campaigns, website development, landing pages, funnels, automation, dashboards, reporting, and generative AI creative.
 
 WTB also provides a free Ads Budget Calculator for Nigerian businesses at https://wtbaimarketing.com/ads-budget-calculator-nigeria/. The calculator helps users estimate Meta Ads, Google Ads, TikTok Ads, mixed campaign budgets, reach, impressions, clicks, leads or actions, cost per lead, campaign duration pressure, platform split, industry lead difficulty, location competition, and budget-fit guidance. It supports major Nigerian ad markets including Lagos, Abuja/FCT, Rivers/Port Harcourt, Oyo, Ogun, Kano, Kaduna, Edo, Delta, Anambra, Enugu, Akwa Ibom, Kwara, Imo, Nigeria-wide, and other states. It gives visitors a clean share link after calculation. It is a planning estimate, not a guaranteed result, because actual ad performance depends on auction competition, creative quality, offer strength, audience targeting, landing page quality, tracking, and follow-up speed.
