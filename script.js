@@ -30,6 +30,37 @@ const setupTestimonialSlider = () => {
   track.dataset.cloned = "true";
 };
 
+const setupCompactBriefServiceOptions = () => {
+  const options = [
+    ["", "Choose a focus"],
+    ["AI consultancy, automation and AI agents", "AI consultancy, automation and AI agents"],
+    ["Marketing strategy and growth systems", "Marketing strategy and growth systems"],
+    ["Content, social media and email marketing", "Content, social media and email marketing"],
+    ["SEO and AI search visibility", "SEO and AI search visibility"],
+    ["Paid ads, lead generation and funnels", "Paid ads, lead generation and funnels"],
+    ["Websites, ecommerce and landing pages", "Websites, ecommerce and landing pages"],
+    ["Influencer, UGC and X trend campaigns", "Influencer, UGC and X trend campaigns"],
+    ["Full growth system - recommend the best fit", "Full growth system - recommend the best fit"],
+  ];
+
+  document.querySelectorAll('select[name="service"]').forEach((select) => {
+    const currentValue = select.value;
+    select.replaceChildren(
+      ...options.map(([value, label]) => {
+        const option = document.createElement("option");
+        option.value = value;
+        option.textContent = label;
+        return option;
+      }),
+    );
+    if (options.some(([value]) => value === currentValue)) {
+      select.value = currentValue;
+    }
+  });
+};
+
+setupCompactBriefServiceOptions();
+
 setupTestimonialSlider();
 
 const createPageLoader = () => {
