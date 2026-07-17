@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en-NG">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex,follow">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
+    <title>Payment confirmation | AI Explorers | WTB</title>
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../assets/ai-explorers/ai-explorers.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5TNS1X06JM"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5TNS1X06JM');</script>
+  </head>
+  <body class="ai-explorers-page ai-explorers-thank-you-page">
+    <main class="ai-explorers-thank-you">
+      <div class="section-shell">
+        <a class="brand-lockup ai-explorers-thank-you-brand" href="../" aria-label="Back to AI Explorers"><img src="../../assets/logo-wtb.png" alt="WTB portrait mark"><span><strong>WTB</strong><small>AI Explorers</small></span></a>
+        <section class="ai-explorers-thank-you-card" aria-live="polite">
+          <p class="ai-explorers-eyebrow" id="paymentLabel">Payment confirmation</p>
+          <h1 id="paymentTitle">We are confirming your payment.</h1>
+          <p id="paymentMessage">Please keep this page open for a moment while we securely confirm your order with Paystack.</p>
+          <div id="paymentActions" class="ai-explorers-thank-you-actions" hidden>
+            <a class="button" id="downloadButton" href="#">Download the Family Kit</a>
+            <a class="button button-ghost" id="quickStartButton" href="#">Read the Parent Quick-Start</a>
+          </div>
+          <ol id="paymentSteps" hidden>
+            <li>Download the Family Kit.</li>
+            <li>Open the <strong>START-HERE.md</strong> file first.</li>
+            <li>Read the Parent Companion.</li>
+            <li>Choose your first mission and explore together.</li>
+          </ol>
+          <button type="button" class="ai-explorers-retry" id="paymentRetry">Check payment status</button>
+          <p class="ai-explorers-thank-you-help">Need help? Email <a href="mailto:wolexzzoluk@gmail.com">wolexzzoluk@gmail.com</a>.</p>
+        </section>
+      </div>
+    </main>
+    <script>
+      (function () {
+        const reference = new URLSearchParams(window.location.search).get('reference');
+        const title = document.getElementById('paymentTitle'); const message = document.getElementById('paymentMessage'); const label = document.getElementById('paymentLabel');
+        const actions = document.getElementById('paymentActions'); const steps = document.getElementById('paymentSteps'); const retry = document.getElementById('paymentRetry');
+        const download = document.getElementById('downloadButton'); const quickStart = document.getElementById('quickStartButton');
+        let purchased = false;
+        async function checkPayment() {
+          if (!reference) { label.textContent='Order reference needed'; title.textContent='We could not find your payment reference.'; message.textContent='Return to AI Explorers and begin checkout again. If your payment was successful, email our support team with your receipt.'; retry.hidden=true; return; }
+          retry.disabled=true; retry.textContent='Checking payment...';
+          try {
+            const response = await fetch('/api/ai-explorers/verify?reference=' + encodeURIComponent(reference), { cache:'no-store' });
+            const data = await response.json();
+            if (data.verified && data.downloadUrl) {
+              label.textContent='Payment confirmed'; title.textContent='Welcome to the AI Explorers family.'; message.textContent="Your payment was successful. Your child's smarter, safer AI journey starts here.";
+              download.href=data.downloadUrl; quickStart.href=data.downloadUrl; actions.hidden=false; steps.hidden=false; retry.hidden=true;
+              if (!purchased && window.gtag) { gtag('event','purchase_ai_explorers',{transaction_id:reference,value:7500,currency:'NGN'}); purchased=true; }
+              return;
+            }
+            label.textContent='Payment confirmation'; title.textContent='We are still confirming your payment.'; message.textContent=data.message || 'This can take a short moment. Use the button below to check again.';
+          } catch (_) { title.textContent='We could not confirm the payment just yet.'; message.textContent='Please try again in a moment. If you were charged, keep your receipt and contact support.'; }
+          finally { retry.disabled=false; retry.textContent='Check payment status'; }
+        }
+        retry.addEventListener('click',checkPayment); checkPayment();
+      }());
+    </script>
+  </body>
+</html>

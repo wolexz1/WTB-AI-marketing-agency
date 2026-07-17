@@ -5,6 +5,9 @@
 /thank-you/index.html
   X-Robots-Tag: noindex, follow
 
+/ai-explorers/thank-you/*
+  X-Robots-Tag: noindex, follow
+
 /llms.txt
   X-Robots-Tag: noindex, follow
   Link: <https://wtbaimarketing.com/>; rel="canonical"
@@ -35,6 +38,9 @@
   X-Robots-Tag: noindex, nofollow
 
 /wrangler.jsonc
+  X-Robots-Tag: noindex, nofollow
+
+/docs/*
   X-Robots-Tag: noindex, nofollow
 
 /WTB-AI-marketing-agency-upload-20260505-200008/*

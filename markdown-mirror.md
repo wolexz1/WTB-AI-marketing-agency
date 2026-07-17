@@ -440,3 +440,14 @@ Summary: Reader-first guide to faster WhatsApp replies, AI-assisted lead qualifi
 ### Why your ads are getting clicks but not customers in Nigeria
 URL: https://wtbaimarketing.com/blog/why-ads-get-clicks-not-customers-nigeria-2026/
 Summary: Practical guide to fixing targeting, offers, landing pages, tracking, and follow-up before increasing Google Ads or Meta Ads spend.
+
+## AI Explorers by WTB
+
+URL: https://wtbaimarketing.com/ai-explorers/
+
+AI Explorers is a parent-guided AI literacy workbook for children aged 9-11. The digital Family Kit uses six practical missions to help families explore AI safely, question what they see, protect privacy, fact-check claims and create with judgement intact. It is not a child chatbot account, video course or an externally endorsed product.
+
+Related pages:
+- Classroom licensing: https://wtbaimarketing.com/ai-explorers/classroom-licensing/
+- Digital product policy: https://wtbaimarketing.com/ai-explorers/digital-product-policy/
+- Terms: https://wtbaimarketing.com/ai-explorers/terms/
