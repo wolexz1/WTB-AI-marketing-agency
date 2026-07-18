@@ -66,10 +66,13 @@
       const response = await fetch("/api/ai-explorers/initialize", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify({ firstName, email, product: selectedProduct, ctaLocation }) });
       const result = await response.json();
       if (!response.ok || !result.accessCode || !result.reference) throw new Error(result.message || "We could not prepare checkout. Please try again.");
-      if (typeof window.Paystack !== "function") throw new Error("Secure checkout did not load. Please refresh the page and try again.");
+      // Paystack's CDN currently exposes PaystackPop. Keep the fallback for
+      // the documented V2 global so a future library update does not break checkout.
+      const PaystackCheckout = window.PaystackPop || window.Paystack;
+      if (typeof PaystackCheckout !== "function") throw new Error("Secure checkout did not load. Please refresh the page and try again.");
       track("begin_checkout_ai_explorers", selectedProduct, { cta_location: ctaLocation, transaction_id: result.reference });
       status.textContent = "Opening Paystack secure checkout...";
-      new window.Paystack().resumeTransaction(result.accessCode);
+      new PaystackCheckout().resumeTransaction(result.accessCode);
       pollForVerification(result.reference);
     } catch (error) { status.textContent = error.message || "We could not start checkout. Please try again."; submit.disabled = false; }
   });
