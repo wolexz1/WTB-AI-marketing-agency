@@ -21,14 +21,12 @@
           <h1 id="paymentTitle">We are confirming your payment.</h1>
           <p id="paymentMessage">Please keep this page open for a moment while we securely confirm your order with Paystack.</p>
           <div id="paymentActions" class="ai-explorers-thank-you-actions" hidden>
-            <a class="button" id="downloadButton" href="#">Download the Family Kit</a>
-            <a class="button button-ghost" id="quickStartButton" href="#">Read the Parent Quick-Start</a>
+            <a class="button" id="downloadButton" href="#">Open your private library</a>
           </div>
           <ol id="paymentSteps" hidden>
-            <li>Download the Family Kit.</li>
-            <li>Open the <strong>START-HERE.md</strong> file first.</li>
-            <li>Read the Parent Companion.</li>
-            <li>Choose your first mission and explore together.</li>
+            <li>Open your private library.</li>
+            <li>Choose the PDF that fits today's learning session.</li>
+            <li>Start with the main Workbook, then explore together.</li>
           </ol>
           <button type="button" class="ai-explorers-retry" id="paymentRetry">Check payment status</button>
           <p class="ai-explorers-thank-you-help">Need help? Email <a href="mailto:wolexzzoluk@gmail.com">wolexzzoluk@gmail.com</a>.</p>
@@ -40,7 +38,7 @@
         const reference = new URLSearchParams(window.location.search).get('reference');
         const title = document.getElementById('paymentTitle'); const message = document.getElementById('paymentMessage'); const label = document.getElementById('paymentLabel');
         const actions = document.getElementById('paymentActions'); const steps = document.getElementById('paymentSteps'); const retry = document.getElementById('paymentRetry');
-        const download = document.getElementById('downloadButton'); const quickStart = document.getElementById('quickStartButton');
+        const download = document.getElementById('downloadButton');
         let purchased = false;
         async function checkPayment() {
           if (!reference) { label.textContent='Order reference needed'; title.textContent='We could not find your payment reference.'; message.textContent='Return to AI Explorers and begin checkout again. If your payment was successful, email our support team with your receipt.'; retry.hidden=true; return; }
@@ -48,10 +46,10 @@
           try {
             const response = await fetch('/api/ai-explorers/verify?reference=' + encodeURIComponent(reference), { cache:'no-store' });
             const data = await response.json();
-            if (data.verified && data.downloadUrl) {
-              label.textContent='Payment confirmed'; title.textContent='Welcome to the AI Explorers family.'; message.textContent="Your payment was successful. Your child's smarter, safer AI journey starts here.";
-              download.href=data.downloadUrl; quickStart.href=data.downloadUrl; actions.hidden=false; steps.hidden=false; retry.hidden=true;
-              if (!purchased && window.gtag) { gtag('event','purchase_ai_explorers',{transaction_id:reference,value:7500,currency:'NGN'}); purchased=true; }
+            if (data.verified && data.libraryUrl) {
+              label.textContent='Payment confirmed'; title.textContent='Your AI Explorers library is ready.'; message.textContent="Your payment was successful. Open your private library to choose your PDFs.";
+              download.href=data.libraryUrl; actions.hidden=false; steps.hidden=false; retry.hidden=true;
+              if (!purchased && window.gtag) { gtag('event','purchase_ai_explorers',{transaction_id:reference,value:(data.product?.amount || 0) / 100,currency:'NGN'}); purchased=true; }
               return;
             }
             label.textContent='Payment confirmation'; title.textContent='We are still confirming your payment.'; message.textContent=data.message || 'This can take a short moment. Use the button below to check again.';

@@ -4,10 +4,10 @@ This product page is ready to deploy, but payment and private delivery will rema
 
 ## 1. Keep the customer package private
 
-Do not copy `PRIVATE-AI-Explorers-Customer-Package.zip` into this repository, `assets`, GitHub, or the Cloudflare Pages static files.
+Do not copy any paid AI Explorers PDF into this repository, `assets`, GitHub, or the Cloudflare Pages static files.
 
 1. In Cloudflare, create an R2 bucket named `wtb-private-products`.
-2. Upload the customer package to the object key `ai-explorers/AI-Explorers-Customer-Package.zip`.
+2. Upload these paid PDFs individually to the private bucket: `ai-explorers/AI-Explorers-Workbook.pdf`, `ai-explorers/AI-Explorers-Parent-Companion.pdf`, `ai-explorers/AI-Explorers-Workbook-Low-Ink.pdf`, and `ai-explorers/AI-Explorers-Workbook-Print.pdf`.
 3. Do not attach a public custom domain to the bucket.
 4. In the Pages project bindings, add an R2 binding named `AI_EXPLORERS_BUCKET` pointing to that bucket.
 
@@ -30,7 +30,6 @@ Set every value in **Production**. Set them in **Preview** too if test payments 
 | `RESEND_API_KEY` | Existing WTB Resend API key used to send the purchase email. |
 | `FROM_EMAIL` | A verified sender, for example `WTB AI Marketing <hello@wtbaimarketing.com>`. |
 | `DOWNLOAD_TOKEN_SECRET` | A unique random value of at least 32 bytes. Do not reuse the Paystack key. |
-| `AI_EXPLORERS_OBJECT_KEY` | `ai-explorers/AI-Explorers-Customer-Package.zip` |
 | `AI_EXPLORERS_DOWNLOAD_TTL_SECONDS` | `604800` for a seven-day link. |
 | `AI_EXPLORERS_DOWNLOAD_LIMIT` | `3` for three downloads per order. |
 
