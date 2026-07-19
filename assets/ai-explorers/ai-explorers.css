@@ -370,6 +370,7 @@
 .ai-explorers-thank-you-card h1 { max-width:700px; margin:10px 0 18px; font:clamp(2.2rem,5vw,4.8rem)/.95 Georgia,serif; letter-spacing:0; }
 .ai-explorers-thank-you-card p { max-width:620px; font-size:1.05rem; line-height:1.7; color:#d5e2f6; }
 .ai-explorers-thank-you-actions { display:flex; gap:12px; flex-wrap:wrap; margin:28px 0 22px; }
+.ai-explorers-buy-another { display:inline-flex; align-items:center; min-height:44px; color:#ffcb57; font-size:.94rem; font-weight:800; text-decoration:underline; text-underline-offset:4px; }
 .ai-explorers-thank-you-share { margin-top: 12px; padding: 0; border: 0; background: transparent; color: #ffcb57; cursor: pointer; font: 800 .95rem/1.4 inherit; text-decoration: underline; text-underline-offset: 4px; }
 .ai-explorers-thank-you-card ol { margin:25px 0; padding-left:24px; color:#fff; line-height:1.85; }
 .ai-explorers-retry { appearance:none; border:0; background:transparent; color:#ffcb57; text-decoration:underline; font:inherit; font-weight:800; padding:8px 0; cursor:pointer; }
