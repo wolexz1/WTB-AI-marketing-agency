@@ -68,7 +68,7 @@
       try { await navigator.share({ title: "AI Explorers", text: shareMessage(), url: shareUrl() }); } catch { /* The parent chose not to share. */ }
       return;
     }
-    openSharePanel();
+    window.open(`https://wa.me/?text=${encodedShare()}`, "_blank", "noopener,noreferrer");
   }));
 
   document.querySelectorAll("[data-ai-buy]").forEach((button) => button.addEventListener("click", () => {
