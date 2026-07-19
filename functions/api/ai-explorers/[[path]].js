@@ -54,7 +54,9 @@ async function initializeOrder(request, env) {
   const clientKey = request.headers.get("CF-Connecting-IP") || "unknown";
   const rateKey = `${RATE_PREFIX}${clientKey}`;
   const attempts = Number(await env.AI_EXPLORERS_ORDERS.get(rateKey) || 0);
-  if (attempts >= 5) return json({ message: "Please wait a minute before starting another checkout." }, 429);
+  // Families, schools and organisations may buy several copies in one session.
+  // Keep a modest ceiling to deter abuse without blocking genuine multiple orders.
+  if (attempts >= numberEnv(env.AI_EXPLORERS_CHECKOUT_RATE_LIMIT, 20, 5, 60)) return json({ message: "Please wait a minute before starting another checkout." }, 429);
   await env.AI_EXPLORERS_ORDERS.put(rateKey, String(attempts + 1), { expirationTtl: 60 });
 
   const reference = `aiexp_${crypto.randomUUID().replace(/-/g, "").slice(0, 24)}`;
@@ -81,7 +83,14 @@ async function verifyOrder(request, env) {
   if (!reference) return json({ verified: false, message: "Missing payment reference." }, 400);
   const outcome = await confirmPayment(reference, request.url, env);
   if (!outcome.verified) return json({ verified: false, message: outcome.message || "Payment is still pending." }, outcome.status || 200);
-  return json({ verified: true, reference, product: outcome.product, libraryUrl: outcome.libraryUrl });
+  return json({
+    verified: true,
+    reference,
+    product: outcome.product,
+    libraryUrl: outcome.libraryUrl,
+    // Start the core workbook immediately; the library still holds any extra editions.
+    downloadUrl: await createAssetUrl(reference, "workbook", request.url, env),
+  });
 }
 
 async function getLibrary(request, env) {

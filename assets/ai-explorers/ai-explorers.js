@@ -17,6 +17,9 @@
   const lightbox = document.querySelector("[data-ai-lightbox]");
   const lightboxImage = lightbox?.querySelector("img");
   const lightboxCaption = document.querySelector("#aiPreviewCaption");
+  const shareWidget = document.querySelector("[data-ai-share-widget]");
+  const sharePanel = document.querySelector("[data-ai-share-panel]");
+  const shareCopy = document.querySelector("[data-ai-share-copy]");
   let selectedProduct = "complete";
   let ctaLocation = "page";
   let previewIndex = 0;
@@ -28,15 +31,45 @@
     selectedProduct = products[product] ? product : "complete";
     ctaLocation = location || "page";
     const choice = products[selectedProduct];
+    form?.reset();
     productInput.value = selectedProduct;
     title.textContent = choice.name;
     description.textContent = choice.description;
     submit.textContent = `Continue to Paystack - N${choice.price.toLocaleString("en-NG")}`;
     status.textContent = "";
+    submit.disabled = false;
     track("select_ai_explorers_product", selectedProduct, { cta_location: ctaLocation });
     dialog?.showModal?.();
     dialog?.querySelector("input")?.focus();
   };
+
+  const shareUrl = () => document.querySelector("link[rel='canonical']")?.href || `${window.location.origin}${window.location.pathname}`;
+  const shareMessage = () => "A thoughtful, parent-guided AI workbook for children ages 9-11. Have a look at AI Explorers:";
+  const encodedShare = () => encodeURIComponent(`${shareMessage()} ${shareUrl()}`);
+  const openSharePanel = () => {
+    if (!sharePanel) return;
+    sharePanel.hidden = !sharePanel.hidden;
+    shareWidget?.classList.toggle("is-open", !sharePanel.hidden);
+    document.querySelector("[data-ai-share-toggle]")?.setAttribute("aria-expanded", String(!sharePanel.hidden));
+  };
+  document.querySelectorAll("[data-ai-share-toggle]").forEach((button) => button.addEventListener("click", openSharePanel));
+  document.querySelectorAll("[data-ai-share-whatsapp]").forEach((link) => link.href = `https://wa.me/?text=${encodedShare()}`);
+  document.querySelectorAll("[data-ai-share-facebook]").forEach((link) => link.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl())}`);
+  document.querySelectorAll("[data-ai-share-x]").forEach((link) => link.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareMessage())}&url=${encodeURIComponent(shareUrl())}`);
+  shareCopy?.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(shareUrl());
+      shareCopy.textContent = "Link copied";
+      window.setTimeout(() => { shareCopy.textContent = "Copy link"; }, 1800);
+    } catch { window.prompt("Copy this page link", shareUrl()); }
+  });
+  document.querySelectorAll("[data-ai-native-share]").forEach((button) => button.addEventListener("click", async () => {
+    if (navigator.share) {
+      try { await navigator.share({ title: "AI Explorers", text: shareMessage(), url: shareUrl() }); } catch { /* The parent chose not to share. */ }
+      return;
+    }
+    openSharePanel();
+  }));
 
   document.querySelectorAll("[data-ai-buy]").forEach((button) => button.addEventListener("click", () => {
     if (button.tagName === "A") return;
@@ -71,7 +104,10 @@
       const PaystackCheckout = window.PaystackPop || window.Paystack;
       if (typeof PaystackCheckout !== "function") throw new Error("Secure checkout did not load. Please refresh the page and try again.");
       track("begin_checkout_ai_explorers", selectedProduct, { cta_location: ctaLocation, transaction_id: result.reference });
-      status.textContent = "Opening Paystack secure checkout...";
+      // Once Paystack is ready, remove our form so the payment window is the only focus.
+      dialog?.close();
+      form.reset();
+      submit.disabled = false;
       new PaystackCheckout().resumeTransaction(result.accessCode);
       pollForVerification(result.reference);
     } catch (error) { status.textContent = error.message || "We could not start checkout. Please try again."; submit.disabled = false; }

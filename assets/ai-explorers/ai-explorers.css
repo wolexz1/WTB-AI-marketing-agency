@@ -255,6 +255,17 @@
 .ai-explorers-sticky-buy button { min-height: 42px; padding: 0 14px; border: 0; border-radius: 10px; background: var(--aiex-gold); color: var(--aiex-navy); cursor: pointer; font-weight: 900; }
 .ai-explorers-sticky-buy a { display: inline-flex; align-items: center; min-height: 42px; padding: 0 14px; border-radius: 10px; background: var(--aiex-gold); color: var(--aiex-navy); font-weight: 900; text-decoration: none; }
 
+.ai-explorers-share-widget { position: fixed; z-index: 59; left: 16px; bottom: 16px; display: grid; gap: 10px; }
+.ai-explorers-share-toggle { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 15px; border: 1px solid rgba(255,255,255,.2); border-radius: 999px; background: rgba(6,22,53,.96); box-shadow: 0 16px 38px rgba(0,0,0,.24); color: #fff; cursor: pointer; font: 800 13px/1 inherit; }
+.ai-explorers-share-toggle span { color: var(--aiex-gold); font-size: 18px; line-height: 1; }
+.ai-explorers-share-panel { width: min(286px, calc(100vw - 32px)); padding: 14px; border: 1px solid rgba(255,255,255,.16); border-radius: 14px; background: #071b46; box-shadow: 0 20px 46px rgba(0,0,0,.3); color: #fff; }
+.ai-explorers-share-panel p { margin: 0 0 12px; color: rgba(255,255,255,.76); font-size: 13px; font-weight: 700; line-height: 1.4; }
+.ai-explorers-share-panel > div { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+.ai-explorers-share-panel a,
+.ai-explorers-share-panel button { display: grid; min-height: 36px; place-items: center; padding: 0 8px; border: 1px solid rgba(255,255,255,.18); border-radius: 8px; background: rgba(255,255,255,.06); color: #fff; cursor: pointer; font: 800 12px/1 inherit; text-decoration: none; }
+.ai-explorers-share-panel a:first-child { border-color: rgba(74,222,128,.75); background: rgba(34,197,94,.16); }
+.ai-explorers-checkout-share { justify-self: start; padding: 0; border: 0; background: transparent; color: #1453cc; cursor: pointer; font: 800 13px/1.4 inherit; text-decoration: underline; text-underline-offset: 3px; }
+
 .ai-explorers-checkout-dialog,
 .ai-explorers-lightbox { width: min(92vw, 520px); padding: 0; border: 1px solid #c6d8e6; border-radius: 19px; color: var(--aiex-text); box-shadow: 0 28px 90px rgba(0,0,0,.35); }
 .ai-explorers-checkout-dialog::backdrop,
@@ -359,6 +370,7 @@
 .ai-explorers-thank-you-card h1 { max-width:700px; margin:10px 0 18px; font:clamp(2.2rem,5vw,4.8rem)/.95 Georgia,serif; letter-spacing:0; }
 .ai-explorers-thank-you-card p { max-width:620px; font-size:1.05rem; line-height:1.7; color:#d5e2f6; }
 .ai-explorers-thank-you-actions { display:flex; gap:12px; flex-wrap:wrap; margin:28px 0 22px; }
+.ai-explorers-thank-you-share { margin-top: 12px; padding: 0; border: 0; background: transparent; color: #ffcb57; cursor: pointer; font: 800 .95rem/1.4 inherit; text-decoration: underline; text-underline-offset: 4px; }
 .ai-explorers-thank-you-card ol { margin:25px 0; padding-left:24px; color:#fff; line-height:1.85; }
 .ai-explorers-retry { appearance:none; border:0; background:transparent; color:#ffcb57; text-decoration:underline; font:inherit; font-weight:800; padding:8px 0; cursor:pointer; }
 .ai-explorers-retry:disabled { opacity:.65; cursor:wait; }
@@ -374,4 +386,4 @@
 .ai-explorers-policy-main li + li { margin-top:8px; }
 .ai-explorers-policy-main a { color:#1256dc; font-weight:800; }
 .ai-explorers-policy-main .ai-explorers-policy-note { padding:20px; border-left:4px solid #f5b942; border-radius:0 12px 12px 0; background:#fff7df; }
-@media (max-width:620px) { .ai-explorers-thank-you{padding:30px 0}.ai-explorers-thank-you-card{border-radius:16px}.ai-explorers-thank-you-actions .button{width:100%;justify-content:center}.ai-explorers-policy-main{padding:44px 0}.ai-explorers-policy-header{padding:20px 0} }
+@media (max-width:620px) { .ai-explorers-thank-you{padding:30px 0}.ai-explorers-thank-you-card{border-radius:16px}.ai-explorers-thank-you-actions .button{width:100%;justify-content:center}.ai-explorers-policy-main{padding:44px 0}.ai-explorers-policy-header{padding:20px 0}.ai-explorers-share-widget{left:12px;bottom:12px}.ai-explorers-share-toggle{min-height:40px;padding:0 13px;font-size:12px} }

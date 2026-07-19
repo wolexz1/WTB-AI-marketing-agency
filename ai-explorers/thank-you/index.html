@@ -22,12 +22,14 @@
           <p id="paymentMessage">Please keep this page open for a moment while we securely confirm your order with Paystack.</p>
           <div id="paymentActions" class="ai-explorers-thank-you-actions" hidden>
             <a class="button" id="downloadButton" href="#">Open your private library</a>
+            <a class="button button-ghost" id="downloadAgainButton" href="#">Download the main workbook again</a>
           </div>
           <ol id="paymentSteps" hidden>
-            <li>Open your private library.</li>
-            <li>Choose the PDF that fits today's learning session.</li>
+            <li>Your main workbook is downloading automatically. Check your browser's Downloads area.</li>
+            <li>Your private library is ready for any additional editions included with your purchase.</li>
             <li>Start with the main Workbook, then explore together.</li>
           </ol>
+          <button class="ai-explorers-thank-you-share" type="button" id="shareWithParent">Share AI Explorers with another parent</button>
           <button type="button" class="ai-explorers-retry" id="paymentRetry">Check payment status</button>
           <p class="ai-explorers-thank-you-help">Need help? Email <a href="mailto:wolexzzoluk@gmail.com">wolexzzoluk@gmail.com</a>.</p>
         </section>
@@ -38,8 +40,15 @@
         const reference = new URLSearchParams(window.location.search).get('reference');
         const title = document.getElementById('paymentTitle'); const message = document.getElementById('paymentMessage'); const label = document.getElementById('paymentLabel');
         const actions = document.getElementById('paymentActions'); const steps = document.getElementById('paymentSteps'); const retry = document.getElementById('paymentRetry');
-        const download = document.getElementById('downloadButton');
+        const download = document.getElementById('downloadButton'); const downloadAgain = document.getElementById('downloadAgainButton'); const share = document.getElementById('shareWithParent');
         let purchased = false;
+        let startedDownload = false;
+        const pageUrl = 'https://wtbaimarketing.com/ai-explorers/';
+        function triggerDownload(url) {
+          if (!url || startedDownload) return;
+          startedDownload = true;
+          const link = document.createElement('a'); link.href = url; link.download = 'AI-Explorers-Workbook.pdf'; link.hidden = true; document.body.appendChild(link); link.click(); link.remove();
+        }
         async function checkPayment() {
           if (!reference) { label.textContent='Order reference needed'; title.textContent='We could not find your payment reference.'; message.textContent='Return to AI Explorers and begin checkout again. If your payment was successful, email our support team with your receipt.'; retry.hidden=true; return; }
           retry.disabled=true; retry.textContent='Checking payment...';
@@ -47,8 +56,8 @@
             const response = await fetch('/api/ai-explorers/verify?reference=' + encodeURIComponent(reference), { cache:'no-store' });
             const data = await response.json();
             if (data.verified && data.libraryUrl) {
-              label.textContent='Payment confirmed'; title.textContent='Your AI Explorers library is ready.'; message.textContent="Your payment was successful. Open your private library to choose your PDFs.";
-              download.href=data.libraryUrl; actions.hidden=false; steps.hidden=false; retry.hidden=true;
+              label.textContent='Payment confirmed'; title.textContent='Your main workbook is downloading now.'; message.textContent="Check your browser's Downloads area. Your private library is also ready for any additional PDFs included with your purchase.";
+              download.href=data.libraryUrl; downloadAgain.href=data.downloadUrl || data.libraryUrl; actions.hidden=false; steps.hidden=false; retry.hidden=true; triggerDownload(data.downloadUrl);
               if (!purchased && window.gtag) { gtag('event','purchase_ai_explorers',{transaction_id:reference,value:(data.product?.amount || 0) / 100,currency:'NGN'}); purchased=true; }
               return;
             }
@@ -56,6 +65,11 @@
           } catch (_) { title.textContent='We could not confirm the payment just yet.'; message.textContent='Please try again in a moment. If you were charged, keep your receipt and contact support.'; }
           finally { retry.disabled=false; retry.textContent='Check payment status'; }
         }
+        share.addEventListener('click', async () => {
+          const text = 'A thoughtful, parent-guided AI workbook for children ages 9-11. Have a look at AI Explorers:';
+          if (navigator.share) { try { await navigator.share({title:'AI Explorers', text, url:pageUrl}); } catch (_) {} return; }
+          window.open('https://wa.me/?text=' + encodeURIComponent(text + ' ' + pageUrl), '_blank', 'noopener');
+        });
         retry.addEventListener('click',checkPayment); checkPayment();
       }());
     </script>
