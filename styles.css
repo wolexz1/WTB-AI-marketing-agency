@@ -230,7 +230,7 @@ body::before {
 }
 
 body.page-is-loading {
-  cursor: wait;
+  cursor: progress;
 }
 
 .page-loader {
@@ -252,7 +252,7 @@ body.page-is-loading {
 
 .page-loader.is-active {
   opacity: 1;
-  pointer-events: auto;
+  pointer-events: none;
 }
 
 .page-loader-inner {
@@ -320,6 +320,16 @@ body.page-is-loading {
   border-radius: inherit;
   background: linear-gradient(90deg, var(--blue), var(--gold));
   animation: loaderLine 1.15s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-loader,
+  .page-loader-word span,
+  .page-loader-inner::before,
+  .page-loader-line::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 @keyframes loaderSweep {

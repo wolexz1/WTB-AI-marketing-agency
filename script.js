@@ -64,37 +64,58 @@ setupCompactBriefServiceOptions();
 setupTestimonialSlider();
 
 const createPageLoader = () => {
-  const loaderText = "WOLEXZTHEBRAND";
-  const loader = document.createElement("div");
-  loader.className = "page-loader is-active";
-  loader.setAttribute("aria-hidden", "true");
-  loader.innerHTML = `
-    <div class="page-loader-inner">
-      <div class="page-loader-word">${loaderText
-        .split("")
-        .map((letter, index) => `<span style="--letter-index:${index}">${letter}</span>`)
-        .join("")}</div>
-      <div class="page-loader-line"></div>
-    </div>
-  `;
+  if (window.__wtbPageLoaderReady) return;
+  window.__wtbPageLoaderReady = true;
 
-  document.body.appendChild(loader);
-  document.body.classList.add("page-is-loading");
+  const loaderText = "WOLEXZTHEBRAND";
+  const loader = document.querySelector(".page-loader") || document.createElement("div");
+  loader.className = "page-loader";
+  loader.setAttribute("aria-hidden", "true");
+  if (!loader.parentElement) {
+    loader.innerHTML = `
+      <div class="page-loader-inner">
+        <div class="page-loader-word">${loaderText
+          .split("")
+          .map((letter, index) => `<span style="--letter-index:${index}">${letter}</span>`)
+          .join("")}</div>
+        <div class="page-loader-line"></div>
+      </div>
+    `;
+    document.body.appendChild(loader);
+  }
+
+  let removeTimer = null;
+  let failSafeTimer = null;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const show = () => {
+    window.clearTimeout(removeTimer);
+    window.clearTimeout(failSafeTimer);
     document.body.classList.add("page-is-loading");
     loader.classList.add("is-active");
+    // A navigation transition must never become a stuck screen.
+    failSafeTimer = window.setTimeout(hide, 1100);
   };
 
   const hide = () => {
-    window.setTimeout(() => {
-      loader.classList.remove("is-active");
-      document.body.classList.remove("page-is-loading");
-    }, 420);
+    window.clearTimeout(failSafeTimer);
+    loader.classList.remove("is-active");
+    document.body.classList.remove("page-is-loading");
+    window.clearTimeout(removeTimer);
+    removeTimer = window.setTimeout(() => {
+      if (!loader.classList.contains("is-active")) loader.remove();
+    }, reduceMotion ? 0 : 280);
   };
 
-  window.addEventListener("load", hide, { once: true });
+  // The page is usable as soon as the DOM is parsed. Do not wait for images,
+  // analytics, video, or third-party checkout scripts.
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => window.setTimeout(hide, reduceMotion ? 0 : 120), { once: true });
+  } else {
+    window.setTimeout(hide, reduceMotion ? 0 : 80);
+  }
   window.addEventListener("pageshow", hide);
+  window.addEventListener("pagehide", hide);
 
   document.addEventListener(
     "click",

@@ -13,18 +13,17 @@ const PRODUCTS = {
   },
   complete: {
     id: "complete",
-    name: "AI Explorers Complete Family Library",
+    name: "AI Explorers Family Library",
     amount: 750000,
     libraryLabel: "Your AI Explorers Family Library",
-    assets: ["workbook", "parent-companion", "low-ink", "print"],
+    assets: ["workbook", "low-ink", "parent-companion"],
   },
 };
 
 const ASSETS = {
-  workbook: { key: "ai-explorers/AI-Explorers-Workbook.pdf", filename: "AI-Explorers-Workbook.pdf", title: "AI Explorers Workbook", description: "The full-colour, fillable 37-page workbook.", kind: "Core workbook" },
-  "parent-companion": { key: "ai-explorers/AI-Explorers-Parent-Companion.pdf", filename: "AI-Explorers-Parent-Companion.pdf", title: "Parent Companion", description: "A practical guide for helping your child get started.", kind: "Parent guide" },
-  "low-ink": { key: "ai-explorers/AI-Explorers-Workbook-Low-Ink.pdf", filename: "AI-Explorers-Workbook-Low-Ink.pdf", title: "Low-Ink Workbook", description: "A printer-friendly edition for everyday use.", kind: "Low-ink edition" },
-  print: { key: "ai-explorers/AI-Explorers-Workbook-Print.pdf", filename: "AI-Explorers-Workbook-Print.pdf", title: "Print Workbook", description: "A print-ready version for offline family sessions.", kind: "Print edition" },
+  workbook: { key: "ai-explorers/AI-Explorers-Interactive-Workbook.pdf", filename: "AI-Explorers-Interactive-Workbook.pdf", title: "AI Explorers Interactive Workbook", description: "The full-colour, fillable 37-page interactive workbook.", kind: "Interactive workbook" },
+  "low-ink": { key: "ai-explorers/AI-Explorers-Low-Ink-Workbook.pdf", filename: "AI-Explorers-Low-Ink-Workbook.pdf", title: "AI Explorers Low-Ink Workbook", description: "A 37-page printer-friendly edition for easier home printing.", kind: "Low-ink workbook" },
+  "parent-companion": { key: "ai-explorers/AI-Explorers-Parent-Companion.pdf", filename: "AI-Explorers-Parent-Companion.pdf", title: "AI Explorers Parent Companion", description: "Quick-start guidance, discussion prompts and answer support for parents.", kind: "Parent companion" },
 };
 
 export async function onRequest({ request, env }) {
@@ -192,7 +191,7 @@ async function sendPurchaseEmail(env, order, product, libraryUrl) {
   const safeName = escapeHtml(order.firstName);
   const safeUrl = escapeHtml(libraryUrl);
   const isComplete = product.id === "complete";
-  const itemCopy = isComplete ? "Your private library contains the workbook, Parent Companion, low-ink edition and print edition. Open only what you need, on any phone, tablet or computer." : "Your private library contains your full-colour AI Explorers Workbook PDF.";
+  const itemCopy = isComplete ? "Your private library contains three separate PDFs: the 37-page interactive workbook, a low-ink workbook, and the Parent Companion. Open the format you need on a phone, tablet, laptop, or PDF app." : "Your private library contains your full-colour, fillable 37-page AI Explorers Interactive Workbook PDF.";
   const text = `Hello ${order.firstName},\n\nThank you for purchasing ${product.name}. Your payment has been confirmed.\n\nOpen your private library: ${libraryUrl}\n\n${itemCopy}\n\nThis access link is connected to your order, expires after a limited time, and should not be shared publicly. Need help? Contact ${SUPPORT_EMAIL}.`;
   const html = `<!doctype html><html><body style="margin:0;background:#eef4ff;font-family:Arial,Helvetica,sans-serif;color:#16233a"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="padding:28px 12px"><tr><td align="center"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;background:#ffffff;border:1px solid #d3dfef;border-radius:18px;overflow:hidden"><tr><td style="padding:28px;background:#071b46;color:#ffffff"><img src="https://wtbaimarketing.com/assets/ai-explorers/ai-explorers-cover.png" width="72" height="108" alt="AI Explorers cover" style="display:block;border-radius:6px"><h1 style="margin:18px 0 0;font-family:Georgia,serif;font-size:32px;line-height:1.05">Your AI Explorers library is ready</h1></td></tr><tr><td style="padding:30px"><p style="font-size:16px;line-height:1.7">Hello ${safeName},</p><p style="font-size:16px;line-height:1.7">Thank you for purchasing <strong>${escapeHtml(product.name)}</strong>. Your payment has been confirmed.</p><p style="font-size:16px;line-height:1.7">${escapeHtml(itemCopy)}</p><p style="margin:28px 0"><a href="${safeUrl}" style="display:inline-block;padding:15px 20px;border-radius:12px;background:#f5b942;color:#071b46;font-weight:800;text-decoration:none">Open your private library</a></p><p style="font-size:14px;line-height:1.6;color:#526076">This access link is connected to your order and expires after a limited time. Please do not share it publicly.</p><p style="font-size:14px;line-height:1.6;color:#526076">Need help? Contact <a href="mailto:${SUPPORT_EMAIL}">${SUPPORT_EMAIL}</a>.</p></td></tr></table></td></tr></table></body></html>`;
   const response = await fetch("https://api.resend.com/emails", { method: "POST", headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json" }, body: JSON.stringify({ from, to: order.email, reply_to: SUPPORT_EMAIL, subject: "Your AI Explorers library is ready", text, html }) });

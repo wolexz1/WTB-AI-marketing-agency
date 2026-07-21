@@ -48,7 +48,7 @@
         function triggerDownload(url) {
           if (!url || startedDownload) return;
           startedDownload = true;
-          const link = document.createElement('a'); link.href = url; link.download = 'AI-Explorers-Workbook.pdf'; link.hidden = true; document.body.appendChild(link); link.click(); link.remove();
+          const link = document.createElement('a'); link.href = url; link.download = 'AI-Explorers-Interactive-Workbook.pdf'; link.hidden = true; document.body.appendChild(link); link.click(); link.remove();
         }
         async function checkPayment() {
           if (!reference) { label.textContent='Order reference needed'; title.textContent='We could not find your payment reference.'; message.textContent='Return to AI Explorers and begin checkout again. If your payment was successful, email our support team with your receipt.'; retry.hidden=true; return; }

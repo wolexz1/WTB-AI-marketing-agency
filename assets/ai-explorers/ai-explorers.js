@@ -2,8 +2,9 @@
 (() => {
   const products = {
     workbook: { name: "AI Explorers Workbook", price: 4500, description: "One full-colour, fillable workbook PDF for your family." },
-    complete: { name: "AI Explorers Family Library", price: 7500, description: "Four separate private PDFs: the workbook, Parent Companion, low-ink edition and print edition." },
+    complete: { name: "AI Explorers Family Library", price: 7500, description: "Three separate private PDFs: the 37-page interactive workbook, low-ink workbook and Parent Companion." },
   };
+  const selectorDialog = document.querySelector("[data-ai-selector-dialog]");
   const dialog = document.querySelector("[data-ai-checkout-dialog]");
   const form = document.querySelector("[data-ai-checkout-form]");
   const status = document.querySelector(".ai-explorers-checkout-status");
@@ -43,6 +44,12 @@
     dialog?.querySelector("input")?.focus();
   };
 
+  const openPurchaseSelector = (location) => {
+    ctaLocation = location || "page";
+    selectorDialog?.showModal?.();
+    selectorDialog?.querySelector("[data-ai-selector-product]")?.focus();
+  };
+
   const shareUrl = () => document.querySelector("link[rel='canonical']")?.href || `${window.location.origin}${window.location.pathname}`;
   const shareMessage = () => "A thoughtful, parent-guided AI workbook for children ages 9-11. Have a look at AI Explorers:";
   const encodedShare = () => encodeURIComponent(`${shareMessage()} ${shareUrl()}`);
@@ -73,7 +80,12 @@
 
   document.querySelectorAll("[data-ai-buy]").forEach((button) => button.addEventListener("click", () => {
     if (button.tagName === "A") return;
-    openCheckout(button.dataset.aiProduct || "complete", button.dataset.ctaLocation);
+    if (button.dataset.aiProduct) openCheckout(button.dataset.aiProduct, button.dataset.ctaLocation);
+    else openPurchaseSelector(button.dataset.ctaLocation);
+  }));
+  document.querySelectorAll("[data-ai-selector-product]").forEach((button) => button.addEventListener("click", () => {
+    selectorDialog?.close();
+    openCheckout(button.dataset.aiSelectorProduct, ctaLocation || button.dataset.ctaLocation);
   }));
   document.querySelectorAll("[data-ai-preview-cta]").forEach((link) => link.addEventListener("click", () => window.gtag?.("event", "view_product_preview")));
   document.querySelectorAll("[data-ai-classroom]").forEach((link) => link.addEventListener("click", () => window.gtag?.("event", "click_classroom_licence")));

@@ -190,6 +190,15 @@
 .ai-explorers-reassurance .ai-explorers-card-grid h3 { margin: 0 0 11px; }
 .ai-explorers-evidence { max-width: 800px; margin: 28px auto 0; text-align: center; }
 
+.ai-explorers-purchase-prompt { padding: 28px 0; background: #061635; color: #fff; }
+.ai-explorers-purchase-prompt .section-shell { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.ai-explorers-purchase-prompt p { margin: 0; font-size: 16px; font-weight: 800; line-height: 1.45; }
+.ai-explorers-purchase-prompt > .section-shell > div { display: flex; flex-wrap: wrap; gap: 10px; }
+.ai-explorers-purchase-prompt .button { min-height: 44px; padding: 0 16px; font-size: 13px; }
+.ai-explorers-purchase-prompt .button-ghost { border-color: rgba(255,255,255,.32); color: #fff; }
+.ai-explorers-purchase-prompt-light { background: #eaf8f5; color: var(--aiex-navy); }
+.ai-explorers-purchase-prompt-light .button-ghost { border-color: #a7c1cf; color: var(--aiex-navy); }
+
 .ai-explorers-price { background: var(--aiex-navy); }
 .ai-explorers-pricing-heading { max-width: 760px; margin-bottom: 30px; }
 .ai-explorers-pricing-heading > p:last-child { color: rgba(255,255,255,.72); line-height: 1.65; }
@@ -267,12 +276,16 @@
 .ai-explorers-checkout-share { justify-self: start; padding: 0; border: 0; background: transparent; color: #1453cc; cursor: pointer; font: 800 13px/1.4 inherit; text-decoration: underline; text-underline-offset: 3px; }
 
 .ai-explorers-checkout-dialog,
+.ai-explorers-selector-dialog,
 .ai-explorers-lightbox { width: min(92vw, 520px); padding: 0; border: 1px solid #c6d8e6; border-radius: 19px; color: var(--aiex-text); box-shadow: 0 28px 90px rgba(0,0,0,.35); }
 .ai-explorers-checkout-dialog::backdrop,
+.ai-explorers-selector-dialog::backdrop,
 .ai-explorers-lightbox::backdrop { background: rgba(4,14,37,.76); }
-.ai-explorers-checkout-dialog > div { padding: 34px; background: #fff; }
+.ai-explorers-checkout-dialog > div,
+.ai-explorers-selector-dialog > div { padding: 34px; background: #fff; }
 .ai-explorers-checkout-dialog h2 { max-width: 14ch; margin-bottom: 12px; }
-.ai-explorers-checkout-dialog p { color: #526076; line-height: 1.6; }
+.ai-explorers-checkout-dialog p,
+.ai-explorers-selector-dialog p { color: #526076; line-height: 1.6; }
 .ai-explorers-dialog-close,
 .ai-explorers-lightbox form button { position: absolute; z-index: 2; top: 10px; right: 12px; width: 38px; height: 38px; padding: 0; border: 0; border-radius: 50%; background: #fff; color: var(--aiex-navy); cursor: pointer; font-size: 27px; line-height: 1; }
 .ai-explorers-checkout-dialog form[data-ai-checkout-form] { display: grid; gap: 16px; margin-top: 22px; }
@@ -281,6 +294,30 @@
 .ai-explorers-checkout-dialog input:focus { border-color: var(--aiex-blue); outline: 3px solid rgba(30,58,138,.15); }
 .ai-explorers-checkout-dialog small { color: #65748a; line-height: 1.45; }
 .ai-explorers-checkout-status { min-height: 22px; margin: 0 !important; font-size: 14px; font-weight: 700; }
+.ai-explorers-selector-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 22px; }
+.ai-explorers-selector-options article { display: grid; gap: 10px; padding: 18px; border: 1px solid #d4e0ee; border-radius: 14px; background: #f8fbff; }
+.ai-explorers-selector-options article:last-child { border-color: rgba(245,185,66,.9); background: #fffaf0; }
+.ai-explorers-selector-options span { color: var(--aiex-blue); font-size: 12px; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; }
+.ai-explorers-selector-options strong { color: var(--aiex-navy); font: 700 30px/1 Georgia, "Times New Roman", serif; }
+.ai-explorers-selector-options p { margin: 0; font-size: 14px; }
+.ai-explorers-selector-options .button { width: 100%; justify-content: center; margin-top: 4px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .ai-explorers-hero-visual { animation: aiExplorerFloat 7s ease-in-out infinite; }
+  .ai-explorers-cover { animation: aiExplorerCoverFloat 6s ease-in-out infinite; }
+  .ai-explorers-hero-page-left { animation: aiExplorerPageLeft 7s ease-in-out infinite; }
+  .ai-explorers-hero-page-right { animation: aiExplorerPageRight 8s ease-in-out infinite; }
+  .ai-explorers-tier-card,
+  .ai-explorers-gallery button,
+  .ai-explorers-mission-list li { transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease; }
+  .ai-explorers-tier-card:hover,
+  .ai-explorers-gallery button:hover,
+  .ai-explorers-mission-list li:hover { transform: translateY(-4px); }
+}
+@keyframes aiExplorerFloat { 50% { transform: translateY(-8px); } }
+@keyframes aiExplorerCoverFloat { 50% { transform: translateY(-10px) rotate(-1deg); } }
+@keyframes aiExplorerPageLeft { 50% { transform: translate(-5px, 7px) rotate(-7deg); } }
+@keyframes aiExplorerPageRight { 50% { transform: translate(5px, -5px) rotate(8deg); } }
 .ai-explorers-library-items { display: grid; gap: 12px; margin-top: 26px; }
 .ai-explorers-library-items article { display: grid; grid-template-columns: 1fr auto; gap: 8px 20px; align-items: center; padding: 18px; border: 1px solid #d3dfef; border-radius: 14px; text-align: left; }
 .ai-explorers-library-items span { color: var(--aiex-blue); font-size: 12px; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; }
@@ -351,9 +388,15 @@
   .ai-explorers-kit-mockup { min-height: 390px; }
   .ai-explorers-price-card { gap: 22px; padding: 26px; }
   .ai-explorers-price-card .ai-explorers-checklist { grid-template-columns: 1fr; }
+  .ai-explorers-purchase-prompt { padding: 22px 0; }
+  .ai-explorers-purchase-prompt .section-shell { display: grid; gap: 13px; }
+  .ai-explorers-purchase-prompt > .section-shell > div { display: grid; grid-template-columns: 1fr; }
+  .ai-explorers-purchase-prompt .button { width: 100%; justify-content: center; }
   .ai-explorers-footer nav { grid-template-columns: 1fr; }
   .ai-explorers-sticky-buy:not([hidden]) { display: flex; }
-  .ai-explorers-checkout-dialog > div { padding: 29px 22px 24px; }
+  .ai-explorers-checkout-dialog > div,
+  .ai-explorers-selector-dialog > div { padding: 29px 22px 24px; }
+  .ai-explorers-selector-options { grid-template-columns: 1fr; }
   .ai-explorers-library-items article { grid-template-columns: 1fr; }
   .ai-explorers-library-items .button { grid-column: 1; grid-row: auto; justify-self: start; }
 }
