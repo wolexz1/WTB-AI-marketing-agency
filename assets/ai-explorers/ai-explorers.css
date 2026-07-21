@@ -110,7 +110,7 @@
 .ai-explorers-hero-purchase > p span,
 .ai-explorers-microcopy span { margin: 0 5px; color: var(--aiex-teal); }
 
-.ai-explorers-hero-visual { position: relative; min-height: 610px; display: grid; place-items: center; }
+.ai-explorers-hero-visual { position: relative; min-height: 610px; display: grid; place-items: center; overflow: clip; }
 .ai-explorers-cover { position: relative; z-index: 2; display: block; width: min(72%, 420px); height: auto; border-radius: 13px; box-shadow: 0 38px 86px rgba(0,0,0,.45); transform: rotate(2deg); }
 .ai-explorers-hero-page { position: absolute; z-index: 1; width: min(46%, 250px); height: auto; border-radius: 8px; box-shadow: 0 22px 50px rgba(0,0,0,.32); }
 .ai-explorers-hero-page-left { left: 3%; top: 18%; transform: rotate(-10deg); }
