@@ -87,8 +87,12 @@ async function verifyOrder(request, env) {
     reference,
     product: outcome.product,
     libraryUrl: outcome.libraryUrl,
-    // Start the core workbook immediately; the library still holds any extra editions.
-    downloadUrl: await createAssetUrl(reference, "workbook", request.url, env),
+    // Every paid edition starts from the confirmation page, without exposing
+    // the private bucket or making the buyer hunt through a library screen.
+    downloadUrls: await Promise.all(PRODUCTS[outcome.product.id].assets.map(async (assetId) => ({
+      id: assetId,
+      url: await createAssetUrl(reference, assetId, request.url, env),
+    }))),
   });
 }
 

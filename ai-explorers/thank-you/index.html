@@ -21,13 +21,12 @@
           <h1 id="paymentTitle">We are confirming your payment.</h1>
           <p id="paymentMessage">Please keep this page open for a moment while we securely confirm your order with Paystack.</p>
           <div id="paymentActions" class="ai-explorers-thank-you-actions" hidden>
-            <a class="button" id="downloadButton" href="#">Open your private library</a>
-            <a class="button button-ghost" id="downloadAgainButton" href="#">Download the main workbook again</a>
+            <button class="button" id="downloadAgainButton" type="button">Download your files again</button>
             <a class="ai-explorers-buy-another" href="../#pricing">Buy another copy</a>
           </div>
           <ol id="paymentSteps" hidden>
-            <li>Your main workbook is downloading automatically. Check your browser's Downloads area.</li>
-            <li>Your private library is ready for any additional editions included with your purchase.</li>
+            <li>Your files are downloading automatically. Check your browser's Downloads area or Files app.</li>
+            <li>If your device asks to allow multiple downloads, choose Allow so every included PDF can arrive.</li>
             <li>Start with the main Workbook, then explore together.</li>
           </ol>
           <button class="ai-explorers-thank-you-share" type="button" id="shareWithParent">Share AI Explorers with another parent</button>
@@ -41,14 +40,19 @@
         const reference = new URLSearchParams(window.location.search).get('reference');
         const title = document.getElementById('paymentTitle'); const message = document.getElementById('paymentMessage'); const label = document.getElementById('paymentLabel');
         const actions = document.getElementById('paymentActions'); const steps = document.getElementById('paymentSteps'); const retry = document.getElementById('paymentRetry');
-        const download = document.getElementById('downloadButton'); const downloadAgain = document.getElementById('downloadAgainButton'); const share = document.getElementById('shareWithParent');
+        const downloadAgain = document.getElementById('downloadAgainButton'); const share = document.getElementById('shareWithParent');
         let purchased = false;
-        let startedDownload = false;
+        let downloadUrls = [];
+        let startedDownloads = false;
         const pageUrl = 'https://wtbaimarketing.com/ai-explorers/';
-        function triggerDownload(url) {
-          if (!url || startedDownload) return;
-          startedDownload = true;
-          const link = document.createElement('a'); link.href = url; link.download = 'AI-Explorers-Interactive-Workbook.pdf'; link.hidden = true; document.body.appendChild(link); link.click(); link.remove();
+        function triggerDownloads(urls, force) {
+          if (!Array.isArray(urls) || !urls.length || (startedDownloads && !force)) return;
+          startedDownloads = true;
+          urls.forEach((item, index) => {
+            window.setTimeout(() => {
+              const link = document.createElement('a'); link.href = item.url; link.download = ''; link.hidden = true; document.body.appendChild(link); link.click(); link.remove();
+            }, index * 360);
+          });
         }
         async function checkPayment() {
           if (!reference) { label.textContent='Order reference needed'; title.textContent='We could not find your payment reference.'; message.textContent='Return to AI Explorers and begin checkout again. If your payment was successful, email our support team with your receipt.'; retry.hidden=true; return; }
@@ -56,9 +60,11 @@
           try {
             const response = await fetch('/api/ai-explorers/verify?reference=' + encodeURIComponent(reference), { cache:'no-store' });
             const data = await response.json();
-            if (data.verified && data.libraryUrl) {
-              label.textContent='Payment confirmed'; title.textContent='Your main workbook is downloading now.'; message.textContent="Check your browser's Downloads area. Your private library is also ready for any additional PDFs included with your purchase.";
-              download.href=data.libraryUrl; downloadAgain.href=data.downloadUrl || data.libraryUrl; actions.hidden=false; steps.hidden=false; retry.hidden=true; triggerDownload(data.downloadUrl);
+            if (data.verified && Array.isArray(data.downloadUrls) && data.downloadUrls.length) {
+              downloadUrls=data.downloadUrls;
+              const fileLabel = downloadUrls.length === 1 ? 'workbook' : 'three Family Library PDFs';
+              label.textContent='Payment confirmed'; title.textContent=`Your ${fileLabel} ${downloadUrls.length === 1 ? 'is' : 'are'} downloading now.`; message.textContent="Check your browser's Downloads area or Files app. If your device asks to allow multiple downloads, choose Allow so every included PDF can arrive.";
+              downloadAgain.textContent = downloadUrls.length === 1 ? 'Download the workbook again' : 'Download all three files again'; actions.hidden=false; steps.hidden=false; retry.hidden=true; triggerDownloads(downloadUrls);
               if (!purchased && window.gtag) { gtag('event','purchase_ai_explorers',{transaction_id:reference,value:(data.product?.amount || 0) / 100,currency:'NGN'}); purchased=true; }
               return;
             }
@@ -71,6 +77,7 @@
           if (navigator.share) { try { await navigator.share({title:'AI Explorers', text, url:pageUrl}); } catch (_) {} return; }
           window.open('https://wa.me/?text=' + encodeURIComponent(text + ' ' + pageUrl), '_blank', 'noopener');
         });
+        downloadAgain.addEventListener('click', () => triggerDownloads(downloadUrls, true));
         retry.addEventListener('click',checkPayment); checkPayment();
       }());
     </script>
