@@ -24,6 +24,7 @@
             <button class="button" id="downloadAgainButton" type="button">Download your files again</button>
             <a class="ai-explorers-buy-another" href="../#pricing">Buy another copy</a>
           </div>
+          <div id="paymentFiles" class="ai-explorers-delivery-files" aria-label="Your purchased files" hidden></div>
           <ol id="paymentSteps" hidden>
             <li>Your files are downloading automatically. Check your browser's Downloads area or Files app.</li>
             <li>If your device asks to allow multiple downloads, choose Allow so every included PDF can arrive.</li>
@@ -40,7 +41,7 @@
         const reference = new URLSearchParams(window.location.search).get('reference');
         const title = document.getElementById('paymentTitle'); const message = document.getElementById('paymentMessage'); const label = document.getElementById('paymentLabel');
         const actions = document.getElementById('paymentActions'); const steps = document.getElementById('paymentSteps'); const retry = document.getElementById('paymentRetry');
-        const downloadAgain = document.getElementById('downloadAgainButton'); const share = document.getElementById('shareWithParent');
+        const downloadAgain = document.getElementById('downloadAgainButton'); const files = document.getElementById('paymentFiles'); const share = document.getElementById('shareWithParent');
         let purchased = false;
         let downloadUrls = [];
         let startedDownloads = false;
@@ -54,6 +55,23 @@
             }, index * 360);
           });
         }
+        function renderFileLinks(urls) {
+          const names = {
+            workbook: 'AI Explorers Interactive Workbook',
+            'low-ink': 'AI Explorers Low-Ink Workbook',
+            'parent-companion': 'AI Explorers Parent Companion'
+          };
+          files.replaceChildren();
+          urls.forEach((item) => {
+            const link = document.createElement('a');
+            link.className = 'ai-explorers-delivery-file';
+            link.href = item.url;
+            link.download = '';
+            link.innerHTML = `<span>${names[item.id] || 'AI Explorers PDF'}</span><strong>Download PDF</strong>`;
+            files.appendChild(link);
+          });
+          files.hidden = false;
+        }
         async function checkPayment() {
           if (!reference) { label.textContent='Order reference needed'; title.textContent='We could not find your payment reference.'; message.textContent='Return to AI Explorers and begin checkout again. If your payment was successful, email our support team with your receipt.'; retry.hidden=true; return; }
           retry.disabled=true; retry.textContent='Checking payment...';
@@ -64,7 +82,7 @@
               downloadUrls=data.downloadUrls;
               const fileLabel = downloadUrls.length === 1 ? 'workbook' : 'three Family Library PDFs';
               label.textContent='Payment confirmed'; title.textContent=`Your ${fileLabel} ${downloadUrls.length === 1 ? 'is' : 'are'} downloading now.`; message.textContent="Check your browser's Downloads area or Files app. If your device asks to allow multiple downloads, choose Allow so every included PDF can arrive.";
-              downloadAgain.textContent = downloadUrls.length === 1 ? 'Download the workbook again' : 'Download all three files again'; actions.hidden=false; steps.hidden=false; retry.hidden=true; triggerDownloads(downloadUrls);
+              downloadAgain.textContent = downloadUrls.length === 1 ? 'Download the workbook again' : 'Try all three downloads again'; renderFileLinks(downloadUrls); actions.hidden=false; steps.hidden=false; retry.hidden=true; triggerDownloads(downloadUrls);
               if (!purchased && window.gtag) { gtag('event','purchase_ai_explorers',{transaction_id:reference,value:(data.product?.amount || 0) / 100,currency:'NGN'}); purchased=true; }
               return;
             }

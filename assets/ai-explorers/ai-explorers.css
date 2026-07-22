@@ -415,6 +415,11 @@
 .ai-explorers-thank-you-card p { max-width:620px; font-size:1.05rem; line-height:1.7; color:#d5e2f6; }
 .ai-explorers-thank-you-actions { display:flex; gap:12px; flex-wrap:wrap; margin:28px 0 22px; }
 .ai-explorers-buy-another { display:inline-flex; align-items:center; min-height:44px; color:#ffcb57; font-size:.94rem; font-weight:800; text-decoration:underline; text-underline-offset:4px; }
+.ai-explorers-delivery-files { display:grid; gap:10px; max-width:700px; margin:20px 0 28px; }
+.ai-explorers-delivery-file { display:flex; align-items:center; justify-content:space-between; gap:18px; min-height:62px; padding:14px 16px; border:1px solid rgba(255,255,255,.18); border-radius:12px; background:rgba(255,255,255,.07); color:#fff; text-decoration:none; }
+.ai-explorers-delivery-file:hover { border-color:#ffcb57; background:rgba(255,203,87,.1); }
+.ai-explorers-delivery-file span { font-weight:750; line-height:1.35; }
+.ai-explorers-delivery-file strong { flex:0 0 auto; color:#ffcb57; font-size:.86rem; }
 .ai-explorers-thank-you-share { margin-top: 12px; padding: 0; border: 0; background: transparent; color: #ffcb57; cursor: pointer; font: 800 .95rem/1.4 inherit; text-decoration: underline; text-underline-offset: 4px; }
 .ai-explorers-thank-you-card ol { margin:25px 0; padding-left:24px; color:#fff; line-height:1.85; }
 .ai-explorers-retry { appearance:none; border:0; background:transparent; color:#ffcb57; text-decoration:underline; font:inherit; font-weight:800; padding:8px 0; cursor:pointer; }
@@ -431,4 +436,4 @@
 .ai-explorers-policy-main li + li { margin-top:8px; }
 .ai-explorers-policy-main a { color:#1256dc; font-weight:800; }
 .ai-explorers-policy-main .ai-explorers-policy-note { padding:20px; border-left:4px solid #f5b942; border-radius:0 12px 12px 0; background:#fff7df; }
-@media (max-width:620px) { .ai-explorers-thank-you{padding:30px 0}.ai-explorers-thank-you-card{border-radius:16px}.ai-explorers-thank-you-actions .button{width:100%;justify-content:center}.ai-explorers-policy-main{padding:44px 0}.ai-explorers-policy-header{padding:20px 0}.ai-explorers-share-widget{left:12px;bottom:12px}.ai-explorers-share-toggle{min-height:40px;padding:0 13px;font-size:12px} }
+@media (max-width:620px) { .ai-explorers-thank-you{padding:30px 0}.ai-explorers-thank-you-card{border-radius:16px}.ai-explorers-thank-you-actions .button{width:100%;justify-content:center}.ai-explorers-delivery-file{align-items:flex-start;flex-direction:column;gap:6px}.ai-explorers-policy-main{padding:44px 0}.ai-explorers-policy-header{padding:20px 0}.ai-explorers-share-widget{left:12px;bottom:12px}.ai-explorers-share-toggle{min-height:40px;padding:0 13px;font-size:12px} }
