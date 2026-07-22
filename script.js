@@ -87,6 +87,8 @@ const createPageLoader = () => {
   let removeTimer = null;
   let failSafeTimer = null;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const continuedFromNavigation = sessionStorage.getItem("wtb-page-transition") === "1";
+  sessionStorage.removeItem("wtb-page-transition");
 
   const show = () => {
     window.clearTimeout(removeTimer);
@@ -107,15 +109,17 @@ const createPageLoader = () => {
     }, reduceMotion ? 0 : 280);
   };
 
-  // The page is usable as soon as the DOM is parsed. Do not wait for images,
-  // analytics, video, or third-party checkout scripts.
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", () => window.setTimeout(hide, reduceMotion ? 0 : 120), { once: true });
-  } else {
-    window.setTimeout(hide, reduceMotion ? 0 : 80);
+  // Give the transition a brief, intentional appearance without waiting for
+  // images, analytics, video, or third-party checkout scripts.
+  if (!continuedFromNavigation) {
+    show();
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", () => window.setTimeout(hide, reduceMotion ? 0 : 420), { once: true });
+    } else {
+      window.setTimeout(hide, reduceMotion ? 0 : 360);
+    }
   }
   window.addEventListener("pageshow", hide);
-  window.addEventListener("pagehide", hide);
 
   document.addEventListener(
     "click",
@@ -161,7 +165,10 @@ const createPageLoader = () => {
         return;
       }
 
+      event.preventDefault();
+      sessionStorage.setItem("wtb-page-transition", "1");
       show();
+      window.setTimeout(() => window.location.assign(nextUrl.href), reduceMotion ? 0 : 180);
     },
     true
   );
