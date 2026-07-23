@@ -1,4 +1,4 @@
-﻿# WTB AI Marketing Agency in Nigeria
+# WTB AI Marketing Agency in Nigeria
 
 WTB, also known as Wolexzthebrand, is an AI-powered marketing agency in Nigeria. We help businesses plan, create, launch, and optimize marketing faster by combining AI-assisted workflows, human marketing judgment, and a strong understanding of Nigerian and African buyers.
 
@@ -451,3 +451,10 @@ Related pages:
 - Classroom licensing: https://wtbaimarketing.com/ai-explorers/classroom-licensing/
 - Digital product policy: https://wtbaimarketing.com/ai-explorers/digital-product-policy/
 - Terms: https://wtbaimarketing.com/ai-explorers/terms/
+
+## AI Explorers Parent Guides
+
+- [How to Introduce AI to Children in Nigeria: A Parent Guide for 2026](https://wtbaimarketing.com/blog/how-to-introduce-ai-to-children-nigeria-2026/)
+- [Is ChatGPT Safe for Children? What Nigerian Parents Should Teach First](https://wtbaimarketing.com/blog/is-chatgpt-safe-for-children-nigeria-2026/)
+- [AI Activities for Kids at Home: 7 Safe Ways to Learn Together](https://wtbaimarketing.com/blog/ai-activities-for-kids-at-home-nigeria-2026/)
+- [AI Explorers Workbook](https://wtbaimarketing.com/ai-explorers/)

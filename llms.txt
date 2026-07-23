@@ -487,3 +487,10 @@ AI Explorers is a parent-guided AI literacy workbook for children aged 9-11. It 
 - Digital product policy: https://wtbaimarketing.com/ai-explorers/digital-product-policy/
 
 WTB AI Marketing created AI Explorers as an independent educational product. It is not an official OpenAI, UNICEF, UNESCO or Google product and no external endorsement is implied.
+
+## AI Explorers Parent Guides
+
+- How to introduce AI to children in Nigeria: https://wtbaimarketing.com/blog/how-to-introduce-ai-to-children-nigeria-2026/
+- Is ChatGPT safe for children? Nigerian parent guide: https://wtbaimarketing.com/blog/is-chatgpt-safe-for-children-nigeria-2026/
+- AI activities for kids at home in Nigeria: https://wtbaimarketing.com/blog/ai-activities-for-kids-at-home-nigeria-2026/
+- AI Explorers workbook for ages 9-11: https://wtbaimarketing.com/ai-explorers/
