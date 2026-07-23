@@ -121,7 +121,9 @@ async function downloadAsset(request, env) {
   const product = productForOrder(order);
   if (!order || order.status !== "verified" || !product?.assets.includes(payload.asset)) return json({ message: "This file is not available for this order." }, 403);
 
-  const limit = numberEnv(env.AI_EXPLORERS_DOWNLOAD_LIMIT, 3, 1, 20);
+  // One paid Family Library order may prompt a browser to retry downloads.
+  // Keep enough headroom for real delivery recovery without exposing the bucket.
+  const limit = numberEnv(env.AI_EXPLORERS_DOWNLOAD_LIMIT, 10, 3, 20);
   const downloads = order.downloads || {};
   if ((downloads[payload.asset] || 0) >= limit) return json({ message: "This file has reached its download limit. Please contact support for help." }, 403);
   const object = await env.AI_EXPLORERS_BUCKET.get(asset.key);

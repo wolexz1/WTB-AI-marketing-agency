@@ -46,14 +46,29 @@
         let downloadUrls = [];
         let startedDownloads = false;
         const pageUrl = 'https://wtbaimarketing.com/ai-explorers/';
-        function triggerDownloads(urls, force) {
+        function triggerDownloads(urls, force, userInitiated) {
           if (!Array.isArray(urls) || !urls.length || (startedDownloads && !force)) return;
           startedDownloads = true;
-          urls.forEach((item, index) => {
-            window.setTimeout(() => {
-              const link = document.createElement('a'); link.href = item.url; link.download = ''; link.hidden = true; document.body.appendChild(link); link.click(); link.remove();
-            }, index * 360);
-          });
+          const start = (item) => {
+            const link = document.createElement('a');
+            link.href = item.url;
+            link.download = '';
+            link.hidden = true;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+          };
+          if (userInitiated) {
+            // Keep every click inside the buyer's original action. Delayed clicks
+            // lose browser download permission and can cause the extra PDFs to be blocked.
+            urls.forEach(start);
+            return;
+          }
+          // Make a best-effort automatic start, then leave the clear user-click
+          // fallback below for browsers that protect against multiple downloads.
+          start(urls[0]);
+          if (urls.length > 1) window.setTimeout(() => start(urls[1]), 180);
+          if (urls.length > 2) window.setTimeout(() => start(urls[2]), 360);
         }
         function renderFileLinks(urls) {
           const names = {
@@ -81,8 +96,8 @@
             if (data.verified && Array.isArray(data.downloadUrls) && data.downloadUrls.length) {
               downloadUrls=data.downloadUrls;
               const fileLabel = downloadUrls.length === 1 ? 'workbook' : 'three Family Library PDFs';
-              label.textContent='Payment confirmed'; title.textContent=`Your ${fileLabel} ${downloadUrls.length === 1 ? 'is' : 'are'} downloading now.`; message.textContent="Check your browser's Downloads area or Files app. If your device asks to allow multiple downloads, choose Allow so every included PDF can arrive.";
-              downloadAgain.textContent = downloadUrls.length === 1 ? 'Download the workbook again' : 'Try all three downloads again'; renderFileLinks(downloadUrls); actions.hidden=false; steps.hidden=false; retry.hidden=true; triggerDownloads(downloadUrls);
+              label.textContent='Payment confirmed'; title.textContent=`Your ${fileLabel} ${downloadUrls.length === 1 ? 'is' : 'are'} downloading now.`; message.textContent="Check your browser's Downloads area or Files app. If your device blocks any file, use Download all files below once, or choose the missing PDF by name.";
+              downloadAgain.textContent = downloadUrls.length === 1 ? 'Download the workbook again' : 'Download all three files'; renderFileLinks(downloadUrls); actions.hidden=false; steps.hidden=false; retry.hidden=true; triggerDownloads(downloadUrls, false, false);
               if (!purchased && window.gtag) { gtag('event','purchase_ai_explorers',{transaction_id:reference,value:(data.product?.amount || 0) / 100,currency:'NGN'}); purchased=true; }
               return;
             }
@@ -95,7 +110,7 @@
           if (navigator.share) { try { await navigator.share({title:'AI Explorers', text, url:pageUrl}); } catch (_) {} return; }
           window.open('https://wa.me/?text=' + encodeURIComponent(text + ' ' + pageUrl), '_blank', 'noopener');
         });
-        downloadAgain.addEventListener('click', () => triggerDownloads(downloadUrls, true));
+        downloadAgain.addEventListener('click', () => triggerDownloads(downloadUrls, true, true));
         retry.addEventListener('click',checkPayment); checkPayment();
       }());
     </script>
