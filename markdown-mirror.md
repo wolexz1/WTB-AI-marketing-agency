@@ -123,6 +123,8 @@ BuyBetter is a skincare ecommerce brand. Jollof.com is an ecommerce brand. GCS E
 - Why Your Brand Is Getting Seen but Not Chosen in AI Search: https://wtbaimarketing.com/blog/why-your-brand-is-getting-seen-but-not-chosen-in-ai-search-2026/
 - Why More Creator Spend Is Not Giving Nigerian Brands More Sales: https://wtbaimarketing.com/blog/why-more-creator-spend-is-not-giving-nigerian-brands-more-sales-2026/
 - The First AI Agent Your Business Should Build in 2026: https://wtbaimarketing.com/blog/first-ai-agent-your-business-should-build-2026/
+- What Is an AI Agent for Business in Nigeria? 7 Practical Uses: https://wtbaimarketing.com/blog/what-is-an-ai-agent-for-business-nigeria-2026/
+- How to Market an App in Nigeria: Organic Videos, UGC and Paid Ads: https://wtbaimarketing.com/blog/how-to-market-an-app-in-nigeria-2026/
 
 ## Commercial Search Topics
 
