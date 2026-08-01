@@ -2443,6 +2443,206 @@ h3 {
   border-radius: 50%;
 }
 
+/* About page: the AI operating team is intentionally visual, but human-led. */
+.ai-team-section {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 12% 20%, rgba(21, 93, 252, 0.16), transparent 26%),
+    radial-gradient(circle at 92% 84%, rgba(245, 181, 0, 0.16), transparent 22%),
+    #10131a;
+  color: #fff;
+}
+
+.ai-team-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+}
+
+.ai-team-section .section-shell {
+  position: relative;
+  z-index: 1;
+}
+
+.ai-team-heading {
+  display: flex;
+  gap: 36px;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 34px;
+}
+
+.ai-team-heading h2 {
+  max-width: 15ch;
+  margin: 0;
+  color: #fff;
+}
+
+.ai-team-heading > p {
+  max-width: 48ch;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.ai-team-marquee {
+  overflow: hidden;
+  margin-inline: -8px;
+  padding: 8px;
+}
+
+.ai-team-track,
+.ai-team-roster {
+  display: flex;
+  gap: 12px;
+  width: max-content;
+}
+
+.ai-team-track {
+  will-change: transform;
+  animation: aiTeamMarquee 38s linear infinite;
+}
+
+.ai-team-marquee:hover .ai-team-track,
+.ai-team-marquee:focus-within .ai-team-track {
+  animation-play-state: paused;
+}
+
+@keyframes aiTeamMarquee {
+  to { transform: translateX(calc(-50% - 6px)); }
+}
+
+.ai-team-member {
+  flex: 0 0 clamp(184px, 17vw, 230px);
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.22);
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.ai-team-member:hover {
+  z-index: 2;
+  transform: translateY(-10px);
+  border-color: rgba(245, 181, 0, 0.8);
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.34);
+}
+
+.ai-team-portrait {
+  position: relative;
+  min-height: 0;
+  aspect-ratio: 1 / 2;
+  overflow: hidden;
+  background-image: url("assets/wtb-ai-team-suited-staff.png");
+  background-size: 500% 100%;
+  background-repeat: no-repeat;
+  background-position: 0% 50%;
+  isolation: isolate;
+}
+
+.ai-team-portrait::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 34%;
+  z-index: 1;
+  background: linear-gradient(0deg, rgba(10, 13, 18, 0.6), transparent);
+  pointer-events: none;
+}
+
+.claude-member .ai-team-portrait { background-position: 25% 50%; }
+.higgsfield-member .ai-team-portrait { background-position: 50% 50%; }
+.perplexity-member .ai-team-portrait { background-position: 75% 50%; }
+.google-member .ai-team-portrait { background-position: 100% 50%; }
+
+.ai-team-portrait > img,
+.team-wordmark {
+  position: absolute;
+  z-index: 2;
+  top: 15.5%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 34%;
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.65));
+}
+
+.ai-team-portrait > img {
+  object-fit: contain;
+}
+
+.higgsfield-member .ai-team-portrait > img {
+  top: 12.5%;
+  width: 40%;
+}
+
+.team-wordmark {
+  color: #fff;
+  font-size: clamp(0.45rem, 0.72vw, 0.67rem);
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 1;
+  text-align: center;
+}
+
+.team-openai {
+  font-family: Arial, sans-serif;
+  font-weight: 800;
+}
+
+.ai-team-member > div:last-child {
+  display: grid;
+  gap: 6px;
+  min-height: 164px;
+  padding: 18px;
+}
+
+.ai-team-member p {
+  margin: 0;
+  color: #f5b700;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.ai-team-member h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 1.18rem;
+  line-height: 1.04;
+}
+
+.ai-team-member span:not(.team-wordmark) {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.83rem;
+  line-height: 1.5;
+}
+
+.ai-team-human-note {
+  width: fit-content;
+  max-width: 66ch;
+  margin: 28px auto 0;
+  padding: 12px 16px;
+  border: 1px solid rgba(245, 181, 0, 0.38);
+  border-radius: 999px;
+  background: rgba(245, 181, 0, 0.1);
+  color: rgba(255, 255, 255, 0.82);
+  text-align: center;
+}
+
+.ai-team-human-note strong { color: #f5b700; }
+
 .image-split {
   display: grid;
   grid-template-columns: 1fr;
@@ -4369,6 +4569,16 @@ body.modal-open {
     grid-template-columns: 1fr;
   }
 
+  .ai-team-heading {
+    display: grid;
+    gap: 18px;
+    align-items: start;
+  }
+
+  .ai-team-roster {
+    grid-template-columns: none;
+  }
+
   .feature-image img {
     min-height: 0;
   }
@@ -4954,6 +5164,22 @@ body.modal-open {
   .tool-orbit {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     padding: 16px;
+  }
+
+  .ai-team-roster {
+    grid-template-columns: none;
+  }
+
+  .ai-team-portrait {
+    min-height: 340px;
+  }
+
+  .ai-team-member > div:last-child {
+    min-height: 0;
+  }
+
+  .ai-team-human-note {
+    border-radius: 10px;
   }
 
   .tool-orbit-center {
