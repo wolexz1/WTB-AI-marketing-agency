@@ -4,13 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex,follow">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com https://www.facebook.com; font-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.facebook.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
     <title>Payment confirmation | AI Explorers | WTB</title>
     <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../../styles.css">
     <link rel="stylesheet" href="../../assets/ai-explorers/ai-explorers.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5TNS1X06JM"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5TNS1X06JM');</script>
+      <script src="/assets/meta-pixel.js"></script>
   </head>
   <body class="ai-explorers-page ai-explorers-thank-you-page">
     <main class="ai-explorers-thank-you">
@@ -83,6 +84,7 @@
             link.href = item.url;
             link.download = '';
             link.innerHTML = `<span>${names[item.id] || 'AI Explorers PDF'}</span><strong>Download PDF</strong>`;
+            link.addEventListener('click', () => window.wtbMetaTrack?.('Download', { content_ids: [item.id], content_name: names[item.id] || 'AI Explorers PDF', content_type: 'digital_product' }));
             files.appendChild(link);
           });
           files.hidden = false;
@@ -99,6 +101,16 @@
               label.textContent='Payment confirmed'; title.textContent=`Your ${fileLabel} ${downloadUrls.length === 1 ? 'is' : 'are'} downloading now.`; message.textContent="Check your browser's Downloads area or Files app. If your device blocks any file, use Download all files below once, or choose the missing PDF by name.";
               downloadAgain.textContent = downloadUrls.length === 1 ? 'Download the workbook again' : 'Download all three files'; renderFileLinks(downloadUrls); actions.hidden=false; steps.hidden=false; retry.hidden=true; triggerDownloads(downloadUrls, false, false);
               if (!purchased && window.gtag) { gtag('event','purchase_ai_explorers',{transaction_id:reference,value:(data.product?.amount || 0) / 100,currency:'NGN'}); purchased=true; }
+              if (window.wtbMetaTrack) {
+                const productId = data.product?.id || 'complete';
+                window.wtbMetaTrack('Purchase', {
+                  content_ids: [productId],
+                  content_name: data.product?.name || 'AI Explorers',
+                  content_type: 'product',
+                  value: (data.product?.amount || 0) / 100,
+                  currency: 'NGN'
+                }, { eventID: reference });
+              }
               return;
             }
             label.textContent='Payment confirmation'; title.textContent='We are still confirming your payment.'; message.textContent=data.message || 'This can take a short moment. Use the button below to check again.';

@@ -27,6 +27,18 @@
 
   document.querySelector("#aiExplorersYear").textContent = String(new Date().getFullYear());
   const track = (event, product, extra = {}) => window.gtag?.("event", event, { product_name: products[product].name, value: products[product].price, currency: "NGN", ...extra });
+  const metaTrack = (event, product, extra = {}) => window.wtbMetaTrack?.(event, {
+    content_ids: [product],
+    content_name: products[product].name,
+    content_type: "product",
+    value: products[product].price,
+    currency: "NGN",
+    ...extra,
+  });
+
+  if (window.location.pathname.replace(/\/+$/, "") === "/ai-explorers") {
+    metaTrack("ViewContent", "complete", { content_category: "AI learning workbook" });
+  }
 
   const openCheckout = (product, location) => {
     selectedProduct = products[product] ? product : "complete";
@@ -116,6 +128,7 @@
       const PaystackCheckout = window.PaystackPop || window.Paystack;
       if (typeof PaystackCheckout !== "function") throw new Error("Secure checkout did not load. Please refresh the page and try again.");
       track("begin_checkout_ai_explorers", selectedProduct, { cta_location: ctaLocation, transaction_id: result.reference });
+      metaTrack("InitiateCheckout", selectedProduct, { event_id: result.reference, cta_location: ctaLocation });
       // Once Paystack is ready, remove our form so the payment window is the only focus.
       dialog?.close();
       form.reset();
