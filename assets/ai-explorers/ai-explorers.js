@@ -27,17 +27,26 @@
 
   document.querySelector("#aiExplorersYear").textContent = String(new Date().getFullYear());
   const track = (event, product, extra = {}) => window.gtag?.("event", event, { product_name: products[product].name, value: products[product].price, currency: "NGN", ...extra });
-  const metaTrack = (event, product, extra = {}) => window.wtbMetaTrack?.(event, {
-    content_ids: [product],
-    content_name: products[product].name,
-    content_type: "product",
-    value: products[product].price,
-    currency: "NGN",
-    ...extra,
-  });
+  const trackZarazEcommerce = (eventName, parameters, attempts = 0) => {
+    if (window.zaraz?.ecommerce) {
+      window.zaraz.ecommerce(eventName, parameters);
+      return;
+    }
+    if (attempts < 10) window.setTimeout(() => trackZarazEcommerce(eventName, parameters, attempts + 1), 100);
+  };
 
   if (window.location.pathname.replace(/\/+$/, "") === "/ai-explorers") {
-    metaTrack("ViewContent", "complete", { content_category: "AI learning workbook" });
+    trackZarazEcommerce("Product List Viewed", {
+      products: Object.entries(products).map(([id, product]) => ({
+        product_id: id,
+        name: product.name,
+        category: "AI learning workbook",
+        brand: "WTB AI Explorers",
+        price: product.price,
+        quantity: 1,
+      })),
+      currency: "NGN",
+    });
   }
 
   const openCheckout = (product, location) => {
@@ -128,7 +137,20 @@
       const PaystackCheckout = window.PaystackPop || window.Paystack;
       if (typeof PaystackCheckout !== "function") throw new Error("Secure checkout did not load. Please refresh the page and try again.");
       track("begin_checkout_ai_explorers", selectedProduct, { cta_location: ctaLocation, transaction_id: result.reference });
-      metaTrack("InitiateCheckout", selectedProduct, { event_id: result.reference, cta_location: ctaLocation });
+      trackZarazEcommerce("Checkout Started", {
+        checkout_id: result.reference,
+        total: products[selectedProduct].price,
+        revenue: products[selectedProduct].price,
+        currency: "NGN",
+        products: [{
+          product_id: selectedProduct,
+          name: products[selectedProduct].name,
+          category: "AI learning workbook",
+          brand: "WTB AI Explorers",
+          price: products[selectedProduct].price,
+          quantity: 1,
+        }],
+      });
       // Once Paystack is ready, remove our form so the payment window is the only focus.
       dialog?.close();
       form.reset();
