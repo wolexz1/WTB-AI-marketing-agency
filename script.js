@@ -87,6 +87,8 @@ const createPageLoader = () => {
   let removeTimer = null;
   let failSafeTimer = null;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // Do not hold a fresh page behind the transition overlay.
+  const skipInitialLoader = true;
   const continuedFromNavigation = sessionStorage.getItem("wtb-page-transition") === "1";
   sessionStorage.removeItem("wtb-page-transition");
 
@@ -111,7 +113,7 @@ const createPageLoader = () => {
 
   // Give the transition a brief, intentional appearance without waiting for
   // images, analytics, video, or third-party checkout scripts.
-  if (!continuedFromNavigation) {
+  if (!continuedFromNavigation && !skipInitialLoader) {
     show();
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", () => window.setTimeout(hide, reduceMotion ? 0 : 420), { once: true });
@@ -190,6 +192,7 @@ const navToggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelector(".nav-links");
 const heroVideo = document.querySelector(".hero-video");
 const motionAllowed = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const renderContentImmediately = true;
 
 if (motionAllowed) {
   let cursorFrame = null;
@@ -234,7 +237,7 @@ if (heroVideo && motionAllowed) {
 }
 
 revealItems.forEach((item, index) => {
-  const delay = Math.min((index % 6) * 70, 350);
+  const delay = renderContentImmediately ? 0 : Math.min((index % 6) * 70, 350);
   item.style.setProperty("--reveal-delay", `${delay}ms`);
 });
 
@@ -265,20 +268,27 @@ const animateStat = (stat) => {
   requestAnimationFrame(tick);
 };
 
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        entry.target.querySelectorAll(".stat-number").forEach(animateStat);
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.18 }
-);
+if (renderContentImmediately) {
+  revealItems.forEach((item) => {
+    item.classList.add("is-visible");
+    item.querySelectorAll(".stat-number").forEach(animateStat);
+  });
+} else {
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          entry.target.querySelectorAll(".stat-number").forEach(animateStat);
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.18 }
+  );
 
-revealItems.forEach((item) => revealObserver.observe(item));
+  revealItems.forEach((item) => revealObserver.observe(item));
+}
 statNumbers.forEach((stat) => {
   if (!stat.closest(".reveal")) {
     animateStat(stat);
