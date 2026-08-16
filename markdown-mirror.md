@@ -447,7 +447,7 @@ Summary: Practical guide to fixing targeting, offers, landing pages, tracking, a
 
 URL: https://wtbaimarketing.com/ai-explorers/
 
-AI Explorers is a parent-guided AI literacy workbook for children aged 9-11. The digital Family Kit uses six practical missions to help families explore AI safely, question what they see, protect privacy, fact-check claims and create with judgement intact. It is not a child chatbot account, video course or an externally endorsed product.
+AI Explorers is a parent-guided AI literacy workbook for children aged 5-11. The digital Family Kit uses six practical missions to help families explore AI safely, question what they see, protect privacy, fact-check claims and create with judgement intact. It is not a child chatbot account, video course or an externally endorsed product.
 
 Related pages:
 - Classroom licensing: https://wtbaimarketing.com/ai-explorers/classroom-licensing/

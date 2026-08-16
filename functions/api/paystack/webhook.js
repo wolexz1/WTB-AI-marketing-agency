@@ -41,7 +41,7 @@ async function sendEmailIfNeeded(env, order, product, requestUrl) {
   const safeName = escapeHtml(order.firstName || "there");
   const safeUrl = escapeHtml(libraryUrl);
   const isComplete = order.productId === "complete";
-  const itemCopy = isComplete ? "Your private library contains the workbook, Parent Companion, low-ink edition and print edition. Open only what you need, on any phone, tablet or computer." : "Your private library contains your full-colour AI Explorers Workbook PDF.";
+  const itemCopy = isComplete ? "Your private library contains three separate PDFs: the interactive workbook, low-ink workbook and Parent Companion. Open only what you need, on any phone, tablet or computer." : "Your private library contains your full-colour AI Explorers Workbook PDF.";
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST", headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json" },
     body: JSON.stringify({

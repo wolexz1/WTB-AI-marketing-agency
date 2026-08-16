@@ -198,7 +198,7 @@ async function sendPurchaseEmail(env, order, product, libraryUrl) {
   const isComplete = product.id === "complete";
   const itemCopy = isComplete ? "Your Family Library includes three separate PDFs: the 37-page interactive workbook, a low-ink workbook, and the Parent Companion." : "Your full-colour, fillable 37-page AI Explorers Interactive Workbook is ready.";
   const productPageUrl = new URL("/ai-explorers/", libraryUrl).toString();
-  const shareMessage = `I found AI Explorers - a parent-guided AI workbook for children aged 9-11. It is a thoughtful way to help children use AI safely and wisely: ${productPageUrl}`;
+  const shareMessage = `I found AI Explorers - a parent-guided AI workbook for children aged 5-11. It is a thoughtful way to help children use AI safely and wisely: ${productPageUrl}`;
   const shareUrl = `https://wa.me/?text=${encodeURIComponent(shareMessage)}`;
   const safeShareUrl = escapeHtml(shareUrl);
   const text = `Hello ${order.firstName},\n\nThank you for purchasing ${product.name}. Your payment has been confirmed.\n\n${itemCopy}\n\nYour files should now be downloading. Please check your browser Downloads folder or Files app to confirm they arrived. If a file is missing, reply to this email and we will help.\n\nKnow another parent who would value a smarter, safer introduction to AI for their child? Share AI Explorers with them: ${productPageUrl}\n\nNeed help? Contact ${SUPPORT_EMAIL}.`;

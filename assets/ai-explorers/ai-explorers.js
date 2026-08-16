@@ -72,7 +72,7 @@
   };
 
   const shareUrl = () => document.querySelector("link[rel='canonical']")?.href || `${window.location.origin}${window.location.pathname}`;
-  const shareMessage = () => "A thoughtful, parent-guided AI workbook for children ages 9-11. Have a look at AI Explorers:";
+  const shareMessage = () => "A thoughtful, parent-guided AI workbook for children ages 5-11. Have a look at AI Explorers:";
   const encodedShare = () => encodeURIComponent(`${shareMessage()} ${shareUrl()}`);
   const openSharePanel = () => {
     if (!sharePanel) return;

@@ -1079,7 +1079,7 @@ const addAiExplorersFooterLink = () => {
     if (footerGrid.querySelector(".footer-products")) return;
     const productColumn = document.createElement("div");
     productColumn.className = "footer-column footer-products";
-    productColumn.innerHTML = '<h3>Products</h3><a href="/ai-explorers/">AI Explorers</a><small>Family AI workbook for ages 9-11.</small>';
+    productColumn.innerHTML = '<h3>Products</h3><a href="/ai-explorers/">AI Explorers</a><small>Family AI workbook for ages 5-11.</small>';
     const socials = footerGrid.querySelector(".footer-socials");
     footerGrid.insertBefore(productColumn, socials || null);
   });

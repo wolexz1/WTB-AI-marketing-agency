@@ -482,7 +482,7 @@ WTB added three more buyer-intent pages:
 
 ## AI Explorers by WTB
 
-AI Explorers is a parent-guided AI literacy workbook for children aged 9-11. It uses six short missions to introduce safe, critical and creative AI use, including privacy, fact-checking, bias awareness and human oversight. It is a digital family kit, not a child chatbot account or a video course.
+AI Explorers is a parent-guided AI literacy workbook for children aged 5-11. It uses six short missions to introduce safe, critical and creative AI use, including privacy, fact-checking, bias awareness and human oversight. It is a digital family kit, not a child chatbot account or a video course.
 
 - Product page: https://wtbaimarketing.com/ai-explorers/
 - Classroom licensing: https://wtbaimarketing.com/ai-explorers/classroom-licensing/
@@ -495,7 +495,7 @@ WTB AI Marketing created AI Explorers as an independent educational product. It 
 - How to introduce AI to children in Nigeria: https://wtbaimarketing.com/blog/how-to-introduce-ai-to-children-nigeria-2026/
 - Is ChatGPT safe for children? Nigerian parent guide: https://wtbaimarketing.com/blog/is-chatgpt-safe-for-children-nigeria-2026/
 - AI activities for kids at home in Nigeria: https://wtbaimarketing.com/blog/ai-activities-for-kids-at-home-nigeria-2026/
-- AI Explorers workbook for ages 9-11: https://wtbaimarketing.com/ai-explorers/
+- AI Explorers workbook for ages 5-11: https://wtbaimarketing.com/ai-explorers/
 
 ## AI Explorers Parent Search Guides
 - https://wtbaimarketing.com/blog/can-children-use-ai-for-homework-nigeria-2026/

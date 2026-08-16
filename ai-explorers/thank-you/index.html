@@ -136,7 +136,7 @@
           finally { retry.disabled=false; retry.textContent='Check payment status'; }
         }
         share.addEventListener('click', async () => {
-          const text = 'A thoughtful, parent-guided AI workbook for children ages 9-11. Have a look at AI Explorers:';
+          const text = 'A thoughtful, parent-guided AI workbook for children ages 5-11. Have a look at AI Explorers:';
           if (navigator.share) { try { await navigator.share({title:'AI Explorers', text, url:pageUrl}); } catch (_) {} return; }
           window.open('https://wa.me/?text=' + encodeURIComponent(text + ' ' + pageUrl), '_blank', 'noopener');
         });
