@@ -34,6 +34,13 @@
     }
     if (attempts < 10) window.setTimeout(() => trackZarazEcommerce(eventName, parameters, attempts + 1), 100);
   };
+  const trackZarazEvent = (eventName, parameters = {}, attempts = 0) => {
+    if (window.zaraz?.track) {
+      window.zaraz.track(eventName, parameters);
+      return;
+    }
+    if (attempts < 10) window.setTimeout(() => trackZarazEvent(eventName, parameters, attempts + 1), 100);
+  };
 
   if (window.location.pathname.replace(/\/+$/, "") === "/ai-explorers") {
     trackZarazEcommerce("Product List Viewed", {
@@ -61,12 +68,20 @@
     status.textContent = "";
     submit.disabled = false;
     track("select_ai_explorers_product", selectedProduct, { cta_location: ctaLocation });
+    trackZarazEvent("ai_explorers_checkout_form_opened", {
+      product_id: selectedProduct,
+      product_name: choice.name,
+      value: choice.price,
+      currency: "NGN",
+      cta_location: ctaLocation,
+    });
     dialog?.showModal?.();
     dialog?.querySelector("input")?.focus();
   };
 
   const openPurchaseSelector = (location) => {
     ctaLocation = location || "page";
+    trackZarazEvent("ai_explorers_package_selector_opened", { cta_location: ctaLocation });
     selectorDialog?.showModal?.();
     selectorDialog?.querySelector("[data-ai-selector-product]")?.focus();
   };
@@ -101,10 +116,18 @@
 
   document.querySelectorAll("[data-ai-buy]").forEach((button) => button.addEventListener("click", () => {
     if (button.tagName === "A") return;
+    trackZarazEvent("ai_explorers_buy_clicked", {
+      cta_location: button.dataset.ctaLocation || "page",
+      product_id: button.dataset.aiProduct || "choose_package",
+    });
     if (button.dataset.aiProduct) openCheckout(button.dataset.aiProduct, button.dataset.ctaLocation);
     else openPurchaseSelector(button.dataset.ctaLocation);
   }));
   document.querySelectorAll("[data-ai-selector-product]").forEach((button) => button.addEventListener("click", () => {
+    trackZarazEvent("ai_explorers_package_selected", {
+      product_id: button.dataset.aiSelectorProduct,
+      cta_location: ctaLocation || button.dataset.ctaLocation || "page",
+    });
     selectorDialog?.close();
     openCheckout(button.dataset.aiSelectorProduct, ctaLocation || button.dataset.ctaLocation);
   }));
@@ -128,6 +151,12 @@
     const email = String(form.elements.email.value || "").trim();
     if (!firstName || !email) return;
     submit.disabled = true; status.textContent = "Preparing secure checkout...";
+    trackZarazEvent("ai_explorers_checkout_submitted", {
+      product_id: selectedProduct,
+      value: products[selectedProduct].price,
+      currency: "NGN",
+      cta_location: ctaLocation,
+    });
     try {
       const response = await fetch("/api/ai-explorers/initialize", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify({ firstName, email, product: selectedProduct, ctaLocation }) });
       const result = await response.json();
@@ -137,6 +166,12 @@
       const PaystackCheckout = window.PaystackPop || window.Paystack;
       if (typeof PaystackCheckout !== "function") throw new Error("Secure checkout did not load. Please refresh the page and try again.");
       track("begin_checkout_ai_explorers", selectedProduct, { cta_location: ctaLocation, transaction_id: result.reference });
+      trackZarazEvent("ai_explorers_paystack_opened", {
+        product_id: selectedProduct,
+        value: products[selectedProduct].price,
+        currency: "NGN",
+        cta_location: ctaLocation,
+      });
       trackZarazEcommerce("Checkout Started", {
         checkout_id: result.reference,
         total: products[selectedProduct].price,
@@ -157,6 +192,24 @@
       submit.disabled = false;
       new PaystackCheckout().resumeTransaction(result.accessCode);
       pollForVerification(result.reference);
-    } catch (error) { status.textContent = error.message || "We could not start checkout. Please try again."; submit.disabled = false; }
+    } catch (error) {
+      trackZarazEvent("ai_explorers_checkout_error", { product_id: selectedProduct, cta_location: ctaLocation });
+      status.textContent = error.message || "We could not start checkout. Please try again.";
+      submit.disabled = false;
+    }
   });
+
+  const reachedDepths = new Set();
+  const reportScrollDepth = () => {
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    if (scrollable <= 0) return;
+    const depth = Math.round((window.scrollY / scrollable) * 100);
+    [25, 50, 75, 90].forEach((threshold) => {
+      if (depth >= threshold && !reachedDepths.has(threshold)) {
+        reachedDepths.add(threshold);
+        trackZarazEvent("ai_explorers_scroll_depth", { percent: threshold });
+      }
+    });
+  };
+  window.addEventListener("scroll", reportScrollDepth, { passive: true });
 })();
