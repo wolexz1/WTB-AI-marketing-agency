@@ -34,13 +34,21 @@ const { chromium } = require("playwright");
   await browser.close();
 
   const facebookRequests = metaRequests.filter((request) => /facebook|fbevents/i.test(request));
-  const passed = state.fbq === "function" && facebookRequests.some((request) => /facebook\.com\/tr|fbevents\.js/i.test(request));
+  const passed = state.fbq === "function"
+    && state.fbqCallMethod === "function"
+    && state.fbqQueueLength === 0
+    && metaResponses.some((response) => response.status === 200 && /fbevents\.js/i.test(response.url));
+  const summarizeUrl = (value) => {
+    const parsed = new URL(value);
+    const id = parsed.searchParams.get("id");
+    return `${parsed.origin}${parsed.pathname}${id ? `?id=${id}` : ""}`;
+  };
   console.log(JSON.stringify({
     passed,
     url,
     state,
-    facebookRequests,
-    facebookResponses: metaResponses,
+    facebookRequests: facebookRequests.map(summarizeUrl),
+    facebookResponses: metaResponses.map((response) => ({ ...response, url: summarizeUrl(response.url) })),
     zarazRequestCount: metaRequests.filter((request) => /zaraz/i.test(request)).length,
     cspMessages: consoleMessages.filter((message) => /content security policy/i.test(message)).slice(0, 5),
     metaMessages: consoleMessages.filter((message) => /facebook|fbevents/i.test(message)).slice(0, 5),
