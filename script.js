@@ -14,6 +14,15 @@
   }
 })();
 
+(() => {
+  if (document.querySelector("script[data-wtb-meta-pixel]")) return;
+  const script = document.createElement("script");
+  script.src = "/assets/meta-pixel.js?v=20260820-1";
+  script.async = true;
+  script.dataset.wtbMetaPixel = "true";
+  document.head.appendChild(script);
+})();
+
 const setupTestimonialSlider = () => {
   const track = document.querySelector(".testimonial-track");
 
