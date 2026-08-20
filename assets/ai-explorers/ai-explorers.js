@@ -221,4 +221,5 @@
     });
   };
   window.addEventListener("scroll", reportScrollDepth, { passive: true });
+  document.documentElement.dataset.aiExplorersReady = "true";
 })();

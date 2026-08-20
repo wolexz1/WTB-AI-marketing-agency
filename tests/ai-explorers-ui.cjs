@@ -19,6 +19,7 @@ const path = require("node:path");
     page.on("pageerror", (error) => errors.push(error.message));
     await page.goto(baseUrl, { waitUntil: "domcontentloaded" });
     await page.waitForSelector("h1");
+    await page.waitForFunction(() => document.documentElement.dataset.aiExplorersReady === "true");
 
     const pageText = await page.locator("body").innerText();
     const dimensions = await page.evaluate(() => ({
