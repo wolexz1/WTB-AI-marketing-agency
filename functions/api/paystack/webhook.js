@@ -39,7 +39,7 @@ async function sendEmailIfNeeded(env, order, product, requestUrl) {
   if (order.emailSentAt || !env.RESEND_API_KEY) return;
   const safeName = escapeHtml(order.firstName || "there");
   const isComplete = order.productId === "complete";
-  const itemCopy = isComplete ? "Your Family Library includes three separate PDFs: the 37-page interactive workbook, a low-ink workbook, and the Parent Companion." : "Your full-colour, fillable 37-page AI Explorers Interactive Workbook is ready.";
+  const itemCopy = isComplete ? "Your Family Library includes three separate PDFs: the interactive workbook, a low-ink workbook, and the Parent Companion." : "Your full-colour, fillable AI Explorers Interactive Workbook is ready.";
   const productPageUrl = new URL("/ai-explorers/", requestUrl).toString();
   const shareMessage = `I found AI Explorers - a parent-guided AI workbook for children aged 5-11. It is a thoughtful way to help children use AI safely and wisely: ${productPageUrl}`;
   const shareUrl = `https://wa.me/?text=${encodeURIComponent(shareMessage)}`;

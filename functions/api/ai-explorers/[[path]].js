@@ -21,8 +21,8 @@ const PRODUCTS = {
 };
 
 const ASSETS = {
-  workbook: { key: "ai-explorers/AI-Explorers-Interactive-Workbook.pdf", filename: "AI-Explorers-Interactive-Workbook.pdf", title: "AI Explorers Interactive Workbook", description: "The full-colour, fillable 37-page interactive workbook.", kind: "Interactive workbook" },
-  "low-ink": { key: "ai-explorers/AI-Explorers-Low-Ink-Workbook.pdf", filename: "AI-Explorers-Low-Ink-Workbook.pdf", title: "AI Explorers Low-Ink Workbook", description: "A 37-page printer-friendly edition for easier home printing.", kind: "Low-ink workbook" },
+  workbook: { key: "ai-explorers/AI-Explorers-Interactive-Workbook.pdf", filename: "AI-Explorers-Interactive-Workbook.pdf", title: "AI Explorers Interactive Workbook", description: "The full-colour, fillable interactive workbook.", kind: "Interactive workbook" },
+  "low-ink": { key: "ai-explorers/AI-Explorers-Low-Ink-Workbook.pdf", filename: "AI-Explorers-Low-Ink-Workbook.pdf", title: "AI Explorers Low-Ink Workbook", description: "A printer-friendly edition for easier home printing.", kind: "Low-ink workbook" },
   "parent-companion": { key: "ai-explorers/AI-Explorers-Parent-Companion.pdf", filename: "AI-Explorers-Parent-Companion.pdf", title: "AI Explorers Parent Companion", description: "Quick-start guidance, discussion prompts and answer support for parents.", kind: "Parent companion" },
 };
 
@@ -196,7 +196,7 @@ async function sendPurchaseEmail(env, order, product, libraryUrl) {
   const from = env.FROM_EMAIL || "WTB AI Marketing <onboarding@resend.dev>";
   const safeName = escapeHtml(order.firstName);
   const isComplete = product.id === "complete";
-  const itemCopy = isComplete ? "Your Family Library includes three separate PDFs: the 37-page interactive workbook, a low-ink workbook, and the Parent Companion." : "Your full-colour, fillable 37-page AI Explorers Interactive Workbook is ready.";
+  const itemCopy = isComplete ? "Your Family Library includes three separate PDFs: the interactive workbook, a low-ink workbook, and the Parent Companion." : "Your full-colour, fillable AI Explorers Interactive Workbook is ready.";
   const productPageUrl = new URL("/ai-explorers/", libraryUrl).toString();
   const shareMessage = `I found AI Explorers - a parent-guided AI workbook for children aged 5-11. It is a thoughtful way to help children use AI safely and wisely: ${productPageUrl}`;
   const shareUrl = `https://wa.me/?text=${encodeURIComponent(shareMessage)}`;

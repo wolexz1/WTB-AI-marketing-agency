@@ -2,7 +2,7 @@
 (() => {
   const products = {
     workbook: { name: "AI Explorers Workbook", price: 4500, description: "One full-colour, fillable workbook PDF for your family." },
-    complete: { name: "AI Explorers Family Library", price: 7500, description: "Three separate private PDFs: the 37-page interactive workbook, low-ink workbook and Parent Companion." },
+    complete: { name: "AI Explorers Family Library", price: 7500, description: "Three separate private PDFs: the interactive workbook, low-ink workbook and Parent Companion." },
   };
   const selectorDialog = document.querySelector("[data-ai-selector-dialog]");
   const dialog = document.querySelector("[data-ai-checkout-dialog]");
@@ -21,6 +21,7 @@
   const shareWidget = document.querySelector("[data-ai-share-widget]");
   const sharePanel = document.querySelector("[data-ai-share-panel]");
   const shareCopy = document.querySelector("[data-ai-share-copy]");
+  const lazyVideo = document.querySelector("[data-ai-lazy-video]");
   let selectedProduct = "complete";
   let ctaLocation = "page";
   let previewIndex = 0;
@@ -135,6 +136,14 @@
   document.querySelectorAll("[data-ai-classroom]").forEach((link) => link.addEventListener("click", () => window.gtag?.("event", "click_classroom_licence")));
 
   if (hero && stickyBuy && "IntersectionObserver" in window) new IntersectionObserver(([entry]) => { stickyBuy.hidden = entry.isIntersecting; }, { threshold: 0.2 }).observe(hero);
+  if (lazyVideo) {
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) lazyVideo.play().catch(() => {});
+        else lazyVideo.pause();
+      }, { rootMargin: "220px 0px", threshold: 0.08 }).observe(lazyVideo);
+    } else lazyVideo.play().catch(() => {});
+  }
   const renderPreview = (index) => { if (!gallery.length || !lightboxImage) return; previewIndex = (index + gallery.length) % gallery.length; const preview = gallery[previewIndex]; lightboxImage.src = preview.dataset.preview; lightboxImage.alt = preview.querySelector("img")?.alt || "AI Explorers workbook preview"; lightboxCaption.textContent = preview.dataset.caption || "AI Explorers workbook preview."; };
   gallery.forEach((item, index) => item.addEventListener("click", () => { renderPreview(index); lightbox?.showModal(); }));
   lightbox?.querySelector("[data-ai-preview-prev]")?.addEventListener("click", () => renderPreview(previewIndex - 1));
