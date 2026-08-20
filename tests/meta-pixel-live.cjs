@@ -27,6 +27,9 @@ const { chromium } = require("playwright");
     fbq: typeof window.fbq,
     fbqCallMethod: typeof window.fbq?.callMethod,
     fbqQueueLength: Array.isArray(window.fbq?.queue) ? window.fbq.queue.length : null,
+    fbqPixelIds: typeof window.fbq?.getState === "function"
+      ? window.fbq.getState().pixels.map((pixel) => pixel.id)
+      : [],
     zaraz: typeof window.zaraz,
     pixelScript: Boolean(document.querySelector("script[src*='connect.facebook.net']")),
     pixelImage: Boolean(document.querySelector("img[src*='facebook.com/tr']")),
@@ -37,6 +40,7 @@ const { chromium } = require("playwright");
   const passed = state.fbq === "function"
     && state.fbqCallMethod === "function"
     && state.fbqQueueLength === 0
+    && state.fbqPixelIds.includes("1101896092165449")
     && metaResponses.some((response) => response.status === 200 && /fbevents\.js/i.test(response.url));
   const summarizeUrl = (value) => {
     const parsed = new URL(value);
