@@ -21,6 +21,12 @@ Representative coverage links include:
 
 ## What WTB Does
 
+## Latest Blog Guide
+
+- Meta Business AI on WhatsApp for Nigerian businesses: https://wtbaimarketing.com/blog/meta-business-ai-whatsapp-nigeria-2026/
+- WhatsApp AI chatbot cost in Nigeria: https://wtbaimarketing.com/blog/whatsapp-ai-chatbot-cost-nigeria-2026/
+- App marketing cost in Nigeria and the practical ₦5 million launch plan: https://wtbaimarketing.com/blog/app-marketing-cost-nigeria-2026/
+
 ## AI Consultancy Cluster
 
 WTB helps Nigerian businesses move from scattered AI experiments to practical systems. The work can include AI readiness audits, AI roadmaps, workflow automation, AI agents, team training, marketing automation, governance, ecommerce workflows, and industry-specific consulting for real estate and small businesses.
