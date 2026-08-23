@@ -42,6 +42,14 @@ const path = require("node:path");
     });
     const imageReady = await transformationImage.evaluate((image) => image.complete && image.naturalWidth > 0);
 
+    await page.locator("[data-ai-selector-dialog]").evaluate((dialog) => dialog.showModal());
+    const selectorButtonsFit = await page.locator("[data-ai-selector-product]").evaluateAll((buttons) => buttons.every((button) =>
+      button.scrollWidth <= button.clientWidth + 1 &&
+      button.scrollHeight <= button.clientHeight + 1 &&
+      button.getBoundingClientRect().left >= button.closest("article").getBoundingClientRect().left
+    ));
+    await page.locator("[data-ai-selector-dialog] .ai-explorers-dialog-close").click();
+
     await page.locator("[data-ai-product='workbook']").first().click();
     await page.waitForSelector("[data-ai-checkout-dialog][open]");
     const workbookDialog = await page.locator("[data-ai-checkout-dialog]").innerText();
@@ -76,6 +84,7 @@ const path = require("node:path");
       responsiveCover: await page.locator(".ai-explorers-hero picture source").count() > 0,
       checkoutGuidanceVisible,
       checkoutValidation,
+      selectorButtonsFit,
       horizontalOverflow: dimensions.scrollWidth > dimensions.clientWidth + 2,
       errors,
     });
@@ -95,6 +104,7 @@ const path = require("node:path");
     result.responsiveCover &&
     result.checkoutGuidanceVisible &&
     result.checkoutValidation &&
+    result.selectorButtonsFit &&
     !result.horizontalOverflow &&
     result.errors.length === 0
   );

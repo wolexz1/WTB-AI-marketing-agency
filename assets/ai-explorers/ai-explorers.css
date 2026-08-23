@@ -329,13 +329,13 @@
 .ai-explorers-browser-guidance { border-color: #f1ce7d; background: #fff9eb; }
 .ai-explorers-browser-guidance[hidden] { display: none; }
 .ai-explorers-browser-guidance button { justify-self: start; margin-top: 5px; padding: 0; border: 0; background: transparent; color: #1453cc; cursor: pointer; font: 800 13px/1.4 inherit; text-decoration: underline; text-underline-offset: 3px; }
-.ai-explorers-selector-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 22px; }
-.ai-explorers-selector-options article { display: grid; gap: 10px; padding: 18px; border: 1px solid #d4e0ee; border-radius: 14px; background: #f8fbff; }
+.ai-explorers-selector-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 22px; }
+.ai-explorers-selector-options article { display: grid; min-width: 0; gap: 10px; padding: 18px; border: 1px solid #d4e0ee; border-radius: 14px; background: #f8fbff; }
 .ai-explorers-selector-options article:last-child { border-color: rgba(245,185,66,.9); background: #fffaf0; }
 .ai-explorers-selector-options span { color: var(--aiex-blue); font-size: 12px; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; }
 .ai-explorers-selector-options strong { color: var(--aiex-navy); font: 700 30px/1 Georgia, "Times New Roman", serif; }
 .ai-explorers-selector-options p { margin: 0; font-size: 14px; }
-.ai-explorers-selector-options .button { width: 100%; justify-content: center; margin-top: 4px; }
+.ai-explorers-selector-options .button { width: 100%; min-width: 0; min-height: 52px; justify-content: center; margin-top: 4px; padding: 11px 10px; font-size: 12px; line-height: 1.25; white-space: normal; overflow-wrap: anywhere; text-wrap: balance; }
 
 @media (prefers-reduced-motion: no-preference) {
   .ai-explorers-hero-visual { animation: aiExplorerFloat 7s ease-in-out infinite; }
