@@ -56,6 +56,15 @@ Verified 2026-08-23 through OpenSEO for the root domain:
 - Spam score is 13 overall; `leonlinks.org` is the only visible high-risk referring domain and is not a model for future outreach.
 - The approved pipeline prioritises editorially relevant Nigerian technology, business, and marketing publications rather than bulk placements.
 
+## Indexation gate
+
+Google Search Console URL Inspection verified 2026-08-23 for 10 priority pages:
+
+- All 10 returned `PASS: Submitted and indexed`.
+- All were `INDEXING_ALLOWED` and fetched successfully by Googlebot Smartphone.
+- Google-selected canonicals matched the declared canonicals on all 10 pages.
+- No priority page is currently blocked by robots, a canonical conflict, or a fetch failure.
+
 ## Reporting routine
 
 - Weekly: inspect deployment status, new links, referral sessions, and lead events.
