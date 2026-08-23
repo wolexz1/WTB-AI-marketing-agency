@@ -26,6 +26,17 @@ Window: 2026-07-24 to 2026-08-22, last 30 complete days.
 - Main WTB lead paths now emit `form_start`, `generate_lead`, `contact_click`, and `brief_start` events.
 - `generate_lead` still needs to be marked as a GA4 key event after the first fresh events appear.
 
+## Direct GA4 verification
+
+Verified 2026-08-23 through the read-only Analytics Data API using the configured service account and property `536828608`:
+
+- Homepage: 70 sessions, 20 engaged sessions, 28.6% engagement rate.
+- AI Explorers: 43 sessions, 20 engaged sessions, 46.5% engagement rate.
+- Contact: 7 sessions, 7 engaged sessions, 100% engagement rate.
+- About: 7 sessions, 5 engaged sessions, 71.4% engagement rate.
+
+OpenSEO's project integration still reports `ga4_not_connected`; this is separate from the verified direct API access above. Until the OpenSEO OAuth integration is completed, GA4 reporting should use the direct read-only property connection and must not be described as an OpenSEO-connected report.
+
 ## 30-day success checks
 
 Review Search Console and GA4 after 30 complete days:
