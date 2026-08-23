@@ -73,6 +73,15 @@ OpenSEO crawled 50/50 pages after the latest release on 2026-08-23. The follow-u
 - The live pages returned HTTP 200 after commit `19d6b77`.
 - The earlier metadata audit warnings were removed before this final crawl; the result is documented without treating the caveated empty issue response as standalone proof of zero issues.
 
+## Live rank-tracking setup
+
+Configured 2026-08-23 in OpenSEO:
+
+- Tracker: `ae21662d-8387-4a45-a24e-d62deec77581`
+- Market: Nigeria, English, mobile, top 40 results, manual schedule.
+- Keywords: 10 commercial queries covering AI marketing, digital marketing, AI consultancy, app marketing, and WhatsApp AI.
+- A live check is estimated at 90 credits / `$0.0832`; no live check has been started yet.
+
 ## Reporting routine
 
 - Weekly: inspect deployment status, new links, referral sessions, and lead events.
