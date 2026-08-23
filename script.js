@@ -192,6 +192,11 @@ if (document.body) {
 const formNote = document.querySelector("#formNote");
 const quickFormNote = document.querySelector("#quickFormNote");
 const websiteBriefNote = document.querySelector("#websiteBriefNote");
+const trackAnalyticsEvent = (eventName, parameters = {}) => {
+  if (typeof window.gtag === "function") {
+    window.gtag("event", eventName, parameters);
+  }
+};
 const modal = document.querySelector("#briefModal");
 const modalTriggers = Array.from(document.querySelectorAll(".brief-modal-trigger"));
 const modalClosers = Array.from(document.querySelectorAll("[data-modal-close]"));
@@ -570,13 +575,54 @@ const setupBlogSharing = () => {
 
 setupBlogSharing();
 
-document.querySelector("#briefForm")?.addEventListener("submit", () => {
-  formNote.textContent = "Sending your brief securely now.";
-});
+const setupConversionTracking = () => {
+  const forms = Array.from(document.querySelectorAll("form[action='/api/submit']"));
 
-document.querySelector("#quickBriefForm")?.addEventListener("submit", () => {
-  quickFormNote.textContent = "Sending your brief securely now.";
-});
+  forms.forEach((form) => {
+    let started = false;
+    form.addEventListener("focusin", () => {
+      if (started) return;
+      started = true;
+      trackAnalyticsEvent("form_start", { form_id: form.id || "wtb_brief_form" });
+    });
+    form.addEventListener("submit", () => {
+      trackAnalyticsEvent("generate_lead", {
+        form_id: form.id || "wtb_brief_form",
+        service: form.elements.service?.value || "not_selected",
+      });
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    const target = event.target.closest("a[href], button");
+    if (!target) return;
+
+    const href = target.getAttribute("href") || "";
+    if (target.matches(".brief-modal-trigger")) {
+      trackAnalyticsEvent("brief_start", { location: "modal_trigger" });
+    } else if (href.startsWith("https://wa.me/")) {
+      trackAnalyticsEvent("contact_click", { channel: "whatsapp" });
+    } else if (href.includes("calendly.com")) {
+      trackAnalyticsEvent("contact_click", { channel: "strategy_call" });
+    } else if (href.startsWith("tel:")) {
+      trackAnalyticsEvent("contact_click", { channel: "phone" });
+    }
+  });
+};
+
+setupConversionTracking();
+
+if (formNote) {
+  document.querySelector("#briefForm")?.addEventListener("submit", () => {
+    formNote.textContent = "Sending your brief securely now.";
+  });
+}
+
+if (quickFormNote) {
+  document.querySelector("#quickBriefForm")?.addEventListener("submit", () => {
+    quickFormNote.textContent = "Sending your brief securely now.";
+  });
+}
 
 const websiteBriefForm = document.querySelector("#websiteBriefForm");
 
