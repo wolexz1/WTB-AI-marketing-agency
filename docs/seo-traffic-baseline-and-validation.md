@@ -65,6 +65,14 @@ Google Search Console URL Inspection verified 2026-08-23 for 10 priority pages:
 - Google-selected canonicals matched the declared canonicals on all 10 pages.
 - No priority page is currently blocked by robots, a canonical conflict, or a fetch failure.
 
+## Fresh crawl validation
+
+OpenSEO crawled 50/50 pages after the latest release on 2026-08-23. The follow-up issue endpoint returned no issue rows but included a provider caveat, so the final structural check was also performed against production HTML:
+
+- Homepage, website development Nigeria, and AI marketing agency Lagos now descend `H1 → H2 → H3` without the previous initial skip.
+- The live pages returned HTTP 200 after commit `19d6b77`.
+- The earlier metadata audit warnings were removed before this final crawl; the result is documented without treating the caveated empty issue response as standalone proof of zero issues.
+
 ## Reporting routine
 
 - Weekly: inspect deployment status, new links, referral sessions, and lead events.
