@@ -8,9 +8,9 @@ Window: 2026-05-20 to 2026-08-20, web search, final data.
 
 | Page | Impressions | Clicks | Average position | Immediate action |
 | --- | ---: | ---: | ---: | --- |
-| `/ads-budget-calculator-nigeria/` | 205 | 4 | 6.2 | Improve snippet CTR and deepen links from ads guides |
+| `/ads-budget-calculator-nigeria/` | 205 | 4 | 6.2 | Snippet updated; monitor CTR and deepen links from ads guides |
 | `/blog/google-ads-vs-meta-ads-nigeria-2026/` | 74 | 5 | 7.3 | Maintain, add qualified internal links and CTA tracking |
-| `/blog/social-media-manager-cost-nigeria-2026/` | 86 | 2 | 9.8 | Improve click appeal and connect pricing to services |
+| `/blog/social-media-manager-cost-nigeria-2026/` | 86 | 2 | 9.8 | Snippet updated; monitor click appeal and connect pricing to services |
 | `/blog/why-nigerian-brands-are-moving-to-ambassador-marketing-2026/` | 94 | 0 | 7.0 | Refine search intent and monitor query quality |
 | `/blog/vibe-coded-app-needs-users-2026/` | 79 | 1 | 8.8 | Build discovery through editorial links and app-service links |
 | `/blog/whatsapp-ai-lead-generation-nigeria-2026/` | 71 | 2 | 7.3 | Expand non-branded query reach and track brief starts |
