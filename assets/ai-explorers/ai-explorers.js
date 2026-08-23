@@ -21,10 +21,13 @@
   const shareWidget = document.querySelector("[data-ai-share-widget]");
   const sharePanel = document.querySelector("[data-ai-share-panel]");
   const shareCopy = document.querySelector("[data-ai-share-copy]");
+  const browserGuidance = document.querySelector("[data-ai-browser-guidance]");
+  const copyPageLink = document.querySelector("[data-ai-copy-page-link]");
   const lazyVideo = document.querySelector("[data-ai-lazy-video]");
   let selectedProduct = "complete";
   let ctaLocation = "page";
   let previewIndex = 0;
+  const isInAppBrowser = /FB_IAB|FBAN|FBAV|Instagram|Line\/|wv\)|; wv|Twitter|TikTok|GSA\//i.test(navigator.userAgent);
 
   document.querySelector("#aiExplorersYear").textContent = String(new Date().getFullYear());
   const track = (event, product, extra = {}) => window.gtag?.("event", event, { product_name: products[product].name, value: products[product].price, currency: "NGN", ...extra });
@@ -67,6 +70,7 @@
     description.textContent = choice.description;
     submit.textContent = `Continue to Paystack - N${choice.price.toLocaleString("en-NG")}`;
     status.textContent = "";
+    if (browserGuidance) browserGuidance.hidden = !isInAppBrowser;
     submit.disabled = false;
     track("select_ai_explorers_product", selectedProduct, { cta_location: ctaLocation });
     trackZarazEvent("ai_explorers_checkout_form_opened", {
@@ -106,6 +110,15 @@
       shareCopy.textContent = "Link copied";
       window.setTimeout(() => { shareCopy.textContent = "Copy link"; }, 1800);
     } catch { window.prompt("Copy this page link", shareUrl()); }
+  });
+  copyPageLink?.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(shareUrl());
+      copyPageLink.textContent = "Page link copied";
+      window.setTimeout(() => { copyPageLink.textContent = "Copy page link"; }, 1800);
+    } catch {
+      window.prompt("Copy this page link", shareUrl());
+    }
   });
   document.querySelectorAll("[data-ai-native-share]").forEach((button) => button.addEventListener("click", async () => {
     if (navigator.share) {
@@ -156,9 +169,17 @@
   };
   form?.addEventListener("submit", async (event) => {
     event.preventDefault();
+    status.textContent = "";
+    if (!form.reportValidity()) {
+      status.textContent = "Please complete your name and a valid email address.";
+      return;
+    }
     const firstName = String(form.elements.firstName.value || "").trim();
-    const email = String(form.elements.email.value || "").trim();
-    if (!firstName || !email) return;
+    const email = String(form.elements.email.value || "").trim().toLowerCase();
+    if (!firstName || !email) {
+      status.textContent = "Please complete your name and email address.";
+      return;
+    }
     submit.disabled = true; status.textContent = "Preparing secure checkout...";
     trackZarazEvent("ai_explorers_checkout_submitted", {
       product_id: selectedProduct,
@@ -168,7 +189,7 @@
     });
     try {
       const response = await fetch("/api/ai-explorers/initialize", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify({ firstName, email, product: selectedProduct, ctaLocation }) });
-      const result = await response.json();
+      const result = await response.json().catch(() => ({}));
       if (!response.ok || !result.accessCode || !result.reference) throw new Error(result.message || "We could not prepare checkout. Please try again.");
       // Paystack's CDN currently exposes PaystackPop. Keep the fallback for
       // the documented V2 global so a future library update does not break checkout.

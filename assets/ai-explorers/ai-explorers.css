@@ -144,6 +144,8 @@
 .ai-explorers-problem-visual > img { display: block; width: 100%; min-height: 430px; margin: 0 auto; border-radius: 18px; object-fit: cover; object-position: center; box-shadow: 0 28px 60px rgba(7,27,70,.16); }
 .ai-explorers-concern-grid { position: absolute; inset: auto 0 2% 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .ai-explorers-concern-grid span { padding: 13px; border: 1px solid #e0d7bd; border-radius: 12px; background: rgba(255,255,255,.94); color: #314056; font-size: 13px; font-weight: 700; line-height: 1.35; box-shadow: 0 9px 22px rgba(7,27,70,.09); }
+.ai-explorers-project-grid span { position: relative; padding-left: 38px; color: var(--aiex-navy); }
+.ai-explorers-project-grid span::before { position: absolute; left: 13px; top: 50%; width: 12px; height: 12px; border: 3px solid var(--aiex-teal); border-radius: 50%; content: ""; transform: translateY(-50%); }
 .ai-explorers-emphasis { margin-top: 26px; padding-left: 18px; border-left: 4px solid var(--aiex-teal); color: var(--aiex-navy); font-weight: 800; }
 
 .ai-explorers-transformation { background: var(--aiex-pale); }
@@ -319,6 +321,14 @@
 .ai-explorers-checkout-dialog input:focus { border-color: var(--aiex-blue); outline: 3px solid rgba(30,58,138,.15); }
 .ai-explorers-checkout-dialog small { color: #65748a; line-height: 1.45; }
 .ai-explorers-checkout-status { min-height: 22px; margin: 0 !important; font-size: 14px; font-weight: 700; }
+.ai-explorers-checkout-status:not(:empty) { padding: 11px 13px; border-radius: 9px; background: #fff4d9; color: #664500 !important; }
+.ai-explorers-checkout-assurance,
+.ai-explorers-browser-guidance { display: grid; gap: 4px; padding: 13px 14px; border: 1px solid #d4e2ee; border-radius: 11px; background: #f7fbff; color: #526076; font-size: 13px; line-height: 1.45; }
+.ai-explorers-checkout-assurance b,
+.ai-explorers-browser-guidance b { color: var(--aiex-navy); }
+.ai-explorers-browser-guidance { border-color: #f1ce7d; background: #fff9eb; }
+.ai-explorers-browser-guidance[hidden] { display: none; }
+.ai-explorers-browser-guidance button { justify-self: start; margin-top: 5px; padding: 0; border: 0; background: transparent; color: #1453cc; cursor: pointer; font: 800 13px/1.4 inherit; text-decoration: underline; text-underline-offset: 3px; }
 .ai-explorers-selector-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 22px; }
 .ai-explorers-selector-options article { display: grid; gap: 10px; padding: 18px; border: 1px solid #d4e0ee; border-radius: 14px; background: #f8fbff; }
 .ai-explorers-selector-options article:last-child { border-color: rgba(245,185,66,.9); background: #fffaf0; }
@@ -386,7 +396,7 @@
   .ai-explorers-hero-grid,
   .ai-explorers-hero-grid > * { min-width:0; max-width:100%; }
   .ai-explorers-hero h1 { display:block; width:100%; max-width:100%; font-size:clamp(34px,10.5vw,42px) !important; line-height:1.04; white-space:normal; text-wrap:pretty; overflow-wrap:normal; }
-  .ai-explorers-page h2 { font-size: clamp(34px, 11vw, 48px); }
+  .ai-explorers-page h2 { font-size: clamp(31px, 9.4vw, 42px); line-height: 1.03; }
   .ai-explorers-lead,
   .ai-explorers-section p { font-size: 16px; }
   .ai-explorers-hero-actions { display: grid; }
@@ -406,14 +416,15 @@
   .ai-explorers-footer .section-shell { grid-template-columns: 1fr; }
   .ai-explorers-trust article { min-height: 102px; padding: 18px; border-right: 0; border-bottom: 1px solid #dbe7ee; }
   .ai-explorers-trust article:last-child { border-bottom: 0; }
-  .ai-explorers-section { padding: 68px 0; }
+  .ai-explorers-section { padding: 54px 0; }
   .ai-explorers-section-heading { margin-bottom: 32px; }
-  .ai-explorers-problem-visual { min-height: 570px; }
-  .ai-explorers-problem-visual > img { min-height: 360px; }
+  .ai-explorers-problem-visual { min-height: 500px; }
+  .ai-explorers-problem-visual > img { min-height: 320px; }
   .ai-explorers-concern-grid { grid-template-columns: 1fr; }
   .ai-explorers-card-grid article { min-height: auto; padding: 23px; }
   .ai-explorers-gallery { grid-template-columns: repeat(2,1fr); gap: 10px; }
-  .ai-explorers-mission-list li { min-height: 0; padding: 24px; }
+  .ai-explorers-mission-list li { min-height: 0; padding: 20px; }
+  .ai-explorers-mission-list h3 { margin-top: 12px; }
   .ai-explorers-kit-mockup { min-height: 390px; }
   .ai-explorers-price-card { gap: 22px; padding: 26px; }
   .ai-explorers-price-card .ai-explorers-checklist { grid-template-columns: 1fr; }
