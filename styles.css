@@ -6171,6 +6171,7 @@ body.modal-open {
   max-width: 68ch;
 }
 
+.feature-card h2,
 .feature-card h3,
 .process-card h3,
 .faq-card h3,
@@ -6232,6 +6233,7 @@ body.modal-open {
     line-height: 1.08;
   }
 
+  .feature-card h2,
   .feature-card h3,
   .process-card h3,
   .faq-card h3,
