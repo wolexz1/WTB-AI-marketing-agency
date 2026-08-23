@@ -107,7 +107,7 @@ Configured 2026-08-23 in OpenSEO:
 - Tracker: `ae21662d-8387-4a45-a24e-d62deec77581`
 - Market: Nigeria, English, mobile, top 40 results, manual schedule.
 - Keywords: 10 commercial queries covering AI marketing, digital marketing, AI consultancy, app marketing, and WhatsApp AI.
-- A live check is estimated at 90 credits / `$0.0832`; no live check has been started yet.
+- The optional live check was intentionally skipped; no rank-tracker credits were spent. Search Console remains the source of truth for ongoing ranking measurement.
 
 ## Reporting routine
 

@@ -9,7 +9,7 @@ This is an editorial outreach list, not a list of guaranteed placements. Every p
 | Prospect | Verified route | Best WTB asset | Outreach angle | Status |
 | --- | --- | --- | --- | --- |
 | TechCabal | [Pitch guide](https://techcabal.com/come-write-for-us/) | App growth and vibe-coded app distribution | 300-400 word reported feature on why building an app is now easier than earning distribution | Research-ready |
-| Techpoint Africa | [Startup pitch](https://techpoint.africa/about/) and [tip form](https://techpoint.africa/submit-a-tip/) | App marketing, AI agents, and Nigerian founder education | Original founder insight, data, or a practical launch story | Research-ready |
+| Techpoint Africa | [Startup pitch](https://techpoint.africa/about/) and [tip form](https://techpoint.africa/submit-a-tip/) | App marketing, AI agents, and Nigerian founder education | Original founder insight, data, or a practical launch story | Pitch sent 2026-08-23; follow up 2026-08-30 |
 | Techpoint Africa Brand Press | [Content policy](https://techpoint.africa/brand-press/content-policy/) | WTB research, product launch, or original Nigerian marketing data | Only use when there is a genuine news announcement or useful report | Research-ready |
 | Technext | [Reach out](https://technext24.com/reach-out/) and [guest contribution guidance](https://technext24.com/2022/02/09/want-to-share-your-thoughts-on-technext-here-is-what-you-must-do/) | WhatsApp AI, AI consultancy, and app distribution | Practical African technology opinion with evidence and a clear reader benefit | Research-ready |
 | Techawk | [About and partnerships](https://www.techawkng.com/about-us/) | Nigerian AI marketing, WhatsApp AI, and startup distribution | Useful explainer, expert commentary, or partnership conversation | Pitch sent 2026-08-23; follow up 2026-08-30 |
@@ -44,6 +44,7 @@ Use deep links where editorially natural. Do not force exact-match anchors.
 | --- | --- | --- | --- | --- | --- |
 | 2026-08-23 | Techawk | `techawk@gmail.com` listed on the publication's About page | WhatsApp AI guest contribution | `/blog/whatsapp-ai-lead-generation-nigeria-2026/` | Check for reply; follow up once on 2026-08-30 |
 | 2026-08-23 | Nairametrics | `outreach@nairametrics.com` listed on the publication's Contact page | Nigerian digital-marketing cost explainer | `/ads-budget-calculator-nigeria/` | Check for reply; follow up once on 2026-08-30 |
+| 2026-08-23 | Techpoint Africa | `news@techpoint.africa` listed on the publication's About page | Exclusive story suggestion on the distribution gap after AI-assisted building | `/blog/vibe-coded-app-needs-users-2026/` | Check for reply; follow up once on 2026-08-30 |
 
 ## Quality gate
 
