@@ -55,7 +55,7 @@
   Cache-Control: public, max-age=3600, must-revalidate
 
 /script.js
-  Cache-Control: public, max-age=3600, must-revalidate
+  Cache-Control: public, max-age=60, must-revalidate
 
 /assets/*
   Cache-Control: public, max-age=86400
