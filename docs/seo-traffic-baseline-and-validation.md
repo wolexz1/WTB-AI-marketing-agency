@@ -35,6 +35,7 @@ Verified 2026-08-23 through the read-only Analytics Data API using the configure
 - Contact: 7 sessions, 7 engaged sessions, 100% engagement rate.
 - About: 7 sessions, 5 engaged sessions, 71.4% engagement rate.
 - Lead-path event check: 41 `form_start` events from 17 users; no `generate_lead`, `contact_click`, or `brief_start` rows were returned in this window.
+- Conversion delivery was hardened in commit `dd6aa2c` with beacon transport and a data-layer fallback; the live `/script.js` now contains both safeguards.
 
 OpenSEO's project integration still reports `ga4_not_connected`; this is separate from the verified direct API access above. Until the OpenSEO OAuth integration is completed, GA4 reporting should use the direct read-only property connection and must not be described as an OpenSEO-connected report.
 
