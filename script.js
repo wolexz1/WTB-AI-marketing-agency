@@ -606,6 +606,10 @@ const setupConversionTracking = () => {
       trackAnalyticsEvent("contact_click", { channel: "strategy_call" });
     } else if (href.startsWith("tel:")) {
       trackAnalyticsEvent("contact_click", { channel: "phone" });
+    } else if (/\/contact\/?(?:[?#].*)?$/.test(href)) {
+      trackAnalyticsEvent("contact_click", { channel: "contact_form", source_path: window.location.pathname });
+    } else if (/\/website-brief\/?(?:[?#].*)?$/.test(href)) {
+      trackAnalyticsEvent("brief_start", { location: "website_brief_link", source_path: window.location.pathname });
     }
   });
 };
