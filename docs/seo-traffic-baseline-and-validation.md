@@ -6,6 +6,24 @@ Baseline captured: 2026-08-23
 
 Window: 2026-05-20 to 2026-08-20, web search, final data.
 
+### Fresh 28-day checkpoint
+
+Window: 2026-07-23 to 2026-08-20, web search, final data, retrieved 2026-08-23.
+
+The strongest current opportunities are the pages already appearing on page one or close to it:
+
+| Page | Impressions | Clicks | Average position | Readout |
+| --- | ---: | ---: | ---: | --- |
+| `/ads-budget-calculator-nigeria/` | 126 | 2 | 5.6 | Highest-volume page-one opportunity; improve snippet CTR and add qualified conversion paths |
+| `/ai-consulting-nigeria/` | 18 | 0 | 6.7 | Page-one visibility without clicks; test a sharper buyer-intent title/description before changing content |
+| `/app-marketing-agency-nigeria/` | 8 | 1 | 5.0 | Early commercial traction; keep linked to app acquisition and go-to-market pages |
+| `/blog/elevenlabs-whatsapp-ai-agent-nigeria-2026/` | 16 | 1 | 8.3 | Page-one blog opportunity; strengthen the business-use-case CTA |
+| `/blog/how-to-introduce-ai-to-children-nigeria-2026/` | 12 | 1 | 9.4 | Near-top-10 informational opportunity; improve scanability and parent-focused internal links |
+| `/go-to-market-strategy-nigeria/` | 8 | 1 | 6.5 | Commercial page-one opportunity; connect the service proof more directly to the brief path |
+| `/startup-marketing-agency-nigeria/` | 9 | 1 | 13.2 | Near-page-one opportunity; build one or two relevant editorial links and improve above-fold proof |
+
+Query-level signals include `ai marketing agency` at position 11.1, `b2b saas marketing agency nigeria` at position 2.4, `best seo expert in lagos` at position 17.5, and `affordable digital marketing agency abuja` at position 83.6. These are directional Search Console signals, not keyword-volume estimates; the live rank tracker is still awaiting approval for its one-time paid check.
+
 | Page | Impressions | Clicks | Average position | Immediate action |
 | --- | ---: | ---: | ---: | --- |
 | `/ads-budget-calculator-nigeria/` | 205 | 4 | 6.2 | Snippet updated; monitor CTR and deepen links from ads guides |
