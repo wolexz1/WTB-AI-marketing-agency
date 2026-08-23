@@ -47,6 +47,15 @@ Review Search Console and GA4 after 30 complete days:
 4. Outreach produces relevant referring domains and referral sessions, not only raw link counts.
 5. No new broken links, canonical conflicts, structured-data errors, or deployment drift appear.
 
+## Backlink baseline
+
+Verified 2026-08-23 through OpenSEO for the root domain:
+
+- 46 backlinks from 11 referring domains and 23 referring pages.
+- 0 broken backlinks; 1 broken page remains to investigate separately.
+- Spam score is 13 overall; `leonlinks.org` is the only visible high-risk referring domain and is not a model for future outreach.
+- The approved pipeline prioritises editorially relevant Nigerian technology, business, and marketing publications rather than bulk placements.
+
 ## Reporting routine
 
 - Weekly: inspect deployment status, new links, referral sessions, and lead events.
