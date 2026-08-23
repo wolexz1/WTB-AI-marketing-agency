@@ -193,9 +193,13 @@ const formNote = document.querySelector("#formNote");
 const quickFormNote = document.querySelector("#quickFormNote");
 const websiteBriefNote = document.querySelector("#websiteBriefNote");
 const trackAnalyticsEvent = (eventName, parameters = {}) => {
+  const eventParameters = { ...parameters, transport_type: "beacon" };
   if (typeof window.gtag === "function") {
-    window.gtag("event", eventName, parameters);
+    window.gtag("event", eventName, eventParameters);
+    return;
   }
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push(["event", eventName, eventParameters]);
 };
 const modal = document.querySelector("#briefModal");
 const modalTriggers = Array.from(document.querySelectorAll(".brief-modal-trigger"));
