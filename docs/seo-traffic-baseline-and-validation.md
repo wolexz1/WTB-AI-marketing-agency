@@ -24,6 +24,13 @@ The strongest current opportunities are the pages already appearing on page one 
 
 Query-level signals include `ai marketing agency` at position 11.1, `b2b saas marketing agency nigeria` at position 2.4, `best seo expert in lagos` at position 17.5, and `affordable digital marketing agency abuja` at position 83.6. These are directional Search Console signals, not keyword-volume estimates; the live rank tracker is still awaiting approval for its one-time paid check.
 
+### Query-to-page interpretation
+
+- The app-marketing page is matching four closely related commercial searches (`app marketing agency`, `app marketing company`, `app marketing firm`, and `app promotion agency`), confirming that the page is reaching the intended buyer language.
+- The startup page is strongest for the spaced variant `start up marketing agency` at position 3.5, while the exact `startup marketing agency` variant is nearer position 14.2; retain both natural variants in headings and copy rather than forcing repetition.
+- The ads calculator is receiving a page-two click opportunity from the `5k naira` query at position 2, so the calculator should keep its practical budget examples visible without changing the page to target an unrelated term.
+- The ElevenLabs WhatsApp page currently shows only branded query variants in this 28-day slice; its next test should be non-branded WhatsApp AI and voice-agent language supported by the article, not more brand repetition.
+
 | Page | Impressions | Clicks | Average position | Immediate action |
 | --- | ---: | ---: | ---: | --- |
 | `/ads-budget-calculator-nigeria/` | 205 | 4 | 6.2 | Snippet updated; monitor CTR and deepen links from ads guides |
