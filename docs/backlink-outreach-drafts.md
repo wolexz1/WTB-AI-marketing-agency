@@ -67,3 +67,86 @@ Please let me know if this fits your small-business or marketing coverage.
 
 Regards,
 Wole
+
+## Tekedia — AI-built business distribution
+
+Subject: Article pitch: What Nigerian businesses must fix after building with AI
+
+Hi Tekedia team,
+
+I would like to pitch a focused, unpublished article on the gap between building with AI and getting a business system to work in the real market.
+
+The article would explain why a fast-built website, app, or internal AI workflow still needs positioning, distribution, customer research, onboarding, and measurement. It would give Nigerian operators a practical sequence for deciding what to automate first, what to keep human, and how to test demand before spending heavily.
+
+The piece would be educational, concise, and written for African business readers rather than as an agency advertisement. I can include original observations from WTB's work on AI marketing, app distribution, and customer acquisition.
+
+Would this fit Tekedia's technology, business, or startup coverage? I can send a short outline first and keep the article exclusive if preferred.
+
+Best,
+Wole
+
+## IT News Africa — AI agents for business operations
+
+Subject: Expert contribution: Where AI agents actually fit in African business operations
+
+Hi IT News Africa editorial team,
+
+I would like to contribute a practical, non-promotional explainer on where AI agents can create measurable value for African businesses—and where they should not be used.
+
+The article would cover customer-service triage, lead qualification, appointment routing, internal knowledge access, and follow-up. It would also address the implementation mistake many businesses make: choosing a tool before mapping the process, data, handoffs, permissions, and success metric.
+
+WTB can provide a Nigeria-first operator perspective while keeping the article relevant across Africa. The goal is to help business and technology leaders distinguish a useful agent from a flashy chatbot.
+
+Would you be open to reviewing a 300-word outline or expert commentary?
+
+Regards,
+Wole
+
+## Disrupt Africa — app distribution after the build
+
+Subject: Founder story idea: The hardest part of an AI-built app is still distribution
+
+Hi Gabriella and Tom,
+
+I would like to suggest a founder-focused story about what happens after an app is built with AI or no-code tools.
+
+The central point is that shipping is becoming easier, but earning repeated usage still depends on a clear problem, useful onboarding, value-led content, user-generated proof, app-store conversion, and disciplined paid testing. The story would use Nigerian-market realities to show how founders can validate distribution without burning a large budget immediately.
+
+It would be an educational story, not a request for a promotional agency profile. WTB can contribute practical observations and a simple launch checklist for African founders.
+
+Would this fit your startup or founder coverage? I can send a short outline and proposed sources.
+
+Best,
+Wole
+
+## NaijaTechGuide — app marketing cost and channel guide
+
+Subject: Practical guide idea: How much should a Nigerian app budget for marketing?
+
+Hi Paschal,
+
+I would like to propose a practical technology guide for Nigerian app founders who have built a product but are unsure what a sensible first marketing budget should cover.
+
+The article would separate creative production, organic testing, UGC, Meta, TikTok, Google, app-store conversion, analytics, and iteration. It would give readers a starting framework rather than pretend there is one universal price. The guide can also explain how to identify a winning message before scaling spend.
+
+The piece would be useful and transparent, with no forced agency promotion. If a commercial placement is required, please share the current terms separately so we can judge the fit and label it correctly.
+
+Would this be suitable for your software, mobile-app, or online-services audience?
+
+Regards,
+Wole
+
+## BusinessDay — measurable digital-growth budgets
+
+Subject: Data-led explainer idea: What a Nigerian business is really paying for in digital growth
+
+Hi BusinessDay team,
+
+I would like to suggest a business explainer on how Nigerian companies should think about digital-growth budgets in 2026.
+
+Rather than promote one agency or quote a vague monthly retainer, the piece would break the budget into strategy, creative, media, landing-page conversion, analytics, experimentation, and follow-up. It would help business owners understand why two agencies can quote very different figures—and what questions reveal whether a plan is built to produce enquiries or only activity.
+
+WTB can provide an agency-side methodology note and Nigeria-specific examples while keeping the article useful to BusinessDay readers. Would an editorial desk or contributor route be the right place to send a short outline?
+
+Best,
+Wole
