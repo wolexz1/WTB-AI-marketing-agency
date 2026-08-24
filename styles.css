@@ -6191,10 +6191,10 @@ body.modal-open {
 }
 
 .feature-proof-list .feature-card h2 {
-  max-width: 15ch;
+  max-width: 16ch;
   margin-bottom: 14px;
-  font-size: clamp(2rem, 2.45vw, 2.8rem);
-  line-height: 1.04;
+  font-size: clamp(1.75rem, 2vw, 2.4rem);
+  line-height: 1.08;
 }
 
 .feature-proof-list .feature-card p {
@@ -6271,7 +6271,7 @@ body.modal-open {
 
   .feature-proof-list .feature-card h2 {
     max-width: 18ch;
-    font-size: clamp(1.9rem, 7vw, 2.45rem);
+    font-size: clamp(1.75rem, 7vw, 2.25rem);
     line-height: 1.08;
   }
 
