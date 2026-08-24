@@ -6182,6 +6182,27 @@ body.modal-open {
   line-height: 1.18;
 }
 
+.feature-proof-list .feature-card {
+  display: flex;
+  min-height: 286px;
+  padding: clamp(22px, 2.4vw, 30px);
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.feature-proof-list .feature-card h2 {
+  max-width: 15ch;
+  margin-bottom: 14px;
+  font-size: clamp(2rem, 2.45vw, 2.8rem);
+  line-height: 1.04;
+}
+
+.feature-proof-list .feature-card p {
+  max-width: 34ch;
+  margin-bottom: 0;
+  font-size: 0.96rem;
+}
+
 .blog-card h2 {
   letter-spacing: 0;
   line-height: 1.13;
@@ -6242,6 +6263,16 @@ body.modal-open {
   .blog-card h2,
   .case-study-card h2 {
     line-height: 1.22;
+  }
+
+  .feature-proof-list .feature-card {
+    min-height: 0;
+  }
+
+  .feature-proof-list .feature-card h2 {
+    max-width: 18ch;
+    font-size: clamp(1.9rem, 7vw, 2.45rem);
+    line-height: 1.08;
   }
 
   .content-section,
