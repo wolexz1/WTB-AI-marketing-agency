@@ -16,11 +16,14 @@ This is an editorial outreach list, not a list of guaranteed placements. Every p
 | Nairametrics | [Editorial contact](https://nairametrics.com/contact-us/) | Ads budget calculator and marketing-cost guides | Data-led Nigerian business explainer with transparent methodology | Pitch sent 2026-08-23; follow up 2026-08-30 |
 | BusinessDay Start-Up Digest | [Startup coverage example](https://cdn.businessday.ng/wp-content/uploads/2024/01/BD_20240108.pdf) | App marketing and AI adoption for Nigerian businesses | Founder-facing analysis, not a promotional agency article | Needs pitch route check |
 | Brand Communicator | [Marketing publication example](https://brandcom.ng/wp-content/uploads/2025/06/BRANDCOMM-ISSUE-104.pdf) | Ambassador marketing and creator performance | Nigerian brand-side insight on measurable creator partnerships | Needs pitch route check |
-| Tekedia | [About and contribution route](https://www.tekedia.com/about_us/) | AI adoption, app distribution, and practical business systems | Focused, unpublished business/technology article for Nigerian and African operators | Research-ready |
-| IT News Africa | [Editorial contact](https://www.itnewsafrica.com/contact-us/) | AI agents for customer operations and app distribution | Pan-African technology explainer with an enterprise/business reader benefit | Research-ready |
-| Disrupt Africa | [Coverage and partnership contact](https://disruptafrica.com/contact/?amp=1) | Vibe-coded apps, startup distribution, and AI-enabled growth | Founder-facing story with original Nigerian-market observations | Research-ready |
-| NaijaTechGuide | [About](https://www.naijatechguide.com/about-us) and [promotion/editorial options](https://www.naijatechguide.com/advertise-promote-business-naijatechguide-ntg) | App marketing, software adoption, and digital marketing costs | Useful technology guide or review-style explainer; confirm whether editorial or sponsored | Needs route confirmation |
+| Tekedia | [About and contribution route](https://www.tekedia.com/about_us/) | AI adoption, app distribution, and practical business systems | Focused, unpublished business/technology article for Nigerian and African operators | Pitch sent 2026-08-24; follow up 2026-08-31 |
+| IT News Africa | [Editorial contact](https://www.itnewsafrica.com/contact-us/) | AI agents for customer operations and app distribution | Pan-African technology explainer with an enterprise/business reader benefit | Pitch sent 2026-08-24; follow up 2026-08-31 |
+| Disrupt Africa | [Coverage and partnership contact](https://disruptafrica.com/contact/?amp=1) | Vibe-coded apps, startup distribution, and AI-enabled growth | Founder-facing story with original Nigerian-market observations | Pitch sent 2026-08-24; follow up 2026-08-31 |
+| NaijaTechGuide | [About](https://www.naijatechguide.com/about-us) and [promotion/editorial options](https://www.naijatechguide.com/advertise-promote-business-naijatechguide-ntg) | App marketing, software adoption, and digital marketing costs | Useful technology guide or review-style explainer; confirm whether editorial or sponsored | Pitch sent 2026-08-24; follow up 2026-08-31 |
 | BusinessDay | [Contact](https://businessday.ng/contact-us/) | Nigerian marketing budgets, AI adoption, and measurable growth | Data-led business explainer or expert comment; do not pitch a promotional agency profile | Needs editorial route confirmation |
+| SMEPEAKS | [Contact form](https://smepeaks.com/smepeaks-contact-us/) | Nigerian SME growth, AI adoption, and app distribution | Original process story or practical SME growth explainer with Nigerian evidence | Research-ready; contact form |
+| BusinessYield | [Contact](https://businessyield.com/contact-us/) and [editorial/about](https://businessyield.com/about-us/) | Digital marketing costs, automation, and practical business systems | Expert contribution or actionable guide; fit their evidence and editorial standards | Research-ready |
+| Premium Times | [Contact and opinion route](https://www.premiumtimesng.com/contact) | AI adoption, digital growth, and the business impact of poor distribution | Opinion or reported analysis with original Nigerian insight; no agency advertorial | Research-ready |
 
 ## Competitor backlink evidence
 
@@ -31,6 +34,10 @@ OpenSEO backlink profiles checked on 2026-08-24 for three Nigerian agency compet
 - Wild Fusion: the current profile returned only two live links, including a Lagos marketing comparison article and a Social Media Week Lagos page. It is not a strong prospect-source pattern on its own.
 
 This is competitor evidence, not a guarantee that any publisher will link to WTB. The actionable overlap is the editorial format: original Nigerian business insight, founder education, technology explainers, and useful cost or implementation guides. Directory and obvious link-farm domains were excluded.
+
+## Next outreach window
+
+Do not send these until the current follow-up cycle has had time to produce replies. The next shortlist is SMEPEAKS, BusinessYield, and Premium Times. PeakNG was deliberately excluded from the priority list because its public submission page is explicitly structured around guest-post and sponsored-post placements; it is not the preferred editorial route for authority building.
 
 ## Link targets
 
@@ -64,7 +71,14 @@ Use deep links where editorially natural. Do not force exact-match anchors.
 | 2026-08-24 | IT News Africa | `news@itnewsafrica.com` listed on the Contact page | Pan-African explainer on AI agents and customer operations | `/ai-consulting-nigeria/` | Prepare pitch; use editorial route, not sales route |
 | 2026-08-24 | Disrupt Africa | `gabriella@disruptafrica.com` or `tom@disruptafrica.com` listed on the Contact page | Founder story on the distribution gap after app creation | `/mobile-app-user-acquisition-nigeria/` | Prepare pitch; ask for coverage, not a backlink |
 | 2026-08-24 | NaijaTechGuide | `info@naijatechguide.com` listed on About and promotion pages | Practical Nigerian guide to app marketing costs and channels | `/mobile-app-user-acquisition-nigeria/` | Confirm editorial vs sponsored terms before sending |
+| 2026-08-30 | SMEPEAKS | Contact form listed on the publication's contact page | Nigerian SME growth and AI/app distribution explainer | `/blog/vibe-coded-app-needs-users-2026/` | Queue for next outreach window |
+| 2026-08-30 | BusinessYield | `contact@businessyield.com` listed on the Contact page | Expert contribution on digital-growth budgets and automation | `/ads-budget-calculator-nigeria/` | Queue for next outreach window |
+| 2026-08-30 | Premium Times | Opinion submission route listed on Contact page | Original analysis of AI adoption and distribution for Nigerian businesses | `/ai-consulting-nigeria/` | Queue for next outreach window |
 | 2026-08-24 | BusinessDay | Contact form and email listed on Contact page | Data-led explainer on what Nigerian businesses pay for digital growth | `/ads-budget-calculator-nigeria/` | Identify editorial desk before sending |
+| 2026-08-24 | Tekedia | `tekedia@fasmicro.com` | AI-built business distribution article | `/blog/vibe-coded-app-needs-users-2026/` | Sent; follow up 2026-08-31 |
+| 2026-08-24 | IT News Africa | `news@itnewsafrica.com` | AI agents for African business operations | `/ai-consulting-nigeria/` | Sent; follow up 2026-08-31 |
+| 2026-08-24 | Disrupt Africa | `gabriella@disruptafrica.com` | App distribution after AI/no-code building | `/mobile-app-user-acquisition-nigeria/` | Sent; follow up 2026-08-31 |
+| 2026-08-24 | NaijaTechGuide | `info@naijatechguide.com` | Nigerian app marketing cost and channel guide | `/mobile-app-user-acquisition-nigeria/` | Sent; follow up 2026-08-31 |
 
 ## Quality gate
 
