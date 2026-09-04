@@ -23,6 +23,8 @@ Representative coverage links include:
 
 ## Latest Blog Guide
 
+- AI personalization for Nigerian businesses: https://wtbaimarketing.com/blog/how-to-use-ai-personalization-to-get-more-customers-nigeria-2026/
+- Why Nigerian businesses lose leads between Instagram and WhatsApp: https://wtbaimarketing.com/blog/why-nigerian-businesses-lose-leads-between-instagram-and-whatsapp-2026/
 - Meta Business AI on WhatsApp for Nigerian businesses: https://wtbaimarketing.com/blog/meta-business-ai-whatsapp-nigeria-2026/
 - WhatsApp AI chatbot cost in Nigeria: https://wtbaimarketing.com/blog/whatsapp-ai-chatbot-cost-nigeria-2026/
 - App marketing cost in Nigeria and the practical ₦5 million launch plan: https://wtbaimarketing.com/blog/app-marketing-cost-nigeria-2026/

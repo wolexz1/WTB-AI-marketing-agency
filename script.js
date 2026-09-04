@@ -23,6 +23,25 @@
   document.head.appendChild(script);
 })();
 
+(() => {
+  const measurementId = "G-5TNS1X06JM";
+  const hasGoogleTag = document.querySelector("script[src*='googletagmanager.com/gtag/js']");
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function gtag() {
+    window.dataLayer.push(arguments);
+  };
+
+  if (hasGoogleTag) return;
+
+  const script = document.createElement("script");
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+  document.head.appendChild(script);
+  window.gtag("js", new Date());
+  window.gtag("config", measurementId);
+})();
+
 const setupTestimonialSlider = () => {
   const track = document.querySelector(".testimonial-track");
 
@@ -590,10 +609,13 @@ const setupConversionTracking = () => {
       trackAnalyticsEvent("form_start", { form_id: form.id || "wtb_brief_form" });
     });
     form.addEventListener("submit", () => {
-      trackAnalyticsEvent("generate_lead", {
+      const parameters = {
         form_id: form.id || "wtb_brief_form",
         service: form.elements.service?.value || "not_selected",
-      });
+        source_path: window.location.pathname,
+      };
+      trackAnalyticsEvent("generate_lead", parameters);
+      trackAnalyticsEvent("form_submit", parameters);
     });
   });
 
@@ -602,18 +624,32 @@ const setupConversionTracking = () => {
     if (!target) return;
 
     const href = target.getAttribute("href") || "";
+    const clickParameters = {
+      cta_text: (target.textContent || "").trim().replace(/\s+/g, " ").slice(0, 100),
+      source_path: window.location.pathname,
+    };
+
     if (target.matches(".brief-modal-trigger")) {
       trackAnalyticsEvent("brief_start", { location: "modal_trigger" });
+      trackAnalyticsEvent("cta_click", { ...clickParameters, cta_type: "brief" });
     } else if (href.startsWith("https://wa.me/")) {
-      trackAnalyticsEvent("contact_click", { channel: "whatsapp" });
+      const parameters = { ...clickParameters, channel: "whatsapp" };
+      trackAnalyticsEvent("contact_click", parameters);
+      trackAnalyticsEvent("whatsapp_click", parameters);
     } else if (href.includes("calendly.com")) {
-      trackAnalyticsEvent("contact_click", { channel: "strategy_call" });
+      const parameters = { ...clickParameters, channel: "strategy_call" };
+      trackAnalyticsEvent("contact_click", parameters);
+      trackAnalyticsEvent("strategy_call_click", parameters);
     } else if (href.startsWith("tel:")) {
       trackAnalyticsEvent("contact_click", { channel: "phone" });
     } else if (/\/contact\/?(?:[?#].*)?$/.test(href)) {
-      trackAnalyticsEvent("contact_click", { channel: "contact_form", source_path: window.location.pathname });
+      const parameters = { ...clickParameters, channel: "contact_form" };
+      trackAnalyticsEvent("contact_click", parameters);
+      trackAnalyticsEvent("cta_click", { ...parameters, cta_type: "contact" });
     } else if (/\/website-brief\/?(?:[?#].*)?$/.test(href)) {
-      trackAnalyticsEvent("brief_start", { location: "website_brief_link", source_path: window.location.pathname });
+      const parameters = { ...clickParameters, location: "website_brief_link" };
+      trackAnalyticsEvent("brief_start", parameters);
+      trackAnalyticsEvent("cta_click", { ...parameters, cta_type: "brief" });
     }
   });
 };

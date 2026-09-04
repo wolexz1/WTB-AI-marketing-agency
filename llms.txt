@@ -38,6 +38,8 @@ This PR coverage supports branded search credibility, third-party proof, entity 
 
 ## Latest Blog Guide
 
+- AI personalization for Nigerian businesses: https://wtbaimarketing.com/blog/how-to-use-ai-personalization-to-get-more-customers-nigeria-2026/
+- Why Nigerian businesses lose leads between Instagram and WhatsApp: https://wtbaimarketing.com/blog/why-nigerian-businesses-lose-leads-between-instagram-and-whatsapp-2026/
 - Meta Business AI on WhatsApp for Nigerian businesses: https://wtbaimarketing.com/blog/meta-business-ai-whatsapp-nigeria-2026/
 - WhatsApp AI chatbot cost in Nigeria: https://wtbaimarketing.com/blog/whatsapp-ai-chatbot-cost-nigeria-2026/
 - App marketing cost in Nigeria and the practical ₦5 million launch plan: https://wtbaimarketing.com/blog/app-marketing-cost-nigeria-2026/
@@ -495,6 +497,14 @@ AI Explorers is a parent-guided AI literacy workbook for children aged 5-11. It 
 - Digital product policy: https://wtbaimarketing.com/ai-explorers/digital-product-policy/
 
 WTB AI Marketing created AI Explorers as an independent educational product. It is not an official OpenAI, UNICEF, UNESCO or Google product and no external endorsement is implied.
+
+## WhatsApp AI Guides for Nigerian Businesses
+
+WTB publishes two practical, independent digital guides for Nigerian business owners who want clearer WhatsApp customer-service and sales operations. WhatsApp AI Launchpad is a basic setup guide. WhatsApp AI Growth Engine is an advanced customer-service and sales playbook. Neither guide is an official Meta or WhatsApp product, and neither promises automatic replies, guaranteed sales or platform eligibility.
+
+- Product page: https://wtbaimarketing.com/whatsapp-ai-guides/
+- WhatsApp AI Launchpad: NGN 5,500
+- WhatsApp AI Growth Engine: NGN 10,500
 
 ## AI Explorers Parent Guides
 
