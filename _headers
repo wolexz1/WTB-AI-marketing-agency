@@ -8,13 +8,34 @@
 /ai-explorers/thank-you/*
   X-Robots-Tag: noindex, follow
 
+/whatsapp-ai-guides/thank-you/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: private, no-store, max-age=0
+  Referrer-Policy: strict-origin-when-cross-origin
+
+/whatsapp-ai-guides/digital-product-policy/*
+  X-Robots-Tag: noindex, follow
+
+/api/whatsapp-ai-guides/*
+  Cache-Control: private, no-store, max-age=0
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+/assets/whatsapp-ai-guides/*
+  Cache-Control: public, max-age=604800, immutable
+
 /llms.txt
   X-Robots-Tag: noindex, follow
   Link: <https://wtbaimarketing.com/>; rel="canonical"
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=3600, must-revalidate
 
 /markdown-mirror.md
   X-Robots-Tag: noindex, follow
   Link: <https://wtbaimarketing.com/>; rel="canonical"
+  Content-Type: text/markdown; charset=utf-8
+  Cache-Control: public, max-age=3600, must-revalidate
 
 /AI_OVERVIEW_GEO_AEO_AUDIT_2026-06-09.md
   X-Robots-Tag: noindex, nofollow

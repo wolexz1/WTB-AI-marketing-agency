@@ -1,3 +1,5 @@
+import { handleWhatsAppGuideWebhook } from "../whatsapp-ai-guides/fulfilment.js";
+
 const PRODUCTS = {
   workbook: { name: "AI Explorers Workbook", amount: 450000 },
   complete: { name: "AI Explorers Complete Family Library", amount: 750000 },
@@ -6,15 +8,21 @@ const PRODUCT_CURRENCY = "NGN";
 const ORDER_PREFIX = "ai-explorers:order:";
 const SUPPORT_EMAIL = "wolexzzoluk@gmail.com";
 
-export async function onRequestPost({ request, env }) {
-  if (!env.PAYSTACK_SECRET_KEY || !env.AI_EXPLORERS_ORDERS || !env.DOWNLOAD_TOKEN_SECRET) return new Response("Configuration incomplete", { status: 503 });
+export async function onRequestPost(context) {
+  const { request, env } = context;
+  const waitUntil = typeof context.waitUntil === "function" ? context.waitUntil.bind(context) : undefined;
+  if (!env.PAYSTACK_SECRET_KEY || !env.DOWNLOAD_TOKEN_SECRET) return new Response("Configuration incomplete", { status: 503 });
   const rawBody = await request.text();
   const signature = request.headers.get("x-paystack-signature") || "";
   if (!constantTimeEqual(signature, await hmacHex(rawBody, env.PAYSTACK_SECRET_KEY))) return new Response("Invalid signature", { status: 401 });
   const event = JSON.parse(rawBody);
   if (event?.event !== "charge.success") return new Response("Ignored", { status: 200 });
   const reference = String(event?.data?.reference || "");
+  if (/^wtbwa_[A-Za-z0-9]+$/.test(reference)) {
+    return handleWhatsAppGuideWebhook({ request, env, rawBody, event, waitUntil });
+  }
   if (!/^aiexp_[A-Za-z0-9]+$/.test(reference)) return new Response("Ignored", { status: 200 });
+  if (!env.AI_EXPLORERS_ORDERS) return new Response("Configuration incomplete", { status: 503 });
   const stored = await env.AI_EXPLORERS_ORDERS.get(`${ORDER_PREFIX}${reference}`);
   if (!stored) return new Response("Order not found", { status: 404 });
   const order = JSON.parse(stored);

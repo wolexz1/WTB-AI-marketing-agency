@@ -4,9 +4,11 @@
 
 **Goal:** Build and verify a premium mobile-first `/whatsapp-ai-guides/` sales page with fast Paystack redirect checkout, server-verified payment, private product delivery, purchase email and deduplicated Meta tracking.
 
-**Architecture:** Add a route-scoped static experience and a dedicated Cloudflare Function namespace to the existing WTB Pages project. Keep the current AI Explorers implementation intact; extend the shared Paystack webhook only with an explicit WhatsApp-guide reference dispatch. Store orders in a dedicated KV binding and both PDFs under dedicated keys in the existing private R2 bucket.
+**Architecture:** Add a route-scoped static experience and a dedicated Cloudflare Function namespace to the existing WTB Pages project. Keep the current AI Explorers implementation intact; extend the shared Paystack webhook only with an explicit WhatsApp-guide reference dispatch. Store transactional order state in a dedicated D1 binding and both PDFs under dedicated keys in a private R2 bucket.
 
-**Tech Stack:** Static HTML, route-scoped CSS, vanilla JavaScript, Cloudflare Pages Functions, KV, R2, Paystack REST API, Resend API, Meta Pixel and Conversions API, Node test runner and Playwright.
+**Tech Stack:** Static HTML, route-scoped CSS, vanilla JavaScript, Cloudflare Pages Functions, D1, R2, Paystack REST API, Resend API, Meta Pixel and Conversions API, Node test runner and Playwright.
+
+> **Security-review amendment:** D1 supersedes every KV example later in this historical task plan. The shipped source of truth is `functions/api/whatsapp-ai-guides/order-store.js`, `migrations/0001_whatsapp_ai_guides.sql` and `docs/WHATSAPP_AI_GUIDES_CLOUDFLARE_SETUP.md`. Do not deploy a KV order binding for this product.
 
 **Spec:** `docs/superpowers/specs/2026-08-31-whatsapp-ai-guides-design.md`
 
