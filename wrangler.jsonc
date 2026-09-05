@@ -1,12 +1,80 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "wtb-ai-marketing-agency",
+  "pages_build_output_dir": ".",
   "compatibility_date": "2026-05-20",
   "observability": {
     "enabled": true
   },
-  "assets": {
-    "directory": "."
+  "vars": {
+    "ADMIN_EMAIL": "wolexzthebrand@gmail.com",
+    "AI_EXPLORERS_DOWNLOAD_LIMIT": "10",
+    "AI_EXPLORERS_DOWNLOAD_TTL_SECONDS": "604800",
+    "FROM_EMAIL": "WTB AI Marketing Agency <hello@wtbaimarketing.com>",
+    "META_PIXEL_ID": "1101896092165449",
+    "WHATSAPP_AI_GUIDES_DOWNLOAD_LIMIT": "8",
+    "WHATSAPP_AI_GUIDES_DOWNLOAD_TTL_SECONDS": "604800"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "AI_EXPLORERS_ORDERS",
+      "id": "f4d6439290a1412aa1d2337658087681"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "AI_EXPLORERS_BUCKET",
+      "bucket_name": "wtb-private-products"
+    },
+    {
+      "binding": "WHATSAPP_AI_GUIDES_BUCKET",
+      "bucket_name": "wtb-private-products"
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "WHATSAPP_AI_GUIDES_DB",
+      "database_name": "wtb-whatsapp-ai-guides-orders",
+      "database_id": "90a0c3fa-8bb0-4a51-9fc0-6371b0bed350",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "env": {
+    "production": {
+      "vars": {
+        "ADMIN_EMAIL": "wolexzthebrand@gmail.com",
+        "AI_EXPLORERS_DOWNLOAD_LIMIT": "10",
+        "AI_EXPLORERS_DOWNLOAD_TTL_SECONDS": "604800",
+        "FROM_EMAIL": "WTB AI Marketing Agency <hello@wtbaimarketing.com>",
+        "META_PIXEL_ID": "1101896092165449",
+        "WHATSAPP_AI_GUIDES_DOWNLOAD_LIMIT": "8",
+        "WHATSAPP_AI_GUIDES_DOWNLOAD_TTL_SECONDS": "604800"
+      },
+      "kv_namespaces": [
+        {
+          "binding": "AI_EXPLORERS_ORDERS",
+          "id": "f4d6439290a1412aa1d2337658087681"
+        }
+      ],
+      "r2_buckets": [
+        {
+          "binding": "AI_EXPLORERS_BUCKET",
+          "bucket_name": "wtb-private-products"
+        },
+        {
+          "binding": "WHATSAPP_AI_GUIDES_BUCKET",
+          "bucket_name": "wtb-private-products"
+        }
+      ],
+      "d1_databases": [
+        {
+          "binding": "WHATSAPP_AI_GUIDES_DB",
+          "database_name": "wtb-whatsapp-ai-guides-orders",
+          "database_id": "90a0c3fa-8bb0-4a51-9fc0-6371b0bed350",
+          "migrations_dir": "migrations"
+        }
+      ]
+    }
   },
   "compatibility_flags": [
     "nodejs_compat"

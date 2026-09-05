@@ -27,3 +27,70 @@ body{overflow-x:clip}.hero,.previews{overflow-x:clip}.hero-visual{max-width:100%
   .comparison td{text-align:left!important;padding:12px 15px;border:0;border-top:1px solid var(--line)}
   .comparison td::before{content:attr(data-plan);display:block;color:var(--blue);font-size:.72rem;font-weight:900;text-transform:uppercase;letter-spacing:.05em}
 }
+
+/* Premium first viewport and persistent section navigation. */
+.site-head{position:sticky;top:8px;margin-top:8px}
+.section-nav{display:flex;align-items:center;justify-content:flex-end;gap:18px;margin-left:auto;white-space:nowrap}
+.section-nav>a:not(.button){color:#3d485c;font-size:.78rem;font-weight:800;text-decoration:none}
+.section-nav>a:not(.button):hover{color:var(--blue)}
+main section[id]{scroll-margin-top:120px}
+.hero{padding:32px 0 42px;grid-template-columns:minmax(0,1fr) minmax(440px,.92fr);grid-template-areas:"copy visual" "details visual" "trust trust" "clarification clarification";column-gap:52px;row-gap:12px;align-items:start}
+.hero-copy{grid-area:copy;min-width:0;padding-top:18px}.hero-details{grid-area:details;min-width:0}.hero-visual{grid-area:visual}.trust-marquee{grid-area:trust}.clarification{grid-area:clarification}
+.hero h1{max-width:100%;font-size:clamp(3.7rem,5.2vw,5.2rem)}
+.hero-visual{height:590px;perspective:1200px;overflow:visible}
+.cover{display:block;width:min(74%,410px);filter:drop-shadow(0 34px 34px rgba(3,17,50,.3));transform-style:preserve-3d;will-change:transform}
+.cover img{width:100%;box-shadow:10px 8px 0 #071329,18px 20px 30px rgba(3,17,50,.24)}
+.cover-one{left:0;top:42px;transform:perspective(1200px) rotateY(12deg) rotateZ(-6deg)}
+.cover-two{right:1%;top:0;transform:perspective(1200px) rotateY(-11deg) rotateZ(5deg)}
+.trust-marquee{grid-column:1/-1;overflow:hidden;border:1px solid var(--line);background:#fff;mask-image:linear-gradient(to right,transparent,#000 3%,#000 97%,transparent)}
+.trust-strip{display:flex;width:max-content;margin:0;border:0;background:transparent}
+.trust-strip li{flex:0 0 232px;border-right:1px solid var(--line)}
+.clarification{margin-top:0}
+.pain-grid article,.capability-grid article,.product-card,.before-after>div{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.pain-grid article:hover,.capability-grid article:hover{transform:translateY(-5px);box-shadow:0 18px 38px rgba(7,24,58,.14)}
+.product-card:hover{transform:translateY(-4px)}
+.before-after>div:last-child{box-shadow:0 14px 34px rgba(37,211,102,.1)}
+
+@media(max-width:1050px){
+  .section-nav{gap:12px}.section-nav>a:not(.button){font-size:.72rem}
+  .hero{grid-template-columns:minmax(0,1fr) minmax(380px,.9fr)}
+}
+@media(max-width:900px){
+  .site-head{flex-wrap:wrap;top:6px}
+  .section-nav{order:2;width:100%;justify-content:flex-start;overflow-x:auto;padding-top:7px;border-top:1px solid var(--line);scrollbar-width:none}
+  .section-nav::-webkit-scrollbar{display:none}
+  .hero{padding-top:24px;grid-template-columns:1fr;grid-template-areas:"copy" "visual" "details" "trust" "clarification";gap:12px}
+  .hero-copy{padding-top:0}
+  .hero-visual{height:520px;max-width:650px}
+  .cover{width:min(70%,390px)}
+}
+@media(max-width:600px){
+  .site-head{width:100%;top:0;margin-top:0;border-inline:0;padding:8px 12px}
+  .section-nav{gap:15px}
+  .section-nav>a:not(.button){font-size:.7rem}
+  .section-nav .button{min-height:38px;padding:8px 12px;font-size:.73rem}
+  main section[id]{scroll-margin-top:130px}
+  .hero{padding-top:18px;gap:8px}
+  .hero h1{font-size:3rem;line-height:1.01;margin-bottom:16px}
+  .hero .pain-line{font-size:1.1rem}
+  .hero-visual{height:440px;margin-top:4px;overflow:visible}
+  .cover{width:69%}
+  .cover-one{left:0;top:48px}.cover-two{right:0;top:0}
+  .chat-question{top:4px}.chat-answer{bottom:8px}
+  .trust-marquee{width:calc(100% + 24px);margin-left:-12px}
+  .trust-strip li{flex-basis:190px;font-size:.75rem}
+}
+
+@media(prefers-reduced-motion:no-preference){
+  .trust-strip{animation:guideMarquee 24s linear infinite}
+  .hero-visual .cover-one{animation:bookFloatOne 5.6s ease-in-out infinite}
+  .hero-visual .cover-two{animation:bookFloatTwo 6.2s .4s ease-in-out infinite}
+  .chat-question{animation:chatFloat 4.8s ease-in-out infinite}
+  .chat-answer{animation:chatFloat 5.2s .7s ease-in-out infinite reverse}
+  .before-after>div:last-child{animation:outcomeGlow 4s ease-in-out infinite}
+  @keyframes guideMarquee{to{transform:translateX(-50%)}}
+  @keyframes bookFloatOne{0%,100%{transform:perspective(1200px) translateY(0) rotateY(12deg) rotateZ(-6deg)}50%{transform:perspective(1200px) translateY(-14px) rotateY(8deg) rotateZ(-4deg)}}
+  @keyframes bookFloatTwo{0%,100%{transform:perspective(1200px) translateY(0) rotateY(-11deg) rotateZ(5deg)}50%{transform:perspective(1200px) translateY(-18px) rotateY(-7deg) rotateZ(3deg)}}
+  @keyframes chatFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+  @keyframes outcomeGlow{0%,100%{box-shadow:0 14px 34px rgba(37,211,102,.08)}50%{box-shadow:0 18px 42px rgba(37,211,102,.18)}}
+}
