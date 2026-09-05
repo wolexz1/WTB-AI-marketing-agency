@@ -409,6 +409,18 @@ test("the Paystack webhook returns 503 when delivery exhausts retries", async (t
   assert.equal(attempts, 2);
 });
 
+test("the Paystack webhook does not acknowledge another delivery still in progress", async (t) => {
+  t.after(() => { globalThis.fetch = realFetch; });
+  let called = false;
+  globalThis.fetch = async () => { called = true; return new Response("{}"); };
+  const testEnv = { ...env({ size: 1234 }), RESEND_API_KEY: "re_test", FROM_EMAIL: "WTB <hello@wtbaimarketing.com>", WHATSAPP_AI_GUIDES_FULFILMENT_RETRY_DELAYS_MS: "0" };
+  const reference = "wtbwa_webhookrace001122334455";
+  testEnv.WHATSAPP_AI_GUIDES_DB.orders.set(reference, { reference, product_id: "launchpad", amount: 550000, currency: "NGN", first_name: "Wole", email: "buyer@example.com", cta_location: "test", status: "verified", created_at: new Date().toISOString(), delivery_key: "8".repeat(32), delivery_expires_at: new Date(Date.now() + 86400000).toISOString(), tracking_json: "{}", verified_at: new Date().toISOString(), paystack_transaction_id: "57", download_count: 0, email_status: "sending", email_attempted_at: new Date().toISOString(), meta_status: "pending", meta_attempted_at: null });
+  const response = await handleWhatsAppGuideWebhook({ request: new Request("https://wtbaimarketing.com/api/paystack/webhook"), env: testEnv, event: { data: { id: 57, status: "success", amount: 550000, currency: "NGN", reference, metadata: { product_id: "launchpad" } } } });
+  assert.equal(response.status, 503);
+  assert.equal(called, false);
+});
+
 test("paid PDFs are not present in the public asset tree", async () => {
   const { readdir } = await import("node:fs/promises");
   const files = await readdir(new URL("../assets/", import.meta.url), { recursive: true });

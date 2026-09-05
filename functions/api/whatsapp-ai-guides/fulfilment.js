@@ -119,7 +119,12 @@ async function sendPurchaseEmail(env, order, product, downloadUrl) {
 }
 
 async function deliverChannel(env, reference, channel, operation) {
-  if (!await claimFulfilment(env, reference, channel)) return false;
+  if (!await claimFulfilment(env, reference, channel)) {
+    const current = await getOrder(env, reference);
+    const status = channel === "email" ? current?.emailStatus : current?.metaStatus;
+    if (status === "sent") return false;
+    throw new Error(`${channel} delivery is already in progress`);
+  }
   try {
     await operation();
     await completeFulfilment(env, reference, channel);
