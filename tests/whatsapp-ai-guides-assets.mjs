@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readdir, stat } from "node:fs/promises";
+import { readdir, readFile, stat } from "node:fs/promises";
+import { createHash } from "node:crypto";
 import path from "node:path";
 
 const root = path.resolve("assets/whatsapp-ai-guides");
@@ -22,4 +23,9 @@ test("hero and thumbnail assets stay within their budgets", async () => {
 test("all six approved preview thumbnails and full previews exist", () => {
   assert.equal(files.filter((name) => /preview-.+-480\.webp$/.test(name)).length, 6);
   assert.equal(files.filter((name) => /preview-.+-900\.webp$/.test(name)).length, 6);
+});
+
+test("WhatsApp mark is the untouched official Meta digital glyph", async () => {
+  const glyph = await readFile(path.join(root, "icon-whatsapp.svg"));
+  assert.equal(createHash("sha256").update(glyph).digest("hex"), "f7b1311db718533e671645f57cd94b92f0e006e61d7e6581a80675fc5a478fc4");
 });

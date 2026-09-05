@@ -22,6 +22,9 @@ const path = require("node:path");
     await page.route("https://connect.facebook.net/**", (route) => route.abort());
     await page.goto(baseUrl, { waitUntil: "domcontentloaded" });
     await page.waitForSelector("h1");
+    const floatingStart = await page.locator(".cover-one").evaluate((cover) => getComputedStyle(cover).transform);
+    await page.waitForTimeout(320);
+    const floatingEnd = await page.locator(".cover-one").evaluate((cover) => getComputedStyle(cover).transform);
     const text = await page.locator("body").innerText();
     const dimensions = await page.evaluate(() => ({ client: document.documentElement.clientWidth, scroll: document.documentElement.scrollWidth, offenders: [...document.querySelectorAll("body *")].filter((element) => { const rect = element.getBoundingClientRect(); return rect.right > document.documentElement.clientWidth + 2 || rect.left < -2; }).slice(0, 8).map((element) => ({ tag: element.tagName, className: element.className, right: Math.round(element.getBoundingClientRect().right), left: Math.round(element.getBoundingClientRect().left) })) }));
     const launchpadButtons = await page.locator("[data-guide-buy][data-guide-product='launchpad']").count();
@@ -53,9 +56,11 @@ const path = require("node:path");
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     });
     await page.waitForTimeout(200);
+    const navAtTop = await page.locator(".nav-dock").evaluate((nav) => Math.round(nav.getBoundingClientRect().top));
     await page.screenshot({ path: path.join(outputDir, `${viewport.name}-top.png`) });
     await page.locator("#choose").scrollIntoViewIfNeeded();
     await page.waitForTimeout(120);
+    const navWhileScrolled = await page.locator(".nav-dock").evaluate((nav) => Math.round(nav.getBoundingClientRect().top));
     await page.screenshot({ path: path.join(outputDir, `${viewport.name}-choice.png`) });
     await page.locator(".faq").scrollIntoViewIfNeeded();
     await page.waitForTimeout(120);
@@ -80,6 +85,8 @@ const path = require("node:path");
       checkoutCorrect: checkoutText.includes("WhatsApp AI Growth Engine") && checkoutText.includes("₦10,500") && checkoutText.includes("access varies by account and market"),
       previewOpen,
       buttonFit,
+      booksFloat: floatingStart !== floatingEnd,
+      navSticks: navAtTop >= 0 && Math.abs(navWhileScrolled) <= 1,
       semantics,
       horizontalOverflow: dimensions.scroll > dimensions.client + 2,
       overflowOffenders: dimensions.offenders,
@@ -88,7 +95,7 @@ const path = require("node:path");
     await context.close();
   }
   await browser.close();
-  const passed = results.every((r) => r.exactPrices && r.approvedProducts && r.noNormalNavigation && r.sufficientCtas && r.checkoutCorrect && r.previewOpen && r.buttonFit && !r.horizontalOverflow && r.errors.length === 0 && r.semantics.h1Count === 1 && r.semantics.imagesHaveAlt && r.semantics.formControlsNamed && r.semantics.checkoutAction === "/api/whatsapp-ai-guides/checkout" && r.semantics.canonical === "https://wtbaimarketing.com/whatsapp-ai-guides/");
+  const passed = results.every((r) => r.exactPrices && r.approvedProducts && r.noNormalNavigation && r.sufficientCtas && r.checkoutCorrect && r.previewOpen && r.buttonFit && r.booksFloat && r.navSticks && !r.horizontalOverflow && r.errors.length === 0 && r.semantics.h1Count === 1 && r.semantics.imagesHaveAlt && r.semantics.formControlsNamed && r.semantics.checkoutAction === "/api/whatsapp-ai-guides/checkout" && r.semantics.canonical === "https://wtbaimarketing.com/whatsapp-ai-guides/");
   console.log(JSON.stringify({ passed, results }, null, 2));
   if (!passed) process.exit(1);
 })().catch((error) => { console.error(error); process.exit(1); });

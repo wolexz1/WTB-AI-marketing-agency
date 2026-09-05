@@ -85,4 +85,40 @@
     }, { threshold: 0.01 });
     document.querySelectorAll("#choose, .faq, .share-section, .final-cta, footer").forEach((section) => blockerObserver.observe(section));
   }
+
+  const sectionLinks = [...document.querySelectorAll(".section-nav a[href^='#']")].filter((link) => !link.classList.contains("button"));
+  if (sectionLinks.length) {
+    const sections = sectionLinks.map((link) => document.querySelector(link.hash)).filter(Boolean);
+    let scheduled = false;
+    const updateCurrentSection = () => {
+      const marker = document.querySelector(".nav-dock")?.offsetHeight + 36 || 120;
+      let activeId = "";
+      sections.forEach((section) => { if (section.getBoundingClientRect().top <= marker) activeId = section.id; });
+      sectionLinks.forEach((link) => link.toggleAttribute("aria-current", link.hash === `#${activeId}`));
+      scheduled = false;
+    };
+    addEventListener("scroll", () => {
+      if (scheduled) return;
+      scheduled = true;
+      requestAnimationFrame(updateCurrentSection);
+    }, { passive: true });
+    updateCurrentSection();
+  }
+
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) {
+    const reveals = document.querySelectorAll(".pain-grid article, .calculator-card, .before-after, .capability-grid article, .preview-track button, .product-card, .value-grid article, .faq details");
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        revealObserver.unobserve(entry.target);
+      });
+    }, { rootMargin: "0px 0px -8%", threshold: 0.08 });
+    reveals.forEach((element, index) => {
+      element.classList.add("motion-reveal");
+      element.style.transitionDelay = `${Math.min(index % 4, 3) * 55}ms`;
+      revealObserver.observe(element);
+    });
+    document.documentElement.classList.add("motion-ready");
+  }
 })();
