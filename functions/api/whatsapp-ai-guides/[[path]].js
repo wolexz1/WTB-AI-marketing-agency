@@ -18,7 +18,7 @@ export async function onRequest(context) {
 }
 
 async function initializeCheckout(request, env) {
-  const missing = requiredEnv(env, ["PAYSTACK_SECRET_KEY", "WHATSAPP_AI_GUIDES_DB"]);
+  const missing = requiredEnv(env, ["PAYSTACK_SECRET_KEY", "WHATSAPP_AI_GUIDES_DB", "WHATSAPP_AI_GUIDES_BUCKET", "DOWNLOAD_TOKEN_SECRET", "RESEND_API_KEY", "FROM_EMAIL"]);
   if (missing) return htmlError("Secure checkout is being configured. Please try again shortly.", 503);
   const form = await request.formData();
   const firstName = cleanText(form.get("firstName"), 80);
@@ -26,6 +26,13 @@ async function initializeCheckout(request, env) {
   const product = productForId(cleanText(form.get("product"), 32));
   const ctaLocation = cleanText(form.get("ctaLocation"), 48) || "page";
   if (!firstName || !email || !product) return htmlError("Please enter a valid first name and email, then choose a guide.", 400);
+  let asset;
+  try {
+    asset = await env.WHATSAPP_AI_GUIDES_BUCKET.head(ASSETS[product.asset].key);
+  } catch {
+    return htmlError("This guide is temporarily unavailable. No payment has been taken. Please try again shortly.", 503);
+  }
+  if (!asset) return htmlError("This guide is temporarily unavailable. No payment has been taken. Please try again shortly.", 503);
   const clientIp = request.headers.get("CF-Connecting-IP") || "unknown";
   if (!await consumeRateLimit(env, clientIp)) return htmlError("Please wait a minute before starting another checkout.", 429);
   const reference = `wtbwa_${crypto.randomUUID().replace(/-/g, "").slice(0, 24)}`;

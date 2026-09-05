@@ -30,12 +30,6 @@ Optional reliability controls:
 - `WHATSAPP_AI_GUIDES_FULFILMENT_RETRY_DELAYS_MS` - comma-separated retry delays. The default is `750,2500` (two automatic retries).
 - `WHATSAPP_AI_GUIDES_DOWNLOAD_TTL_SECONDS` - private-link lifetime. The default is seven days.
 - `WHATSAPP_AI_GUIDES_DOWNLOAD_LIMIT` - permitted downloads for one verified order. The default is eight.
-- `META_CAPI_ACCESS_TOKEN` - secret.
-
-Optional plain-text controls:
-
-- `WHATSAPP_AI_GUIDES_DOWNLOAD_TTL_SECONDS` - defaults to `604800` (seven days).
-- `WHATSAPP_AI_GUIDES_DOWNLOAD_LIMIT` - defaults to `8`, with a minimum of 3 and maximum of 20.
 
 ## Paystack
 

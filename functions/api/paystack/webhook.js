@@ -19,7 +19,7 @@ export async function onRequestPost(context) {
   if (event?.event !== "charge.success") return new Response("Ignored", { status: 200 });
   const reference = String(event?.data?.reference || "");
   if (/^wtbwa_[A-Za-z0-9]+$/.test(reference)) {
-    return handleWhatsAppGuideWebhook({ request, env, rawBody, event, waitUntil });
+    return handleWhatsAppGuideWebhook({ request, env, rawBody, event });
   }
   if (!/^aiexp_[A-Za-z0-9]+$/.test(reference)) return new Response("Ignored", { status: 200 });
   if (!env.AI_EXPLORERS_ORDERS) return new Response("Configuration incomplete", { status: 503 });

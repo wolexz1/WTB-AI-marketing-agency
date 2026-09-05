@@ -68,8 +68,10 @@ export async function verifyDownloadToken(token, secret) {
   }
 }
 
-export async function handleWhatsAppGuideWebhook({ request, env, event, waitUntil }) {
-  if (!env.WHATSAPP_AI_GUIDES_DB || !env.DOWNLOAD_TOKEN_SECRET) return new Response("Configuration incomplete", { status: 503 });
+export async function handleWhatsAppGuideWebhook({ request, env, event }) {
+  if (!env.WHATSAPP_AI_GUIDES_DB || !env.WHATSAPP_AI_GUIDES_BUCKET || !env.DOWNLOAD_TOKEN_SECRET || !env.RESEND_API_KEY || !env.FROM_EMAIL) {
+    return new Response("Configuration incomplete", { status: 503 });
+  }
   const reference = String(event?.data?.reference || "");
   let order = await getOrder(env, reference);
   if (!order) return new Response("Order not found", { status: 404 });
@@ -78,13 +80,21 @@ export async function handleWhatsAppGuideWebhook({ request, env, event, waitUnti
   const data = event.data || {};
   const valid = product && data.status === "success" && Number(data.amount) === order.amount && data.currency === order.currency && data.reference === reference && data.metadata?.product_id === product.id;
   if (!valid) return new Response("Verification pending", { status: 202 });
+  try {
+    if (!await env.WHATSAPP_AI_GUIDES_BUCKET.head(ASSETS[product.asset].key)) return new Response("Delivery asset unavailable", { status: 503 });
+  } catch {
+    return new Response("Delivery asset unavailable", { status: 503 });
+  }
   if (order.status !== "verified") {
     order = await markVerified(env, reference, data.id);
   }
-  const work = fulfilVerifiedOrder({ env, order, product, requestUrl: request.url, request }).catch((error) => console.error("WhatsApp AI Guides fulfilment failed", error));
-  if (typeof waitUntil === "function") waitUntil(work);
-  else work.catch(() => {});
-  return new Response("Verified", { status: 200 });
+  try {
+    await fulfilVerifiedOrder({ env, order, product, requestUrl: request.url, request });
+    return new Response("Verified", { status: 200 });
+  } catch (error) {
+    console.error("WhatsApp AI Guides fulfilment failed; Paystack should retry", error);
+    return new Response("Delivery retry required", { status: 503 });
+  }
 }
 
 async function sendPurchaseEmail(env, order, product, downloadUrl) {

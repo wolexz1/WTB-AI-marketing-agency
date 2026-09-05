@@ -94,7 +94,10 @@ function env(bucketObject = null) {
     PAYSTACK_SECRET_KEY: "sk_test_example",
     DOWNLOAD_TOKEN_SECRET: "test-download-secret-that-is-long-enough",
     WHATSAPP_AI_GUIDES_DB: d1(),
-    WHATSAPP_AI_GUIDES_BUCKET: { async get() { return bucketObject; } },
+    WHATSAPP_AI_GUIDES_BUCKET: {
+      async head() { return bucketObject; },
+      async get() { return bucketObject; },
+    },
   };
 }
 
@@ -125,13 +128,54 @@ test("checkout ignores a browser amount and initializes the fixed product amount
     headers: { "CF-Connecting-IP": "127.0.0.1" },
     body: new URLSearchParams({ firstName: "Wole", email: "buyer@example.com", product: "launchpad", amount: "1", ctaLocation: "hero" }),
   });
-  const response = await onRequest({ request, env: env() });
+  const response = await onRequest({
+    request,
+    env: {
+      ...env({ size: 1234 }),
+      RESEND_API_KEY: "re_test",
+      FROM_EMAIL: "WTB <hello@wtbaimarketing.com>",
+    },
+  });
   assert.equal(response.status, 302);
   assert.equal(initialized.amount, "550000");
   assert.equal(initialized.metadata.product_id, "launchpad");
   assert.match(initialized.callback_url, /whatsapp-ai-guides\/thank-you/);
   assert.doesNotMatch(initialized.callback_url, /(?:\?|&)key=/);
   assert.match(response.headers.get("Set-Cookie"), /wtbwa_delivery_wtbwa_.*HttpOnly.*Secure.*SameSite=Lax/);
+});
+
+test("checkout takes no payment when delivery configuration is incomplete", async (t) => {
+  t.after(() => { globalThis.fetch = realFetch; });
+  let called = false;
+  globalThis.fetch = async () => { called = true; return new Response(); };
+  const request = new Request("https://wtbaimarketing.com/api/whatsapp-ai-guides/checkout", {
+    method: "POST",
+    body: new URLSearchParams({ firstName: "Wole", email: "buyer@example.com", product: "launchpad" }),
+  });
+  const response = await onRequest({ request, env: env({ size: 1234 }) });
+  assert.equal(response.status, 503);
+  assert.equal(called, false);
+});
+
+test("checkout takes no payment when the selected private PDF is missing", async (t) => {
+  t.after(() => { globalThis.fetch = realFetch; });
+  let called = false;
+  globalThis.fetch = async () => { called = true; return new Response(); };
+  const request = new Request("https://wtbaimarketing.com/api/whatsapp-ai-guides/checkout", {
+    method: "POST",
+    body: new URLSearchParams({ firstName: "Wole", email: "buyer@example.com", product: "growth-engine" }),
+  });
+  const response = await onRequest({
+    request,
+    env: {
+      ...env(),
+      RESEND_API_KEY: "re_test",
+      FROM_EMAIL: "WTB <hello@wtbaimarketing.com>",
+    },
+  });
+  assert.equal(response.status, 503);
+  assert.equal(called, false);
+  assert.match(await response.text(), /No payment has been taken/);
 });
 
 test("checkout rejects an unknown product before contacting Paystack", async (t) => {
@@ -142,7 +186,14 @@ test("checkout rejects an unknown product before contacting Paystack", async (t)
     method: "POST",
     body: new URLSearchParams({ firstName: "Wole", email: "buyer@example.com", product: "fake" }),
   });
-  const response = await onRequest({ request, env: env() });
+  const response = await onRequest({
+    request,
+    env: {
+      ...env({ size: 1234 }),
+      RESEND_API_KEY: "re_test",
+      FROM_EMAIL: "WTB <hello@wtbaimarketing.com>",
+    },
+  });
   assert.equal(response.status, 400);
   assert.equal(called, false);
 });
@@ -291,7 +342,7 @@ test("verification binds Cloudflare waitUntil and returns before slow email deli
   t.after(() => { globalThis.fetch = realFetch; });
   let releaseEmail;
   globalThis.fetch = async () => new Promise((resolve) => { releaseEmail = () => resolve(new Response("{}", { status: 200 })); });
-  const testEnv = { ...env(), RESEND_API_KEY: "re_test" };
+  const testEnv = { ...env({ size: 1234 }), RESEND_API_KEY: "re_test", FROM_EMAIL: "WTB <hello@wtbaimarketing.com>" };
   const reference = "wtbwa_boundwait001122334455";
   const deliveryKey = "1".repeat(32);
   testEnv.WHATSAPP_AI_GUIDES_DB.orders.set(reference, { reference, product_id: "launchpad", amount: 550000, currency: "NGN", first_name: "Wole", email: "buyer@example.com", status: "verified", delivery_key: deliveryKey, delivery_expires_at: new Date(Date.now() + 86400000).toISOString(), tracking_json: "{}", email_status: "pending", email_attempted_at: null, meta_status: "pending", meta_attempted_at: null, download_count: 0 });
@@ -310,21 +361,52 @@ test("verification binds Cloudflare waitUntil and returns before slow email deli
   await background;
 });
 
-test("the Paystack webhook acknowledges before slow fulfilment completes", async (t) => {
+test("the Paystack webhook acknowledges only after slow fulfilment completes", async (t) => {
   t.after(() => { globalThis.fetch = realFetch; });
   let releaseEmail;
   globalThis.fetch = async () => new Promise((resolve) => { releaseEmail = () => resolve(new Response("{}", { status: 200 })); });
-  const testEnv = { ...env(), RESEND_API_KEY: "re_test" };
+  const testEnv = { ...env({ size: 1234 }), RESEND_API_KEY: "re_test", FROM_EMAIL: "WTB <hello@wtbaimarketing.com>" };
   const reference = "wtbwa_webhook001122334455";
   testEnv.WHATSAPP_AI_GUIDES_DB.orders.set(reference, { reference, product_id: "launchpad", amount: 550000, currency: "NGN", first_name: "Wole", email: "buyer@example.com", cta_location: "test", status: "initialized", created_at: new Date().toISOString(), delivery_key: "e".repeat(32), delivery_expires_at: new Date(Date.now() + 86400000).toISOString(), tracking_json: "{}", verified_at: null, paystack_transaction_id: null, download_count: 0 });
-  let background;
-  const response = await handleWhatsAppGuideWebhook({ request: new Request("https://wtbaimarketing.com/api/paystack/webhook"), env: testEnv, event: { data: { id: 55, status: "success", amount: 550000, currency: "NGN", reference, metadata: { product_id: "launchpad" } } }, waitUntil(promise) { background = promise; } });
-  assert.equal(response.status, 200);
-  assert.ok(background instanceof Promise);
+  let resolved = false;
+  const pending = handleWhatsAppGuideWebhook({
+    request: new Request("https://wtbaimarketing.com/api/paystack/webhook"),
+    env: testEnv,
+    event: {
+      data: {
+        id: 55,
+        status: "success",
+        amount: 550000,
+        currency: "NGN",
+        reference,
+        metadata: { product_id: "launchpad" },
+      },
+    },
+  }).then((response) => {
+    resolved = true;
+    return response;
+  });
   for (let attempt = 0; attempt < 20 && !releaseEmail; attempt += 1) await new Promise((resolve) => setTimeout(resolve, 5));
   assert.equal(typeof releaseEmail, "function");
+  assert.equal(resolved, false);
   releaseEmail();
-  await background;
+  const response = await pending;
+  assert.equal(response.status, 200);
+});
+
+test("the Paystack webhook returns 503 when delivery exhausts retries", async (t) => {
+  t.after(() => { globalThis.fetch = realFetch; });
+  let attempts = 0;
+  globalThis.fetch = async () => {
+    attempts += 1;
+    return new Response("email unavailable", { status: 503 });
+  };
+  const testEnv = { ...env({ size: 1234 }), RESEND_API_KEY: "re_test", FROM_EMAIL: "WTB <hello@wtbaimarketing.com>", WHATSAPP_AI_GUIDES_FULFILMENT_RETRY_DELAYS_MS: "0" };
+  const reference = "wtbwa_webhookretry0011223344";
+  testEnv.WHATSAPP_AI_GUIDES_DB.orders.set(reference, { reference, product_id: "launchpad", amount: 550000, currency: "NGN", first_name: "Wole", email: "buyer@example.com", cta_location: "test", status: "initialized", created_at: new Date().toISOString(), delivery_key: "7".repeat(32), delivery_expires_at: new Date(Date.now() + 86400000).toISOString(), tracking_json: "{}", verified_at: null, paystack_transaction_id: null, download_count: 0, email_status: "pending", email_attempted_at: null, meta_status: "pending", meta_attempted_at: null });
+  const response = await handleWhatsAppGuideWebhook({ request: new Request("https://wtbaimarketing.com/api/paystack/webhook"), env: testEnv, event: { data: { id: 56, status: "success", amount: 550000, currency: "NGN", reference, metadata: { product_id: "launchpad" } } } });
+  assert.equal(response.status, 503);
+  assert.equal(attempts, 2);
 });
 
 test("paid PDFs are not present in the public asset tree", async () => {
