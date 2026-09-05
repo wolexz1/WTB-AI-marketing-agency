@@ -31,7 +31,7 @@ body{overflow-x:clip}.hero,.previews{overflow-x:clip}.hero-visual{max-width:100%
 /* Premium first viewport and persistent section navigation. */
 .nav-dock{position:sticky;top:0;z-index:80;padding:8px 0;background:rgba(251,250,247,.82);border-bottom:1px solid rgba(13,16,24,.08);backdrop-filter:blur(16px) saturate(140%)}
 .site-head{position:relative;z-index:1;margin:0 auto;padding:9px 10px 9px 14px;overflow:hidden;border:1px solid #293750;background:#0b1220;box-shadow:0 16px 38px rgba(7,17,38,.2),inset 0 1px 0 rgba(255,255,255,.08)}
-.site-head::after{content:"";position:absolute;inset:auto 0 0;height:2px;background:linear-gradient(90deg,var(--green) 0 18%,var(--blue) 45% 78%,var(--gold) 100%)}
+.site-head::after{content:"";position:absolute;inset:auto 0 0;height:2px;background:linear-gradient(90deg,var(--green) 0 18%,var(--blue) 45% 78%,var(--gold) 100%);background-size:180% 100%}
 .site-head .brand{color:#fff}.site-head .brand small{color:#aebbd0}
 .section-nav{display:flex;align-items:center;justify-content:flex-end;gap:7px;margin-left:auto;white-space:nowrap;flex-wrap:nowrap}
 .section-nav>a:not(.button){position:relative;padding:9px 10px;color:#c7d1e3;font-size:.76rem;font-weight:800;text-decoration:none;transition:color .2s ease,background .2s ease}
@@ -96,15 +96,19 @@ main section[id]{scroll-margin-top:120px}
 }
 
 @media(prefers-reduced-motion:no-preference){
+  .site-head::after{animation:navSignal 5s linear infinite}
+  .whatsapp-mark{animation:whatsappPulse 2.8s ease-in-out infinite}
   .trust-strip{animation:guideMarquee 24s linear infinite}
-  .hero-visual .cover-one{animation:bookFloatOne 5.6s ease-in-out infinite}
-  .hero-visual .cover-two{animation:bookFloatTwo 6.2s .4s ease-in-out infinite}
+  .hero-visual .cover-one{animation:bookFloatOne 4.4s ease-in-out infinite}
+  .hero-visual .cover-two{animation:bookFloatTwo 5s .35s ease-in-out infinite}
   .chat-question{animation:chatFloat 4.8s ease-in-out infinite}
   .chat-answer{animation:chatFloat 5.2s .7s ease-in-out infinite reverse}
   .before-after>div:last-child{animation:outcomeGlow 4s ease-in-out infinite}
   @keyframes guideMarquee{to{transform:translateX(-50%)}}
-  @keyframes bookFloatOne{0%,100%{transform:perspective(1450px) translate3d(0,0,0) rotateY(19deg) rotateZ(-5deg)}50%{transform:perspective(1450px) translate3d(6px,-22px,26px) rotateY(12deg) rotateZ(-3deg)}}
-  @keyframes bookFloatTwo{0%,100%{transform:perspective(1450px) translate3d(0,0,0) rotateY(-15deg) rotateZ(4deg)}50%{transform:perspective(1450px) translate3d(-7px,-27px,34px) rotateY(-9deg) rotateZ(2deg)}}
+  @keyframes navSignal{to{background-position:180% 0}}
+  @keyframes whatsappPulse{0%,100%{filter:drop-shadow(0 0 0 rgba(37,211,102,0));transform:scale(1)}50%{filter:drop-shadow(0 0 8px rgba(37,211,102,.55));transform:scale(1.07)}}
+  @keyframes bookFloatOne{0%,100%{transform:perspective(1450px) translate3d(0,0,0) rotateY(19deg) rotateZ(-5deg)}50%{transform:perspective(1450px) translate3d(8px,-30px,32px) rotateY(11deg) rotateZ(-2.5deg)}}
+  @keyframes bookFloatTwo{0%,100%{transform:perspective(1450px) translate3d(0,0,0) rotateY(-15deg) rotateZ(4deg)}50%{transform:perspective(1450px) translate3d(-9px,-38px,42px) rotateY(-8deg) rotateZ(1.5deg)}}
   @keyframes chatFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
   @keyframes outcomeGlow{0%,100%{box-shadow:0 14px 34px rgba(37,211,102,.08)}50%{box-shadow:0 18px 42px rgba(37,211,102,.18)}}
 }
