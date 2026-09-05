@@ -102,8 +102,7 @@ main section[id]{scroll-margin-top:120px}
 }
 
 @media(prefers-reduced-motion:no-preference){
-  .site-head::after{animation:navSignal 5s linear infinite}
-  .whatsapp-mark{animation:whatsappPulse 2.8s ease-in-out infinite}
+.site-head::after{animation:navSignal 5s linear infinite}
   .trust-strip{animation:guideMarquee 24s linear infinite}
   .hero-visual .cover-one{animation:bookFloatOne 5.4s ease-in-out infinite}
   .hero-visual .cover-two{animation:bookFloatTwo 6s .35s ease-in-out infinite}
@@ -112,9 +111,10 @@ main section[id]{scroll-margin-top:120px}
   .before-after>div:last-child{animation:outcomeGlow 4s ease-in-out infinite}
   @keyframes guideMarquee{to{transform:translateX(-50%)}}
   @keyframes navSignal{to{background-position:180% 0}}
-  @keyframes whatsappPulse{0%,100%{filter:drop-shadow(0 0 0 rgba(37,211,102,0));transform:scale(1)}50%{filter:drop-shadow(0 0 8px rgba(37,211,102,.55));transform:scale(1.07)}}
   @keyframes bookFloatOne{0%,100%{transform:perspective(1450px) translate3d(0,0,0) rotateY(19deg) rotateZ(-5deg)}50%{transform:perspective(1450px) translate3d(4px,-16px,18px) rotateY(15deg) rotateZ(-3.8deg)}}
   @keyframes bookFloatTwo{0%,100%{transform:perspective(1450px) translate3d(0,0,0) rotateY(-15deg) rotateZ(4deg)}50%{transform:perspective(1450px) translate3d(-5px,-20px,22px) rotateY(-11deg) rotateZ(2.8deg)}}
   @keyframes chatFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
   @keyframes outcomeGlow{0%,100%{box-shadow:0 14px 34px rgba(37,211,102,.08)}50%{box-shadow:0 18px 42px rgba(37,211,102,.18)}}
 }
+/* Keep the official WhatsApp mark crisp at small sizes. */
+.whatsapp-icon{display:inline-flex;flex:0 0 24px;width:24px;height:24px;padding:4px;border-radius:50%;background:var(--green);align-items:center;justify-content:center}.whatsapp-icon img{width:100%;height:100%;filter:brightness(0) invert(1)}.button-whatsapp .whatsapp-icon{background:rgba(8,30,18,.14)}
