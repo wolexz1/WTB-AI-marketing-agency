@@ -116,5 +116,5 @@ main section[id]{scroll-margin-top:120px}
   @keyframes chatFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
   @keyframes outcomeGlow{0%,100%{box-shadow:0 14px 34px rgba(37,211,102,.08)}50%{box-shadow:0 18px 42px rgba(37,211,102,.18)}}
 }
-/* Keep the official WhatsApp mark crisp at small sizes. */
-.whatsapp-icon{display:inline-flex;flex:0 0 24px;width:24px;height:24px;padding:4px;border-radius:50%;background:var(--green);align-items:center;justify-content:center}.whatsapp-icon img{width:100%;height:100%;filter:brightness(0) invert(1)}.button-whatsapp .whatsapp-icon{background:rgba(8,30,18,.14)}
+/* Use the unfiltered official WhatsApp app mark at its natural scale. */
+.whatsapp-icon{display:block;flex:0 0 auto;width:24px;height:24px}.button-whatsapp .whatsapp-icon{width:20px;height:20px}
