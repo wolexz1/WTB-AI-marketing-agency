@@ -61,7 +61,13 @@ main section[id]{scroll-margin-top:120px}
 .pain-grid article:hover,.capability-grid article:hover{transform:translateY(-5px);box-shadow:0 18px 38px rgba(7,24,58,.14)}
 .product-card:hover{transform:translateY(-4px)}
 .before-after>div:last-child{box-shadow:0 14px 34px rgba(37,211,102,.1)}
-.motion-ready .motion-reveal{opacity:0;transform:translateY(26px);transition:opacity .58s ease,transform .58s cubic-bezier(.22,.8,.28,1)}
+.button-row{column-gap:14px;row-gap:12px}
+#checkoutForm{display:grid;gap:20px;margin-top:24px}
+#checkoutForm label{gap:8px}
+#checkoutForm input{margin:0}
+#checkoutSubmit{margin-top:4px}
+#checkoutForm .secure-note{margin:0;padding-top:2px;line-height:1.55}
+.motion-ready .motion-reveal{opacity:0;transform:translateY(16px);transition:opacity .46s ease,transform .46s cubic-bezier(.22,.8,.28,1)}
 .motion-ready .motion-reveal.is-visible{opacity:1;transform:none}
 
 @media(max-width:1050px){
@@ -74,7 +80,7 @@ main section[id]{scroll-margin-top:120px}
   .section-nav::-webkit-scrollbar{display:none}
   .hero{padding-top:24px;grid-template-columns:1fr;grid-template-areas:"copy" "visual" "details" "trust" "clarification";gap:12px}
   .hero-copy{padding-top:0}
-  .hero-visual{height:520px;max-width:650px}
+  .hero-visual{height:630px;max-width:650px}
   .cover{width:min(70%,390px)}
 }
 @media(max-width:600px){
@@ -87,7 +93,7 @@ main section[id]{scroll-margin-top:120px}
   .hero{padding-top:18px;gap:8px}
   .hero h1{font-size:3rem;line-height:1.01;margin-bottom:16px}
   .hero .pain-line{font-size:1.1rem}
-  .hero-visual{height:470px;margin-top:4px;overflow:visible}
+  .hero-visual{height:clamp(470px,106vw,630px);margin-top:4px;overflow:visible}
   .cover{width:67%}.cover::before{left:-12px;width:15px}.cover::after{bottom:-10px;height:13px}
   .cover-one{left:2%;top:54px}.cover-two{right:1%;top:2px}
   .chat-question{top:4px}.chat-answer{bottom:8px}
@@ -99,16 +105,16 @@ main section[id]{scroll-margin-top:120px}
   .site-head::after{animation:navSignal 5s linear infinite}
   .whatsapp-mark{animation:whatsappPulse 2.8s ease-in-out infinite}
   .trust-strip{animation:guideMarquee 24s linear infinite}
-  .hero-visual .cover-one{animation:bookFloatOne 4.4s ease-in-out infinite}
-  .hero-visual .cover-two{animation:bookFloatTwo 5s .35s ease-in-out infinite}
+  .hero-visual .cover-one{animation:bookFloatOne 5.4s ease-in-out infinite}
+  .hero-visual .cover-two{animation:bookFloatTwo 6s .35s ease-in-out infinite}
   .chat-question{animation:chatFloat 4.8s ease-in-out infinite}
   .chat-answer{animation:chatFloat 5.2s .7s ease-in-out infinite reverse}
   .before-after>div:last-child{animation:outcomeGlow 4s ease-in-out infinite}
   @keyframes guideMarquee{to{transform:translateX(-50%)}}
   @keyframes navSignal{to{background-position:180% 0}}
   @keyframes whatsappPulse{0%,100%{filter:drop-shadow(0 0 0 rgba(37,211,102,0));transform:scale(1)}50%{filter:drop-shadow(0 0 8px rgba(37,211,102,.55));transform:scale(1.07)}}
-  @keyframes bookFloatOne{0%,100%{transform:perspective(1450px) translate3d(0,0,0) rotateY(19deg) rotateZ(-5deg)}50%{transform:perspective(1450px) translate3d(8px,-30px,32px) rotateY(11deg) rotateZ(-2.5deg)}}
-  @keyframes bookFloatTwo{0%,100%{transform:perspective(1450px) translate3d(0,0,0) rotateY(-15deg) rotateZ(4deg)}50%{transform:perspective(1450px) translate3d(-9px,-38px,42px) rotateY(-8deg) rotateZ(1.5deg)}}
+  @keyframes bookFloatOne{0%,100%{transform:perspective(1450px) translate3d(0,0,0) rotateY(19deg) rotateZ(-5deg)}50%{transform:perspective(1450px) translate3d(4px,-16px,18px) rotateY(15deg) rotateZ(-3.8deg)}}
+  @keyframes bookFloatTwo{0%,100%{transform:perspective(1450px) translate3d(0,0,0) rotateY(-15deg) rotateZ(4deg)}50%{transform:perspective(1450px) translate3d(-5px,-20px,22px) rotateY(-11deg) rotateZ(2.8deg)}}
   @keyframes chatFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
   @keyframes outcomeGlow{0%,100%{box-shadow:0 14px 34px rgba(37,211,102,.08)}50%{box-shadow:0 18px 42px rgba(37,211,102,.18)}}
 }
