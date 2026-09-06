@@ -6,8 +6,7 @@ const SUPPORT_EMAIL = "wolexzzoluk@gmail.com";
 export async function fulfilVerifiedOrder({ env, order, product, requestUrl, request }) {
   const tasks = [];
   if (env.RESEND_API_KEY) tasks.push(deliverChannelWithRetry(env, order.reference, "email", async () => {
-    const downloadUrl = await createDownloadUrl(order, product.asset, requestUrl, env);
-    await sendPurchaseEmail(env, order, product, downloadUrl);
+    await sendPurchaseEmail(env, order, product);
   }));
   if (env.META_PIXEL_ID && env.META_CAPI_ACCESS_TOKEN) tasks.push(deliverChannelWithRetry(env, order.reference, "meta", () => sendMetaPurchase({ env, order, product, request, requestUrl })));
   const results = await Promise.allSettled(tasks);
@@ -97,11 +96,14 @@ export async function handleWhatsAppGuideWebhook({ request, env, event }) {
   }
 }
 
-async function sendPurchaseEmail(env, order, product, downloadUrl) {
+async function sendPurchaseEmail(env, order, product) {
   const logo = "https://wtbaimarketing.com/assets/whatsapp-ai-guides/wtb-logo.webp";
   const pageUrl = "https://wtbaimarketing.com/whatsapp-ai-guides/";
+  const wtbUrl = "https://wtbaimarketing.com/";
   const safeName = escapeHtml(order.firstName || "there");
-  const safeDownload = escapeHtml(downloadUrl);
+  const safeProductName = escapeHtml(product.name);
+  const safeFirstAction = escapeHtml(product.firstAction);
+  const shareUrl = `https://wa.me/?text=${encodeURIComponent(`I found a practical WhatsApp AI guide that can help business owners respond faster and turn more chats into sales: ${pageUrl}`)}`;
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json", "Idempotency-Key": `wtb-wa-guides-${order.reference}` },
@@ -110,8 +112,8 @@ async function sendPurchaseEmail(env, order, product, downloadUrl) {
       to: order.email,
       reply_to: SUPPORT_EMAIL,
       subject: `Your ${product.name} is ready`,
-      text: `Hello ${order.firstName || "there"},\n\nYour payment for ${product.name} has been confirmed.\n\nDownload your private guide: ${downloadUrl}\n\nStart here: ${product.firstAction}\n\nIf the file does not open, reply to this email.`,
-      html: `<!doctype html><html><body style="margin:0;background:#eef4ff;font-family:Arial,sans-serif;color:#15171c"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="padding:24px 12px"><tr><td align="center"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;background:#fff;border:1px solid #d8e2f2"><tr><td style="padding:28px;background:#0d1018;color:#fff"><img src="${logo}" width="64" height="64" alt="WTB AI Marketing Agency"><h1 style="font-family:Georgia,serif;font-size:30px;line-height:1.1">Your guide is ready.</h1></td></tr><tr><td style="padding:30px"><p>Hello ${safeName},</p><p>Paystack has confirmed your purchase of <strong>${escapeHtml(product.name)}</strong>.</p><p style="margin:28px 0"><a href="${safeDownload}" style="display:inline-block;background:#155dfc;color:#fff;padding:16px 22px;text-decoration:none;font-weight:800">Download your private PDF</a></p><div style="border-left:4px solid #f3b51f;background:#fff8df;padding:15px 17px"><strong>Your first action</strong><br>${escapeHtml(product.firstAction)}</div><p style="font-size:14px;color:#596275">This private link expires for security. If delivery fails, reply to this email or contact ${SUPPORT_EMAIL}.</p><p><a href="https://wa.me/?text=${encodeURIComponent(`I found a practical WhatsApp AI guide for Nigerian businesses: ${pageUrl}`)}">Share the guides with another business owner</a></p></td></tr></table></td></tr></table></body></html>`,
+      text: `Hello ${order.firstName || "there"},\n\nPaystack has confirmed your purchase of ${product.name}. Your private guide was delivered through the confirmation page and should already be in your browser's Downloads list or your device's Downloads folder.\n\nStart here: ${product.firstAction}\n\nCannot find or open the file? Reply to this email and our team will help you.\n\nKnow another WhatsApp Business owner who wants faster replies and fewer missed sales? Share the guides: ${pageUrl}\n\nWTB AI Marketing Agency helps businesses use practical AI to improve customer service, automate repetitive work and grow with better systems: ${wtbUrl}`,
+      html: `<!doctype html><html><body style="margin:0;background:#eef4ff;font-family:Arial,sans-serif;color:#15171c"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="padding:24px 12px"><tr><td align="center"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;background:#fff;border:1px solid #d8e2f2"><tr><td style="padding:28px;background:#0d1018;color:#fff"><img src="${logo}" width="64" height="64" alt="WTB AI Marketing Agency"><h1 style="margin:18px 0 6px;font-family:Georgia,serif;font-size:30px;line-height:1.1">Your guide is ready.</h1><p style="margin:0;color:#c9d7ee">Payment confirmed. Your next step starts now.</p></td></tr><tr><td style="padding:30px"><p style="margin-top:0">Hello ${safeName},</p><p>Paystack has confirmed your purchase of <strong>${safeProductName}</strong>. Your private guide was delivered through the confirmation page and should already be on your device.</p><div style="margin:24px 0;padding:18px;border-left:4px solid #155dfc;background:#eef4ff"><strong>Check your download</strong><br><span style="color:#465166">Open your browser's Downloads list or your phone's Downloads folder to find the PDF.</span></div><div style="margin:24px 0;padding:18px;border-left:4px solid #f3b51f;background:#fff8df"><strong>Your first action</strong><br><span style="color:#465166">${safeFirstAction}</span></div><p><strong>Need help?</strong> If you cannot find or open the file, simply reply to this email. Your reply goes directly to the WTB team.</p><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:28px 0;background:#0d1018;color:#fff"><tr><td style="padding:22px"><strong style="font-size:18px">Help another business owner miss fewer sales</strong><p style="margin:8px 0 18px;color:#c9d7ee;line-height:1.55">Know someone handling too many WhatsApp chats manually? Share these practical guides with them.</p><a href="${shareUrl}" style="display:inline-block;background:#20b95a;color:#fff;padding:13px 18px;text-decoration:none;font-weight:800">Share with a WhatsApp Business owner</a></td></tr></table><div style="padding-top:22px;border-top:1px solid #d8e2f2"><strong>Built by WTB AI Marketing Agency</strong><p style="margin:8px 0 18px;color:#596275;line-height:1.6">We help businesses use practical AI to respond faster, improve customer experiences, automate repetitive work and build stronger systems for growth, while keeping people in control.</p><a href="${wtbUrl}" style="color:#155dfc;font-weight:800">Discover how WTB can help your business</a></div><p style="margin:28px 0 0;font-size:13px;color:#6a7280">Purchase reference: ${escapeHtml(order.reference)}</p></td></tr></table></td></tr></table></body></html>`,
     }),
   });
   if (!response.ok) throw new Error(`Purchase email failed: ${(await response.text()).slice(0, 300)}`);

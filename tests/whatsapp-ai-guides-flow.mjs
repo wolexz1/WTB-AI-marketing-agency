@@ -297,8 +297,10 @@ test("a payment reference alone cannot mint a new download token", async () => {
 test("repeated fulfilment uses one stable Resend idempotency key", async (t) => {
   t.after(() => { globalThis.fetch = realFetch; });
   const idempotencyKeys = [];
+  const sentEmails = [];
   globalThis.fetch = async (_url, options) => {
     idempotencyKeys.push(options.headers["Idempotency-Key"]);
+    sentEmails.push(JSON.parse(options.body));
     return new Response(JSON.stringify({ id: "email" }), { status: 200 });
   };
   const testEnv = { ...env(), RESEND_API_KEY: "re_test", FROM_EMAIL: "WTB <hello@wtbaimarketing.com>" };
@@ -307,6 +309,14 @@ test("repeated fulfilment uses one stable Resend idempotency key", async (t) => 
   await fulfilVerifiedOrder({ env: testEnv, order, product: PRODUCTS.launchpad, requestUrl: "https://wtbaimarketing.com/api/whatsapp-ai-guides/verify", request: new Request("https://wtbaimarketing.com/") });
   await fulfilVerifiedOrder({ env: testEnv, order, product: PRODUCTS.launchpad, requestUrl: "https://wtbaimarketing.com/api/whatsapp-ai-guides/verify", request: new Request("https://wtbaimarketing.com/") });
   assert.deepEqual(idempotencyKeys, ["wtb-wa-guides-wtbwa_idempotent00112233"]);
+  assert.equal(sentEmails[0].reply_to, "wolexzzoluk@gmail.com");
+  assert.doesNotMatch(sentEmails[0].html, /Download your private PDF/i);
+  assert.doesNotMatch(sentEmails[0].text, /Download your private guide:/i);
+  assert.match(sentEmails[0].html, /Check your download/);
+  assert.match(sentEmails[0].html, /reply to this email/);
+  assert.match(sentEmails[0].html, /Share with a WhatsApp Business owner/);
+  assert.match(sentEmails[0].html, /Built by WTB AI Marketing Agency/);
+  assert.match(sentEmails[0].text, /helps businesses use practical AI/);
 });
 
 test("a temporary email failure is stored and retried automatically", async (t) => {

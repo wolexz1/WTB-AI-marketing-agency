@@ -5,6 +5,7 @@ import test from "node:test";
 const read = (path) => fs.readFileSync(path, "utf8");
 
 const guidePage = read("whatsapp-ai-guides/index.html");
+const homePage = read("index.html");
 const guideScript = read("assets/whatsapp-ai-guides/whatsapp-ai-guides.js");
 const guideStyles = read("assets/whatsapp-ai-guides/whatsapp-ai-guides.css");
 const linkedArticles = [
@@ -95,4 +96,14 @@ test("preview pages use a spaced, pausable continuous carousel", () => {
   assert.match(guideStyles, /\.preview-track\{display:flex;[^}]*gap:24px/);
   assert.match(guideStyles, /\.preview-track button\{flex:0 0 clamp\(252px,24vw,292px\)/);
   assert.match(guideStyles, /\.preview-track\{gap:20px;[^}]*padding:20px 2px 24px\}/);
+});
+
+test("homepage learning products present both guide paths with lightweight covers", () => {
+  assert.match(homePage, /id="learningProductsTitle">Practical AI guides for work and home\./);
+  assert.match(homePage, /href="ai-explorers\/">Explore AI Explorers<\/a>/);
+  assert.match(homePage, /src="assets\/ai-explorers\/ai-explorers-cover-360\.webp"/);
+  assert.match(homePage, /href="whatsapp-ai-guides\/">Explore the guides<\/a>/);
+  assert.match(homePage, /src="assets\/whatsapp-ai-guides\/launchpad-cover-360\.webp"/);
+  assert.match(homePage, /src="assets\/whatsapp-ai-guides\/growth-engine-cover-360\.webp"/);
+  assert.doesNotMatch(homePage, /learning-product-entry[\s\S]{0,4000}ai-explorers-cover-ages-5-11\.png/);
 });
