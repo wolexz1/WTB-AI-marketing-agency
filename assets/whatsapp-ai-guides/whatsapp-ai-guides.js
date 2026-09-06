@@ -135,6 +135,7 @@
       bindPreview(clone);
       previewTrack.append(clone);
     });
+    const firstClone = previewTrack.querySelector("[data-carousel-clone]");
 
     let pausedByUser = false;
     let pausedByInteraction = false;
@@ -157,7 +158,7 @@
       lastFrame = now;
       if (!pausedByUser && !pausedByInteraction && !document.hidden) {
         previewTrack.scrollLeft += elapsed * 0.024;
-        const loopPoint = previewTrack.scrollWidth / 2;
+        const loopPoint = firstClone.offsetLeft - previewTrack.firstElementChild.offsetLeft;
         if (previewTrack.scrollLeft >= loopPoint) previewTrack.scrollLeft -= loopPoint;
       }
       requestAnimationFrame(move);

@@ -85,9 +85,10 @@ test("conversion actions use the compact sticky bar and direct checkout", () => 
 
 test("preview pages use a spaced, pausable continuous carousel", () => {
   assert.match(guidePage, /data-preview-toggle aria-pressed="false">Pause movement<\/button>/);
-  assert.match(guidePage, /class="preview-track" data-preview-track/);
+  assert.match(guidePage, /class="preview-track" data-preview-track aria-label="Guide page previews"/);
   assert.match(guideScript, /clone\.dataset\.carouselClone/);
   assert.match(guideScript, /previewTrack\.scrollLeft \+= elapsed \* 0\.024/);
+  assert.match(guideScript, /firstClone\.offsetLeft - previewTrack\.firstElementChild\.offsetLeft/);
   assert.match(guideScript, /pointerdown", pauseTemporarily/);
   assert.match(guideScript, /focusin", pauseTemporarily/);
   assert.match(guideScript, /pausedByUser \? "Resume movement" : "Pause movement"/);
