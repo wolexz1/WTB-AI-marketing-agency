@@ -6,6 +6,7 @@ const read = (path) => fs.readFileSync(path, "utf8");
 
 const guidePage = read("whatsapp-ai-guides/index.html");
 const guideScript = read("assets/whatsapp-ai-guides/whatsapp-ai-guides.js");
+const guideStyles = read("assets/whatsapp-ai-guides/whatsapp-ai-guides.css");
 const linkedArticles = [
   "blog/meta-business-ai-whatsapp-nigeria-2026/index.html",
   "blog/whatsapp-ai-chatbot-cost-nigeria-2026/index.html",
@@ -80,4 +81,17 @@ test("conversion actions use the compact sticky bar and direct checkout", () => 
   assert.match(guideScript, /\.hero-quick-actions" : "\.hero-actions"/);
   assert.match(guideScript, /document\.querySelectorAll\("#choose, \.final-cta, footer"\)/);
   assert.match(guideScript, /share\(button\.dataset\.guideShare, button\.dataset\.shareLocation\)/);
+});
+
+test("preview pages use a spaced, pausable continuous carousel", () => {
+  assert.match(guidePage, /data-preview-toggle aria-pressed="false">Pause movement<\/button>/);
+  assert.match(guidePage, /class="preview-track" data-preview-track/);
+  assert.match(guideScript, /clone\.dataset\.carouselClone/);
+  assert.match(guideScript, /previewTrack\.scrollLeft \+= elapsed \* 0\.024/);
+  assert.match(guideScript, /pointerdown", pauseTemporarily/);
+  assert.match(guideScript, /focusin", pauseTemporarily/);
+  assert.match(guideScript, /pausedByUser \? "Resume movement" : "Pause movement"/);
+  assert.match(guideStyles, /\.preview-track\{display:flex;[^}]*gap:24px/);
+  assert.match(guideStyles, /\.preview-track button\{flex:0 0 clamp\(252px,24vw,292px\)/);
+  assert.match(guideStyles, /\.preview-track\{gap:20px;[^}]*padding:20px 2px 24px\}/);
 });

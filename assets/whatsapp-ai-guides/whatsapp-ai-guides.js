@@ -114,11 +114,71 @@
 
   const previewDialog = document.querySelector("#previewDialog");
   const previewImage = document.querySelector("#previewImage");
-  document.querySelectorAll("[data-guide-preview]").forEach((button) => button.addEventListener("click", () => {
+  const openPreview = (button) => {
     previewImage.src = button.dataset.full;
     previewDialog.showModal();
     fbq("trackCustom", "PreviewOpened", { preview: button.dataset.full.split("/").pop() });
-  }));
+  };
+  const bindPreview = (button) => button.addEventListener("click", () => openPreview(button));
+  document.querySelectorAll("[data-guide-preview]").forEach(bindPreview);
+
+  const previewTrack = document.querySelector("[data-preview-track]");
+  const previewToggle = document.querySelector("[data-preview-toggle]");
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+  if (previewTrack && previewToggle && !reducedMotion.matches) {
+    const originals = [...previewTrack.children];
+    originals.forEach((card) => {
+      const clone = card.cloneNode(true);
+      clone.dataset.carouselClone = "";
+      clone.setAttribute("aria-hidden", "true");
+      clone.tabIndex = -1;
+      bindPreview(clone);
+      previewTrack.append(clone);
+    });
+
+    let pausedByUser = false;
+    let pausedByInteraction = false;
+    let resumeTimer;
+    let lastFrame = performance.now();
+    const updateToggle = () => {
+      previewToggle.setAttribute("aria-pressed", String(pausedByUser));
+      previewToggle.textContent = pausedByUser ? "Resume movement" : "Pause movement";
+    };
+    const pauseTemporarily = () => {
+      pausedByInteraction = true;
+      clearTimeout(resumeTimer);
+    };
+    const resumeSoon = () => {
+      clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(() => { pausedByInteraction = false; }, 1800);
+    };
+    const move = (now) => {
+      const elapsed = Math.min(now - lastFrame, 50);
+      lastFrame = now;
+      if (!pausedByUser && !pausedByInteraction && !document.hidden) {
+        previewTrack.scrollLeft += elapsed * 0.024;
+        const loopPoint = previewTrack.scrollWidth / 2;
+        if (previewTrack.scrollLeft >= loopPoint) previewTrack.scrollLeft -= loopPoint;
+      }
+      requestAnimationFrame(move);
+    };
+
+    previewToggle.addEventListener("click", () => {
+      pausedByUser = !pausedByUser;
+      updateToggle();
+    });
+    previewTrack.addEventListener("pointerenter", pauseTemporarily);
+    previewTrack.addEventListener("pointerleave", resumeSoon);
+    previewTrack.addEventListener("pointerdown", pauseTemporarily, { passive: true });
+    previewTrack.addEventListener("pointerup", resumeSoon, { passive: true });
+    previewTrack.addEventListener("focusin", pauseTemporarily);
+    previewTrack.addEventListener("focusout", resumeSoon);
+    previewTrack.addEventListener("wheel", () => { pauseTemporarily(); resumeSoon(); }, { passive: true });
+    updateToggle();
+    requestAnimationFrame(move);
+  } else if (previewToggle) {
+    previewToggle.hidden = true;
+  }
 
   const pageUrl = "https://wtbaimarketing.com/whatsapp-ai-guides/";
   const shareText = `I found a practical guide for Nigerian business owners handling 40+ WhatsApp chats a day. Launchpad is ₦5,500 and the advanced Growth Engine is ₦10,500. ${pageUrl}`;
@@ -165,7 +225,7 @@
   }
 
   if (!matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) {
-    const reveals = document.querySelectorAll(".pain-grid article, .calculator-card, .before-after, .capability-grid article, .preview-track button, .product-card, .value-grid article, .faq details");
+    const reveals = document.querySelectorAll(".pain-grid article, .calculator-card, .before-after, .capability-grid article, .preview-track button:not([data-carousel-clone]), .product-card, .value-grid article, .faq details");
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
