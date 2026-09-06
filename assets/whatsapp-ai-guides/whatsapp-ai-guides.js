@@ -1,8 +1,8 @@
 (() => {
   const money = new Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN", maximumFractionDigits: 0 });
   const products = {
-    launchpad: { name: "WhatsApp AI Launchpad", price: 5500, promise: "Turn repeated WhatsApp questions into faster, more consistent replies. Get the exact setup path, teaching checklist and safe handoff steps you can use today." },
-    "growth-engine": { name: "WhatsApp AI Growth Engine", price: 10500, promise: "Build a repeatable WhatsApp sales and service system that qualifies buyers, recommends the right next step and hands important conversations to your team." },
+    launchpad: { name: "WhatsApp AI Launchpad", price: 5500, promise: "Keep your WhatsApp business responsive when you are busy, asleep or away. Set up approved answers and safe handoffs so more buying conversations stay alive until you or your team can close them." },
+    "growth-engine": { name: "WhatsApp AI Growth Engine", price: 10500, promise: "Keep your business responsive and protect buying opportunities while you sleep, travel or focus elsewhere. Build a WhatsApp sales and service system that answers from approved business information, qualifies serious buyers, recommends the right next step and brings in your team when human judgement matters." },
   };
   const fbq = (...args) => { if (typeof window.fbq === "function") window.fbq(...args); };
   const cookie = (name) => document.cookie.split(";").map((part) => part.trim()).find((part) => part.startsWith(`${name}=`))?.slice(name.length + 1) || "";
@@ -27,6 +27,7 @@
 
   const checkout = document.querySelector("#checkoutDialog");
   const checkoutForm = document.querySelector("#checkoutForm");
+  const isLocalPreview = location.hostname === "localhost" || location.hostname === "127.0.0.1";
   const paystackScriptUrl = "https://js.paystack.co/v2/inline.js";
   let paystackPromise;
   const loadPaystack = () => {
@@ -104,7 +105,9 @@
         },
       });
     } catch (error) {
-      status.textContent = error.message || "Secure checkout could not start. Please try again.";
+      status.textContent = isLocalPreview
+        ? "Payment testing requires the live Cloudflare page. This local copy is for design preview only."
+        : error.message || "Secure checkout could not start. Please try again.";
       resetCheckoutButton(product);
     }
   });

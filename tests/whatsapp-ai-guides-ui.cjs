@@ -100,7 +100,7 @@ const path = require("node:path");
       noNormalNavigation: !text.includes("About Us") && !text.includes("Pricing"),
       sufficientCtas: launchpadButtons >= 4 && growthButtons >= 4,
       paymentNoticeRemoved: removedNoticeCount === 0,
-      checkoutCorrect: checkoutText.includes("WhatsApp AI Growth Engine") && checkoutText.includes("₦10,500") && checkoutText.includes("Build a repeatable WhatsApp sales and service system") && checkoutText.includes("without leaving this page") && !checkoutText.includes("access varies by account and market"),
+      checkoutCorrect: checkoutText.includes("WhatsApp AI Growth Engine") && checkoutText.includes("₦10,500") && checkoutText.includes("protect buying opportunities while you sleep") && checkoutText.includes("without leaving this page") && !checkoutText.includes("access varies by account and market"),
       checkoutSpacing,
       popupStaysOnPage,
       previewOpen,
