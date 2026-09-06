@@ -188,3 +188,24 @@ main section[id]{scroll-margin-top:120px}
   .comparison{padding-top:4px}
   .faq details{padding:17px 14px}
 }
+
+/* Compact conversion and referral controls replace the full-width share band. */
+.sticky-buy{
+  z-index:75;
+  width:min(650px,calc(100% - 24px));
+  padding:8px;
+  gap:8px;
+  border-color:rgba(21,93,252,.3);
+  border-radius:8px;
+  background:rgba(255,255,255,.96);
+  box-shadow:0 18px 52px rgba(7,17,38,.24);
+  backdrop-filter:blur(16px) saturate(145%);
+}
+.sticky-buy>.button{flex:1 1 0;min-width:0;margin:0;white-space:normal}
+.sticky-buy>.button-whatsapp{justify-content:center;color:#071b0f}
+@media(prefers-reduced-motion:no-preference){.sticky-buy:not([hidden]){animation:stickyReveal .22s ease-out both}@keyframes stickyReveal{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}}
+@media(max-width:600px){
+  .sticky-buy{bottom:max(8px,env(safe-area-inset-bottom));width:calc(100% - 16px);padding:6px}
+  .sticky-buy>.button{width:auto;min-height:48px;padding:8px 9px;font-size:.72rem;line-height:1.15}
+  .sticky-buy .whatsapp-icon{width:18px;height:18px}
+}

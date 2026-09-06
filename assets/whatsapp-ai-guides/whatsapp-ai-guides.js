@@ -122,27 +122,27 @@
 
   const pageUrl = "https://wtbaimarketing.com/whatsapp-ai-guides/";
   const shareText = `I found a practical guide for Nigerian business owners handling 40+ WhatsApp chats a day. Launchpad is ₦5,500 and the advanced Growth Engine is ₦10,500. ${pageUrl}`;
-  const share = async (type) => {
-    fbq("trackCustom", "ShareClick", { location: "landing_page_referral_section", method: type });
+  const share = async (type, location = "landing_page") => {
+    fbq("trackCustom", "ShareClick", { location, method: type });
     if (type === "native" && navigator.share) {
       try { await navigator.share({ title: "WTB WhatsApp AI Guides", text: shareText, url: pageUrl }); return; } catch (error) { if (error.name === "AbortError") return; }
     }
     window.open(`https://wa.me/?text=${encodeURIComponent(shareText)}`, "_blank", "noopener,noreferrer");
   };
-  document.querySelectorAll("[data-guide-share]").forEach((button) => button.addEventListener("click", () => share(button.dataset.guideShare)));
+  document.querySelectorAll("[data-guide-share]").forEach((button) => button.addEventListener("click", () => share(button.dataset.guideShare, button.dataset.shareLocation)));
 
   const sticky = document.querySelector("[data-guide-sticky]");
-  const hero = document.querySelector(".hero");
-  if (sticky && hero && "IntersectionObserver" in window) {
-    let heroVisible = true;
+  const heroChoices = document.querySelector(matchMedia("(max-width: 900px)").matches ? ".hero-quick-actions" : ".hero-actions");
+  if (sticky && heroChoices && "IntersectionObserver" in window) {
+    let choicesVisible = true;
     const visibleBlockers = new Set();
-    const updateSticky = () => { sticky.hidden = heroVisible || visibleBlockers.size > 0; };
-    new IntersectionObserver(([entry]) => { heroVisible = entry.isIntersecting; updateSticky(); }, { threshold: 0.05 }).observe(hero);
+    const updateSticky = () => { sticky.hidden = choicesVisible || visibleBlockers.size > 0; };
+    new IntersectionObserver(([entry]) => { choicesVisible = entry.isIntersecting; updateSticky(); }, { threshold: 0.01 }).observe(heroChoices);
     const blockerObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => entry.isIntersecting ? visibleBlockers.add(entry.target) : visibleBlockers.delete(entry.target));
       updateSticky();
     }, { threshold: 0.01 });
-    document.querySelectorAll("#choose, .faq, .share-section, .final-cta, footer").forEach((section) => blockerObserver.observe(section));
+    document.querySelectorAll("#choose, .final-cta, footer").forEach((section) => blockerObserver.observe(section));
   }
 
   const sectionLinks = [...document.querySelectorAll(".section-nav a[href^='#']")].filter((link) => !link.classList.contains("button"));

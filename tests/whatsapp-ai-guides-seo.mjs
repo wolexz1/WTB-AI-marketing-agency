@@ -5,6 +5,7 @@ import test from "node:test";
 const read = (path) => fs.readFileSync(path, "utf8");
 
 const guidePage = read("whatsapp-ai-guides/index.html");
+const guideScript = read("assets/whatsapp-ai-guides/whatsapp-ai-guides.js");
 const linkedArticles = [
   "blog/meta-business-ai-whatsapp-nigeria-2026/index.html",
   "blog/whatsapp-ai-chatbot-cost-nigeria-2026/index.html",
@@ -59,4 +60,24 @@ test("discovery files expose the canonical guide URL", () => {
   assert.match(read("sitemap.xml"), /<loc>https:\/\/wtbaimarketing\.com\/whatsapp-ai-guides\/<\/loc>\s*<lastmod>2026-09-06<\/lastmod>/);
   assert.match(read("llms.txt"), /## WhatsApp AI Guides for Nigerian Businesses/);
   assert.match(read("markdown-mirror.md"), /## WhatsApp AI Guides for Nigerian Businesses/);
+});
+
+test("conversion actions use the compact sticky bar and direct checkout", () => {
+  assert.doesNotMatch(guidePage, /class="share-section"/);
+  assert.equal((guidePage.match(/href="#choose"/g) || []).length, 1);
+  assert.match(guidePage, /data-guide-sticky[\s\S]*?>[\s\S]*?href="#choose"[\s\S]*?>Choose guide<[\s\S]*?data-guide-share="native"[\s\S]*?data-share-location="sticky_bar"[\s\S]*?>[\s\S]*?Share with a business owner/);
+  assert.match(guidePage, /href="#comparison">Compare guides<\/a>/);
+  assert.match(guidePage, /<section class="comparison section-shell" id="comparison"/);
+
+  for (const location of ["navigation", "pain_section", "calculator"]) {
+    assert.match(
+      guidePage,
+      new RegExp(`data-guide-buy data-guide-product="growth-engine" data-cta-location="${location}"`),
+      location,
+    );
+  }
+
+  assert.match(guideScript, /\.hero-quick-actions" : "\.hero-actions"/);
+  assert.match(guideScript, /document\.querySelectorAll\("#choose, \.final-cta, footer"\)/);
+  assert.match(guideScript, /share\(button\.dataset\.guideShare, button\.dataset\.shareLocation\)/);
 });
