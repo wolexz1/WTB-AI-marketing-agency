@@ -468,3 +468,18 @@ Related pages:
 - [Is ChatGPT Safe for Children? What Nigerian Parents Should Teach First](https://wtbaimarketing.com/blog/is-chatgpt-safe-for-children-nigeria-2026/)
 - [AI Activities for Kids at Home: 7 Safe Ways to Learn Together](https://wtbaimarketing.com/blog/ai-activities-for-kids-at-home-nigeria-2026/)
 - [AI Explorers Workbook](https://wtbaimarketing.com/ai-explorers/)
+
+## WhatsApp AI Guides for Nigerian Businesses
+
+URL: https://wtbaimarketing.com/whatsapp-ai-guides/
+
+WTB publishes two independent digital guides for Nigerian businesses using WhatsApp for sales and customer service. WhatsApp AI Launchpad is a practical first setup, teaching, testing and activation guide priced at NGN 5,500. WhatsApp AI Growth Engine is an advanced sales and customer-service operating playbook priced at NGN 10,500.
+
+The guides cover Meta Business Agent setup, approved business knowledge, faster first replies, lead qualification, product recommendations, human takeover and continuous improvement. They are delivered as private PDFs after verified Paystack payment. WTB is not Meta or WhatsApp, and product availability and controls may vary by account and market.
+
+Related research:
+- [Meta Business AI on WhatsApp in Nigeria](https://wtbaimarketing.com/blog/meta-business-ai-whatsapp-nigeria-2026/)
+- [WhatsApp AI chatbot costs in Nigeria](https://wtbaimarketing.com/blog/whatsapp-ai-chatbot-cost-nigeria-2026/)
+- [WhatsApp AI lead generation for Nigerian businesses](https://wtbaimarketing.com/blog/whatsapp-ai-lead-generation-nigeria-2026/)
+- [How to automate WhatsApp leads in Nigeria](https://wtbaimarketing.com/blog/how-to-automate-whatsapp-leads-nigeria-2026/)
+- [Why Nigerian businesses lose WhatsApp leads](https://wtbaimarketing.com/blog/why-nigerian-businesses-lose-whatsapp-leads-2026/)

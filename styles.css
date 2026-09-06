@@ -1469,6 +1469,10 @@ h3 {
   margin-top: 18px;
 }
 
+.blog-article-page .article-body > .guide-cta {
+  margin: 28px 0;
+}
+
 @media (max-width: 720px) {
   .ai-explorers-guide .guide-grid {
     grid-template-columns: 1fr;
