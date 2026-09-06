@@ -144,6 +144,22 @@ test("checkout ignores a browser amount and initializes the fixed product amount
   assert.match(response.headers.get("Set-Cookie"), /wtbwa_delivery_wtbwa_.*HttpOnly.*Secure.*SameSite=Lax/);
 });
 
+test("checkout returns a server-created access code for the on-page Paystack popup", async (t) => {
+  t.after(() => { globalThis.fetch = realFetch; });
+  globalThis.fetch = async () => new Response(JSON.stringify({ status: true, data: { authorization_url: "https://checkout.paystack.com/test", access_code: "test_access_code" } }), { status: 200 });
+  const request = new Request("https://wtbaimarketing.com/api/whatsapp-ai-guides/checkout", {
+    method: "POST",
+    headers: { "CF-Connecting-IP": "127.0.0.2", Accept: "application/json" },
+    body: new URLSearchParams({ firstName: "Wole", email: "buyer@example.com", product: "growth-engine", ctaLocation: "product_card" }),
+  });
+  const response = await onRequest({ request, env: { ...env({ size: 1234 }), RESEND_API_KEY: "re_test", FROM_EMAIL: "WTB <hello@wtbaimarketing.com>" } });
+  const payload = await response.json();
+  assert.equal(response.status, 200);
+  assert.equal(payload.accessCode, "test_access_code");
+  assert.match(payload.reference, /^wtbwa_/);
+  assert.match(response.headers.get("Set-Cookie"), /HttpOnly.*Secure.*SameSite=Lax/);
+});
+
 test("checkout takes no payment when delivery configuration is incomplete", async (t) => {
   t.after(() => { globalThis.fetch = realFetch; });
   let called = false;

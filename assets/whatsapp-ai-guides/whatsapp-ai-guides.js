@@ -1,8 +1,8 @@
 (() => {
   const money = new Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN", maximumFractionDigits: 0 });
   const products = {
-    launchpad: { name: "WhatsApp AI Launchpad", price: 5500 },
-    "growth-engine": { name: "WhatsApp AI Growth Engine", price: 10500 },
+    launchpad: { name: "WhatsApp AI Launchpad", price: 5500, promise: "Turn repeated WhatsApp questions into faster, more consistent replies. Get the exact setup path, teaching checklist and safe handoff steps you can use today." },
+    "growth-engine": { name: "WhatsApp AI Growth Engine", price: 10500, promise: "Build a repeatable WhatsApp sales and service system that qualifies buyers, recommends the right next step and hands important conversations to your team." },
   };
   const fbq = (...args) => { if (typeof window.fbq === "function") window.fbq(...args); };
   const cookie = (name) => document.cookie.split(";").map((part) => part.trim()).find((part) => part.startsWith(`${name}=`))?.slice(name.length + 1) || "";
@@ -27,15 +27,38 @@
 
   const checkout = document.querySelector("#checkoutDialog");
   const checkoutForm = document.querySelector("#checkoutForm");
+  const paystackScriptUrl = "https://js.paystack.co/v2/inline.js";
+  let paystackPromise;
+  const loadPaystack = () => {
+    if (window.PaystackPop) return Promise.resolve(window.PaystackPop);
+    if (paystackPromise) return paystackPromise;
+    paystackPromise = new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = paystackScriptUrl;
+      script.async = true;
+      script.onload = () => window.PaystackPop ? resolve(window.PaystackPop) : reject(new Error("Paystack did not become available."));
+      script.onerror = () => reject(new Error("Paystack could not load."));
+      document.head.append(script);
+    }).catch((error) => { paystackPromise = null; throw error; });
+    return paystackPromise;
+  };
+  const resetCheckoutButton = (product) => {
+    const submit = checkoutForm.querySelector("#checkoutSubmit");
+    submit.disabled = false;
+    submit.textContent = `Pay securely — ${money.format(product.price)}`;
+  };
   const openCheckout = (productId, location) => {
     const product = products[productId];
     if (!product || !checkout) return;
     checkout.querySelector("#checkoutTitle").textContent = product.name;
-    checkout.querySelector("#checkoutSummary").textContent = `${money.format(product.price)} one-time. Confirm Meta Business Agent appears in your WhatsApp business tools before buying; access varies by account and market. Instant private PDF access follows verified payment.`;
+    checkout.querySelector("#checkoutPrice").textContent = `${money.format(product.price)} one-time`;
+    checkout.querySelector("#checkoutSummary").textContent = product.promise;
     checkout.querySelector("#checkoutProduct").value = productId;
     checkout.querySelector("#checkoutLocation").value = location || "page";
     checkout.querySelector("#checkoutFbp").value = cookie("_fbp");
     checkout.querySelector("#checkoutFbc").value = cookie("_fbc");
+    checkout.querySelector("#checkoutStatus").textContent = "";
+    resetCheckoutButton(product);
     checkout.showModal();
     checkout.querySelector("input[name=firstName]").focus();
     fbq("trackCustom", "ProductSelected", { content_id: productId, value: product.price, currency: "NGN", cta_location: location });
@@ -43,14 +66,47 @@
   document.querySelectorAll("[data-guide-buy]").forEach((button) => button.addEventListener("click", () => openCheckout(button.dataset.guideProduct, button.dataset.ctaLocation)));
   document.querySelectorAll(".dialog-close").forEach((button) => button.addEventListener("click", () => button.closest("dialog").close()));
   document.querySelectorAll("dialog").forEach((dialog) => dialog.addEventListener("click", (event) => { if (event.target === dialog) dialog.close(); }));
-  checkoutForm?.addEventListener("submit", () => {
+  checkoutForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
     const id = checkoutForm.querySelector("#checkoutProduct").value;
     const product = products[id];
+    if (!product) return;
     const eventId = `checkout_${Date.now()}_${Math.random().toString(16).slice(2)}`;
     fbq("track", "InitiateCheckout", { content_ids: [id], content_type: "product", value: product.price, currency: "NGN", num_items: 1 }, { eventID: eventId });
     const submit = checkoutForm.querySelector("#checkoutSubmit");
+    const status = checkoutForm.querySelector("#checkoutStatus");
     submit.disabled = true;
-    submit.textContent = "Opening secure Paystack checkout…";
+    submit.textContent = "Opening secure Paystack popup…";
+    status.textContent = "Preparing your secure payment…";
+    try {
+      const [PaystackPop, response] = await Promise.all([
+        loadPaystack(),
+        fetch(checkoutForm.action, { method: "POST", body: new FormData(checkoutForm), headers: { Accept: "application/json" }, credentials: "same-origin" }),
+      ]);
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload.accessCode || !payload.reference) throw new Error(payload.message || "Secure checkout could not start.");
+      checkout.close();
+      const popup = new PaystackPop();
+      popup.resumeTransaction(payload.accessCode, {
+        onSuccess: (transaction) => {
+          const reference = transaction?.reference || payload.reference;
+          window.location.assign(`/whatsapp-ai-guides/thank-you/?reference=${encodeURIComponent(reference)}`);
+        },
+        onCancel: () => {
+          status.textContent = "Payment was not completed. Your details are still here when you are ready.";
+          resetCheckoutButton(product);
+          checkout.showModal();
+        },
+        onError: () => {
+          status.textContent = "Paystack could not open. Please check your connection and try again.";
+          resetCheckoutButton(product);
+          checkout.showModal();
+        },
+      });
+    } catch (error) {
+      status.textContent = error.message || "Secure checkout could not start. Please try again.";
+      resetCheckoutButton(product);
+    }
   });
 
   const previewDialog = document.querySelector("#previewDialog");

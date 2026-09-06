@@ -118,3 +118,20 @@ main section[id]{scroll-margin-top:120px}
 }
 /* Use the unfiltered official WhatsApp app mark at its natural scale. */
 .whatsapp-icon{display:block;flex:0 0 auto;width:24px;height:24px}.button-whatsapp .whatsapp-icon{width:20px;height:20px}
+
+/* Conversion-focused choice and checkout refinements. */
+.products{padding:76px 0 92px}
+.choice-guidance{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:980px;margin:26px 0 0}
+.choice-guidance p{margin:0;padding:15px 17px;border-left:4px solid var(--blue);background:var(--soft);color:#3d485c;font-size:.9rem;line-height:1.5}
+.choice-guidance b{display:block;color:var(--ink);font-size:.96rem}
+.product-grid{margin-top:28px}
+.product-card>small{font-weight:750;color:var(--muted);text-align:center}
+.featured>small{color:#cbd4e4}
+.checkout-dialog{border:0;border-top:6px solid var(--blue);border-radius:8px;padding:32px;box-shadow:0 34px 100px rgba(3,9,24,.5)}
+.checkout-dialog::before{content:"";position:absolute;inset:0 0 auto;height:74px;background:linear-gradient(180deg,#eef4ff,rgba(238,244,255,0));pointer-events:none;z-index:-1}
+.checkout-dialog h2{margin-bottom:8px;max-width:440px}
+.checkout-price{margin:0 0 14px;color:var(--deep);font-family:Georgia,serif;font-size:1.65rem;font-weight:800}
+.checkout-dialog #checkoutSummary{margin:0;color:#38445a;line-height:1.55}
+.checkout-status{min-height:1.3em;margin:0;color:var(--deep);font-size:.82rem;font-weight:750}
+#checkoutSubmit:disabled{cursor:wait;opacity:.72;transform:none}
+@media(max-width:600px){.products{padding-block:58px 72px}.choice-guidance{grid-template-columns:1fr;margin-top:20px}.product-grid{margin-top:20px}.checkout-dialog{padding:27px 18px 22px}.checkout-dialog h2{font-size:2.05rem}.checkout-price{font-size:1.4rem}}

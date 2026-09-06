@@ -19,22 +19,22 @@ export async function onRequest(context) {
 
 async function initializeCheckout(request, env) {
   const missing = requiredEnv(env, ["PAYSTACK_SECRET_KEY", "WHATSAPP_AI_GUIDES_DB", "WHATSAPP_AI_GUIDES_BUCKET", "DOWNLOAD_TOKEN_SECRET", "RESEND_API_KEY", "FROM_EMAIL"]);
-  if (missing) return htmlError("Secure checkout is being configured. Please try again shortly.", 503);
+  if (missing) return checkoutError(request, "Secure checkout is being configured. Please try again shortly.", 503);
   const form = await request.formData();
   const firstName = cleanText(form.get("firstName"), 80);
   const email = cleanEmail(form.get("email"));
   const product = productForId(cleanText(form.get("product"), 32));
   const ctaLocation = cleanText(form.get("ctaLocation"), 48) || "page";
-  if (!firstName || !email || !product) return htmlError("Please enter a valid first name and email, then choose a guide.", 400);
+  if (!firstName || !email || !product) return checkoutError(request, "Please enter a valid first name and email, then choose a guide.", 400);
   let asset;
   try {
     asset = await env.WHATSAPP_AI_GUIDES_BUCKET.head(ASSETS[product.asset].key);
   } catch {
-    return htmlError("This guide is temporarily unavailable. No payment has been taken. Please try again shortly.", 503);
+    return checkoutError(request, "This guide is temporarily unavailable. No payment has been taken. Please try again shortly.", 503);
   }
-  if (!asset) return htmlError("This guide is temporarily unavailable. No payment has been taken. Please try again shortly.", 503);
+  if (!asset) return checkoutError(request, "This guide is temporarily unavailable. No payment has been taken. Please try again shortly.", 503);
   const clientIp = request.headers.get("CF-Connecting-IP") || "unknown";
-  if (!await consumeRateLimit(env, clientIp)) return htmlError("Please wait a minute before starting another checkout.", 429);
+  if (!await consumeRateLimit(env, clientIp)) return checkoutError(request, "Please wait a minute before starting another checkout.", 429);
   const reference = `wtbwa_${crypto.randomUUID().replace(/-/g, "").slice(0, 24)}`;
   const deliveryKey = crypto.randomUUID().replace(/-/g, "");
   const deliveryTtl = Math.min(2592000, Math.max(900, Number(env.WHATSAPP_AI_GUIDES_DOWNLOAD_TTL_SECONDS) || 604800));
@@ -57,7 +57,14 @@ async function initializeCheckout(request, env) {
   });
   const result = await paystack.json().catch(() => null);
   const authorizationUrl = result?.data?.authorization_url;
-  if (!paystack.ok || !result?.status || !authorizationUrl) return htmlError("Secure checkout could not start. Please try again shortly.", 502);
+  const accessCode = result?.data?.access_code;
+  const wantsJson = request.headers.get("Accept")?.includes("application/json");
+  if (!paystack.ok || !result?.status || !authorizationUrl || (wantsJson && !accessCode)) return checkoutError(request, "Secure checkout could not start. Please try again shortly.", 502);
+  if (wantsJson) {
+    const headers = new Headers(privateHeaders("application/json; charset=utf-8"));
+    headers.append("Set-Cookie", deliveryCookie(reference, deliveryKey, deliveryTtl));
+    return new Response(JSON.stringify({ accessCode, reference }), { status: 200, headers });
+  }
   const headers = new Headers({ Location: authorizationUrl });
   headers.append("Set-Cookie", deliveryCookie(reference, deliveryKey, deliveryTtl));
   return new Response(null, { status: 302, headers });
@@ -123,5 +130,6 @@ function deliveryKeyFromCookie(header, reference) {
 function privateHeaders(contentType) { return { "Content-Type": contentType, "Cache-Control": "private, no-store, max-age=0", "X-Robots-Tag": "noindex, nofollow", "X-Content-Type-Options": "nosniff", "Referrer-Policy": "no-referrer" }; }
 function json(payload, status = 200) { return new Response(JSON.stringify(payload), { status, headers: privateHeaders("application/json; charset=utf-8") }); }
 function htmlError(message, status) { return new Response(`<!doctype html><html><body><h1>Checkout could not continue</h1><p>${escapeHtml(message)}</p><p><a href="/whatsapp-ai-guides/#choose">Return to the guides</a></p></body></html>`, { status, headers: privateHeaders("text/html; charset=utf-8") }); }
+function checkoutError(request, message, status) { return request.headers.get("Accept")?.includes("application/json") ? json({ message }, status) : htmlError(message, status); }
 function escapeHtml(value) { return String(value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"); }
 function constantTimeEqual(a, b) { if (a.length !== b.length) return false; let result = 0; for (let index = 0; index < a.length; index += 1) result |= a.charCodeAt(index) ^ b.charCodeAt(index); return result === 0; }

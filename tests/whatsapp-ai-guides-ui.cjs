@@ -19,9 +19,16 @@ const path = require("node:path");
     const page = await context.newPage();
     const errors = [];
     page.on("pageerror", (error) => errors.push(error.message));
+    await page.addInitScript(() => {
+      window.__paystackResumes = [];
+      window.PaystackPop = class {
+        resumeTransaction(accessCode) { window.__paystackResumes.push(accessCode); }
+      };
+    });
     await page.route("https://connect.facebook.net/**", (route) => route.abort());
+    await page.route("**/api/whatsapp-ai-guides/checkout", (route) => route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ accessCode: "ui_test_access", reference: "wtbwa_ui_test" }) }));
     await page.goto(baseUrl, { waitUntil: "domcontentloaded" });
-    await page.waitForSelector("h1");
+    await page.waitForSelector("h1", { state: "attached" });
     const floatingStart = await page.locator(".cover-one").evaluate((cover) => getComputedStyle(cover).transform);
     await page.waitForTimeout(320);
     const floatingEnd = await page.locator(".cover-one").evaluate((cover) => getComputedStyle(cover).transform);
@@ -38,7 +45,11 @@ const path = require("node:path");
       return labels.length === 2 && labels[1].top - labels[0].bottom >= 16 && button.top - labels[1].bottom >= 16;
     });
     const buttonFit = await page.locator(".button").evaluateAll((buttons) => buttons.every((button) => button.scrollWidth <= button.clientWidth + 2 && button.scrollHeight <= button.clientHeight + 2));
-    await page.locator("#checkoutDialog .dialog-close").click();
+    await page.locator("#checkoutForm input[name='firstName']").fill("Wole");
+    await page.locator("#checkoutForm input[name='email']").fill("buyer@example.com");
+    await page.locator("#checkoutSubmit").click();
+    await page.waitForFunction(() => window.__paystackResumes.length === 1);
+    const popupStaysOnPage = await page.evaluate(() => window.__paystackResumes[0] === "ui_test_access" && location.pathname === "/whatsapp-ai-guides/" && !document.querySelector("#checkoutDialog").open);
     await page.locator("[data-guide-preview]").first().click();
     const previewOpen = await page.locator("#previewDialog").getAttribute("open") !== null;
     await page.locator("#previewDialog .dialog-close").click();
@@ -89,8 +100,9 @@ const path = require("node:path");
       noNormalNavigation: !text.includes("About Us") && !text.includes("Pricing"),
       sufficientCtas: launchpadButtons >= 4 && growthButtons >= 4,
       paymentNoticeRemoved: removedNoticeCount === 0,
-      checkoutCorrect: checkoutText.includes("WhatsApp AI Growth Engine") && checkoutText.includes("₦10,500") && checkoutText.includes("access varies by account and market"),
+      checkoutCorrect: checkoutText.includes("WhatsApp AI Growth Engine") && checkoutText.includes("₦10,500") && checkoutText.includes("Build a repeatable WhatsApp sales and service system") && checkoutText.includes("without leaving this page") && !checkoutText.includes("access varies by account and market"),
       checkoutSpacing,
+      popupStaysOnPage,
       previewOpen,
       buttonFit,
       booksFloat: floatingStart !== floatingEnd,
@@ -103,7 +115,7 @@ const path = require("node:path");
     await context.close();
   }
   await browser.close();
-  const passed = results.every((r) => r.exactPrices && r.approvedProducts && r.noNormalNavigation && r.sufficientCtas && r.paymentNoticeRemoved && r.checkoutCorrect && r.checkoutSpacing && r.previewOpen && r.buttonFit && r.booksFloat && r.navSticks && !r.horizontalOverflow && r.errors.length === 0 && r.semantics.h1Count === 1 && r.semantics.imagesHaveAlt && r.semantics.formControlsNamed && r.semantics.checkoutAction === "/api/whatsapp-ai-guides/checkout" && r.semantics.canonical === "https://wtbaimarketing.com/whatsapp-ai-guides/");
+  const passed = results.every((r) => r.exactPrices && r.approvedProducts && r.noNormalNavigation && r.sufficientCtas && r.paymentNoticeRemoved && r.checkoutCorrect && r.checkoutSpacing && r.popupStaysOnPage && r.previewOpen && r.buttonFit && r.booksFloat && r.navSticks && !r.horizontalOverflow && r.errors.length === 0 && r.semantics.h1Count === 1 && r.semantics.imagesHaveAlt && r.semantics.formControlsNamed && r.semantics.checkoutAction === "/api/whatsapp-ai-guides/checkout" && r.semantics.canonical === "https://wtbaimarketing.com/whatsapp-ai-guides/");
   console.log(JSON.stringify({ passed, results }, null, 2));
   if (!passed) process.exit(1);
 })().catch((error) => { console.error(error); process.exit(1); });
