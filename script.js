@@ -601,6 +601,29 @@ setupBlogSharing();
 const setupConversionTracking = () => {
   const forms = Array.from(document.querySelectorAll("form[action='/api/submit']"));
 
+  if (document.body.classList.contains("blog-article-page")) {
+    const reachedMilestones = new Set();
+    const milestones = [50, 90];
+
+    const trackArticleDepth = () => {
+      const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (scrollableHeight <= 0) return;
+
+      const depth = Math.min(100, Math.round(((window.scrollY + window.innerHeight) / scrollableHeight) * 100));
+      milestones.forEach((milestone) => {
+        if (depth < milestone || reachedMilestones.has(milestone)) return;
+        reachedMilestones.add(milestone);
+        trackAnalyticsEvent("article_read_depth", {
+          article_path: window.location.pathname,
+          percent_read: milestone,
+        });
+      });
+    };
+
+    window.addEventListener("scroll", trackArticleDepth, { passive: true });
+    trackArticleDepth();
+  }
+
   forms.forEach((form) => {
     let started = false;
     form.addEventListener("focusin", () => {
