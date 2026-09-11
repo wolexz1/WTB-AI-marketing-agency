@@ -4173,6 +4173,13 @@ body.modal-open {
   box-shadow: 0 20px 54px rgba(37, 211, 102, 0.42);
 }
 
+.product-growth-context {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 0.96rem;
+  line-height: 1.6;
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(28px) scale(0.99);

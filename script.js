@@ -220,6 +220,62 @@ const trackAnalyticsEvent = (eventName, parameters = {}) => {
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push(["event", eventName, eventParameters]);
 };
+
+const addBlogWhatsAppButton = () => {
+  if (!document.body?.classList.contains("blog-article-page") || document.querySelector(".floating-whatsapp")) {
+    return;
+  }
+
+  const articleTitle = document.querySelector("h1")?.textContent?.trim() || "this WTB guide";
+  const message = `Hello WTB, I am reading \"${articleTitle}\" and would like help with my business.`;
+  const button = document.createElement("a");
+  button.className = "floating-whatsapp";
+  button.href = `https://wa.me/2348097585489?text=${encodeURIComponent(message)}`;
+  button.target = "_blank";
+  button.rel = "noopener noreferrer";
+  button.setAttribute("aria-label", "Chat with WTB on WhatsApp about this article");
+  button.innerHTML = "<span>Chat with us</span>";
+  document.body.appendChild(button);
+};
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", addBlogWhatsAppButton, { once: true });
+} else {
+  addBlogWhatsAppButton();
+}
+
+const addProductGrowthContext = () => {
+  const contextByPath = {
+    "/blog/app-distribution-strategy-nigeria-2026/": "The same customer-distribution thinking helps a SaaS platform or customer-facing software product earn discovery, sign-ups, adoption, and repeat use.",
+    "/blog/go-to-market-strategy-for-apps-nigeria-2026/": "This applies to a mobile app, SaaS product, or customer-facing software platform: the product needs a clear user, commercial promise, acquisition path, and adoption plan.",
+    "/blog/vibe-coded-app-needs-users-2026/": "Whether you built a mobile app, SaaS tool, or software product, the market still needs a clear reason to try it and keep using it.",
+    "/blog/why-ai-built-app-has-no-users-yet-2026/": "The diagnosis is similar for a SaaS tool or software product: visibility alone cannot fix an unclear promise, weak product proof, or leaky onboarding.",
+    "/mobile-app-user-acquisition-nigeria/": "The work also applies to customer-facing software products and SaaS platforms that need qualified sign-ups, product adoption, and retention—not just clicks.",
+  };
+  const context = contextByPath[window.location.pathname];
+
+  if (!context || document.querySelector("[data-wtb-product-growth-context]")) {
+    return;
+  }
+
+  const target = document.querySelector(".article-body .answer-panel, .page-hero .section-shell, .page-hero .article-shell");
+  if (!target) {
+    return;
+  }
+
+  const paragraph = document.createElement("p");
+  paragraph.dataset.wtbProductGrowthContext = "true";
+  paragraph.className = "product-growth-context";
+  paragraph.textContent = context;
+  target.appendChild(paragraph);
+};
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", addProductGrowthContext, { once: true });
+} else {
+  addProductGrowthContext();
+}
+
 const modal = document.querySelector("#briefModal");
 const modalTriggers = Array.from(document.querySelectorAll(".brief-modal-trigger"));
 const modalClosers = Array.from(document.querySelectorAll("[data-modal-close]"));
