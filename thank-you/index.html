@@ -20,6 +20,10 @@
       gtag('js', new Date());
 
       gtag('config', 'G-5TNS1X06JM');
+      gtag('event', 'generate_lead', {
+        lead_type: 'project_brief',
+        source_path: document.referrer ? new URL(document.referrer).pathname : 'direct'
+      });
     </script>
     <link rel="stylesheet" href="../styles.css">
   </head>
@@ -69,7 +73,6 @@
     <script data-cfasync="false" src="../assets/meta-pixel.js?v=20260820-1"></script>
   </body>
 </html>
-
 
 
 

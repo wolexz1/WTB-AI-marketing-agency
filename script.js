@@ -693,8 +693,7 @@ const setupConversionTracking = () => {
         service: form.elements.service?.value || "not_selected",
         source_path: window.location.pathname,
       };
-      trackAnalyticsEvent("generate_lead", parameters);
-      trackAnalyticsEvent("form_submit", parameters);
+      trackAnalyticsEvent("form_submit_attempt", parameters);
     });
   });
 
