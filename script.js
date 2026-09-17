@@ -68,6 +68,7 @@ const setupCompactBriefServiceOptions = () => {
     ["Paid ads, lead generation and funnels", "Paid ads, lead generation and funnels"],
     ["Websites, ecommerce and landing pages", "Websites, ecommerce and landing pages"],
     ["Influencer, UGC and X trend campaigns", "Influencer, UGC and X trend campaigns"],
+    ["Events, ticket sales and distribution", "Events, ticket sales and distribution"],
     ["Full growth system - recommend the best fit", "Full growth system - recommend the best fit"],
   ];
 
