@@ -3,6 +3,7 @@ const CONFIG = {
   activitySheet: 'Activity',
   sentLabel: 'WTB / Backlinks / Sent',
   replyLabel: 'WTB / Backlinks / Replies',
+  queueFileId: 'YOUR_PRIVATE_GOOGLE_DRIVE_FILE_ID',
   weeklyLimit: 5,
   followUpAfterDays: 6
 };
@@ -30,11 +31,39 @@ function setUp() {
     .onWeekDay(ScriptApp.WeekDay.WEDNESDAY)
     .atHour(10)
     .create();
+  ScriptApp.newTrigger('syncProspects')
+    .timeBased()
+    .onWeekDay(ScriptApp.WeekDay.TUESDAY)
+    .atHour(9)
+    .create();
   ScriptApp.newTrigger('checkPublisherReplies')
     .timeBased()
     .everyDays(1)
     .atHour(11)
     .create();
+}
+
+function syncProspects() {
+  const sheet = getProspectSheet();
+  const file = DriveApp.getFileById(CONFIG.queueFileId);
+  const candidates = JSON.parse(file.getBlob().getDataAsString());
+  const existingEmails = getRows(sheet).map((row) => row.email.toLowerCase());
+  let added = 0;
+
+  candidates.forEach((candidate) => {
+    const email = String(candidate.email || '').trim().toLowerCase();
+    const isReady = String(candidate.approval || '').trim().toUpperCase() === 'APPROVED';
+    if (!email || existingEmails.indexOf(email) > -1 || !isReady) return;
+    if (!candidate.publication || !candidate.verifiedOn || !candidate.subject || !candidate.firstEmail || !candidate.followUpEmail) return;
+    sheet.appendRow([
+      candidate.id || Utilities.getUuid(), candidate.publication, candidate.contact || '', email,
+      candidate.contactSource || '', candidate.verifiedOn, 'APPROVED', 'QUEUED', candidate.subject,
+      candidate.firstEmail, candidate.followUpEmail, '', '', '', candidate.notes || '', new Date()
+    ]);
+    existingEmails.push(email);
+    added += 1;
+  });
+  logRun('Prospect queue sync complete: ' + added + ' vetted prospect(s) added.');
 }
 
 function runWeeklyOutreach() {
@@ -98,7 +127,7 @@ function ensureStructure() {
 
 function removeManagedTriggers() {
   ScriptApp.getProjectTriggers().forEach((trigger) => {
-    if (['runWeeklyOutreach', 'checkPublisherReplies'].indexOf(trigger.getHandlerFunction()) > -1) ScriptApp.deleteTrigger(trigger);
+    if (['runWeeklyOutreach', 'syncProspects', 'checkPublisherReplies'].indexOf(trigger.getHandlerFunction()) > -1) ScriptApp.deleteTrigger(trigger);
   });
 }
 
