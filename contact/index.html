@@ -48,9 +48,16 @@
             "name": "Contact WTB AI Marketing Agency",
             "url": "https://wtbaimarketing.com/contact/",
             "description": "Contact WTB for AI-powered marketing strategy, SEO, Google Ads, content, creator campaigns, websites, and campaign execution in Lagos, Abuja, and across Nigeria.",
-            "mainEntity": {
-              "@id": "https://wtbaimarketing.com/#organization"
-            }
+            "mainEntity": {"@id": "https://wtbaimarketing.com/#organization"},
+            "breadcrumb": {"@id": "https://wtbaimarketing.com/contact/#breadcrumb"}
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://wtbaimarketing.com/contact/#breadcrumb",
+            "itemListElement": [
+              {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://wtbaimarketing.com/"},
+              {"@type": "ListItem", "position": 2, "name": "Contact WTB", "item": "https://wtbaimarketing.com/contact/"}
+            ]
           },
           {
             "@type": "Organization",
@@ -104,6 +111,15 @@
             "provider": {
               "@id": "https://wtbaimarketing.com/#organization"
             }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://wtbaimarketing.com/contact/#faq",
+            "mainEntity": [
+              {"@type": "Question", "name": "How can I contact WTB AI Marketing Agency?", "acceptedAnswer": {"@type": "Answer", "text": "You can send WTB a project brief through the contact form, WhatsApp +234 809 758 5489, email wolexzthebrand@gmail.com, call, or book a strategy call."}},
+              {"@type": "Question", "name": "What should I include in a WTB marketing brief?", "acceptedAnswer": {"@type": "Answer", "text": "Include your business goal, offer, audience, target location, budget range, timeline, current marketing channels and any relevant website or campaign links."}},
+              {"@type": "Question", "name": "Can WTB support businesses outside Lagos and Abuja?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. WTB supports Nigerian businesses nationwide and can shape marketing support around the cities or audience segments a business wants to reach."}}
+            ]
           }
         ]
       }
@@ -132,6 +148,14 @@
             <a class="button" href="tel:+2348097585489">Speak with us</a>
             <a class="button button-ghost calendly-button" href="https://calendly.com/wolexxzzoluk/wtb-strategy-call-new" target="_blank" rel="noopener noreferrer">Book a strategy call</a>
           </div>
+        </div>
+      </section>
+
+      <section class="content-section section-shell">
+        <div class="answer-panel reveal">
+          <span>How to reach WTB</span>
+          <p>Send a project brief with your goal, offer, audience, target location, budget range and timeline. WTB can then recommend the clearest next step for SEO, AI search visibility, websites, content, paid ads, creators, automation or a wider growth system.</p>
+          <p>You can use this form, WhatsApp, email, phone or a strategy call. A short, honest brief is enough; you do not need a presentation that requires its own presentation.</p>
         </div>
       </section>
 
@@ -241,6 +265,15 @@
             <article class="faq-card reveal"><h3>Channels and assets</h3><p>Tell us where you currently market: Instagram, TikTok, X, Google, website, email, WhatsApp, creators, or paid ads.</p></article>
             <article class="faq-card reveal"><h3>Budget and timeline</h3><p>Share your expected budget range and when you need the work to start. This helps us recommend the right scope.</p></article>
           </div>
+        </div>
+      </section>
+
+      <section class="content-section section-shell">
+        <div class="section-heading reveal"><p class="eyebrow">Quick answers</p><h2>Before you contact WTB.</h2></div>
+        <div class="faq-grid">
+          <article class="faq-card reveal"><h3>How can I contact WTB?</h3><p>Send a brief through the form, WhatsApp <a href="https://wa.me/2348097585489" target="_blank" rel="noopener noreferrer">+234 809 758 5489</a>, email, call or book a strategy call.</p></article>
+          <article class="faq-card reveal"><h3>What should I include in my brief?</h3><p>Share your business goal, offer, audience, target location, budget range, timeline, current marketing channels and any relevant website or campaign links.</p></article>
+          <article class="faq-card reveal"><h3>Can WTB support businesses outside Lagos and Abuja?</h3><p>Yes. WTB supports Nigerian businesses nationwide and can shape the recommendation around the cities or audience segments you want to reach.</p></article>
         </div>
       </section>
 
@@ -397,7 +430,6 @@
     <script data-cfasync="false" src="../script.js"></script>
   </body>
 </html>
-
 
 
 

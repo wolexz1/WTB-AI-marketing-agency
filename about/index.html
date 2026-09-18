@@ -40,32 +40,35 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "AboutPage",
-        "name": "About WTB AI Marketing Agency",
-        "url": "https://wtbaimarketing.com/about/",
-        "description": "WTB is an AI-powered marketing agency in Nigeria built for brands that need strategy, content, ads, SEO, websites, creator campaigns, and reporting to move faster.",
-        "isPartOf": {
-          "@type": "WebSite",
-          "name": "WTB AI Marketing Agency",
-          "url": "https://wtbaimarketing.com/"
-        },
-        "about": {
-          "@type": "Organization",
-          "name": "WTB AI Marketing Agency",
-          "alternateName": "Wolexzthebrand",
-          "url": "https://wtbaimarketing.com/",
-          "areaServed": [
-            {"@type": "City", "name": "Lagos"},
-            {"@type": "City", "name": "Abuja"},
-            {"@type": "Country", "name": "Nigeria"}
-          ],
-          "sameAs": [
-            "https://www.instagram.com/wolexzthebrand/",
-            "https://www.facebook.com/wolexztrickz",
-            "https://www.linkedin.com/in/wolexxz/",
-            "https://www.tiktok.com/@wolexzthebrand"
-          ]
-        }
+        "@graph": [
+          {
+            "@type": "AboutPage",
+            "@id": "https://wtbaimarketing.com/about/#webpage",
+            "name": "About WTB AI Marketing Agency",
+            "url": "https://wtbaimarketing.com/about/",
+            "description": "WTB is an AI-powered marketing agency in Nigeria built for brands that need strategy, content, ads, SEO, websites, creator campaigns, and reporting to move faster.",
+            "isPartOf": {"@id": "https://wtbaimarketing.com/#website"},
+            "about": {"@id": "https://wtbaimarketing.com/#organization"},
+            "breadcrumb": {"@id": "https://wtbaimarketing.com/about/#breadcrumb"}
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://wtbaimarketing.com/about/#breadcrumb",
+            "itemListElement": [
+              {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://wtbaimarketing.com/"},
+              {"@type": "ListItem", "position": 2, "name": "About WTB", "item": "https://wtbaimarketing.com/about/"}
+            ]
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://wtbaimarketing.com/about/#faq",
+            "mainEntity": [
+              {"@type": "Question", "name": "What does WTB AI Marketing Agency do?", "acceptedAnswer": {"@type": "Answer", "text": "WTB helps Nigerian businesses connect strategy, content, SEO, paid media, websites, creator campaigns, reporting and practical AI workflows into one customer-growth system."}},
+              {"@type": "Question", "name": "Where does WTB work?", "acceptedAnswer": {"@type": "Answer", "text": "WTB supports businesses in Lagos, Abuja and across Nigeria, with an understanding of Nigerian and African buyer behaviour."}},
+              {"@type": "Question", "name": "Does WTB use AI without human oversight?", "acceptedAnswer": {"@type": "Answer", "text": "No. WTB uses AI to speed up research, planning, production and analysis, while people set the brief, verify the work and make the decisions that affect customers and revenue."}}
+            ]
+          }
+        ]
       }
     </script>
     <link rel="stylesheet" href="../styles.css">
@@ -110,6 +113,14 @@
         </div>
       </section>
 
+      <section class="content-section section-shell">
+        <div class="answer-panel reveal">
+          <span>What WTB is</span>
+          <p>WTB is an AI-powered marketing agency for Nigerian businesses that need to be easier to find, trust and choose. We connect strategy, content, SEO, paid media, websites, creator campaigns and practical AI workflows around the customer journey—not around whichever tool is loudest this week.</p>
+          <p>We work with founders, SMEs, ecommerce and service businesses in Lagos, Abuja and across Nigeria. Our role is to turn scattered activity into a clearer growth system that people can understand, verify and act on.</p>
+        </div>
+      </section>
+
       <section class="content-section section-shell two-column">
         <div class="rich-copy reveal">
           <p class="eyebrow">Who we are</p>
@@ -150,6 +161,18 @@
               <img src="../assets/lagos-team-laptop-collaboration.jpg" alt="Nigerian business professionals collaborating around a laptop in a Lagos office" loading="lazy" decoding="async">
             </figure>
           </div>
+        </div>
+      </section>
+
+      <section class="content-section section-shell">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Quick answers</p>
+          <h2>What people usually want to know about WTB.</h2>
+        </div>
+        <div class="faq-grid">
+          <article class="faq-card reveal"><h3>What does WTB AI Marketing Agency do?</h3><p>We connect strategy, content, SEO, paid media, websites, creator campaigns, reporting and practical AI workflows into one customer-growth system.</p></article>
+          <article class="faq-card reveal"><h3>Where does WTB work?</h3><p>WTB supports businesses in Lagos, Abuja and across Nigeria, with local market context shaping the message, channels and conversion route.</p></article>
+          <article class="faq-card reveal"><h3>Does WTB use AI without human oversight?</h3><p>No. AI helps research, planning, production and analysis move faster. People set the brief, verify the work and make decisions that affect customers and revenue.</p></article>
         </div>
       </section>
 
@@ -473,7 +496,6 @@
     <script data-cfasync="false" src="../script.js"></script>
   </body>
 </html>
-
 
 
 
