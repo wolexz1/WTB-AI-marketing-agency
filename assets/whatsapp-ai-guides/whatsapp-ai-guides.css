@@ -227,6 +227,18 @@ main section[id]{scroll-margin-top:120px}
 .purchase-path{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:4px}
 .purchase-path span{display:flex;align-items:center;gap:8px;padding:10px 11px;border:1px solid var(--line);background:#fff;color:#3d485c;font-size:.76rem;font-weight:750;line-height:1.3}
 .purchase-path b{display:grid;place-items:center;flex:0 0 24px;width:24px;height:24px;border-radius:50%;background:var(--blue);color:#fff;font-size:.72rem}
+.assistant-overview{max-width:720px;padding:14px;border:1px solid #bfd0ef;background:linear-gradient(135deg,#fff 0%,#eef4ff 100%);box-shadow:0 14px 34px rgba(24,58,120,.08)}
+.assistant-overview-title{display:flex;align-items:center;gap:10px;padding-bottom:11px;border-bottom:1px solid #ced9eb}
+.assistant-overview-title img{flex:0 0 26px}
+.assistant-overview-title span{display:grid;line-height:1.25}
+.assistant-overview-title b{font-size:.92rem;color:var(--deep)}
+.assistant-overview-title small{font-size:.72rem;color:var(--muted);font-weight:650}
+.assistant-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding-top:11px}
+.assistant-steps article{display:flex;align-items:flex-start;gap:8px;min-width:0}
+.assistant-symbol{display:grid;place-items:center;flex:0 0 28px;width:28px;height:28px;border-radius:50%;background:var(--charcoal);color:#fff;font-size:.64rem;font-weight:900}
+.assistant-steps article div{display:grid;min-width:0;line-height:1.3}
+.assistant-steps b{font-size:.76rem;color:var(--ink)}
+.assistant-steps small{font-size:.66rem;color:var(--muted)}
 .checkout-assurance{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:18px}
 .checkout-assurance span{padding:9px 8px;border:1px solid #c9d8f0;background:#f5f8ff;color:#263754;font-size:.7rem;font-weight:800;line-height:1.25;text-align:center}
 .sticky-buy>.button:first-child{flex:1.75 1 0}
@@ -237,6 +249,8 @@ main section[id]{scroll-margin-top:120px}
   .hero-visual{height:clamp(390px,94vw,520px)}
   .purchase-path{grid-template-columns:1fr}
   .purchase-path span{padding-block:8px}
+  .assistant-steps{grid-template-columns:1fr}
+  .assistant-steps article{padding:4px 0}
   .checkout-assurance{grid-template-columns:1fr}
   .sticky-buy>.button{font-size:.78rem}
 }

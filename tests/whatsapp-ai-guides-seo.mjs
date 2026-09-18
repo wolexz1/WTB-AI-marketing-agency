@@ -67,7 +67,10 @@ test("discovery files expose the canonical guide URL", () => {
 test("conversion actions use the compact sticky bar and direct checkout", () => {
   assert.doesNotMatch(guidePage, /class="share-section"/);
   assert.equal((guidePage.match(/href="#choose"/g) || []).length, 3);
-  assert.match(guidePage, /data-guide-sticky[\s\S]*?data-guide-buy data-guide-product="launchpad" data-cta-location="sticky_bar"[\s\S]*?>Get guide — ₦5,500<[\s\S]*?href="#choose"[\s\S]*?>Compare</);
+  assert.match(guidePage, /data-guide-sticky[\s\S]*?data-guide-buy data-guide-product="launchpad" data-cta-location="sticky_bar"[\s\S]*?>Set up your AI assistant — ₦5,500<[\s\S]*?href="#choose"[\s\S]*?>Compare</);
+  assert.match(guidePage, /This step-by-step guide shows you how to set up your WhatsApp AI assistant/);
+  assert.match(guidePage, /class="assistant-overview" aria-label="How your WhatsApp AI assistant works"/);
+  assert.match(guidePage, /Teach it your business[\s\S]*Let it assist customers[\s\S]*Stay in control/);
   assert.match(guidePage, /href="#comparison">Compare guides<\/a>/);
   assert.match(guidePage, /<section class="comparison section-shell" id="comparison"/);
 

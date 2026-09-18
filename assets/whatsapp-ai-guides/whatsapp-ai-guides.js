@@ -1,7 +1,7 @@
 (() => {
   const money = new Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN", maximumFractionDigits: 0 });
   const products = {
-    launchpad: { name: "WhatsApp AI Launchpad", price: 5500, promise: "Keep your WhatsApp business responsive when you are busy, asleep or away. Set up approved answers and safe handoffs so more buying conversations stay alive until you or your team can close them." },
+    launchpad: { name: "WhatsApp AI Launchpad", price: 5500, promise: "Use this step-by-step guide to set up your WhatsApp AI assistant with approved business information, useful customer replies and safe human handoffs, without coding." },
     "growth-engine": { name: "WhatsApp AI Growth Engine", price: 10500, promise: "Keep your business responsive and protect buying opportunities while you sleep, travel or focus elsewhere. Build a WhatsApp sales and service system that answers from approved business information, qualifies serious buyers, recommends the right next step and brings in your team when human judgement matters." },
   };
   const fbq = (...args) => { if (typeof window.fbq === "function") window.fbq(...args); };
