@@ -35,7 +35,6 @@ function setUp() {
     .everyDays(1)
     .atHour(11)
     .create();
-  SpreadsheetApp.getUi().alert('WTB outreach is scheduled for Wednesdays at about 10:00 WAT. Only approved, verified prospects can be emailed.');
 }
 
 function runWeeklyOutreach() {
