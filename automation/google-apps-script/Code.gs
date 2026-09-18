@@ -95,8 +95,6 @@ function ensureStructure() {
   let activity = spreadsheet.getSheetByName(CONFIG.activitySheet);
   if (!activity) activity = spreadsheet.insertSheet(CONFIG.activitySheet);
   if (activity.getLastRow() === 0) activity.appendRow(['Timestamp', 'Publication', 'Email', 'Action']);
-  GmailApp.getUserLabelByName(CONFIG.sentLabel) || GmailApp.createLabel(CONFIG.sentLabel);
-  GmailApp.getUserLabelByName(CONFIG.replyLabel) || GmailApp.createLabel(CONFIG.replyLabel);
 }
 
 function removeManagedTriggers() {
@@ -136,8 +134,8 @@ function sendEmail(email, subject, body) {
 function labelLatestSentThread(email, subject) {
   Utilities.sleep(1000);
   const threads = GmailApp.search('in:sent to:(' + email + ') subject:(' + subject + ') newer_than:1d', 0, 1);
-  const sentLabel = GmailApp.getUserLabelByName(CONFIG.sentLabel) || GmailApp.createLabel(CONFIG.sentLabel);
-  if (threads.length) sentLabel.addToThread(threads[0]);
+  const sentLabel = GmailApp.getUserLabelByName(CONFIG.sentLabel);
+  if (threads.length && sentLabel) sentLabel.addToThread(threads[0]);
 }
 
 function logActivity(row, action) {
