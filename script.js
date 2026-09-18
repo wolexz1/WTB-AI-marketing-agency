@@ -277,6 +277,41 @@ if (document.readyState === "loading") {
   addProductGrowthContext();
 }
 
+const addHighIntentConversionLinks = () => {
+  const linksByPath = {
+    "/blog/elevenlabs-whatsapp-ai-agent-nigeria-2026/": "Need a practical setup rather than another chatbot experiment? Compare <a href=\"../whatsapp-ai-chatbot-cost-nigeria-2026/\">WhatsApp AI chatbot costs in Nigeria</a>, then <a href=\"../../contact/\">send WTB your workflow</a> for a recommendation.",
+    "/blog/meta-business-ai-whatsapp-nigeria-2026/": "If WhatsApp is where your customers already ask, compare <a href=\"../whatsapp-ai-chatbot-cost-nigeria-2026/\">WhatsApp AI chatbot costs in Nigeria</a> and <a href=\"../../contact/\">send WTB the questions your team keeps answering</a>.",
+    "/blog/google-ads-vs-meta-ads-nigeria-2026/": "Before you choose a channel, use the <a href=\"../../ads-budget-calculator-nigeria/\">Nigeria ads budget calculator</a> and <a href=\"../../contact/\">ask WTB to map the right campaign and follow-up path</a>.",
+    "/blog/app-distribution-strategy-nigeria-2026/": "Distribution needs an owner. See how <a href=\"../../app-marketing-agency-nigeria/\">WTB helps apps and SaaS products get users in Nigeria</a>, then <a href=\"../../contact/\">send your product brief</a>.",
+    "/blog/app-marketing-cost-nigeria-2026/": "A useful budget starts with the user journey, not a random boosted post. See <a href=\"../../app-marketing-agency-nigeria/\">WTB's app marketing support</a> or <a href=\"../../contact/\">send your app brief</a>.",
+    "/blog/go-to-market-strategy-for-apps-nigeria-2026/": "Need a launch plan that turns attention into users? Explore <a href=\"../../app-marketing-agency-nigeria/\">app and SaaS marketing support</a> or <a href=\"../../contact/\">send WTB your product brief</a>.",
+    "/blog/social-media-manager-cost-nigeria-2026/": "If you need the work connected to sales, ads and reporting—not just posts—<a href=\"../../contact/\">send WTB your growth brief</a> and we will recommend the right scope.",
+  };
+  const message = linksByPath[window.location.pathname];
+  const article = document.querySelector(".article-body");
+
+  if (!message || !article || article.querySelector("[data-wtb-high-intent-links]")) {
+    return;
+  }
+
+  const callout = document.createElement("p");
+  callout.className = "guide-cta";
+  callout.dataset.wtbHighIntentLinks = "true";
+  callout.innerHTML = message;
+  const finalCta = article.querySelector(".dark-cta");
+  if (finalCta) {
+    article.insertBefore(callout, finalCta);
+  } else {
+    article.appendChild(callout);
+  }
+};
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", addHighIntentConversionLinks, { once: true });
+} else {
+  addHighIntentConversionLinks();
+}
+
 const modal = document.querySelector("#briefModal");
 const modalTriggers = Array.from(document.querySelectorAll(".brief-modal-trigger"));
 const modalClosers = Array.from(document.querySelectorAll("[data-modal-close]"));
