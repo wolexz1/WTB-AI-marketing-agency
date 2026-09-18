@@ -309,6 +309,11 @@ WTB now has focused service pages for low-competition, buyer-intent Nigerian mar
 
 ## Blog and Answer Engine Content
 
+### September 2026 ember-month guides
+
+- [How to Sell Out an Event in Nigeria: A Real Ticket Marketing Plan](https://wtbaimarketing.com/blog/how-to-sell-out-events-nigeria-2026/) explains how Nigerian organisers can connect a ticket page, PR, mini-to-major influencers, Meta, TikTok, Instagram, X, Google and consent-based WhatsApp follow-up around paid attendance.
+- [How to Get More WhatsApp Sales in Nigeria This Festive Season](https://wtbaimarketing.com/blog/how-to-get-more-whatsapp-sales-nigeria-2026/) helps businesses improve their offer, WhatsApp Status, content-to-chat route, faster replies, responsible follow-up and human-controlled WhatsApp AI setup.
+
 The WTB blog is written by the WTB Team and structured for search engines, AI answer engines, and Nigerian commercial intent. Each article includes a short answer, practical decision points, internal links, and next-step calls to action.
 
 - Blog hub: https://wtbaimarketing.com/blog/
