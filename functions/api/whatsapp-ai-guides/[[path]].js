@@ -8,6 +8,7 @@ export async function onRequest(context) {
   const pathname = new URL(request.url).pathname.replace(/\/+$/, "");
   try {
     if (request.method === "POST" && pathname === "/api/whatsapp-ai-guides/checkout") return initializeCheckout(request, env);
+    if (request.method === "POST" && pathname === "/api/whatsapp-ai-guides/event") return recordFunnelEvent(request, env);
     if (request.method === "GET" && pathname === "/api/whatsapp-ai-guides/verify") return verifyOrder(request, env, waitUntil);
     if (request.method === "GET" && pathname === "/api/whatsapp-ai-guides/download") return downloadAsset(request, env);
     return json({ message: "Not found" }, 404);
@@ -15,6 +16,25 @@ export async function onRequest(context) {
     console.error("WhatsApp AI Guides request failed", error);
     return json({ message: "We could not complete that request. Please try again." }, 500);
   }
+}
+
+async function recordFunnelEvent(request, env) {
+  if (!env.WHATSAPP_AI_GUIDES_DB) return new Response(null, { status: 204 });
+  const allowed = new Set(["page_view", "compare_click", "cta_click", "checkout_opened", "checkout_submitted", "paystack_opened", "paystack_cancelled", "paystack_error", "scroll_50", "scroll_90"]);
+  const body = await request.json().catch(() => null);
+  const sessionId = cleanText(body?.sessionId, 64);
+  const eventName = cleanText(body?.eventName, 40);
+  if (!/^[a-f0-9-]{16,64}$/i.test(sessionId) || !allowed.has(eventName)) return new Response(null, { status: 204 });
+  const productId = productForId(cleanText(body?.productId, 32))?.id || null;
+  const ctaLocation = cleanText(body?.ctaLocation, 48) || null;
+  const pagePath = cleanText(body?.pagePath, 120) || "/whatsapp-ai-guides/";
+  const metadata = body?.metadata && typeof body.metadata === "object" ? body.metadata : {};
+  const safeMetadata = JSON.stringify({ referrer: cleanText(metadata.referrer, 120), fbc: Boolean(metadata.fbc), viewport: cleanText(metadata.viewport, 24) });
+  await env.WHATSAPP_AI_GUIDES_DB.prepare(`
+    INSERT INTO whatsapp_ai_funnel_events (session_id, event_name, product_id, cta_location, page_path, metadata_json, created_at)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
+  `).bind(sessionId, eventName, productId, ctaLocation, pagePath, safeMetadata, new Date().toISOString()).run();
+  return new Response(null, { status: 204, headers: { "Cache-Control": "no-store" } });
 }
 
 async function initializeCheckout(request, env) {

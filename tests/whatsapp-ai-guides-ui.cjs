@@ -75,14 +75,14 @@ const path = require("node:path");
     await page.waitForTimeout(200);
     const navAtTop = await page.locator(".nav-dock").evaluate((nav) => Math.round(nav.getBoundingClientRect().top));
     await page.screenshot({ path: path.join(outputDir, `${viewport.name}-top.png`) });
-    await page.locator("#choose").scrollIntoViewIfNeeded();
+    await page.evaluate(() => document.querySelector("#choose").scrollIntoView({ behavior: "auto", block: "start" }));
     await page.waitForTimeout(120);
     const navWhileScrolled = await page.locator(".nav-dock").evaluate((nav) => Math.round(nav.getBoundingClientRect().top));
     await page.screenshot({ path: path.join(outputDir, `${viewport.name}-choice.png`) });
-    await page.locator(".faq").scrollIntoViewIfNeeded();
+    await page.evaluate(() => document.querySelector(".faq").scrollIntoView({ behavior: "auto", block: "start" }));
     await page.waitForTimeout(120);
     await page.screenshot({ path: path.join(outputDir, `${viewport.name}-faq.png`) });
-    await page.locator("footer").scrollIntoViewIfNeeded();
+    await page.evaluate(() => document.querySelector("footer").scrollIntoView({ behavior: "auto", block: "start" }));
     await page.waitForTimeout(120);
     await page.screenshot({ path: path.join(outputDir, `${viewport.name}-footer.png`) });
     await page.evaluate(() => window.scrollTo({ top: 0, left: 0, behavior: "auto" }));
@@ -100,7 +100,7 @@ const path = require("node:path");
       noNormalNavigation: !text.includes("About Us") && !text.includes("Pricing"),
       sufficientCtas: launchpadButtons >= 4 && growthButtons >= 4,
       paymentNoticeRemoved: removedNoticeCount === 0,
-      checkoutCorrect: checkoutText.includes("WhatsApp AI Growth Engine") && checkoutText.includes("₦10,500") && checkoutText.includes("protect buying opportunities while you sleep") && checkoutText.includes("without leaving this page") && !checkoutText.includes("access varies by account and market"),
+      checkoutCorrect: checkoutText.includes("WhatsApp AI Growth Engine") && checkoutText.includes("₦10,500") && checkoutText.includes("protect buying opportunities while you sleep") && checkoutText.includes("Paystack opens securely on this page") && !checkoutText.includes("access varies by account and market"),
       checkoutSpacing,
       popupStaysOnPage,
       previewOpen,

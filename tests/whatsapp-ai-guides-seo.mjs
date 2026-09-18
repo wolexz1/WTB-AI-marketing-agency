@@ -66,22 +66,20 @@ test("discovery files expose the canonical guide URL", () => {
 
 test("conversion actions use the compact sticky bar and direct checkout", () => {
   assert.doesNotMatch(guidePage, /class="share-section"/);
-  assert.equal((guidePage.match(/href="#choose"/g) || []).length, 1);
-  assert.match(guidePage, /data-guide-sticky[\s\S]*?>[\s\S]*?href="#choose"[\s\S]*?>Choose guide<[\s\S]*?data-guide-share="native"[\s\S]*?data-share-location="sticky_bar"[\s\S]*?>[\s\S]*?Share with a business owner/);
+  assert.equal((guidePage.match(/href="#choose"/g) || []).length, 3);
+  assert.match(guidePage, /data-guide-sticky[\s\S]*?data-guide-buy data-guide-product="launchpad" data-cta-location="sticky_bar"[\s\S]*?>Get guide — ₦5,500<[\s\S]*?href="#choose"[\s\S]*?>Compare</);
   assert.match(guidePage, /href="#comparison">Compare guides<\/a>/);
   assert.match(guidePage, /<section class="comparison section-shell" id="comparison"/);
 
-  for (const location of ["navigation", "pain_section", "calculator"]) {
-    assert.match(
-      guidePage,
-      new RegExp(`data-guide-buy data-guide-product="growth-engine" data-cta-location="${location}"`),
-      location,
-    );
-  }
+  assert.match(guidePage, /data-guide-buy data-guide-product="launchpad" data-cta-location="navigation"/);
+  assert.match(guidePage, /data-guide-buy data-guide-product="growth-engine" data-cta-location="pain_section"/);
+  assert.doesNotMatch(guidePage, /data-guide-calculator/);
 
   assert.match(guideScript, /\.hero-quick-actions" : "\.hero-actions"/);
   assert.match(guideScript, /document\.querySelectorAll\("#choose, \.final-cta, footer"\)/);
-  assert.match(guideScript, /share\(button\.dataset\.guideShare, button\.dataset\.shareLocation\)/);
+  assert.match(guideScript, /trackFunnel\("cta_click"/);
+  assert.match(guideScript, /trackFunnel\("paystack_opened"/);
+  assert.match(guideScript, /rootMargin: "180px 0px"/);
 });
 
 test("preview pages use a spaced, pausable continuous carousel", () => {

@@ -6,24 +6,36 @@
   };
   const fbq = (...args) => { if (typeof window.fbq === "function") window.fbq(...args); };
   const cookie = (name) => document.cookie.split(";").map((part) => part.trim()).find((part) => part.startsWith(`${name}=`))?.slice(name.length + 1) || "";
+  const funnelSession = (() => {
+    const existing = sessionStorage.getItem("wtb_wa_funnel_session");
+    if (existing) return existing;
+    const created = crypto.randomUUID?.() || `${Date.now().toString(16)}-${Math.random().toString(16).slice(2)}`;
+    sessionStorage.setItem("wtb_wa_funnel_session", created);
+    return created;
+  })();
+  const trackFunnel = (eventName, details = {}) => {
+    const referrer = (() => { try { return new URL(document.referrer).hostname; } catch { return ""; } })();
+    fetch("/api/whatsapp-ai-guides/event", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "same-origin",
+      keepalive: true,
+      body: JSON.stringify({
+        sessionId: funnelSession,
+        eventName,
+        productId: details.productId || "",
+        ctaLocation: details.ctaLocation || "",
+        pagePath: location.pathname,
+        metadata: { referrer, fbc: Boolean(cookie("_fbc")), viewport: `${innerWidth}x${innerHeight}` },
+      }),
+    }).catch(() => {});
+  };
+
+  trackFunnel("page_view");
 
   window.addEventListener("load", () => {
     fbq("track", "ViewContent", { content_ids: Object.keys(products), content_type: "product_group", content_name: "WTB WhatsApp AI Guides", currency: "NGN", value: 5500 });
   }, { once: true });
-
-  const calculator = document.querySelector("[data-guide-calculator]");
-  if (calculator) {
-    const form = calculator.querySelector("form");
-    const result = calculator.querySelector("#lossResult");
-    const update = () => {
-      const data = new FormData(form);
-      const missed = Math.max(0, Number(data.get("missed")) || 0);
-      const rate = Math.min(100, Math.max(0, Number(data.get("rate")) || 0)) / 100;
-      const profit = Math.max(0, Number(data.get("profit")) || 0);
-      result.textContent = money.format(missed * 30 * rate * profit);
-    };
-    form.addEventListener("input", update);
-  }
 
   const checkout = document.querySelector("#checkoutDialog");
   const checkoutForm = document.querySelector("#checkoutForm");
@@ -62,9 +74,14 @@
     resetCheckoutButton(product);
     checkout.showModal();
     checkout.querySelector("input[name=firstName]").focus();
+    trackFunnel("checkout_opened", { productId, ctaLocation: location });
     fbq("trackCustom", "ProductSelected", { content_id: productId, value: product.price, currency: "NGN", cta_location: location });
   };
-  document.querySelectorAll("[data-guide-buy]").forEach((button) => button.addEventListener("click", () => openCheckout(button.dataset.guideProduct, button.dataset.ctaLocation)));
+  document.querySelectorAll("[data-guide-buy]").forEach((button) => button.addEventListener("click", () => {
+    trackFunnel("cta_click", { productId: button.dataset.guideProduct, ctaLocation: button.dataset.ctaLocation });
+    openCheckout(button.dataset.guideProduct, button.dataset.ctaLocation);
+  }));
+  document.querySelectorAll("[data-guide-compare]").forEach((link) => link.addEventListener("click", () => trackFunnel("compare_click", { ctaLocation: link.dataset.ctaLocation })));
   document.querySelectorAll(".dialog-close").forEach((button) => button.addEventListener("click", () => button.closest("dialog").close()));
   document.querySelectorAll("dialog").forEach((dialog) => dialog.addEventListener("click", (event) => { if (event.target === dialog) dialog.close(); }));
   checkoutForm?.addEventListener("submit", async (event) => {
@@ -73,6 +90,7 @@
     const product = products[id];
     if (!product) return;
     const eventId = `checkout_${Date.now()}_${Math.random().toString(16).slice(2)}`;
+    trackFunnel("checkout_submitted", { productId: id, ctaLocation: checkoutForm.querySelector("#checkoutLocation").value });
     fbq("track", "InitiateCheckout", { content_ids: [id], content_type: "product", value: product.price, currency: "NGN", num_items: 1 }, { eventID: eventId });
     const submit = checkoutForm.querySelector("#checkoutSubmit");
     const status = checkoutForm.querySelector("#checkoutStatus");
@@ -86,6 +104,7 @@
       ]);
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload.accessCode || !payload.reference) throw new Error(payload.message || "Secure checkout could not start.");
+      trackFunnel("paystack_opened", { productId: id, ctaLocation: checkoutForm.querySelector("#checkoutLocation").value });
       checkout.close();
       const popup = new PaystackPop();
       popup.resumeTransaction(payload.accessCode, {
@@ -94,17 +113,20 @@
           window.location.assign(`/whatsapp-ai-guides/thank-you/?reference=${encodeURIComponent(reference)}`);
         },
         onCancel: () => {
+          trackFunnel("paystack_cancelled", { productId: id, ctaLocation: checkoutForm.querySelector("#checkoutLocation").value });
           status.textContent = "Payment was not completed. Your details are still here when you are ready.";
           resetCheckoutButton(product);
           checkout.showModal();
         },
         onError: () => {
+          trackFunnel("paystack_error", { productId: id, ctaLocation: checkoutForm.querySelector("#checkoutLocation").value });
           status.textContent = "Paystack could not open. Please check your connection and try again.";
           resetCheckoutButton(product);
           checkout.showModal();
         },
       });
     } catch (error) {
+      trackFunnel("paystack_error", { productId: id, ctaLocation: checkoutForm.querySelector("#checkoutLocation").value });
       status.textContent = isLocalPreview
         ? "Payment testing requires the live Cloudflare page. This local copy is for design preview only."
         : error.message || "Secure checkout could not start. Please try again.";
@@ -141,6 +163,7 @@
     let pausedByInteraction = false;
     let resumeTimer;
     let lastFrame = performance.now();
+    let animationFrame = 0;
     const updateToggle = () => {
       previewToggle.setAttribute("aria-pressed", String(pausedByUser));
       previewToggle.textContent = pausedByUser ? "Resume movement" : "Pause movement";
@@ -161,7 +184,7 @@
         const loopPoint = firstClone.offsetLeft - previewTrack.firstElementChild.offsetLeft;
         if (previewTrack.scrollLeft >= loopPoint) previewTrack.scrollLeft -= loopPoint;
       }
-      requestAnimationFrame(move);
+      animationFrame = requestAnimationFrame(move);
     };
 
     previewToggle.addEventListener("click", () => {
@@ -175,8 +198,18 @@
     previewTrack.addEventListener("focusin", pauseTemporarily);
     previewTrack.addEventListener("focusout", resumeSoon);
     previewTrack.addEventListener("wheel", () => { pauseTemporarily(); resumeSoon(); }, { passive: true });
+    const startMovement = () => {
+      if (animationFrame) return;
+      lastFrame = performance.now();
+      animationFrame = requestAnimationFrame(move);
+    };
+    const stopMovement = () => {
+      if (!animationFrame) return;
+      cancelAnimationFrame(animationFrame);
+      animationFrame = 0;
+    };
+    new IntersectionObserver(([entry]) => entry.isIntersecting ? startMovement() : stopMovement(), { rootMargin: "180px 0px", threshold: 0.01 }).observe(previewTrack);
     updateToggle();
-    requestAnimationFrame(move);
   } else if (previewToggle) {
     previewToggle.hidden = true;
   }
@@ -205,6 +238,20 @@
     }, { threshold: 0.01 });
     document.querySelectorAll("#choose, .final-cta, footer").forEach((section) => blockerObserver.observe(section));
   }
+
+  const scrollEvents = new Set();
+  const reportScroll = () => {
+    const available = document.documentElement.scrollHeight - innerHeight;
+    if (available <= 0) return;
+    const depth = scrollY / available;
+    [[0.5, "scroll_50"], [0.9, "scroll_90"]].forEach(([threshold, eventName]) => {
+      if (depth >= threshold && !scrollEvents.has(eventName)) {
+        scrollEvents.add(eventName);
+        trackFunnel(eventName);
+      }
+    });
+  };
+  addEventListener("scroll", reportScroll, { passive: true });
 
   const sectionLinks = [...document.querySelectorAll(".section-nav a[href^='#']")].filter((link) => !link.classList.contains("button"));
   if (sectionLinks.length) {
