@@ -239,6 +239,8 @@ main section[id]{scroll-margin-top:120px}
 .assistant-steps article div{display:grid;min-width:0;line-height:1.3}
 .assistant-steps b{font-size:.76rem;color:var(--ink)}
 .assistant-steps small{font-size:.66rem;color:var(--muted)}
+.checkout-fallback{display:block;margin-top:8px;padding:11px 13px;border:1px solid var(--blue);border-radius:5px;color:var(--deep);font-size:.87rem;font-weight:800;text-align:center;text-decoration:none}
+.checkout-fallback[hidden]{display:none}
 .checkout-assurance{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:18px}
 .checkout-assurance span{padding:9px 8px;border:1px solid #c9d8f0;background:#f5f8ff;color:#263754;font-size:.7rem;font-weight:800;line-height:1.25;text-align:center}
 .sticky-buy>.button:first-child{flex:1.75 1 0}

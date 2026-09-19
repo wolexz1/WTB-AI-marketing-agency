@@ -20,7 +20,7 @@ export async function onRequest(context) {
 
 async function recordFunnelEvent(request, env) {
   if (!env.WHATSAPP_AI_GUIDES_DB) return new Response(null, { status: 204 });
-  const allowed = new Set(["page_view", "compare_click", "cta_click", "checkout_opened", "checkout_submitted", "paystack_opened", "paystack_cancelled", "paystack_error", "scroll_50", "scroll_90"]);
+  const allowed = new Set(["page_view", "compare_click", "cta_click", "checkout_opened", "checkout_submitted", "checkout_initialized", "paystack_opened", "paystack_slow", "paystack_fallback", "paystack_cancelled", "paystack_error", "scroll_50", "scroll_90"]);
   const body = await request.json().catch(() => null);
   const sessionId = cleanText(body?.sessionId, 64);
   const eventName = cleanText(body?.eventName, 40);
@@ -83,7 +83,7 @@ async function initializeCheckout(request, env) {
   if (wantsJson) {
     const headers = new Headers(privateHeaders("application/json; charset=utf-8"));
     headers.append("Set-Cookie", deliveryCookie(reference, deliveryKey, deliveryTtl));
-    return new Response(JSON.stringify({ accessCode, reference }), { status: 200, headers });
+    return new Response(JSON.stringify({ accessCode, authorizationUrl, reference }), { status: 200, headers });
   }
   const headers = new Headers({ Location: authorizationUrl });
   headers.append("Set-Cookie", deliveryCookie(reference, deliveryKey, deliveryTtl));

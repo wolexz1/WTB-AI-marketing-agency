@@ -22,11 +22,11 @@ const path = require("node:path");
     await page.addInitScript(() => {
       window.__paystackResumes = [];
       window.PaystackPop = class {
-        resumeTransaction(accessCode) { window.__paystackResumes.push(accessCode); }
+        resumeTransaction(accessCode, callbacks) { window.__paystackResumes.push(accessCode); callbacks.onLoad?.(); }
       };
     });
     await page.route("https://connect.facebook.net/**", (route) => route.abort());
-    await page.route("**/api/whatsapp-ai-guides/checkout", (route) => route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ accessCode: "ui_test_access", reference: "wtbwa_ui_test" }) }));
+    await page.route("**/api/whatsapp-ai-guides/checkout", (route) => route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ accessCode: "ui_test_access", authorizationUrl: "https://checkout.paystack.com/ui_test_access", reference: "wtbwa_ui_test" }) }));
     await page.goto(baseUrl, { waitUntil: "domcontentloaded" });
     await page.waitForSelector("h1", { state: "attached" });
     const floatingStart = await page.locator(".cover-one").evaluate((cover) => getComputedStyle(cover).transform);
@@ -114,8 +114,37 @@ const path = require("node:path");
     });
     await context.close();
   }
+  const slowContext = await browser.newContext({ viewport: { width: 390, height: 844 } });
+  const slowPage = await slowContext.newPage();
+  await slowPage.addInitScript(() => {
+    window.PaystackPop = class { resumeTransaction() {} };
+  });
+  await slowPage.route("**/api/whatsapp-ai-guides/checkout", (route) => route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ accessCode: "slow_test_access", authorizationUrl: "https://checkout.paystack.com/slow_test_access", reference: "wtbwa_slow_test" }) }));
+  await slowPage.goto(baseUrl, { waitUntil: "domcontentloaded" });
+  await slowPage.locator("[data-guide-buy][data-guide-product='launchpad']").first().click();
+  await slowPage.locator("#checkoutForm input[name='firstName']").fill("Test");
+  await slowPage.locator("#checkoutForm input[name='email']").fill("buyer@example.com");
+  await slowPage.locator("#checkoutSubmit").click();
+  await slowPage.locator("#checkoutFallback").waitFor({ state: "visible", timeout: 10000 });
+  const slowFallback = await slowPage.locator("#checkoutFallback").getAttribute("href");
+  const slowDialogOpen = await slowPage.locator("#checkoutDialog").getAttribute("open") !== null;
+  results.push({ viewport: "slow-mobile-popup", fallbackVisible: slowFallback === "https://checkout.paystack.com/slow_test_access", checkoutRemainsVisible: slowDialogOpen });
+  await slowContext.close();
+  const blockedContext = await browser.newContext({ viewport: { width: 390, height: 844 } });
+  const blockedPage = await blockedContext.newPage();
+  await blockedPage.route("https://js.paystack.co/**", (route) => route.abort());
+  await blockedPage.route("**/api/whatsapp-ai-guides/checkout", (route) => route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ accessCode: "blocked_test_access", authorizationUrl: "https://checkout.paystack.com/blocked_test_access", reference: "wtbwa_blocked_test" }) }));
+  await blockedPage.goto(baseUrl, { waitUntil: "domcontentloaded" });
+  await blockedPage.locator("[data-guide-buy][data-guide-product='launchpad']").first().click();
+  await blockedPage.locator("#checkoutForm input[name='firstName']").fill("Test");
+  await blockedPage.locator("#checkoutForm input[name='email']").fill("buyer@example.com");
+  await blockedPage.locator("#checkoutSubmit").click();
+  await blockedPage.locator("#checkoutFallback").waitFor({ state: "visible", timeout: 10000 });
+  const blockedFallback = await blockedPage.locator("#checkoutFallback").getAttribute("href");
+  results.push({ viewport: "blocked-popup-script", fallbackVisible: blockedFallback === "https://checkout.paystack.com/blocked_test_access" });
+  await blockedContext.close();
   await browser.close();
-  const passed = results.every((r) => r.exactPrices && r.approvedProducts && r.noNormalNavigation && r.sufficientCtas && r.paymentNoticeRemoved && r.checkoutCorrect && r.checkoutSpacing && r.popupStaysOnPage && r.previewOpen && r.buttonFit && r.booksFloat && r.navSticks && !r.horizontalOverflow && r.errors.length === 0 && r.semantics.h1Count === 1 && r.semantics.imagesHaveAlt && r.semantics.formControlsNamed && r.semantics.checkoutAction === "/api/whatsapp-ai-guides/checkout" && r.semantics.canonical === "https://wtbaimarketing.com/whatsapp-ai-guides/");
+  const passed = results.every((r) => r.viewport === "slow-mobile-popup" ? r.fallbackVisible && r.checkoutRemainsVisible : r.viewport === "blocked-popup-script" ? r.fallbackVisible : r.exactPrices && r.approvedProducts && r.noNormalNavigation && r.sufficientCtas && r.paymentNoticeRemoved && r.checkoutCorrect && r.checkoutSpacing && r.popupStaysOnPage && r.previewOpen && r.buttonFit && r.booksFloat && r.navSticks && !r.horizontalOverflow && r.errors.length === 0 && r.semantics.h1Count === 1 && r.semantics.imagesHaveAlt && r.semantics.formControlsNamed && r.semantics.checkoutAction === "/api/whatsapp-ai-guides/checkout" && r.semantics.canonical === "https://wtbaimarketing.com/whatsapp-ai-guides/");
   console.log(JSON.stringify({ passed, results }, null, 2));
   if (!passed) process.exit(1);
 })().catch((error) => { console.error(error); process.exit(1); });

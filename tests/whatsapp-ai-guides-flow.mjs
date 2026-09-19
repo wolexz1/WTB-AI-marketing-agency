@@ -156,6 +156,7 @@ test("checkout returns a server-created access code for the on-page Paystack pop
   const payload = await response.json();
   assert.equal(response.status, 200);
   assert.equal(payload.accessCode, "test_access_code");
+  assert.equal(payload.authorizationUrl, "https://checkout.paystack.com/test");
   assert.match(payload.reference, /^wtbwa_/);
   assert.match(response.headers.get("Set-Cookie"), /HttpOnly.*Secure.*SameSite=Lax/);
 });

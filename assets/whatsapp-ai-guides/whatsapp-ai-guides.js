@@ -39,6 +39,7 @@
 
   const checkout = document.querySelector("#checkoutDialog");
   const checkoutForm = document.querySelector("#checkoutForm");
+  const fallback = document.querySelector("#checkoutFallback");
   const isLocalPreview = location.hostname === "localhost" || location.hostname === "127.0.0.1";
   const paystackScriptUrl = "https://js.paystack.co/v2/inline.js";
   let paystackPromise;
@@ -60,6 +61,10 @@
     submit.disabled = false;
     submit.textContent = `Pay securely — ${money.format(product.price)}`;
   };
+  const clearFallback = () => {
+    fallback.hidden = true;
+    fallback.removeAttribute("href");
+  };
   const openCheckout = (productId, location) => {
     const product = products[productId];
     if (!product || !checkout) return;
@@ -71,9 +76,11 @@
     checkout.querySelector("#checkoutFbp").value = cookie("_fbp");
     checkout.querySelector("#checkoutFbc").value = cookie("_fbc");
     checkout.querySelector("#checkoutStatus").textContent = "";
+    clearFallback();
     resetCheckoutButton(product);
     checkout.showModal();
     checkout.querySelector("input[name=firstName]").focus();
+    loadPaystack().catch(() => {});
     trackFunnel("checkout_opened", { productId, ctaLocation: location });
     fbq("trackCustom", "ProductSelected", { content_id: productId, value: product.price, currency: "NGN", cta_location: location });
   };
@@ -94,40 +101,75 @@
     fbq("track", "InitiateCheckout", { content_ids: [id], content_type: "product", value: product.price, currency: "NGN", num_items: 1 }, { eventID: eventId });
     const submit = checkoutForm.querySelector("#checkoutSubmit");
     const status = checkoutForm.querySelector("#checkoutStatus");
+    clearFallback();
     submit.disabled = true;
     submit.textContent = "Opening secure Paystack popup…";
     status.textContent = "Preparing your secure payment…";
+    let slowTimer;
     try {
-      const [PaystackPop, response] = await Promise.all([
-        loadPaystack(),
-        fetch(checkoutForm.action, { method: "POST", body: new FormData(checkoutForm), headers: { Accept: "application/json" }, credentials: "same-origin" }),
-      ]);
+      const scriptReady = loadPaystack().catch(() => null);
+      const response = await fetch(checkoutForm.action, { method: "POST", body: new FormData(checkoutForm), headers: { Accept: "application/json" }, credentials: "same-origin" });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload.accessCode || !payload.reference) throw new Error(payload.message || "Secure checkout could not start.");
-      trackFunnel("paystack_opened", { productId: id, ctaLocation: checkoutForm.querySelector("#checkoutLocation").value });
-      checkout.close();
+      const paymentUrl = new URL(payload.authorizationUrl || "", location.href);
+      if (paymentUrl.protocol !== "https:" || paymentUrl.hostname !== "checkout.paystack.com") throw new Error("Secure checkout link is unavailable. Please try again.");
+      trackFunnel("checkout_initialized", { productId: id, ctaLocation: checkoutForm.querySelector("#checkoutLocation").value });
+      fallback.href = paymentUrl.href;
+      fallback.onclick = () => trackFunnel("paystack_fallback", { productId: id, ctaLocation: checkoutForm.querySelector("#checkoutLocation").value });
+      status.textContent = "Connecting to Paystack. This may take a moment on mobile data…";
+      slowTimer = window.setTimeout(() => {
+        trackFunnel("paystack_slow", { productId: id, ctaLocation: checkoutForm.querySelector("#checkoutLocation").value });
+        fallback.hidden = false;
+        status.textContent = "The popup is taking longer than expected. You can open the same secure payment directly.";
+      }, 7000);
+      const PaystackPop = await scriptReady;
+      if (!PaystackPop) {
+        window.clearTimeout(slowTimer);
+        trackFunnel("paystack_error", { productId: id, ctaLocation: checkoutForm.querySelector("#checkoutLocation").value });
+        fallback.hidden = false;
+        status.textContent = "The Paystack popup could not load. Open the same secure payment directly below.";
+        resetCheckoutButton(product);
+        return;
+      }
       const popup = new PaystackPop();
       popup.resumeTransaction(payload.accessCode, {
+        onLoad: () => {
+          window.clearTimeout(slowTimer);
+          trackFunnel("paystack_opened", { productId: id, ctaLocation: checkoutForm.querySelector("#checkoutLocation").value });
+          clearFallback();
+          if (checkout.open) checkout.close();
+        },
         onSuccess: (transaction) => {
+          window.clearTimeout(slowTimer);
           const reference = transaction?.reference || payload.reference;
           window.location.assign(`/whatsapp-ai-guides/thank-you/?reference=${encodeURIComponent(reference)}`);
         },
         onCancel: () => {
+          window.clearTimeout(slowTimer);
+          clearFallback();
           trackFunnel("paystack_cancelled", { productId: id, ctaLocation: checkoutForm.querySelector("#checkoutLocation").value });
           status.textContent = "Payment was not completed. Your details are still here when you are ready.";
           resetCheckoutButton(product);
-          checkout.showModal();
+          if (!checkout.open) checkout.showModal();
         },
         onError: () => {
+          window.clearTimeout(slowTimer);
+          clearFallback();
           trackFunnel("paystack_error", { productId: id, ctaLocation: checkoutForm.querySelector("#checkoutLocation").value });
           status.textContent = "Paystack could not open. Please check your connection and try again.";
           resetCheckoutButton(product);
-          checkout.showModal();
+          if (!checkout.open) checkout.showModal();
         },
       });
     } catch (error) {
+      window.clearTimeout(slowTimer);
+      const hasPaymentLink = fallback.hasAttribute("href");
+      if (hasPaymentLink) fallback.hidden = false;
+      else clearFallback();
       trackFunnel("paystack_error", { productId: id, ctaLocation: checkoutForm.querySelector("#checkoutLocation").value });
-      status.textContent = isLocalPreview
+      status.textContent = hasPaymentLink
+        ? "The popup could not open. Use the same secure Paystack checkout below."
+        : isLocalPreview
         ? "Payment testing requires the live Cloudflare page. This local copy is for design preview only."
         : error.message || "Secure checkout could not start. Please try again.";
       resetCheckoutButton(product);

@@ -82,6 +82,10 @@ test("conversion actions use the compact sticky bar and direct checkout", () => 
   assert.match(guideScript, /document\.querySelectorAll\("#choose, \.final-cta, footer"\)/);
   assert.match(guideScript, /trackFunnel\("cta_click"/);
   assert.match(guideScript, /trackFunnel\("paystack_opened"/);
+  assert.match(guideScript, /trackFunnel\("checkout_initialized"/);
+  assert.match(guideScript, /loadPaystack\(\)\.catch\(\(\) => \{\}\)/);
+  assert.match(guideScript, /onLoad: \(\) => \{/);
+  assert.match(guidePage, /id="checkoutFallback"/);
   assert.match(guideScript, /rootMargin: "180px 0px"/);
 });
 

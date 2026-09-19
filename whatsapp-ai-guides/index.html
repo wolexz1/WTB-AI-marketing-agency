@@ -24,9 +24,11 @@
   <meta name="twitter:image:alt" content="WhatsApp AI Launchpad and Growth Engine guides for Nigerian businesses">
   <link rel="icon" href="/assets/favicon-32x32.png" sizes="32x32">
   <link rel="preload" href="/assets/whatsapp-ai-guides/launchpad-cover-360.webp" as="image" type="image/webp">
-  <link rel="stylesheet" href="/assets/whatsapp-ai-guides/whatsapp-ai-guides.css?v=20260918-assistant1">
+  <link rel="preconnect" href="https://js.paystack.co" crossorigin>
+  <link rel="preconnect" href="https://checkout.paystack.com" crossorigin>
+  <link rel="stylesheet" href="/assets/whatsapp-ai-guides/whatsapp-ai-guides.css?v=20260919-checkout1">
   <script defer src="/assets/meta-pixel.js?v=20260906-speed1"></script>
-  <script defer src="/assets/whatsapp-ai-guides/whatsapp-ai-guides.js?v=20260918-assistant1"></script>
+  <script defer src="/assets/whatsapp-ai-guides/whatsapp-ai-guides.js?v=20260919-checkout1"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -251,6 +253,7 @@
       <button class="button" type="submit" id="checkoutSubmit">Pay securely with Paystack</button>
       <p class="secure-note">Paystack opens securely on this page and shows the payment methods available to you. WTB never sees or stores your card details.</p>
       <p class="checkout-status" id="checkoutStatus" role="status" aria-live="polite"></p>
+      <a class="checkout-fallback" id="checkoutFallback" href="#" rel="noreferrer" hidden>Taking too long? Open secure Paystack checkout</a>
     </form>
   </dialog>
   <dialog id="previewDialog" class="preview-dialog" aria-label="Guide page preview"><button class="dialog-close" type="button" aria-label="Close preview">×</button><img id="previewImage" alt="Selected guide preview page"></dialog>
