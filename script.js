@@ -312,6 +312,43 @@ if (document.readyState === "loading") {
   addHighIntentConversionLinks();
 }
 
+const addXTrendProofPanel = () => {
+  if (window.location.pathname === "/x-trend-campaign-nigeria/") {
+    return;
+  }
+
+  const main = document.querySelector("main");
+  const mainText = main?.textContent || "";
+  if (!main || !/\bX\s+trend(?:s|ing)?\b|\btrend(?:ing)?\s+on\s+X\b/i.test(mainText) || document.querySelector("[data-wtb-x-trend-proof]")) {
+    return;
+  }
+
+  const panel = document.createElement("section");
+  panel.className = "x-proof-mini";
+  panel.dataset.wtbXTrendProof = "true";
+  panel.innerHTML = `
+    <div class="x-proof-mini-copy">
+      <p class="eyebrow">X campaign proof</p>
+      <h2>We have helped real campaigns reach Nigeria’s X trend table.</h2>
+      <p><strong>#1 Cold Stone Brain Freeze Challenge</strong>, <strong>#2 GCS ISF 2024</strong>, and <strong>#11 Devolution Is The Solution</strong> are documented campaign placements. Your event, app, product or service needs the same serious distribution—not hopeful posting.</p>
+    </div>
+    <a class="button button-ghost" href="/x-trend-campaign-nigeria/">See the X campaign proof</a>
+  `;
+
+  const endCta = main.querySelector(".dark-cta");
+  if (endCta) {
+    main.insertBefore(panel, endCta);
+  } else {
+    main.appendChild(panel);
+  }
+};
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", addXTrendProofPanel, { once: true });
+} else {
+  addXTrendProofPanel();
+}
+
 const modal = document.querySelector("#briefModal");
 const modalTriggers = Array.from(document.querySelectorAll(".brief-modal-trigger"));
 const modalClosers = Array.from(document.querySelectorAll("[data-modal-close]"));
