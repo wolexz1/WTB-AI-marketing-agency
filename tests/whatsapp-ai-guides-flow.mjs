@@ -311,13 +311,33 @@ test("repeated fulfilment uses one stable Resend idempotency key", async (t) => 
   await fulfilVerifiedOrder({ env: testEnv, order, product: PRODUCTS.launchpad, requestUrl: "https://wtbaimarketing.com/api/whatsapp-ai-guides/verify", request: new Request("https://wtbaimarketing.com/") });
   assert.deepEqual(idempotencyKeys, ["wtb-wa-guides-wtbwa_idempotent00112233"]);
   assert.equal(sentEmails[0].reply_to, "wolexzzoluk@gmail.com");
-  assert.doesNotMatch(sentEmails[0].html, /Download your private PDF/i);
-  assert.doesNotMatch(sentEmails[0].text, /Download your private guide:/i);
-  assert.match(sentEmails[0].html, /Check your download/);
+  assert.match(sentEmails[0].html, /Download your private PDF/i);
+  assert.match(sentEmails[0].text, /Download your private PDF:/i);
+  assert.match(sentEmails[0].html, /api\/whatsapp-ai-guides\/download\?token=/);
   assert.match(sentEmails[0].html, /reply to this email/);
   assert.match(sentEmails[0].html, /Share with a WhatsApp Business owner/);
   assert.match(sentEmails[0].html, /Built by WTB AI Marketing Agency/);
   assert.match(sentEmails[0].text, /helps businesses use practical AI/);
+});
+
+test("a verified buyer can use a temporary recovery link and resume a PDF", async () => {
+  const bytes = new TextEncoder().encode("%PDF-1.7 recovery");
+  const reference = "wtbwa_recovery001122334455";
+  const deliveryKey = "a".repeat(32);
+  const testEnv = env();
+  testEnv.WHATSAPP_AI_GUIDES_DB.orders.set(reference, { reference, product_id: "launchpad", amount: 550000, currency: "NGN", first_name: "Wole", email: "buyer@example.com", status: "verified", delivery_key: deliveryKey, delivery_expires_at: new Date(Date.now() + 86400000).toISOString(), tracking_json: "{}", download_count: 50 });
+  testEnv.WHATSAPP_AI_GUIDES_BUCKET.get = async (_key, options) => options?.range
+    ? { body: bytes.slice(5), size: bytes.length, range: { offset: 5, length: bytes.length - 5 }, writeHttpMetadata() {} }
+    : { body: bytes, size: bytes.length, writeHttpMetadata() {} };
+
+  const bad = await onRequest({ request: new Request(`https://wtbaimarketing.com/api/whatsapp-ai-guides/recover?reference=${reference}&key=${"b".repeat(32)}`), env: testEnv });
+  assert.equal(bad.status, 403);
+
+  const resumed = await onRequest({ request: new Request(`https://wtbaimarketing.com/api/whatsapp-ai-guides/recover?reference=${reference}&key=${deliveryKey}`, { headers: { Range: "bytes=5-" } }), env: testEnv });
+  assert.equal(resumed.status, 206);
+  assert.equal(resumed.headers.get("Accept-Ranges"), "bytes");
+  assert.equal(resumed.headers.get("Content-Range"), `bytes 5-${bytes.length - 1}/${bytes.length}`);
+  assert.equal(await resumed.text(), "1.7 recovery");
 });
 
 test("a temporary email failure is stored and retried automatically", async (t) => {

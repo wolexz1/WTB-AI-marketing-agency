@@ -11,6 +11,7 @@ export async function onRequest(context) {
     if (request.method === "POST" && pathname === "/api/whatsapp-ai-guides/event") return recordFunnelEvent(request, env);
     if (request.method === "GET" && pathname === "/api/whatsapp-ai-guides/verify") return verifyOrder(request, env, waitUntil);
     if (request.method === "GET" && pathname === "/api/whatsapp-ai-guides/download") return downloadAsset(request, env);
+    if (request.method === "GET" && pathname === "/api/whatsapp-ai-guides/recover") return recoverDownload(request, env);
     return json({ message: "Not found" }, 404);
   } catch (error) {
     console.error("WhatsApp AI Guides request failed", error);
@@ -122,10 +123,29 @@ async function downloadAsset(request, env) {
   const order = await getOrder(env, payload.reference);
   const product = productForId(order?.productId);
   if (!order || order.status !== "verified" || !product || product.asset !== payload.asset) return json({ message: "This file is not available for this order." }, 403);
-  const limit = Math.min(20, Math.max(3, Number(env.WHATSAPP_AI_GUIDES_DOWNLOAD_LIMIT) || 8));
-  const object = await env.WHATSAPP_AI_GUIDES_BUCKET.get(asset.key);
+  return serveAsset(request, env, order, asset);
+}
+
+async function recoverDownload(request, env) {
+  if (requiredEnv(env, ["WHATSAPP_AI_GUIDES_DB", "WHATSAPP_AI_GUIDES_BUCKET"])) return json({ message: "Delivery is being configured." }, 503);
+  const url = new URL(request.url);
+  const reference = cleanReference(url.searchParams.get("reference"));
+  const key = String(url.searchParams.get("key") || "");
+  const order = reference ? await getOrder(env, reference) : null;
+  const product = productForId(order?.productId);
+  const asset = ASSETS[product?.asset];
+  if (!order || order.status !== "verified" || !product || !asset || !/^[a-f0-9]{32}$/.test(key) || !constantTimeEqual(key, order.deliveryKey) || new Date(order.deliveryExpiresAt).getTime() < Date.now()) {
+    return json({ message: "This secure recovery link is invalid or has expired." }, 403);
+  }
+  return serveAsset(request, env, order, asset);
+}
+
+async function serveAsset(request, env, order, asset) {
+  const rangeRequested = Boolean(request.headers.get("Range"));
+  const limit = Math.min(100, Math.max(10, Number(env.WHATSAPP_AI_GUIDES_DOWNLOAD_LIMIT) || 50));
+  const object = await env.WHATSAPP_AI_GUIDES_BUCKET.get(asset.key, { range: request.headers });
   if (!object) return json({ message: "This file is being prepared. Please contact WTB support." }, 503);
-  if (!await claimDownload(env, payload.reference, limit)) return json({ message: "This file has reached its download limit. Please contact WTB support." }, 403);
+  if (!rangeRequested && !await claimDownload(env, order.reference, limit)) return json({ message: "This file has reached its download limit. Please contact WTB support." }, 403);
   const headers = new Headers();
   object.writeHttpMetadata?.(headers);
   headers.set("Content-Type", "application/pdf");
@@ -134,7 +154,18 @@ async function downloadAsset(request, env) {
   headers.set("X-Content-Type-Options", "nosniff");
   headers.set("X-Robots-Tag", "noindex, nofollow");
   headers.set("Referrer-Policy", "no-referrer");
-  return new Response(object.body, { headers });
+  headers.set("Accept-Ranges", "bytes");
+  let status = 200;
+  if (object.range) {
+    const start = object.range.offset;
+    const end = start + object.range.length - 1;
+    headers.set("Content-Range", `bytes ${start}-${end}/${object.size}`);
+    headers.set("Content-Length", String(object.range.length));
+    status = 206;
+  } else if (object.size) {
+    headers.set("Content-Length", String(object.size));
+  }
+  return new Response(object.body, { status, headers });
 }
 
 function requiredEnv(env, keys) { return keys.some((key) => !env[key]); }
