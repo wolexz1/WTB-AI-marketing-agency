@@ -23,6 +23,7 @@ Representative coverage links include:
 
 ## Latest Blog Guide
 
+- Google Ads AI Max in Nigeria: https://wtbaimarketing.com/blog/google-ads-ai-max-nigeria-2026/ - A September 2026 guide to AI-powered Search ads, conversion measurement and mobile-first Q4 campaign planning.
 - AI personalization for Nigerian businesses: https://wtbaimarketing.com/blog/how-to-use-ai-personalization-to-get-more-customers-nigeria-2026/
 - Why Nigerian businesses lose leads between Instagram and WhatsApp: https://wtbaimarketing.com/blog/why-nigerian-businesses-lose-leads-between-instagram-and-whatsapp-2026/
 - Meta Business AI on WhatsApp for Nigerian businesses: https://wtbaimarketing.com/blog/meta-business-ai-whatsapp-nigeria-2026/

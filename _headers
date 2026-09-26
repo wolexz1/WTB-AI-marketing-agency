@@ -78,5 +78,8 @@
 /script.js
   Cache-Control: public, max-age=60, must-revalidate
 
+/blog/google-ads-ai-max-nigeria-2026/index.html
+  X-Robots-Tag: index, follow
+
 /assets/*
   Cache-Control: public, max-age=86400
