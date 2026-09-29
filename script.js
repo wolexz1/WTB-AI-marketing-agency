@@ -247,11 +247,13 @@ const setupBlogNewsletterPopup = () => {
     return;
   }
 
-  const storageKey = "wtb-newsletter-prompted-at";
-  const dismissedAt = Number(localStorage.getItem(storageKey) || 0);
+  const dismissedStorageKey = "wtb-newsletter-dismissed-at";
+  const subscribedStorageKey = "wtb-newsletter-subscribed";
+  const legacyPromptedAt = Number(localStorage.getItem("wtb-newsletter-prompted-at") || 0);
+  const dismissedAt = Number(localStorage.getItem(dismissedStorageKey) || legacyPromptedAt);
   const sevenDays = 7 * 24 * 60 * 60 * 1000;
 
-  if (dismissedAt && Date.now() - dismissedAt < sevenDays) {
+  if (localStorage.getItem(subscribedStorageKey) === "true" || (dismissedAt && Date.now() - dismissedAt < sevenDays)) {
     return;
   }
 
@@ -305,7 +307,9 @@ const setupBlogNewsletterPopup = () => {
     opened = false;
     modal.classList.remove("is-open");
     document.body.classList.remove("newsletter-open");
-    localStorage.setItem(storageKey, String(Date.now()));
+    if (localStorage.getItem(subscribedStorageKey) !== "true") {
+      localStorage.setItem(dismissedStorageKey, String(Date.now()));
+    }
     window.setTimeout(() => {
       modal.hidden = true;
       previouslyFocused?.focus?.();
@@ -384,7 +388,7 @@ const setupBlogNewsletterPopup = () => {
       status.classList.add("is-success");
       submit.querySelector("span").textContent = "You are on the list";
       form.querySelectorAll("input").forEach((input) => { input.disabled = true; });
-      localStorage.setItem(storageKey, String(Date.now()));
+      localStorage.setItem(subscribedStorageKey, "true");
       trackAnalyticsEvent("newsletter_signup", { page_path: window.location.pathname, method: "blog_popup" });
       window.setTimeout(close, 2600);
     } catch (error) {
