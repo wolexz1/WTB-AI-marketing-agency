@@ -241,8 +241,9 @@ const addBlogWhatsAppButton = () => {
 
 const setupBlogNewsletterPopup = () => {
   const isBlogPage = document.body?.classList.contains("blog-page") || document.body?.classList.contains("blog-article-page");
+  const isHomepage = window.location.pathname === "/" || window.location.pathname === "/index.html";
 
-  if (!isBlogPage || document.querySelector("[data-newsletter-modal]")) {
+  if ((!isBlogPage && !isHomepage) || document.querySelector("[data-newsletter-modal]")) {
     return;
   }
 
