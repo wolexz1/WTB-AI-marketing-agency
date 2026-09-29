@@ -12,6 +12,7 @@
     "AI_EXPLORERS_DOWNLOAD_TTL_SECONDS": "604800",
     "FROM_EMAIL": "WTB AI Marketing Agency <hello@wtbaimarketing.com>",
     "META_PIXEL_ID": "1101896092165449",
+    "SENDER_GROUP_ID": "dLlzjp",
     "WHATSAPP_AI_GUIDES_DOWNLOAD_LIMIT": "8",
     "WHATSAPP_AI_GUIDES_DOWNLOAD_TTL_SECONDS": "604800"
   },
@@ -47,6 +48,7 @@
         "AI_EXPLORERS_DOWNLOAD_TTL_SECONDS": "604800",
         "FROM_EMAIL": "WTB AI Marketing Agency <hello@wtbaimarketing.com>",
         "META_PIXEL_ID": "1101896092165449",
+        "SENDER_GROUP_ID": "dLlzjp",
         "WHATSAPP_AI_GUIDES_DOWNLOAD_LIMIT": "8",
         "WHATSAPP_AI_GUIDES_DOWNLOAD_TTL_SECONDS": "604800"
       },

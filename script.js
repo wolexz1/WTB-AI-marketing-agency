@@ -239,10 +239,170 @@ const addBlogWhatsAppButton = () => {
   document.body.appendChild(button);
 };
 
+const setupBlogNewsletterPopup = () => {
+  const isBlogPage = document.body?.classList.contains("blog-page") || document.body?.classList.contains("blog-article-page");
+
+  if (!isBlogPage || document.querySelector("[data-newsletter-modal]")) {
+    return;
+  }
+
+  const storageKey = "wtb-newsletter-prompted-at";
+  const dismissedAt = Number(localStorage.getItem(storageKey) || 0);
+  const sevenDays = 7 * 24 * 60 * 60 * 1000;
+
+  if (dismissedAt && Date.now() - dismissedAt < sevenDays) {
+    return;
+  }
+
+  const modal = document.createElement("div");
+  modal.className = "newsletter-modal";
+  modal.dataset.newsletterModal = "true";
+  modal.hidden = true;
+  modal.innerHTML = `
+    <div class="newsletter-backdrop" data-newsletter-close></div>
+    <section class="newsletter-dialog" role="dialog" aria-modal="true" aria-labelledby="newsletterTitle" aria-describedby="newsletterDescription">
+      <button class="newsletter-close" type="button" data-newsletter-close aria-label="Close newsletter signup">&times;</button>
+      <div class="newsletter-brand-panel" aria-hidden="true">
+        <div class="newsletter-brand-mark">
+          <img src="/assets/logo-wtb.png" alt="" width="74" height="74" decoding="async">
+          <span>WTB</span>
+        </div>
+        <p>AI advantage.<br>Practical growth.</p>
+        <div class="newsletter-signal-list">
+          <span>AI systems</span><span>Smarter marketing</span><span>Nigerian growth</span>
+        </div>
+      </div>
+      <div class="newsletter-content">
+        <p class="newsletter-eyebrow">THE WTB AI GROWTH LETTER</p>
+        <h2 id="newsletterTitle">The next customer may choose the business that learns AI first.</h2>
+        <p id="newsletterDescription">Get one sharp, practical note on using AI, WhatsApp, content and ads to follow up faster, waste less and grow better.</p>
+        <form class="newsletter-form" data-newsletter-form novalidate>
+          <div class="newsletter-fields">
+            <label><span>First name <small>optional</small></span><input name="firstname" type="text" autocomplete="given-name" maxlength="80" placeholder="What should we call you?"></label>
+            <label><span>Email address</span><input name="email" type="email" autocomplete="email" inputmode="email" required placeholder="you@business.com"></label>
+          </div>
+          <label class="newsletter-consent"><input name="consent" type="checkbox" required><span>Yes, send me useful WTB AI and marketing emails. I can unsubscribe anytime.</span></label>
+          <input class="newsletter-honeypot" name="company" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="newsletter-submit" type="submit"><span>Give me the advantage</span><span aria-hidden="true">&rarr;</span></button>
+          <p class="newsletter-note">Practical. Nigerian. No daily noise.</p>
+          <p class="newsletter-status" data-newsletter-status role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  `;
+  document.body.appendChild(modal);
+
+  const form = modal.querySelector("[data-newsletter-form]");
+  const status = modal.querySelector("[data-newsletter-status]");
+  const submit = form.querySelector("button[type='submit']");
+  const startedAt = Date.now();
+  let previouslyFocused = null;
+  let opened = false;
+
+  const close = () => {
+    if (!opened) return;
+    opened = false;
+    modal.classList.remove("is-open");
+    document.body.classList.remove("newsletter-open");
+    localStorage.setItem(storageKey, String(Date.now()));
+    window.setTimeout(() => {
+      modal.hidden = true;
+      previouslyFocused?.focus?.();
+    }, 220);
+  };
+
+  const open = () => {
+    if (opened) return;
+    opened = true;
+    previouslyFocused = document.activeElement;
+    modal.hidden = false;
+    window.requestAnimationFrame(() => {
+      modal.classList.add("is-open");
+      document.body.classList.add("newsletter-open");
+      modal.querySelector("input[name='firstname']")?.focus({ preventScroll: true });
+    });
+    trackAnalyticsEvent("newsletter_popup_view", { page_path: window.location.pathname });
+  };
+
+  modal.querySelectorAll("[data-newsletter-close]").forEach((button) => button.addEventListener("click", close));
+  document.addEventListener("keydown", (event) => {
+    if (opened && event.key === "Escape") close();
+  });
+
+  const showAfterScroll = () => {
+    const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = documentHeight > 0 ? window.scrollY / documentHeight : 0;
+    if (progress >= 0.28) {
+      window.removeEventListener("scroll", showAfterScroll);
+      open();
+    }
+  };
+
+  window.addEventListener("scroll", showAfterScroll, { passive: true });
+  const timer = window.setTimeout(open, 12000);
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    if (!form.reportValidity()) return;
+
+    window.clearTimeout(timer);
+    submit.disabled = true;
+    submit.querySelector("span").textContent = "Adding you...";
+    status.textContent = "";
+    status.className = "newsletter-status";
+
+    const data = new FormData(form);
+    const params = new URLSearchParams(window.location.search);
+    const payload = {
+      firstname: data.get("firstname"),
+      email: data.get("email"),
+      consent: data.get("consent") === "on",
+      company: data.get("company"),
+      startedAt,
+      source: "WTB blog popup",
+      path: window.location.pathname,
+      utmSource: params.get("utm_source") || "direct",
+      utmMedium: params.get("utm_medium") || "organic",
+      utmCampaign: params.get("utm_campaign") || "organic",
+    };
+
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const result = await response.json();
+
+      if (!response.ok || !result.ok) {
+        throw new Error(result.message || "We could not add you just now.");
+      }
+
+      status.textContent = result.message;
+      status.classList.add("is-success");
+      submit.querySelector("span").textContent = "You are on the list";
+      form.querySelectorAll("input").forEach((input) => { input.disabled = true; });
+      localStorage.setItem(storageKey, String(Date.now()));
+      trackAnalyticsEvent("newsletter_signup", { page_path: window.location.pathname, method: "blog_popup" });
+      window.setTimeout(close, 2600);
+    } catch (error) {
+      status.textContent = error.message || "Something interrupted the signup. Please try again.";
+      status.classList.add("is-error");
+      submit.disabled = false;
+      submit.querySelector("span").textContent = "Give me the advantage";
+    }
+  });
+};
+
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", addBlogWhatsAppButton, { once: true });
+  document.addEventListener("DOMContentLoaded", () => {
+    addBlogWhatsAppButton();
+    setupBlogNewsletterPopup();
+  }, { once: true });
 } else {
   addBlogWhatsAppButton();
+  setupBlogNewsletterPopup();
 }
 
 const addProductGrowthContext = () => {
