@@ -1,4 +1,5 @@
 const SENDER_SUBSCRIBERS_ENDPOINT = "https://api.sender.net/v2/subscribers";
+const KIT_SUBSCRIBERS_ENDPOINT = "https://api.kit.com/v4/subscribers";
 const RESEND_EMAILS_ENDPOINT = "https://api.resend.com/emails";
 const NEWSLETTER_REPLY_TO = "wolexzthebrand@gmail.com";
 
@@ -33,6 +34,10 @@ export async function onRequestPost({ request, env }) {
 
     if (!isValidEmail(email)) {
       return json({ ok: false, message: "Please enter a valid email address." }, 400);
+    }
+
+    if (env.NEWSLETTER_PROVIDER === "kit") {
+      return subscribeWithKit(env, { email, firstname, requestUrl, input });
     }
 
     if (!env.SENDER_API_TOKEN || !env.SENDER_GROUP_ID) {
@@ -88,6 +93,51 @@ export async function onRequestPost({ request, env }) {
     console.error("Newsletter subscription error", error);
     return json({ ok: false, message: "Something interrupted the signup. Please try again." }, 500);
   }
+}
+
+async function subscribeWithKit(env, { email, firstname, requestUrl, input }) {
+  if (!env.KIT_API_KEY || !/^\d+$/.test(String(env.KIT_FORM_ID || ""))) {
+    console.error("Kit newsletter environment variables are missing or invalid");
+    return json({ ok: false, message: "Subscription is temporarily unavailable. Please try again shortly." }, 503);
+  }
+
+  const headers = {
+    "X-Kit-Api-Key": env.KIT_API_KEY,
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  };
+  const created = await fetch(KIT_SUBSCRIBERS_ENDPOINT, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({ email_address: email, first_name: firstname }),
+  });
+  if (!created.ok) {
+    console.error("Kit subscriber creation failed", created.status);
+    return json({ ok: false, message: "We could not add you just now. Please try again." }, 502);
+  }
+
+  const referrer = new URL(requestUrl.origin);
+  const path = String(input.path || "/");
+  referrer.pathname = path.startsWith("/") && !path.startsWith("//") ? path.slice(0, 200) : "/";
+  for (const [key, value] of [
+    ["utm_source", input.utmSource],
+    ["utm_medium", input.utmMedium],
+    ["utm_campaign", input.utmCampaign],
+  ]) {
+    if (value) referrer.searchParams.set(key, cleanField(value, "").slice(0, 100));
+  }
+
+  const added = await fetch(`https://api.kit.com/v4/forms/${env.KIT_FORM_ID}/subscribers`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({ email_address: email, referrer: referrer.href }),
+  });
+  if (!added.ok) {
+    console.error("Kit form subscription failed", added.status);
+    return json({ ok: false, message: "We could not add you just now. Please try again." }, 502);
+  }
+
+  return json({ ok: true, message: "Check your inbox to confirm your WTB subscription." });
 }
 
 async function sendWelcomeEmail(env, subscriber) {
