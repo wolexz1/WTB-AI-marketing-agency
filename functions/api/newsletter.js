@@ -109,7 +109,7 @@ async function subscribeWithKit(env, { email, firstname, requestUrl, input }) {
   const created = await fetch(KIT_SUBSCRIBERS_ENDPOINT, {
     method: "POST",
     headers,
-    body: JSON.stringify({ email_address: email, first_name: firstname }),
+    body: JSON.stringify({ email_address: email, first_name: firstname, state: "inactive" }),
   });
   if (!created.ok) {
     console.error("Kit subscriber creation failed", created.status);

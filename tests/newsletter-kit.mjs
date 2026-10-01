@@ -39,7 +39,11 @@ test("Kit signup creates a subscriber and adds them to the confirmed form", asyn
     "https://api.kit.com/v4/forms/9989263/subscribers",
   ]);
   assert.equal(calls[0].options.headers["X-Kit-Api-Key"], "test-key");
-  assert.equal(JSON.parse(calls[0].options.body).email_address, "reader@example.com");
+  assert.deepEqual(JSON.parse(calls[0].options.body), {
+    email_address: "reader@example.com",
+    first_name: "Reader",
+    state: "inactive",
+  });
   assert.match(JSON.parse(calls[1].options.body).referrer, /utm_source=newsletter-test/);
 });
 
