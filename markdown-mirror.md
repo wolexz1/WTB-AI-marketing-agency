@@ -23,6 +23,8 @@ Representative coverage links include:
 
 ## Latest Blog Guide
 
+- [Black Friday Marketing in Nigeria: Discounts Are Not the Strategy](https://wtbaimarketing.com/blog/black-friday-marketing-nigeria-2026/) explains how Nigerian brands can connect a credible offer, product page, creators, paid distribution and WhatsApp follow-up around festive sales.
+- [How Nigerian Brands Turn TikTok Views Into WhatsApp Orders](https://wtbaimarketing.com/blog/tiktok-to-whatsapp-sales-nigeria-2026/) explains how short-video attention, creator proof, clear buying actions and WhatsApp AI-assisted replies can support a practical social-commerce journey.
 - Google Ads AI Max in Nigeria: https://wtbaimarketing.com/blog/google-ads-ai-max-nigeria-2026/ - A September 2026 guide to AI-powered Search ads, conversion measurement and mobile-first Q4 campaign planning.
 - AI personalization for Nigerian businesses: https://wtbaimarketing.com/blog/how-to-use-ai-personalization-to-get-more-customers-nigeria-2026/
 - Why Nigerian businesses lose leads between Instagram and WhatsApp: https://wtbaimarketing.com/blog/why-nigerian-businesses-lose-leads-between-instagram-and-whatsapp-2026/
