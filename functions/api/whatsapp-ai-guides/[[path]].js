@@ -46,7 +46,8 @@ async function initializeCheckout(request, env) {
   const email = cleanEmail(form.get("email"));
   const product = productForId(cleanText(form.get("product"), 32));
   const ctaLocation = cleanText(form.get("ctaLocation"), 48) || "page";
-  if (!firstName || !email || !product) return checkoutError(request, "Please enter a valid first name and email, then choose a guide.", 400);
+  if (!firstName || !email || !product) return checkoutError(request, "Please enter a valid first name and email.", 400);
+  if (product.id !== "growth-engine") return checkoutError(request, "This guide is no longer for sale. Growth Engine is available for ₦10,500.", 410);
   let asset;
   try {
     asset = await env.WHATSAPP_AI_GUIDES_BUCKET.head(ASSETS[product.asset].key);

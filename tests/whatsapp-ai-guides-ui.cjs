@@ -1,10 +1,11 @@
 const { chromium } = require("playwright");
 const fs = require("node:fs/promises");
 const path = require("node:path");
+const os = require("node:os");
 
 (async () => {
   const baseUrl = process.env.WHATSAPP_AI_GUIDES_TEST_URL || "http://127.0.0.1:8765/whatsapp-ai-guides/";
-  const outputDir = path.resolve("test-artifacts/whatsapp-ai-guides");
+  const outputDir = path.join(os.tmpdir(), "wtb-growth-engine-qa");
   await fs.mkdir(outputDir, { recursive: true });
   const browser = await chromium.launch({ channel: "chrome", headless: true });
   const results = [];
@@ -29,9 +30,9 @@ const path = require("node:path");
     await page.route("**/api/whatsapp-ai-guides/checkout", (route) => route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ accessCode: "ui_test_access", authorizationUrl: "https://checkout.paystack.com/ui_test_access", reference: "wtbwa_ui_test" }) }));
     await page.goto(baseUrl, { waitUntil: "domcontentloaded" });
     await page.waitForSelector("h1", { state: "attached" });
-    const floatingStart = await page.locator(".cover-one").evaluate((cover) => getComputedStyle(cover).transform);
+    const floatingStart = await page.locator(".cover-two").evaluate((cover) => getComputedStyle(cover).transform);
     await page.waitForTimeout(320);
-    const floatingEnd = await page.locator(".cover-one").evaluate((cover) => getComputedStyle(cover).transform);
+    const floatingEnd = await page.locator(".cover-two").evaluate((cover) => getComputedStyle(cover).transform);
     const text = await page.locator("body").innerText();
     const dimensions = await page.evaluate(() => ({ client: document.documentElement.clientWidth, scroll: document.documentElement.scrollWidth, offenders: [...document.querySelectorAll("body *")].filter((element) => { const rect = element.getBoundingClientRect(); return rect.right > document.documentElement.clientWidth + 2 || rect.left < -2; }).slice(0, 8).map((element) => ({ tag: element.tagName, className: element.className, right: Math.round(element.getBoundingClientRect().right), left: Math.round(element.getBoundingClientRect().left) })) }));
     const launchpadButtons = await page.locator("[data-guide-buy][data-guide-product='launchpad']").count();
@@ -92,13 +93,13 @@ const path = require("node:path");
       viewport: viewport.name,
       title: await page.title(),
       h1: await page.locator("h1").innerText(),
-      exactPrices: text.includes("₦5,500") && text.includes("₦10,500"),
+      exactPrices: !text.includes("₦5,500") && text.includes("₦10,500"),
       approvedProducts: await page.locator(".product-name").evaluateAll((labels) => {
         const names = labels.map((label) => label.textContent.trim());
-        return names.includes("WhatsApp AI Launchpad") && names.includes("WhatsApp AI Growth Engine");
+        return names.length === 1 && names[0] === "WhatsApp AI Growth Engine";
       }),
       noNormalNavigation: !text.includes("About Us") && !text.includes("Pricing"),
-      sufficientCtas: launchpadButtons >= 4 && growthButtons >= 4,
+      sufficientCtas: launchpadButtons === 0 && growthButtons >= 4,
       paymentNoticeRemoved: removedNoticeCount === 0,
       checkoutCorrect: checkoutText.includes("WhatsApp AI Growth Engine") && checkoutText.includes("₦10,500") && checkoutText.includes("protect buying opportunities while you sleep") && checkoutText.includes("Paystack opens securely on this page") && !checkoutText.includes("access varies by account and market"),
       checkoutSpacing,
@@ -121,7 +122,7 @@ const path = require("node:path");
   });
   await slowPage.route("**/api/whatsapp-ai-guides/checkout", (route) => route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ accessCode: "slow_test_access", authorizationUrl: "https://checkout.paystack.com/slow_test_access", reference: "wtbwa_slow_test" }) }));
   await slowPage.goto(baseUrl, { waitUntil: "domcontentloaded" });
-  await slowPage.locator("[data-guide-buy][data-guide-product='launchpad']").first().click();
+  await slowPage.locator("[data-guide-buy][data-guide-product='growth-engine']").first().click();
   await slowPage.locator("#checkoutForm input[name='firstName']").fill("Test");
   await slowPage.locator("#checkoutForm input[name='email']").fill("buyer@example.com");
   await slowPage.locator("#checkoutSubmit").click();
@@ -135,7 +136,7 @@ const path = require("node:path");
   await blockedPage.route("https://js.paystack.co/**", (route) => route.abort());
   await blockedPage.route("**/api/whatsapp-ai-guides/checkout", (route) => route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ accessCode: "blocked_test_access", authorizationUrl: "https://checkout.paystack.com/blocked_test_access", reference: "wtbwa_blocked_test" }) }));
   await blockedPage.goto(baseUrl, { waitUntil: "domcontentloaded" });
-  await blockedPage.locator("[data-guide-buy][data-guide-product='launchpad']").first().click();
+  await blockedPage.locator("[data-guide-buy][data-guide-product='growth-engine']").first().click();
   await blockedPage.locator("#checkoutForm input[name='firstName']").fill("Test");
   await blockedPage.locator("#checkoutForm input[name='email']").fill("buyer@example.com");
   await blockedPage.locator("#checkoutSubmit").click();

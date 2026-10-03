@@ -1,7 +1,6 @@
 (() => {
   const money = new Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN", maximumFractionDigits: 0 });
   const products = {
-    launchpad: { name: "WhatsApp AI Launchpad", price: 5500, promise: "Use this step-by-step guide to set up your WhatsApp AI assistant with approved business information, useful customer replies and safe human handoffs, without coding." },
     "growth-engine": { name: "WhatsApp AI Growth Engine", price: 10500, promise: "Keep your business responsive and protect buying opportunities while you sleep, travel or focus elsewhere. Build a WhatsApp sales and service system that answers from approved business information, qualifies serious buyers, recommends the right next step and brings in your team when human judgement matters." },
   };
   const fbq = (...args) => { if (typeof window.fbq === "function") window.fbq(...args); };
@@ -34,7 +33,7 @@
   trackFunnel("page_view");
 
   window.addEventListener("load", () => {
-    fbq("track", "ViewContent", { content_ids: Object.keys(products), content_type: "product_group", content_name: "WTB WhatsApp AI Guides", currency: "NGN", value: 5500 });
+    fbq("track", "ViewContent", { content_ids: ["growth-engine"], content_type: "product", content_name: "WhatsApp AI Growth Engine", currency: "NGN", value: 10500 });
   }, { once: true });
 
   const checkout = document.querySelector("#checkoutDialog");
@@ -56,6 +55,11 @@
     }).catch((error) => { paystackPromise = null; throw error; });
     return paystackPromise;
   };
+  document.querySelectorAll("[data-guide-buy]").forEach((button) => {
+    button.addEventListener("pointerenter", () => { loadPaystack().catch(() => {}); }, { once: true, passive: true });
+    button.addEventListener("pointerdown", () => { loadPaystack().catch(() => {}); }, { once: true, passive: true });
+    button.addEventListener("focus", () => { loadPaystack().catch(() => {}); }, { once: true, passive: true });
+  });
   const resetCheckoutButton = (product) => {
     const submit = checkoutForm.querySelector("#checkoutSubmit");
     submit.disabled = false;
@@ -121,7 +125,7 @@
         trackFunnel("paystack_slow", { productId: id, ctaLocation: checkoutForm.querySelector("#checkoutLocation").value });
         fallback.hidden = false;
         status.textContent = "The popup is taking longer than expected. You can open the same secure payment directly.";
-      }, 7000);
+      }, 4000);
       const PaystackPop = await scriptReady;
       if (!PaystackPop) {
         window.clearTimeout(slowTimer);
@@ -257,7 +261,7 @@
   }
 
   const pageUrl = "https://wtbaimarketing.com/whatsapp-ai-guides/";
-  const shareText = `I found a practical guide for Nigerian business owners handling 40+ WhatsApp chats a day. Launchpad is ₦5,500 and the advanced Growth Engine is ₦10,500. ${pageUrl}`;
+  const shareText = `I found a step-by-step guide to set up your own WhatsApp AI assistant for approved replies, buyer qualification and human handoff. Growth Engine is ₦10,500 one-time. ${pageUrl}`;
   const share = async (type, location = "landing_page") => {
     fbq("trackCustom", "ShareClick", { location, method: type });
     if (type === "native" && navigator.share) {
@@ -268,7 +272,7 @@
   document.querySelectorAll("[data-guide-share]").forEach((button) => button.addEventListener("click", () => share(button.dataset.guideShare, button.dataset.shareLocation)));
 
   const sticky = document.querySelector("[data-guide-sticky]");
-  const heroChoices = document.querySelector(matchMedia("(max-width: 900px)").matches ? ".hero-quick-actions" : ".hero-actions");
+  const heroChoices = document.querySelector(".hero-quick-actions");
   if (sticky && heroChoices && "IntersectionObserver" in window) {
     let choicesVisible = true;
     const visibleBlockers = new Set();
@@ -278,7 +282,7 @@
       entries.forEach((entry) => entry.isIntersecting ? visibleBlockers.add(entry.target) : visibleBlockers.delete(entry.target));
       updateSticky();
     }, { threshold: 0.01 });
-    document.querySelectorAll("#choose, .final-cta, footer").forEach((section) => blockerObserver.observe(section));
+    document.querySelectorAll(".final-cta, footer").forEach((section) => blockerObserver.observe(section));
   }
 
   const scrollEvents = new Set();

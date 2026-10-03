@@ -116,7 +116,7 @@ test("product map fixes trusted amounts and private assets", () => {
   assert.equal(productForId("unknown"), null);
 });
 
-test("checkout ignores a browser amount and initializes the fixed product amount", async (t) => {
+test("checkout ignores a browser amount and initializes the fixed Growth Engine amount", async (t) => {
   t.after(() => { globalThis.fetch = realFetch; });
   let initialized;
   globalThis.fetch = async (_url, options) => {
@@ -126,7 +126,7 @@ test("checkout ignores a browser amount and initializes the fixed product amount
   const request = new Request("https://wtbaimarketing.com/api/whatsapp-ai-guides/checkout", {
     method: "POST",
     headers: { "CF-Connecting-IP": "127.0.0.1" },
-    body: new URLSearchParams({ firstName: "Wole", email: "buyer@example.com", product: "launchpad", amount: "1", ctaLocation: "hero" }),
+    body: new URLSearchParams({ firstName: "Wole", email: "buyer@example.com", product: "growth-engine", amount: "1", ctaLocation: "hero" }),
   });
   const response = await onRequest({
     request,
@@ -137,11 +137,28 @@ test("checkout ignores a browser amount and initializes the fixed product amount
     },
   });
   assert.equal(response.status, 302);
-  assert.equal(initialized.amount, "550000");
-  assert.equal(initialized.metadata.product_id, "launchpad");
+  assert.equal(initialized.amount, "1050000");
+  assert.equal(initialized.metadata.product_id, "growth-engine");
   assert.match(initialized.callback_url, /whatsapp-ai-guides\/thank-you/);
   assert.doesNotMatch(initialized.callback_url, /(?:\?|&)key=/);
   assert.match(response.headers.get("Set-Cookie"), /wtbwa_delivery_wtbwa_.*HttpOnly.*Secure.*SameSite=Lax/);
+});
+
+test("retired Launchpad cannot create a new payment, while its order record remains readable", async (t) => {
+  t.after(() => { globalThis.fetch = realFetch; });
+  let called = false;
+  globalThis.fetch = async () => { called = true; return new Response(); };
+  const testEnv = { ...env({ size: 1234 }), RESEND_API_KEY: "re_test", FROM_EMAIL: "WTB <hello@wtbaimarketing.com>" };
+  const request = new Request("https://wtbaimarketing.com/api/whatsapp-ai-guides/checkout", {
+    method: "POST",
+    headers: { Accept: "application/json" },
+    body: new URLSearchParams({ firstName: "Wole", email: "buyer@example.com", product: "launchpad" }),
+  });
+  const response = await onRequest({ request, env: testEnv });
+  assert.equal(response.status, 410);
+  assert.equal(called, false);
+  assert.equal(testEnv.WHATSAPP_AI_GUIDES_DB.orders.size, 0);
+  assert.equal(productForId("launchpad")?.amount, 550000);
 });
 
 test("checkout returns a server-created access code for the on-page Paystack popup", async (t) => {
