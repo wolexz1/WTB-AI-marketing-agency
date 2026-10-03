@@ -55,6 +55,14 @@
     }).catch((error) => { paystackPromise = null; throw error; });
     return paystackPromise;
   };
+  window.addEventListener("load", () => {
+    if (navigator.connection?.saveData || document.hidden) return;
+    const warm = () => { if (!document.hidden) loadPaystack().catch(() => {}); };
+    setTimeout(() => {
+      if ("requestIdleCallback" in window) requestIdleCallback(warm, { timeout: 3000 });
+      else warm();
+    }, 1200);
+  }, { once: true });
   document.querySelectorAll("[data-guide-buy]").forEach((button) => {
     button.addEventListener("pointerenter", () => { loadPaystack().catch(() => {}); }, { once: true, passive: true });
     button.addEventListener("pointerdown", () => { loadPaystack().catch(() => {}); }, { once: true, passive: true });
