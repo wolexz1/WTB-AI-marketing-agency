@@ -44,7 +44,7 @@
     action.hidden = false;
     actionText.textContent = productActions[product.id];
     const pageUrl = "https://wtbaimarketing.com/whatsapp-ai-guides/";
-    share.href = `https://wa.me/?text=${encodeURIComponent(`I found practical WhatsApp AI guides for Nigerian businesses that need faster replies and cleaner handoffs: ${pageUrl}`)}`;
+    share.href = `https://wa.me/?text=${encodeURIComponent(`I found a practical guide to set up your own WhatsApp AI assistant for faster replies and cleaner handoffs: ${pageUrl}`)}`;
     fbq("track", "Purchase", { content_ids: [product.id], content_type: "product", content_name: product.name, value: product.amount / 100, currency: "NGN" }, { eventID: data.eventId });
     setTimeout(() => location.assign(data.downloadUrl), 800);
   }
