@@ -2,6 +2,10 @@ import { ASSETS, PRODUCT_CURRENCY, REFERENCE_PATTERN, productForId } from "./pro
 import { createDownloadUrl, fulfilVerifiedOrder, verifyDownloadToken } from "./fulfilment.js";
 import { claimDownload, consumeRateLimit, createOrder, getOrder, markVerified } from "./order-store.js";
 
+const COMPLIMENTARY_DOWNLOAD_HASH = "1506a6d97b06449c6a396313ce83939db9e3ef10d74d4ff91215aea01ee7d722";
+const COMPLIMENTARY_DOWNLOAD_EXPIRES_AT = Date.parse("2026-10-09T12:30:41Z");
+const COMPLIMENTARY_DOWNLOAD_LIMIT = 3;
+
 export async function onRequest(context) {
   const { request, env } = context;
   const waitUntil = typeof context.waitUntil === "function" ? context.waitUntil.bind(context) : undefined;
@@ -11,6 +15,7 @@ export async function onRequest(context) {
     if (request.method === "POST" && pathname === "/api/whatsapp-ai-guides/event") return recordFunnelEvent(request, env);
     if (request.method === "GET" && pathname === "/api/whatsapp-ai-guides/verify") return verifyOrder(request, env, waitUntil);
     if (request.method === "GET" && pathname === "/api/whatsapp-ai-guides/download") return downloadAsset(request, env);
+    if (request.method === "GET" && pathname === "/api/whatsapp-ai-guides/complimentary-download") return complimentaryDownload(request, env);
     if (request.method === "GET" && pathname === "/api/whatsapp-ai-guides/recover") return recoverDownload(request, env);
     return json({ message: "Not found" }, 404);
   } catch (error) {
@@ -141,12 +146,37 @@ async function recoverDownload(request, env) {
   return serveAsset(request, env, order, asset);
 }
 
+async function complimentaryDownload(request, env) {
+  if (requiredEnv(env, ["WHATSAPP_AI_GUIDES_DB", "WHATSAPP_AI_GUIDES_BUCKET"])) return json({ message: "Delivery is being configured." }, 503);
+  const token = new URL(request.url).searchParams.get("token") || "";
+  if (!/^[A-Za-z0-9_-]{43}$/.test(token) || Date.now() >= COMPLIMENTARY_DOWNLOAD_EXPIRES_AT) return json({ message: "This private link has expired." }, 403);
+  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(token));
+  const hash = Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, "0")).join("");
+  if (!constantTimeEqual(hash, COMPLIMENTARY_DOWNLOAD_HASH)) return json({ message: "This private link is invalid." }, 403);
+  const asset = ASSETS["growth-engine"];
+  const object = await env.WHATSAPP_AI_GUIDES_BUCKET.get(asset.key, { range: request.headers });
+  if (!object) return json({ message: "This file is temporarily unavailable. Please contact WTB support." }, 503);
+  const rateKey = `complimentary:${COMPLIMENTARY_DOWNLOAD_HASH}`;
+  await env.WHATSAPP_AI_GUIDES_DB.prepare("INSERT OR IGNORE INTO whatsapp_ai_rate_limits (rate_key, window_minute, attempts) VALUES (?, ?, 0)")
+    .bind(rateKey, Math.floor(COMPLIMENTARY_DOWNLOAD_EXPIRES_AT / 60000)).run();
+  if (!request.headers.get("Range")) {
+    const claim = await env.WHATSAPP_AI_GUIDES_DB.prepare("UPDATE whatsapp_ai_rate_limits SET attempts = attempts + 1 WHERE rate_key = ? AND attempts < ?")
+      .bind(rateKey, COMPLIMENTARY_DOWNLOAD_LIMIT).run();
+    if (!claim.meta?.changes) return json({ message: "This private link has reached its download limit. Please contact WTB support." }, 403);
+  }
+  return pdfResponse(object, asset);
+}
+
 async function serveAsset(request, env, order, asset) {
   const rangeRequested = Boolean(request.headers.get("Range"));
   const limit = Math.min(100, Math.max(10, Number(env.WHATSAPP_AI_GUIDES_DOWNLOAD_LIMIT) || 50));
   const object = await env.WHATSAPP_AI_GUIDES_BUCKET.get(asset.key, { range: request.headers });
   if (!object) return json({ message: "This file is being prepared. Please contact WTB support." }, 503);
   if (!rangeRequested && !await claimDownload(env, order.reference, limit)) return json({ message: "This file has reached its download limit. Please contact WTB support." }, 403);
+  return pdfResponse(object, asset);
+}
+
+function pdfResponse(object, asset) {
   const headers = new Headers();
   object.writeHttpMetadata?.(headers);
   headers.set("Content-Type", "application/pdf");
