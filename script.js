@@ -264,21 +264,22 @@ const setupBlogNewsletterPopup = () => {
   modal.innerHTML = `
     <div class="newsletter-backdrop" data-newsletter-close></div>
     <section class="newsletter-dialog" role="dialog" aria-modal="true" aria-labelledby="newsletterTitle" aria-describedby="newsletterDescription">
-      <button class="newsletter-close" type="button" data-newsletter-close aria-label="Close newsletter signup">&times;</button>
-      <div class="newsletter-brand-panel" aria-hidden="true">
-        <div class="newsletter-brand-mark">
+      <button class="newsletter-close newsletter-close-desktop" type="button" data-newsletter-close aria-label="Close newsletter signup">&times;</button>
+      <div class="newsletter-brand-panel">
+        <div class="newsletter-brand-mark" aria-hidden="true">
           <img src="/assets/logo-wtb.png" alt="" width="74" height="74" decoding="async">
           <span>WTB</span>
         </div>
-        <p>AI advantage.<br>Practical growth.</p>
-        <div class="newsletter-signal-list">
+        <button class="newsletter-close newsletter-close-mobile" type="button" data-newsletter-close aria-label="Close newsletter signup">&times;</button>
+        <p aria-hidden="true">AI advantage.<br>Practical growth.</p>
+        <div class="newsletter-signal-list" aria-hidden="true">
           <span>AI systems</span><span>Smarter marketing</span><span>Nigerian growth</span>
         </div>
       </div>
       <div class="newsletter-content">
         <p class="newsletter-eyebrow">THE WTB AI GROWTH LETTER</p>
-        <h2 id="newsletterTitle">The next customer may choose the business that learns AI first.</h2>
-        <p id="newsletterDescription">Get one sharp, practical note on using AI, WhatsApp, content and ads to follow up faster, waste less and grow better.</p>
+        <h2 id="newsletterTitle"><span class="newsletter-title-desktop">The next customer may choose the business that learns AI first.</span><span class="newsletter-title-mobile">Make AI work for your business.</span></h2>
+        <p id="newsletterDescription"><span class="newsletter-description-desktop">Get one sharp, practical note on using AI, WhatsApp, content and ads to follow up faster, waste less and grow better.</span><span class="newsletter-description-mobile">Practical AI and marketing ideas for Nigerian businesses. Twice a week.</span></p>
         <form class="newsletter-form" data-newsletter-form novalidate>
           <div class="newsletter-fields">
             <label><span>First name <small>optional</small></span><input name="firstname" type="text" autocomplete="given-name" maxlength="80" placeholder="What should we call you?"></label>
@@ -324,7 +325,10 @@ const setupBlogNewsletterPopup = () => {
     window.requestAnimationFrame(() => {
       modal.classList.add("is-open");
       document.body.classList.add("newsletter-open");
-      modal.querySelector("input[name='firstname']")?.focus({ preventScroll: true });
+      const focusTarget = window.matchMedia("(max-width: 720px)").matches
+        ? modal.querySelector(".newsletter-close-mobile")
+        : modal.querySelector("input[name='firstname']");
+      focusTarget?.focus({ preventScroll: true });
     });
     trackAnalyticsEvent("newsletter_popup_view", { page_path: window.location.pathname });
   };
