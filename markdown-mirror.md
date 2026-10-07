@@ -23,6 +23,8 @@ Representative coverage links include:
 
 ## Latest Blog Guide
 
+- [Game Marketing in Nigeria: How to Find and Keep Players](https://wtbaimarketing.com/blog/game-marketing-nigeria-2026/) covers player testing, app-store discovery, creators, paid distribution and retention for game launches.
+- [WhatsApp Ads Getting Time-Wasters? Fix Lead Quality](https://wtbaimarketing.com/blog/whatsapp-ads-time-wasters-nigeria-2026/) covers Meta platform and placement tests, upfront offer clarity, chat qualification and cost per sale.
 - [Black Friday Marketing in Nigeria: Discounts Are Not the Strategy](https://wtbaimarketing.com/blog/black-friday-marketing-nigeria-2026/) explains how Nigerian brands can connect a credible offer, product page, creators, paid distribution and WhatsApp follow-up around festive sales.
 - [How Nigerian Brands Turn TikTok Views Into WhatsApp Orders](https://wtbaimarketing.com/blog/tiktok-to-whatsapp-sales-nigeria-2026/) explains how short-video attention, creator proof, clear buying actions and WhatsApp AI-assisted replies can support a practical social-commerce journey.
 - Google Ads AI Max in Nigeria: https://wtbaimarketing.com/blog/google-ads-ai-max-nigeria-2026/ - A September 2026 guide to AI-powered Search ads, conversion measurement and mobile-first Q4 campaign planning.
