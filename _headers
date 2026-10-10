@@ -1,4 +1,7 @@
 # Pages that should stay out of search results.
+/ai-video-ads-nigeria/index.html
+  X-Robots-Tag: noindex, follow
+
 /thank-you.html
   X-Robots-Tag: noindex, follow
 
