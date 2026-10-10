@@ -306,6 +306,7 @@ const setupBlogNewsletterPopup = () => {
   const close = () => {
     if (!opened) return;
     opened = false;
+    window.clearTimeout(timer);
     modal.classList.remove("is-open");
     document.body.classList.remove("newsletter-open");
     if (localStorage.getItem(subscribedStorageKey) !== "true") {
@@ -341,14 +342,14 @@ const setupBlogNewsletterPopup = () => {
   const showAfterScroll = () => {
     const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
     const progress = documentHeight > 0 ? window.scrollY / documentHeight : 0;
-    if (progress >= 0.28) {
+    if (progress >= 0.5 && Date.now() - startedAt >= 30000) {
       window.removeEventListener("scroll", showAfterScroll);
       open();
     }
   };
 
   window.addEventListener("scroll", showAfterScroll, { passive: true });
-  const timer = window.setTimeout(open, 12000);
+  const timer = window.setTimeout(open, 45000);
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();

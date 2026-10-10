@@ -68,7 +68,16 @@ export async function onRequestPost({ request, env }) {
     }
 
     const next = safeNextUrl(formData.get("_next"), request.url);
-    return Response.redirect(next, 303);
+    if (next.pathname !== THANK_YOU_PATH) {
+      return Response.redirect(next, 303);
+    }
+    return new Response(null, {
+      status: 303,
+      headers: {
+        Location: next.toString(),
+        "Set-Cookie": "wtb_brief_received=1; Path=/thank-you/; Max-Age=120; SameSite=Lax; Secure",
+      },
+    });
   } catch (error) {
     console.error("WTB form handler error", error);
     return friendlyError("Something interrupted the form", "Please message us on WhatsApp so we can collect your brief immediately.");
