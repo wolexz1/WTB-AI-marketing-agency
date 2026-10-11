@@ -1,27 +1,35 @@
 User-agent: *
+Content-Signal: ai-train=no, search=yes, ai-input=no
 Allow: /
 Disallow: /WTB-AI-marketing-agency-upload-20260505-200008/
 Disallow: /WTB-AI-marketing-agency/WTB-AI-marketing-agency-upload-20260505-200008/
 
 User-agent: GPTBot
+Content-Signal: ai-train=no, search=yes, ai-input=no
 Allow: /
 
 User-agent: ChatGPT-User
+Content-Signal: ai-train=no, search=yes, ai-input=no
 Allow: /
 
 User-agent: PerplexityBot
+Content-Signal: ai-train=no, search=yes, ai-input=no
 Allow: /
 
 User-agent: ClaudeBot
+Content-Signal: ai-train=no, search=yes, ai-input=no
 Allow: /
 
 User-agent: Google-Extended
+Content-Signal: ai-train=no, search=yes, ai-input=no
 Allow: /
 
 User-agent: OAI-SearchBot
+Content-Signal: ai-train=no, search=yes, ai-input=no
 Allow: /
 
 User-agent: Bingbot
+Content-Signal: ai-train=no, search=yes, ai-input=no
 Allow: /
 
 Sitemap: https://wtbaimarketing.com/sitemap.xml
