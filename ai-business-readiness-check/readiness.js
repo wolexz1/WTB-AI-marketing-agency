@@ -1,5 +1,5 @@
 const areas = [
-  { id: "website", label: "AI website readiness", short: "AI website visibility", impact: "AI search tools may struggle to understand your services or show a clear next step." },
+  { id: "website", label: "SEO, GEO and AEO website readiness", short: "Website search visibility", impact: "Search and AI tools may struggle to understand your services or show a clear next step." },
   { id: "whatsapp", label: "WhatsApp AI assistant", short: "WhatsApp replies", impact: "After-hours enquiries may wait until your team is back online." },
   { id: "calls", label: "AI call receptionist and follow-up", short: "After-hours calls", impact: "Callers may hang up without an answer, booking or callback." },
   { id: "email", label: "AI-assisted email automation", short: "Email updates", impact: "Interested subscribers may not hear from you often enough to return." },

@@ -17,11 +17,12 @@ function makeRequest({ spam = false, readiness = false } = {}) {
     data.set("_subject", "AI readiness fix plan quotation request");
     data.set("_next", "/ai-business-readiness-check/thank-you/");
     data.set("service", "AI business readiness fix plan");
+    data.append("selected_fix[]", "SEO, GEO and AEO website readiness");
     data.append("selected_fix[]", "WhatsApp AI assistant");
     data.append("selected_fix[]", "AI call receptionist and follow-up");
     data.append("selected_fix[]", "AI-assisted email automation");
     data.append("selected_fix[]", "Marketing growth plan");
-    data.set("assessment", "WhatsApp replies: no; After-hours calls: no; Email updates: no; Marketing results: no");
+    data.set("assessment", "Website search visibility: no; WhatsApp replies: no; After-hours calls: no; Email updates: no; Marketing results: no");
   }
   if (spam) data.set("_honey", "spam");
   return new Request("https://wtbaimarketing.com/api/submit", { method: "POST", body: data });
@@ -58,8 +59,8 @@ test("readiness plan sends selected fixes once and confirms a quote, not an invo
   assert.equal(response.headers.get("location"), "https://wtbaimarketing.com/ai-business-readiness-check/thank-you/");
   assert.match(response.headers.get("set-cookie"), /Path=\/ai-business-readiness-check\/thank-you\//);
   assert.equal(emails.length, 2);
-  assert.match(emails[0].text, /WhatsApp AI assistant, AI call receptionist and follow-up, AI-assisted email automation, Marketing growth plan/);
-  assert.match(emails[0].text, /WhatsApp replies: no; After-hours calls: no; Email updates: no; Marketing results: no/);
+  assert.match(emails[0].text, /SEO, GEO and AEO website readiness, WhatsApp AI assistant, AI call receptionist and follow-up, AI-assisted email automation, Marketing growth plan/);
+  assert.match(emails[0].text, /Website search visibility: no; WhatsApp replies: no; After-hours calls: no; Email updates: no; Marketing results: no/);
   assert.match(emails[1].text, /seven calendar days/);
   assert.match(emails[1].text, /invoice after you approve/);
 });
