@@ -44,6 +44,7 @@ WTB helps Nigerian businesses move from scattered AI experiments to practical sy
 - AI readiness audit Nigeria: https://wtbaimarketing.com/ai-readiness-audit-nigeria/
 - AI automation consulting Nigeria: https://wtbaimarketing.com/ai-automation-consulting-nigeria/
 - AI agent consulting Nigeria: https://wtbaimarketing.com/ai-agent-consulting-nigeria/
+- AI receptionist and call-agent setup Nigeria: https://wtbaimarketing.com/ai-receptionist-nigeria/
 - AI training for businesses Nigeria: https://wtbaimarketing.com/ai-training-businesses-nigeria/
 - AI consultancy for small businesses Nigeria: https://wtbaimarketing.com/ai-consultancy-small-business-nigeria/
 - AI marketing automation consulting Nigeria: https://wtbaimarketing.com/ai-marketing-automation-consulting-nigeria/
