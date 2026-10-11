@@ -1,5 +1,6 @@
 const ADMIN_EMAIL = "wolexzthebrand@gmail.com";
 const THANK_YOU_PATH = "/thank-you/";
+const READINESS_THANK_YOU_PATH = "/ai-business-readiness-check/thank-you/";
 const MAX_ATTACHMENT_BYTES = 7 * 1024 * 1024;
 
 export async function onRequestPost({ request, env }) {
@@ -19,6 +20,9 @@ export async function onRequestPost({ request, env }) {
     if (!lead.email) {
       return friendlyError("Email address is missing", "Please go back and add your email address so we can reply to your brief.");
     }
+    if (lead.isReadinessPlan && !lead.selected_fix) {
+      return friendlyError("No fixes selected", "Please go back and add at least one improvement to your plan before sending it.");
+    }
 
     const attachments = await collectAttachments(formData);
     const skippedFiles = attachments.skipped.length
@@ -33,7 +37,7 @@ export async function onRequestPost({ request, env }) {
     });
     const visitorText = buildVisitorText(lead);
     const visitorHtml = toHtml(visitorText, {
-      title: lead.isWebsiteBrief ? "We received your website brief" : "We received your brief",
+      title: lead.isWebsiteBrief ? "We received your website brief" : lead.isReadinessPlan ? "We received your fix plan" : "We received your brief",
       preview: "Thank you for contacting WTB AI Marketing Agency.",
     });
 
@@ -58,7 +62,7 @@ export async function onRequestPost({ request, env }) {
       from: env.FROM_EMAIL || "WTB AI Marketing Agency <onboarding@resend.dev>",
       to: lead.email,
       replyTo: env.ADMIN_EMAIL || ADMIN_EMAIL,
-      subject: lead.isWebsiteBrief ? "Your WTB website brief and payment details" : "WTB has received your brief",
+      subject: lead.isWebsiteBrief ? "Your WTB website brief and payment details" : lead.isReadinessPlan ? "WTB received your AI readiness fix plan" : "WTB has received your brief",
       text: visitorText,
       html: visitorHtml,
     });
@@ -68,14 +72,15 @@ export async function onRequestPost({ request, env }) {
     }
 
     const next = safeNextUrl(formData.get("_next"), request.url);
-    if (next.pathname !== THANK_YOU_PATH) {
+    if (next.pathname !== THANK_YOU_PATH && next.pathname !== READINESS_THANK_YOU_PATH) {
       return Response.redirect(next, 303);
     }
+    const cookiePath = next.pathname;
     return new Response(null, {
       status: 303,
       headers: {
         Location: next.toString(),
-        "Set-Cookie": "wtb_brief_received=1; Path=/thank-you/; Max-Age=120; SameSite=Lax; Secure",
+        "Set-Cookie": `wtb_brief_received=1; Path=${cookiePath}; Max-Age=120; SameSite=Lax; Secure`,
       },
     });
   } catch (error) {
@@ -143,6 +148,7 @@ function collectLead(formData) {
   }
 
   const isWebsiteBrief = (fields._subject || "").toLowerCase().includes("website");
+  const isReadinessPlan = fields.service === "AI business readiness fix plan";
   return {
     ...fields,
     ...Object.fromEntries(Object.entries(multi).map(([key, values]) => [key, values.join(", ")])),
@@ -150,6 +156,7 @@ function collectLead(formData) {
     name: fields.name || "Website visitor",
     subject: fields._subject || "New WTB project brief",
     isWebsiteBrief,
+    isReadinessPlan,
   };
 }
 
@@ -208,7 +215,7 @@ async function sendEmail({ apiKey, from, to, replyTo, subject, text, html, attac
 
 function buildAdminText(lead, skippedFiles) {
   const rows = Object.entries(lead)
-    .filter(([key]) => !key.startsWith("_") && key !== "isWebsiteBrief" && key !== "subject")
+    .filter(([key]) => !key.startsWith("_") && key !== "isWebsiteBrief" && key !== "isReadinessPlan" && key !== "subject")
     .map(([key, value]) => `${labelize(key)}: ${value}`)
     .join("\n");
 
@@ -216,6 +223,15 @@ function buildAdminText(lead, skippedFiles) {
 }
 
 function buildVisitorText(lead) {
+  if (lead.isReadinessPlan) {
+    return `Thank you for sending your AI readiness fix plan to WTB AI Marketing Agency.
+
+We received these selected fixes: ${lead.selected_fix}.
+
+We will review your answers and current setup, then email a tailored quotation within seven calendar days. There is no charge for sending this request. We will only issue an invoice after you approve the proposed scope.
+
+If anything is unclear, reply to this email or message us on WhatsApp: +234 809 758 5489.`;
+  }
   if (lead.isWebsiteBrief) {
     const baseBudget = lead.base_budget_amount || "NGN 150,000";
     const addons = lead.selected_addons || "No paid add-ons selected.";

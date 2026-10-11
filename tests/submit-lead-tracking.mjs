@@ -5,7 +5,7 @@ import { onRequestPost } from "../functions/api/submit.js";
 const originalFetch = globalThis.fetch;
 afterEach(() => { globalThis.fetch = originalFetch; });
 
-function makeRequest({ spam = false } = {}) {
+function makeRequest({ spam = false, readiness = false } = {}) {
   const startedAt = Date.now() - 5000;
   const data = new FormData();
   data.set("name", "Test Founder");
@@ -13,6 +13,14 @@ function makeRequest({ spam = false } = {}) {
   data.set("message", "I need a campaign review.");
   data.set("_form_started_at", String(startedAt));
   data.set("_form_token", `wtb-${startedAt}-wtbaimarketing.com`);
+  if (readiness) {
+    data.set("_subject", "AI readiness fix plan quotation request");
+    data.set("_next", "/ai-business-readiness-check/thank-you/");
+    data.set("service", "AI business readiness fix plan");
+    data.append("selected_fix[]", "WhatsApp AI replies and human handoff");
+    data.append("selected_fix[]", "Call optimisation and AI receptionist");
+    data.set("assessment", "WhatsApp: no; Missed calls: no");
+  }
   if (spam) data.set("_honey", "spam");
   return new Request("https://wtbaimarketing.com/api/submit", { method: "POST", body: data });
 }
@@ -35,4 +43,21 @@ test("email failure does not set a lead marker", async () => {
   globalThis.fetch = async () => new Response("failed", { status: 500 });
   const response = await onRequestPost({ request: makeRequest(), env: { RESEND_API_KEY: "test" } });
   assert.equal(response.headers.get("set-cookie"), null);
+});
+
+test("readiness plan sends selected fixes once and confirms a quote, not an invoice", async () => {
+  const emails = [];
+  globalThis.fetch = async (_, options) => {
+    emails.push(JSON.parse(options.body));
+    return new Response("{}", { status: 200 });
+  };
+  const response = await onRequestPost({ request: makeRequest({ readiness: true }), env: { RESEND_API_KEY: "test" } });
+  assert.equal(response.status, 303);
+  assert.equal(response.headers.get("location"), "https://wtbaimarketing.com/ai-business-readiness-check/thank-you/");
+  assert.match(response.headers.get("set-cookie"), /Path=\/ai-business-readiness-check\/thank-you\//);
+  assert.equal(emails.length, 2);
+  assert.match(emails[0].text, /WhatsApp AI replies and human handoff, Call optimisation and AI receptionist/);
+  assert.match(emails[0].text, /WhatsApp: no; Missed calls: no/);
+  assert.match(emails[1].text, /seven calendar days/);
+  assert.match(emails[1].text, /invoice after you approve/);
 });

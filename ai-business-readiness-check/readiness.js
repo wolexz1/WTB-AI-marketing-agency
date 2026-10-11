@@ -1,101 +1,98 @@
-const readinessAreas = [
-  { id: "website", label: "Website discovery and AI-search readiness", short: "Website clarity and discovery" },
-  { id: "whatsapp", label: "WhatsApp AI replies and human handoff", short: "WhatsApp response" },
-  { id: "calls", label: "AI receptionist and callback flow", short: "Missed calls" },
-  { id: "followup", label: "Lead capture, routing and follow-up", short: "Lead follow-up" },
-  { id: "knowledge", label: "Knowledge base, guardrails and staff handoff", short: "Approved answers" },
-  { id: "measurement", label: "Outcome tracking and AI workflow review", short: "Business outcomes" },
+const areas = [
+  { id: "website", label: "Website readiness", short: "Website", impact: "Visitors may leave before they understand the offer or find contact details." },
+  { id: "whatsapp", label: "WhatsApp AI replies and human handoff", short: "WhatsApp", impact: "Interested buyers may wait for an answer and move on." },
+  { id: "calls", label: "Call optimisation and AI receptionist", short: "Missed calls", impact: "A caller may never reach your team or receive a callback." },
+  { id: "followup", label: "Lead capture and follow-up", short: "Lead follow-up", impact: "Enquiries can disappear between inboxes without an owner." },
+  { id: "bookings", label: "Booking or order flow", short: "Bookings and orders", impact: "Extra steps may stop a ready buyer from completing the next action." },
+  { id: "measurement", label: "Results tracking", short: "Results", impact: "You cannot tell which enquiries became customers." },
 ];
 
-const readinessCards = Array.from(document.querySelectorAll(".readiness-card"));
+const cards = Array.from(document.querySelectorAll(".readiness-card"));
 const planItems = document.querySelector("#planItems");
 const planInputs = document.querySelector("#planInputs");
-const requestForm = document.querySelector("#readinessRequestForm");
+const form = document.querySelector("#readinessRequestForm");
 const requestError = document.querySelector("#requestError");
-const whatsappLink = document.querySelector("#planWhatsapp");
-let assessmentCompletedTracked = false;
+const selections = Object.fromEntries(areas.map((area) => [area.id, { answer: "unanswered", selected: false }]));
+let completionTracked = false;
 
-function trackReadiness(eventName, parameters = {}) {
-  if (typeof window.gtag === "function") {
-    window.gtag("event", eventName, parameters);
-  }
+function track(eventName, details = {}) {
+  if (typeof window.gtag === "function") window.gtag("event", eventName, details);
 }
 
-function selectedAreas() {
-  return readinessAreas.filter((area) => document.querySelector(`[data-plan="${area.id}"]`)?.checked);
+function save() {
+  try { sessionStorage.setItem("wtb-readiness-check-v2", JSON.stringify(selections)); } catch (_) { return; }
 }
 
-function currentAnswers() {
-  return readinessAreas.map((area) => ({
-    ...area,
-    status: document.querySelector(`input[name="${area.id}"]:checked`)?.value || "unanswered",
-  }));
-}
-
-function restoreChoices() {
+function restore() {
   try {
-    const saved = JSON.parse(sessionStorage.getItem("wtb-readiness-check") || "{}");
-    readinessAreas.forEach((area) => {
-      const status = ["working", "partial", "missing", "unknown"].includes(saved[area.id]?.status)
-        ? saved[area.id].status : null;
-      const answer = status && document.querySelector(`input[name="${area.id}"][value="${status}"]`);
+    const saved = JSON.parse(sessionStorage.getItem("wtb-readiness-check-v2") || "{}");
+    for (const area of areas) {
+      if (["yes", "no", "skipped"].includes(saved[area.id]?.answer)) selections[area.id].answer = saved[area.id].answer;
+      selections[area.id].selected = saved[area.id]?.selected === true;
+      const answer = document.querySelector(`input[name="${area.id}"][value="${selections[area.id].answer}"]`);
       if (answer) answer.checked = true;
-      const planChoice = document.querySelector(`[data-plan="${area.id}"]`);
-      if (planChoice) planChoice.checked = saved[area.id]?.selected === true;
-    });
-  } catch (_) {
-    return;
-  }
-}
-
-function saveChoices() {
-  try {
-    const saved = Object.fromEntries(currentAnswers().map((answer) => [answer.id, {
-      status: answer.status,
-      selected: document.querySelector(`[data-plan="${answer.id}"]`)?.checked === true,
-    }]));
-    sessionStorage.setItem("wtb-readiness-check", JSON.stringify(saved));
-  } catch (_) {
-    return;
-  }
+    }
+  } catch (_) { return; }
 }
 
 function renderAssessment() {
-  const answers = currentAnswers();
-  const checked = answers.filter((answer) => answer.status !== "unanswered");
-  const gaps = answers.filter((answer) => answer.status === "partial" || answer.status === "missing");
-  const unknown = answers.filter((answer) => answer.status === "unknown");
-  document.querySelector("#checksDone").textContent = `${checked.length} of ${answers.length}`;
-  document.querySelector("#readinessScore").textContent = checked.length
-    ? `${gaps.length} area${gaps.length === 1 ? "" : "s"} to improve`
-    : "Answer the checks";
-  document.querySelector("#readinessSummary").textContent = checked.length
-    ? `${checked.length} of ${answers.length} areas checked. ${unknown.length} marked “not sure”; verify those before investing. ${gaps.length ? "Start with the gaps closest to a customer enquiry." : "Keep testing what already works, especially handoffs and real sales outcomes."}`
-    : "Your answers and priorities will appear here. Nothing is sent to us unless you choose to request help.";
+  const answered = areas.filter((area) => selections[area.id].answer !== "unanswered");
+  const applicable = areas.filter((area) => ["yes", "no"].includes(selections[area.id].answer));
+  const gaps = applicable.filter((area) => selections[area.id].answer === "no");
+  const healthy = applicable.length - gaps.length;
+  document.querySelector("#checksDone").textContent = `${answered.length} of ${areas.length}`;
+  const verdict = document.querySelector(".readiness-verdict");
+  const score = document.querySelector("#readinessScore");
+  const summary = document.querySelector("#readinessSummary");
+  if (answered.length < areas.length) {
+    verdict.dataset.level = "pending";
+    score.textContent = answered.length ? "Keep going" : "Answer the questions";
+    summary.textContent = answered.length
+      ? `${healthy} working · ${gaps.length} need attention. Answer ${areas.length - answered.length} more for your overall result.`
+      : "Your colour-coded result appears here, based only on what you tell us.";
+  } else if (!applicable.length) {
+    verdict.dataset.level = "pending";
+    score.textContent = "No result yet";
+    summary.textContent = "Answer at least one relevant question to see a result.";
+  } else {
+    const ratio = healthy / applicable.length;
+    verdict.dataset.level = ratio >= 0.8 ? "green" : ratio >= 0.5 ? "yellow" : "red";
+    score.textContent = ratio >= 0.8 ? "Working well so far" : ratio >= 0.5 ? "Some gaps to close" : "Priority gaps found";
+    summary.textContent = `${healthy} working · ${gaps.length} need attention. Based on your answers, not a technical scan.`;
+  }
   const gapList = document.querySelector("#readinessGaps");
   gapList.replaceChildren();
-  gaps.forEach((area) => {
-    const gap = document.createElement("span");
-    gap.className = "readiness-gap";
-    gap.textContent = `${area.status === "missing" ? "Missing" : "Partial"}: ${area.short}`;
-    gapList.append(gap);
-  });
-  readinessCards.forEach((card) => {
-    const answer = answers.find((area) => area.id === card.dataset.area);
-    if (answer.status === "unanswered") delete card.dataset.status;
-    else card.dataset.status = answer.status;
-  });
-  document.querySelector("#assessmentAnswers").value = answers
-    .map((area) => `${area.short}: ${area.status}`)
-    .join("; ");
-  if (checked.length === answers.length && !assessmentCompletedTracked) {
-    assessmentCompletedTracked = true;
-    trackReadiness("ai_readiness_check_complete", { gaps: gaps.length, unknown: unknown.length });
+  for (const area of gaps) {
+    const item = document.createElement("p");
+    item.className = "readiness-gap";
+    item.innerHTML = `<strong></strong><span></span>`;
+    item.querySelector("strong").textContent = area.short;
+    item.querySelector("span").textContent = area.impact;
+    gapList.append(item);
+  }
+  for (const card of cards) {
+    const area = areas.find((item) => item.id === card.dataset.area);
+    const state = selections[area.id];
+    card.dataset.status = state.answer;
+    const status = card.querySelector(".readiness-status");
+    status.textContent = { yes: "Green · Working", no: "Red · Needs attention", skipped: "Not applicable", unanswered: "Not checked" }[state.answer];
+    const fix = card.querySelector(".readiness-fix");
+    fix.hidden = state.answer !== "no" && !state.selected;
+    const skip = card.querySelector(".readiness-skip");
+    if (skip) skip.textContent = state.answer === "skipped" ? "Undo: this is relevant" : skip.dataset.original;
+    const add = card.querySelector(".readiness-add");
+    add.textContent = state.selected ? "Added ✓ — remove from plan" : "Add this fix to my plan";
+    add.setAttribute("aria-pressed", String(state.selected));
+  }
+  document.querySelector("#assessmentAnswers").value = areas.map((area) => `${area.short}: ${selections[area.id].answer}`).join("; ");
+  if (answered.length === areas.length && !completionTracked) {
+    completionTracked = true;
+    track("ai_readiness_check_complete", { gaps: gaps.length });
   }
 }
 
 function renderPlan() {
-  const selected = selectedAreas();
+  const selected = areas.filter((area) => selections[area.id].selected);
   document.querySelector("#planCount").textContent = String(selected.length);
   document.querySelector("#mobilePlanCount").textContent = String(selected.length);
   planItems.replaceChildren();
@@ -103,65 +100,72 @@ function renderPlan() {
   if (!selected.length) {
     const empty = document.createElement("li");
     empty.className = "readiness-empty";
-    empty.textContent = "Nothing selected yet. Add a priority from any card.";
+    empty.textContent = "No fixes selected yet.";
     planItems.append(empty);
-    whatsappLink.hidden = true;
-  } else {
-    selected.forEach((area) => {
-      const item = document.createElement("li");
-      const label = document.createElement("span");
-      label.textContent = area.label;
-      const remove = document.createElement("button");
-      remove.type = "button";
-      remove.textContent = "Remove";
-      remove.setAttribute("aria-label", `Remove ${area.label} from plan`);
-      remove.addEventListener("click", () => {
-        document.querySelector(`[data-plan="${area.id}"]`).checked = false;
-        updateReadiness();
-      });
-      item.append(label, remove);
-      planItems.append(item);
-      const input = document.createElement("input");
-      input.type = "hidden";
-      input.name = "service[]";
-      input.value = area.label;
-      planInputs.append(input);
-    });
-    const message = `Hello WTB, I used your free AI business readiness check. Please review these areas together and send one scoped proposal:\n\n${selected.map((area, index) => `${index + 1}. ${area.label}`).join("\n")}\n\nMy business is: `;
-    whatsappLink.href = `https://wa.me/2348097585489?text=${encodeURIComponent(message)}`;
-    whatsappLink.hidden = false;
+  }
+  for (const area of selected) {
+    const item = document.createElement("li");
+    const title = document.createElement("span");
+    title.textContent = area.label;
+    const remove = document.createElement("button");
+    remove.type = "button";
+    remove.textContent = "Remove";
+    remove.setAttribute("aria-label", `Remove ${area.label} from plan`);
+    remove.addEventListener("click", () => { selections[area.id].selected = false; update(); });
+    item.append(title, remove);
+    planItems.append(item);
+    const field = document.createElement("input");
+    field.type = "hidden";
+    field.name = "selected_fix[]";
+    field.value = area.label;
+    planInputs.append(field);
   }
   requestError.hidden = true;
 }
 
-function updateReadiness() {
+function update() {
   renderAssessment();
   renderPlan();
-  saveChoices();
+  save();
 }
 
-document.querySelectorAll(".readiness-card input").forEach((input) => {
-  input.addEventListener("change", () => {
-    updateReadiness();
-    if (input.matches("[data-plan]")) {
-      trackReadiness("ai_readiness_plan_update", { selected_count: selectedAreas().length });
-    }
+for (const card of cards) {
+  const areaId = card.dataset.area;
+  card.querySelectorAll('input[type="radio"]').forEach((input) => {
+    input.parentElement.lastChild.textContent = input.value === "yes" ? " Yes, we do" : " No, not yet";
   });
-});
+  const skip = card.querySelector(".readiness-skip");
+  if (skip) {
+    skip.dataset.original = skip.textContent;
+    skip.addEventListener("click", () => {
+      const state = selections[areaId];
+      state.answer = state.answer === "skipped" ? "unanswered" : "skipped";
+      if (state.answer === "skipped") state.selected = false;
+      card.querySelectorAll('input[type="radio"]').forEach((input) => { input.checked = false; });
+      update();
+    });
+  }
+  card.querySelectorAll('input[type="radio"]').forEach((input) => input.addEventListener("change", () => {
+    selections[areaId].answer = input.value;
+    update();
+  }));
+  card.querySelector(".readiness-add").addEventListener("click", () => {
+    selections[areaId].selected = !selections[areaId].selected;
+    update();
+    track("ai_readiness_plan_update", { selected_count: areas.filter((area) => selections[area.id].selected).length });
+  });
+}
 
-requestForm.addEventListener("submit", (event) => {
-  if (selectedAreas().length) {
-    trackReadiness("ai_readiness_proposal_attempt", { selected_count: selectedAreas().length });
+form.addEventListener("submit", (event) => {
+  const count = areas.filter((area) => selections[area.id].selected).length;
+  if (!count) {
+    event.preventDefault();
+    requestError.hidden = false;
+    document.querySelector("#plan").scrollIntoView({ behavior: "smooth", block: "start" });
     return;
   }
-  event.preventDefault();
-  requestError.hidden = false;
-  document.querySelector("#plan").scrollIntoView({ behavior: "smooth", block: "start" });
+  track("ai_readiness_proposal_attempt", { selected_count: count });
 });
 
-whatsappLink.addEventListener("click", () => {
-  trackReadiness("ai_readiness_whatsapp_click", { selected_count: selectedAreas().length });
-});
-
-restoreChoices();
-updateReadiness();
+restore();
+update();
