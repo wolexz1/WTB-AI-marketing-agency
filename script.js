@@ -1019,6 +1019,10 @@ const hydrateAdsCalculatorFromUrl = () => {
     "platform",
     "creative",
     "destination",
+    "actual_cpc",
+    "actual_conversion_rate",
+    "close_rate",
+    "gross_profit",
   ];
   let hydrated = false;
 
@@ -1071,6 +1075,11 @@ const calculateAdsEstimate = () => {
 
   const values = Object.fromEntries(new FormData(adsBudgetForm).entries());
   const budget = Math.max(Number(values.budget || 0), 0);
+  const actualCpc = Number(values.actual_cpc || 0);
+  const actualConversionRate = Number(values.actual_conversion_rate || 0);
+  const closeRate = Number(values.close_rate || 0);
+  const grossProfit = Number(values.gross_profit || 0);
+  const supportsActions = !["awareness", "traffic"].includes(values.goal);
   const durationValue = Math.max(Number(values.duration_value || 30), 1);
   const durationUnit = values.duration_unit || "days";
   const campaignDays =
@@ -1137,20 +1146,19 @@ const calculateAdsEstimate = () => {
     meta: { label: "Meta", cpm: 2800, ctr: 0.012, cvr: 0.072 },
     google: { label: "Google", cpc: 520, ctr: 0.05, cvr: 0.095 },
     tiktok: { label: "TikTok", cpm: 1900, ctr: 0.009, cvr: 0.045 },
-    retargeting: { label: "Retargeting", cpm: 2300, ctr: 0.018, cvr: 0.12 },
   };
   const recommendedSplits = {
-    awareness: { meta: 0.5, google: 0.1, tiktok: 0.3, retargeting: 0.1 },
-    traffic: { meta: 0.4, google: 0.35, tiktok: 0.15, retargeting: 0.1 },
-    leads: { meta: 0.38, google: 0.37, tiktok: 0.1, retargeting: 0.15 },
-    whatsapp: { meta: 0.58, google: 0.18, tiktok: 0.08, retargeting: 0.16 },
-    sales: { meta: 0.42, google: 0.32, tiktok: 0.08, retargeting: 0.18 },
-    bookings: { meta: 0.34, google: 0.46, tiktok: 0.05, retargeting: 0.15 },
+    awareness: { meta: 0.55, google: 0.15, tiktok: 0.3 },
+    traffic: { meta: 0.45, google: 0.4, tiktok: 0.15 },
+    leads: { meta: 0.45, google: 0.45, tiktok: 0.1 },
+    whatsapp: { meta: 0.8, google: 0.2 },
+    sales: { meta: 0.55, google: 0.35, tiktok: 0.1 },
+    bookings: { meta: 0.35, google: 0.6, tiktok: 0.05 },
   };
   const singlePlatformSplits = {
-    meta: { meta: 0.82, retargeting: 0.18 },
-    google: { google: 0.84, retargeting: 0.16 },
-    tiktok: { tiktok: 0.82, retargeting: 0.18 },
+    meta: { meta: 1 },
+    google: { google: 1 },
+    tiktok: { tiktok: 1 },
   };
 
   const industry = industryFactors[values.industry] || industryFactors.ecommerce;
@@ -1188,7 +1196,10 @@ const calculateAdsEstimate = () => {
     let platformClicks = 0;
     let platformImpressions = 0;
 
-    if (metric.cpc) {
+    if (actualCpc > 0) {
+      platformClicks = spend / actualCpc;
+      platformImpressions = platformClicks / Math.max(ctr, 0.001);
+    } else if (metric.cpc) {
       const cpc = metric.cpc * costMultiplier;
       platformClicks = spend / cpc;
       platformImpressions = platformClicks / Math.max(ctr, 0.001);
@@ -1200,14 +1211,19 @@ const calculateAdsEstimate = () => {
 
     impressions += platformImpressions;
     clicks += platformClicks;
-    actions += platformClicks * metric.cvr * qualityMultiplier;
+    if (supportsActions) {
+      actions += platformClicks * (actualConversionRate > 0 ? actualConversionRate / 100 : metric.cvr * qualityMultiplier);
+    }
   });
 
-  const conservative = Math.max(1, Math.round(actions * 0.62));
-  const expected = Math.max(1, Math.round(actions));
-  const strong = Math.max(expected, Math.round(actions * 1.38));
-  const cpl = expected ? budget / expected : 0;
-  const retargetingBudget = budget * (split.retargeting || 0);
+  const conservative = supportsActions ? Math.round(actions * 0.5) : null;
+  const expected = supportsActions ? Math.round(actions) : null;
+  const strong = supportsActions ? Math.max(expected, Math.round(actions * 1.5)) : null;
+  const costPerAction = expected > 0 ? budget / expected : null;
+  const breakEvenCost = grossProfit > 0 && supportsActions && (values.goal === "sales" || closeRate > 0)
+    ? grossProfit * (values.goal === "sales" ? 1 : closeRate / 100)
+    : null;
+  const actionLabel = values.goal === "sales" ? "orders" : values.goal === "whatsapp" ? "WhatsApp enquiries" : values.goal === "bookings" ? "booking enquiries" : "enquiries";
   const runway =
     campaignDays < 7
       ? "Too short"
@@ -1223,7 +1239,7 @@ const calculateAdsEstimate = () => {
         ? "The campaign window is short. Expect higher pressure and less learning time."
         : budget < 500000
           ? "This is a useful testing budget. Use it to validate creative, offer, and lead quality."
-          : "This budget can support stronger testing, retargeting, and weekly optimization.";
+          : "This budget can support creative testing and weekly optimization. Add retargeting only if you have a usable warm audience.";
   const durationLabel = `${campaignDays} day${campaignDays === 1 ? "" : "s"}`;
   const difficultyScore =
     industry.cost * location.cost * (1 / Math.max(industry.conversion, 0.45)) * (1 / Math.max(goal.conversion, 0.45));
@@ -1237,13 +1253,13 @@ const calculateAdsEstimate = () => {
           : "Lower";
   const difficultyNote =
     difficultyLevel === "Very high"
-      ? `${industry.label} in ${location.label} is a difficult lead environment. Use stronger proof, sharper creative, clearer conversion paths, and retargeting before scaling.`
+      ? `${industry.label} in ${location.label} is a difficult lead environment. Use stronger proof, sharper creative, and clearer conversion paths before scaling.`
       : difficultyLevel === "High"
         ? `${industry.label} in ${location.label} is competitive, so weak creative, unclear offers, or weak conversion pages can raise your cost per lead quickly.`
         : difficultyLevel === "Moderate"
           ? `${industry.label} in ${location.label} has normal campaign pressure. Creative quality, offer clarity, and destination quality will decide how close you get to the strong range.`
           : `${industry.label} in ${location.label} usually gives more room to test, but the offer and creative still need to be clear.`;
-  const methodologyNote = `Adjusted for ${industry.label.toLowerCase()} difficulty, ${location.label} competition, ${goal.label}, ${creative.label}, ${destination.label}, platform mix, budget, and ${durationLabel}.`;
+  const methodologyNote = `${actualCpc > 0 ? "Your CPC" : "Illustrative platform cost"} and ${actualConversionRate > 0 ? "your click-to-action rate" : "illustrative conversion rates"} used. Other assumptions: ${industry.label.toLowerCase()}, ${location.label}, ${goal.label}, ${creative.label}, ${destination.label}, platform mix, and ${durationLabel}. These are not measured local market benchmarks.`;
   const splitText = Object.entries(split)
     .map(([platform, ratio]) => `${platformMetrics[platform].label}: ${Math.round(ratio * 100)}%`)
     .join(", ");
@@ -1257,13 +1273,22 @@ const calculateAdsEstimate = () => {
           : values.goal === "whatsapp"
             ? "Objective setup: keep the WhatsApp path fast, direct, and ready for immediate replies."
             : "Objective setup: optimize for leads or enquiries, then qualify and follow up quickly.";
-  const summary = `${formatNaira(budget)} over ${durationLabel} for ${industry.label.toLowerCase()} in ${location.label} may generate about ${formatCompactNumber(impressions)} impressions, ${formatCompactNumber(clicks)} clicks, and ${conservative}-${strong} ${goal.label}.`;
+  const summary = supportsActions
+    ? `${formatNaira(budget)} over ${durationLabel} for ${industry.label.toLowerCase()} in ${location.label}: about ${formatCompactNumber(clicks)} clicks and ${conservative}-${strong} possible ${actionLabel} in illustrative scenarios.`
+    : `${formatNaira(budget)} over ${durationLabel}: about ${formatCompactNumber(impressions)} impressions and ${formatCompactNumber(clicks)} clicks in an illustrative scenario. No leads are forecast for this goal.`;
+  const businessCheck = !supportsActions
+    ? { title: "Choose a conversion goal", note: "Awareness and traffic estimates do not establish customer value. Select leads, WhatsApp, sales, or bookings to compare costs with your economics." }
+    : !breakEvenCost
+      ? { title: "Add your business numbers", note: values.goal === "sales" ? "Enter gross profit per order to see the maximum break-even cost per order." : "Enter gross profit per customer and your enquiry-to-customer rate to see the maximum break-even cost per enquiry." }
+      : !costPerAction
+        ? { title: "Not enough estimated actions", note: "This scenario rounds to no actions. Test a longer period, improve the offer, or add your actual conversion rate before spending." }
+        : { title: costPerAction <= breakEvenCost ? "Within your break-even threshold" : "Above your break-even threshold", note: `Illustrative cost: ${formatNaira(Math.round(costPerAction))} per ${values.goal === "sales" ? "order" : "enquiry"}. Your maximum from the numbers entered: ${formatNaira(Math.round(breakEvenCost))}. This comparison excludes overhead, agency fees, and repeat purchases.` };
   const improvementLever =
     values.creative === "weak"
       ? "Biggest lever: improve the creative and offer before increasing budget."
       : values.destination === "website"
           ? "Biggest lever: improve the landing page or lead path before scaling spend."
-          : "Biggest lever: keep testing creative angles and retarget warm audiences.";
+          : "Biggest lever: test creative angles, lead quality, and follow-up speed before increasing spend.";
 
   return {
     budget,
@@ -1272,9 +1297,11 @@ const calculateAdsEstimate = () => {
     conservative,
     expected,
     strong,
-    cpl,
+    costPerAction,
+    breakEvenCost,
+    actionLabel,
+    supportsActions,
     dailyBudget,
-    retargetingBudget,
     campaignDays,
     runway,
     split,
@@ -1287,7 +1314,9 @@ const calculateAdsEstimate = () => {
     difficultyLevel,
     difficultyNote,
     methodologyNote,
-    hiddenSummary: `${summary} Daily budget: ${formatNaira(Math.round(dailyBudget))}. Platform split: ${splitText}. Lead difficulty: ${difficultyLevel}. ${difficultyNote} Creative: ${creative.label}. Destination: ${destination.label}. ${objectiveAdvice} This is a planning estimate, not a guaranteed result.`,
+    businessCheck,
+    hasOwnData: actualCpc > 0 || actualConversionRate > 0,
+    hiddenSummary: `${summary} Daily budget: ${formatNaira(Math.round(dailyBudget))}. Platform split: ${splitText}. ${businessCheck.title}: ${businessCheck.note} Creative: ${creative.label}. Destination: ${destination.label}. ${objectiveAdvice} This is a planning scenario, not a guaranteed result.`,
   };
 };
 
@@ -1309,16 +1338,20 @@ const renderAdsEstimate = () => {
   setText("[data-ads-fit]", estimate.budgetAdvice);
   setText("[data-ads-impressions]", formatCompactNumber(estimate.impressions));
   setText("[data-ads-clicks]", formatCompactNumber(estimate.clicks));
-  setText("[data-ads-leads]", `${estimate.conservative}-${estimate.strong}`);
-  setText("[data-ads-cpl]", formatNaira(Math.round(estimate.cpl)));
+  setText("[data-ads-action-label]", estimate.supportsActions ? (estimate.actionLabel === "orders" ? "Orders" : "Enquiries") : "Enquiries / orders");
+  setText("[data-ads-cost-label]", estimate.actionLabel === "orders" ? "Cost per order" : "Cost per enquiry");
+  setText("[data-ads-leads]", estimate.supportsActions ? `${estimate.conservative}-${estimate.strong}` : "Not forecast");
+  setText("[data-ads-cpl]", estimate.costPerAction ? formatNaira(Math.round(estimate.costPerAction)) : "Not forecast");
   setText("[data-ads-daily]", formatNaira(Math.round(estimate.dailyBudget)));
   setText("[data-ads-duration]", `${estimate.campaignDays} days`);
-  setText("[data-ads-retargeting]", estimate.retargetingBudget ? formatNaira(Math.round(estimate.retargetingBudget)) : "Not included");
+  setText("[data-ads-break-even]", estimate.breakEvenCost ? formatNaira(Math.round(estimate.breakEvenCost)) : "Add your numbers");
   setText("[data-ads-runway]", estimate.runway);
-  setText("[data-ads-conservative]", estimate.conservative);
-  setText("[data-ads-expected]", estimate.expected);
-  setText("[data-ads-strong]", estimate.strong);
-  setText("[data-ads-range]", `These are planning estimates for ${estimate.goal.label.toLowerCase()}, not guaranteed campaign results.`);
+  setText("[data-ads-conservative]", estimate.supportsActions ? estimate.conservative : "—");
+  setText("[data-ads-expected]", estimate.supportsActions ? estimate.expected : "—");
+  setText("[data-ads-strong]", estimate.supportsActions ? estimate.strong : "—");
+  setText("[data-ads-range]", estimate.supportsActions ? `Possible ${estimate.actionLabel}; scenario bands are not probabilities or guaranteed results.` : "Awareness and traffic goals do not produce a credible enquiry or sales forecast from this model.");
+  setText("[data-ads-business-check]", estimate.businessCheck.title);
+  setText("[data-ads-business-note]", estimate.businessCheck.note);
   setText("[data-ads-difficulty]", estimate.difficultyLevel);
   setText("[data-ads-methodology]", `${estimate.difficultyNote} ${estimate.methodologyNote}`);
   setText("[data-ads-lever]", estimate.improvementLever);
@@ -1339,6 +1372,11 @@ const renderAdsEstimate = () => {
   if (hiddenEstimate) {
     hiddenEstimate.value = estimate.hiddenSummary;
   }
+
+  const whatsappLink = document.querySelector("[data-ads-whatsapp]");
+  if (whatsappLink) {
+    whatsappLink.href = `https://wa.me/2348097585489?text=${encodeURIComponent(`Hello WTB, I used your ads calculator. ${estimate.summary} Please help me review the plan.`)}`;
+  }
 };
 
 adsBudgetForm?.addEventListener("submit", (event) => {
@@ -1357,6 +1395,14 @@ adsBudgetForm?.addEventListener("submit", (event) => {
 
   setTimeout(() => {
     renderAdsEstimate();
+    const estimate = calculateAdsEstimate();
+    if (estimate) {
+      trackAnalyticsEvent("ads_calculator_complete", {
+        goal: adsBudgetForm.elements.goal.value,
+        platform: adsBudgetForm.elements.platform.value,
+        has_own_data: estimate.hasOwnData,
+      });
+    }
     cleanAdsCalculatorUrl();
 
     if (resultCard) {
@@ -1369,6 +1415,10 @@ adsBudgetForm?.addEventListener("submit", (event) => {
       submitButton.textContent = "Calculate estimate";
     }
   }, 900);
+});
+
+document.querySelector("[data-ads-cta]")?.addEventListener("click", () => {
+  trackAnalyticsEvent("ads_calculator_review_click", { source_path: window.location.pathname });
 });
 
 if (adsBudgetForm) {
