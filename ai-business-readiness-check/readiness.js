@@ -1,10 +1,10 @@
 const areas = [
-  { id: "website", label: "Website readiness", short: "Website", impact: "Visitors may leave before they understand the offer or find contact details." },
-  { id: "whatsapp", label: "WhatsApp AI replies and human handoff", short: "WhatsApp", impact: "Interested buyers may wait for an answer and move on." },
-  { id: "calls", label: "Call optimisation and AI receptionist", short: "Missed calls", impact: "A caller may never reach your team or receive a callback." },
-  { id: "followup", label: "Lead capture and follow-up", short: "Lead follow-up", impact: "Enquiries can disappear between inboxes without an owner." },
-  { id: "bookings", label: "Booking or order flow", short: "Bookings and orders", impact: "Extra steps may stop a ready buyer from completing the next action." },
-  { id: "measurement", label: "Results tracking", short: "Results", impact: "You cannot tell which enquiries became customers." },
+  { id: "website", label: "AI website readiness", short: "AI website visibility", impact: "AI search tools may struggle to understand your services or show a clear next step." },
+  { id: "whatsapp", label: "WhatsApp AI assistant", short: "WhatsApp replies", impact: "After-hours enquiries may wait until your team is back online." },
+  { id: "calls", label: "AI call receptionist and follow-up", short: "After-hours calls", impact: "Callers may hang up without an answer, booking or callback." },
+  { id: "email", label: "AI-assisted email automation", short: "Email updates", impact: "Interested subscribers may not hear from you often enough to return." },
+  { id: "bookings", label: "Booking or order flow", short: "Bookings and orders", impact: "Ready buyers may leave while waiting to complete a booking or order." },
+  { id: "marketing", label: "Marketing growth plan", short: "Marketing results", impact: "Your campaigns may attract attention without enough qualified enquiries or sales." },
 ];
 
 const cards = Array.from(document.querySelectorAll(".readiness-card"));
@@ -20,12 +20,12 @@ function track(eventName, details = {}) {
 }
 
 function save() {
-  try { sessionStorage.setItem("wtb-readiness-check-v2", JSON.stringify(selections)); } catch (_) { return; }
+  try { sessionStorage.setItem("wtb-readiness-check-v3", JSON.stringify(selections)); } catch (_) { return; }
 }
 
 function restore() {
   try {
-    const saved = JSON.parse(sessionStorage.getItem("wtb-readiness-check-v2") || "{}");
+    const saved = JSON.parse(sessionStorage.getItem("wtb-readiness-check-v3") || "{}");
     for (const area of areas) {
       if (["yes", "no", "skipped"].includes(saved[area.id]?.answer)) selections[area.id].answer = saved[area.id].answer;
       selections[area.id].selected = saved[area.id]?.selected === true;
@@ -147,6 +147,7 @@ for (const card of cards) {
   }
   card.querySelectorAll('input[type="radio"]').forEach((input) => input.addEventListener("change", () => {
     selections[areaId].answer = input.value;
+    if (input.value === "yes") selections[areaId].selected = false;
     update();
   }));
   card.querySelector(".readiness-add").addEventListener("click", () => {
