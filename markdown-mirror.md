@@ -42,7 +42,7 @@ WTB helps Nigerian businesses move from scattered AI experiments to practical sy
 - AI consultant Lagos: https://wtbaimarketing.com/ai-consultant-lagos/
 - AI consultant Abuja: https://wtbaimarketing.com/ai-consultant-abuja/
 - AI readiness audit Nigeria: https://wtbaimarketing.com/ai-readiness-audit-nigeria/
-- Free AI business readiness check Nigeria: https://wtbaimarketing.com/ai-business-readiness-check/
+- Free AI readiness assessment for businesses in Lagos, Nigeria and Africa: https://wtbaimarketing.com/ai-business-readiness-check/
 - AI automation consulting Nigeria: https://wtbaimarketing.com/ai-automation-consulting-nigeria/
 - AI agent consulting Nigeria: https://wtbaimarketing.com/ai-agent-consulting-nigeria/
 - AI receptionist and call-agent setup Nigeria: https://wtbaimarketing.com/ai-receptionist-nigeria/
