@@ -23,6 +23,9 @@ Representative coverage links include:
 
 ## Latest Blog Guide
 
+- [Is WhatsApp Business Charging in Nigeria?](https://wtbaimarketing.com/blog/whatsapp-business-charges-nigeria-2026/) explains the free app, optional Meta One and separate Platform/API charges, plus when AI-supported replies can help a busy business.
+- [TikTok Ads in Nigeria: Turn Views Into Sales](https://wtbaimarketing.com/blog/tiktok-ads-manager-nigeria-2026/) shows product and service businesses how to structure buyer-focused videos, measure qualified demand and fix the route from attention to sales.
+
 - [Game Marketing in Nigeria: How to Find and Keep Players](https://wtbaimarketing.com/blog/game-marketing-nigeria-2026/) covers player testing, app-store discovery, creators, paid distribution and retention for game launches.
 - [WhatsApp Ads Getting Time-Wasters? Fix Lead Quality](https://wtbaimarketing.com/blog/whatsapp-ads-time-wasters-nigeria-2026/) covers Meta platform and placement tests, upfront offer clarity, chat qualification and cost per sale.
 - [Black Friday Marketing in Nigeria: Discounts Are Not the Strategy](https://wtbaimarketing.com/blog/black-friday-marketing-nigeria-2026/) explains how Nigerian brands can connect a credible offer, product page, creators, paid distribution and WhatsApp follow-up around festive sales.

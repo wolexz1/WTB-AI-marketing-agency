@@ -93,5 +93,11 @@
 /blog/google-ads-ai-max-nigeria-2026/index.html
   X-Robots-Tag: index, follow
 
+/blog/whatsapp-business-charges-nigeria-2026/index.html
+  X-Robots-Tag: index, follow
+
+/blog/tiktok-ads-manager-nigeria-2026/index.html
+  X-Robots-Tag: index, follow
+
 /assets/*
   Cache-Control: public, max-age=86400
