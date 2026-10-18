@@ -131,7 +131,7 @@ test("product map fixes trusted amounts and private assets", () => {
 
 test("complimentary Growth Engine link survives previews and allows one full download", async () => {
   const pdf = "%PDF-1.7 private growth engine guide";
-  const testEnv = env({ body: new Response(pdf).body, size: pdf.length, writeHttpMetadata() {} });
+  const testEnv = env({ body: new Response(pdf).body, size: pdf.length, range: { offset: 0, length: pdf.length }, writeHttpMetadata() {} });
   const token = randomBytes(32).toString("base64url");
   const hash = createHash("sha256").update(token).digest("hex");
   testEnv.WHATSAPP_AI_GUIDES_DB.rates.set(`complimentary:${hash}`, { attempts: 0, window: Math.floor(Date.now() / 60000) + 60 });
@@ -144,6 +144,7 @@ test("complimentary Growth Engine link survives previews and allows one full dow
   const first = await onRequest({ request: new Request(url, { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded", Range: "bytes=0-5" }, body: new URLSearchParams({ token }) }), env: testEnv });
   assert.equal(first.status, 200);
   assert.equal(first.headers.get("Accept-Ranges"), null);
+  assert.equal(first.headers.get("Content-Range"), null);
   assert.match(first.headers.get("Content-Disposition"), /WTB-WhatsApp-AI-Growth-Engine\.pdf/);
   assert.equal(await first.text(), pdf);
   assert.equal((await onRequest({ request: new Request(url), env: testEnv })).status, 403);

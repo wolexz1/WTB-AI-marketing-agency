@@ -189,7 +189,7 @@ function pdfResponse(object, asset, allowRanges = true) {
   headers.set("Referrer-Policy", "no-referrer");
   if (allowRanges) headers.set("Accept-Ranges", "bytes");
   let status = 200;
-  if (object.range) {
+  if (allowRanges && object.range) {
     const start = object.range.offset;
     const end = start + object.range.length - 1;
     headers.set("Content-Range", `bytes ${start}-${end}/${object.size}`);
