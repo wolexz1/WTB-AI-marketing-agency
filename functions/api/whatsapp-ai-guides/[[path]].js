@@ -2,10 +2,6 @@ import { ASSETS, PRODUCT_CURRENCY, REFERENCE_PATTERN, productForId } from "./pro
 import { createDownloadUrl, fulfilVerifiedOrder, verifyDownloadToken } from "./fulfilment.js";
 import { claimDownload, consumeRateLimit, createOrder, getOrder, markVerified } from "./order-store.js";
 
-const COMPLIMENTARY_DOWNLOAD_HASH = "1506a6d97b06449c6a396313ce83939db9e3ef10d74d4ff91215aea01ee7d722";
-const COMPLIMENTARY_DOWNLOAD_EXPIRES_AT = Date.parse("2026-10-09T12:30:41Z");
-const COMPLIMENTARY_DOWNLOAD_LIMIT = 3;
-
 export async function onRequest(context) {
   const { request, env } = context;
   const waitUntil = typeof context.waitUntil === "function" ? context.waitUntil.bind(context) : undefined;
@@ -149,22 +145,21 @@ async function recoverDownload(request, env) {
 async function complimentaryDownload(request, env) {
   if (requiredEnv(env, ["WHATSAPP_AI_GUIDES_DB", "WHATSAPP_AI_GUIDES_BUCKET"])) return json({ message: "Delivery is being configured." }, 503);
   const token = new URL(request.url).searchParams.get("token") || "";
-  if (!/^[A-Za-z0-9_-]{43}$/.test(token) || Date.now() >= COMPLIMENTARY_DOWNLOAD_EXPIRES_AT) return json({ message: "This private link has expired." }, 403);
+  if (!/^[A-Za-z0-9_-]{43}$/.test(token)) return json({ message: "This private link is invalid." }, 403);
   const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(token));
   const hash = Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, "0")).join("");
-  if (!constantTimeEqual(hash, COMPLIMENTARY_DOWNLOAD_HASH)) return json({ message: "This private link is invalid." }, 403);
+  const rateKey = `complimentary:${hash}`;
+  const nowMinute = Math.floor(Date.now() / 60000);
+  const claimable = await env.WHATSAPP_AI_GUIDES_DB.prepare("SELECT attempts FROM whatsapp_ai_rate_limits WHERE rate_key = ? AND window_minute >= ? AND attempts = 0")
+    .bind(rateKey, nowMinute).first();
+  if (!claimable) return json({ message: "This private link is invalid, expired or already used." }, 403);
   const asset = ASSETS["growth-engine"];
-  const object = await env.WHATSAPP_AI_GUIDES_BUCKET.get(asset.key, { range: request.headers });
+  const object = await env.WHATSAPP_AI_GUIDES_BUCKET.get(asset.key);
   if (!object) return json({ message: "This file is temporarily unavailable. Please contact WTB support." }, 503);
-  const rateKey = `complimentary:${COMPLIMENTARY_DOWNLOAD_HASH}`;
-  await env.WHATSAPP_AI_GUIDES_DB.prepare("INSERT OR IGNORE INTO whatsapp_ai_rate_limits (rate_key, window_minute, attempts) VALUES (?, ?, 0)")
-    .bind(rateKey, Math.floor(COMPLIMENTARY_DOWNLOAD_EXPIRES_AT / 60000)).run();
-  if (!request.headers.get("Range")) {
-    const claim = await env.WHATSAPP_AI_GUIDES_DB.prepare("UPDATE whatsapp_ai_rate_limits SET attempts = attempts + 1 WHERE rate_key = ? AND attempts < ?")
-      .bind(rateKey, COMPLIMENTARY_DOWNLOAD_LIMIT).run();
-    if (!claim.meta?.changes) return json({ message: "This private link has reached its download limit. Please contact WTB support." }, 403);
-  }
-  return pdfResponse(object, asset);
+  const claim = await env.WHATSAPP_AI_GUIDES_DB.prepare("UPDATE whatsapp_ai_rate_limits SET attempts = 1 WHERE rate_key = ? AND window_minute >= ? AND attempts = 0")
+    .bind(rateKey, nowMinute).run();
+  if (!claim.meta?.changes) return json({ message: "This private link has already been used." }, 403);
+  return pdfResponse(object, asset, false);
 }
 
 async function serveAsset(request, env, order, asset) {
@@ -176,7 +171,7 @@ async function serveAsset(request, env, order, asset) {
   return pdfResponse(object, asset);
 }
 
-function pdfResponse(object, asset) {
+function pdfResponse(object, asset, allowRanges = true) {
   const headers = new Headers();
   object.writeHttpMetadata?.(headers);
   headers.set("Content-Type", "application/pdf");
@@ -185,7 +180,7 @@ function pdfResponse(object, asset) {
   headers.set("X-Content-Type-Options", "nosniff");
   headers.set("X-Robots-Tag", "noindex, nofollow");
   headers.set("Referrer-Policy", "no-referrer");
-  headers.set("Accept-Ranges", "bytes");
+  if (allowRanges) headers.set("Accept-Ranges", "bytes");
   let status = 200;
   if (object.range) {
     const start = object.range.offset;

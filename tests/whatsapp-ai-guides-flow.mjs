@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { createHash, randomBytes } from "node:crypto";
 import { PRODUCTS, ASSETS, PRODUCT_CURRENCY, productForId } from "../functions/api/whatsapp-ai-guides/product-config.js";
 import { onRequest } from "../functions/api/whatsapp-ai-guides/[[path]].js";
 import { fulfilVerifiedOrder, handleWhatsAppGuideWebhook } from "../functions/api/whatsapp-ai-guides/fulfilment.js";
@@ -11,6 +12,7 @@ function d1() {
   const rates = new Map();
   return {
     orders,
+    rates,
     prepare(sql) {
       return {
         bind(...values) {
@@ -25,6 +27,13 @@ function d1() {
                 const [key, window] = values;
                 const current = rates.get(key);
                 rates.set(key, { attempts: current?.window === window ? current.attempts + 1 : 1, window });
+                return { meta: { changes: 1 } };
+              }
+              if (sql.includes("SET attempts = 1 WHERE rate_key")) {
+                const [key, nowMinute] = values;
+                const row = rates.get(key);
+                if (!row || row.window < nowMinute || row.attempts !== 0) return { meta: { changes: 0 } };
+                row.attempts = 1;
                 return { meta: { changes: 1 } };
               }
               if (sql.includes("SET status = 'verified'")) {
@@ -79,7 +88,11 @@ function d1() {
             },
             async first() {
               if (sql.includes("FROM whatsapp_ai_orders")) return orders.get(values[0]) || null;
-              if (sql.includes("FROM whatsapp_ai_rate_limits")) return rates.get(values[0]) || null;
+              if (sql.includes("FROM whatsapp_ai_rate_limits")) {
+                const row = rates.get(values[0]);
+                if (sql.includes("attempts = 0")) return row && row.window >= values[1] && row.attempts === 0 ? row : null;
+                return row || null;
+              }
               throw new Error(`Unhandled D1 first: ${sql}`);
             },
           };
@@ -114,6 +127,22 @@ test("product map fixes trusted amounts and private assets", () => {
   assert.equal(ASSETS.launchpad.key, "whatsapp-ai-guides/launchpad/wtb-whatsapp-ai-launchpad.pdf");
   assert.equal(ASSETS["growth-engine"].key, "whatsapp-ai-guides/growth-engine/wtb-whatsapp-ai-growth-engine.pdf");
   assert.equal(productForId("unknown"), null);
+});
+
+test("complimentary Growth Engine link allows one full download and cannot be replayed with Range", async () => {
+  const pdf = "%PDF-1.7 private growth engine guide";
+  const testEnv = env({ body: new Response(pdf).body, size: pdf.length, writeHttpMetadata() {} });
+  const token = randomBytes(32).toString("base64url");
+  const hash = createHash("sha256").update(token).digest("hex");
+  testEnv.WHATSAPP_AI_GUIDES_DB.rates.set(`complimentary:${hash}`, { attempts: 0, window: Math.floor(Date.now() / 60000) + 60 });
+  const url = `https://wtbaimarketing.com/api/whatsapp-ai-guides/complimentary-download?token=${token}`;
+  const first = await onRequest({ request: new Request(url, { headers: { Range: "bytes=0-5" } }), env: testEnv });
+  assert.equal(first.status, 200);
+  assert.equal(first.headers.get("Accept-Ranges"), null);
+  assert.match(first.headers.get("Content-Disposition"), /WTB-WhatsApp-AI-Growth-Engine\.pdf/);
+  assert.equal(await first.text(), pdf);
+  assert.equal((await onRequest({ request: new Request(url), env: testEnv })).status, 403);
+  assert.equal((await onRequest({ request: new Request(url.replace(token, randomBytes(32).toString("base64url"))), env: testEnv })).status, 403);
 });
 
 test("checkout ignores a browser amount and initializes the fixed Growth Engine amount", async (t) => {
