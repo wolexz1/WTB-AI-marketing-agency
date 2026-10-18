@@ -129,19 +129,25 @@ test("product map fixes trusted amounts and private assets", () => {
   assert.equal(productForId("unknown"), null);
 });
 
-test("complimentary Growth Engine link allows one full download and cannot be replayed with Range", async () => {
+test("complimentary Growth Engine link survives previews and allows one full download", async () => {
   const pdf = "%PDF-1.7 private growth engine guide";
   const testEnv = env({ body: new Response(pdf).body, size: pdf.length, writeHttpMetadata() {} });
   const token = randomBytes(32).toString("base64url");
   const hash = createHash("sha256").update(token).digest("hex");
   testEnv.WHATSAPP_AI_GUIDES_DB.rates.set(`complimentary:${hash}`, { attempts: 0, window: Math.floor(Date.now() / 60000) + 60 });
   const url = `https://wtbaimarketing.com/api/whatsapp-ai-guides/complimentary-download?token=${token}`;
-  const first = await onRequest({ request: new Request(url, { headers: { Range: "bytes=0-5" } }), env: testEnv });
+  const preview = await onRequest({ request: new Request(url), env: testEnv });
+  assert.equal(preview.status, 200);
+  assert.match(preview.headers.get("Content-Type"), /text\/html/);
+  assert.match(await preview.text(), /Download your PDF/);
+  assert.equal(testEnv.WHATSAPP_AI_GUIDES_DB.rates.get(`complimentary:${hash}`).attempts, 0);
+  const first = await onRequest({ request: new Request(url, { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded", Range: "bytes=0-5" }, body: new URLSearchParams({ token }) }), env: testEnv });
   assert.equal(first.status, 200);
   assert.equal(first.headers.get("Accept-Ranges"), null);
   assert.match(first.headers.get("Content-Disposition"), /WTB-WhatsApp-AI-Growth-Engine\.pdf/);
   assert.equal(await first.text(), pdf);
   assert.equal((await onRequest({ request: new Request(url), env: testEnv })).status, 403);
+  assert.equal((await onRequest({ request: new Request(url, { method: "POST", body: new URLSearchParams({ token }) }), env: testEnv })).status, 403);
   assert.equal((await onRequest({ request: new Request(url.replace(token, randomBytes(32).toString("base64url"))), env: testEnv })).status, 403);
 });
 

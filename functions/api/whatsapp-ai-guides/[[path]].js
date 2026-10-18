@@ -11,7 +11,7 @@ export async function onRequest(context) {
     if (request.method === "POST" && pathname === "/api/whatsapp-ai-guides/event") return recordFunnelEvent(request, env);
     if (request.method === "GET" && pathname === "/api/whatsapp-ai-guides/verify") return verifyOrder(request, env, waitUntil);
     if (request.method === "GET" && pathname === "/api/whatsapp-ai-guides/download") return downloadAsset(request, env);
-    if (request.method === "GET" && pathname === "/api/whatsapp-ai-guides/complimentary-download") return complimentaryDownload(request, env);
+    if ((request.method === "GET" || request.method === "POST") && pathname === "/api/whatsapp-ai-guides/complimentary-download") return complimentaryDownload(request, env);
     if (request.method === "GET" && pathname === "/api/whatsapp-ai-guides/recover") return recoverDownload(request, env);
     return json({ message: "Not found" }, 404);
   } catch (error) {
@@ -144,7 +144,9 @@ async function recoverDownload(request, env) {
 
 async function complimentaryDownload(request, env) {
   if (requiredEnv(env, ["WHATSAPP_AI_GUIDES_DB", "WHATSAPP_AI_GUIDES_BUCKET"])) return json({ message: "Delivery is being configured." }, 503);
-  const token = new URL(request.url).searchParams.get("token") || "";
+  const token = request.method === "POST"
+    ? String((await request.formData().catch(() => null))?.get("token") || "")
+    : new URL(request.url).searchParams.get("token") || "";
   if (!/^[A-Za-z0-9_-]{43}$/.test(token)) return json({ message: "This private link is invalid." }, 403);
   const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(token));
   const hash = Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, "0")).join("");
@@ -153,6 +155,11 @@ async function complimentaryDownload(request, env) {
   const claimable = await env.WHATSAPP_AI_GUIDES_DB.prepare("SELECT attempts FROM whatsapp_ai_rate_limits WHERE rate_key = ? AND window_minute >= ? AND attempts = 0")
     .bind(rateKey, nowMinute).first();
   if (!claimable) return json({ message: "This private link is invalid, expired or already used." }, 403);
+  if (request.method === "GET") {
+    return new Response(`<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Your WhatsApp AI guide | WTB</title><style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#111827;color:#f9fafb;font:16px/1.5 system-ui,sans-serif}main{width:min(90%,420px);padding:32px;background:#1f2937;border:1px solid #374151;border-radius:8px}h1{font-size:28px;line-height:1.2;margin:0 0 12px}p{color:#d1d5db}button{width:100%;padding:15px;border:0;border-radius:6px;background:#18a957;color:white;font:700 17px system-ui,sans-serif;cursor:pointer}button:hover{background:#128648}</style><main><h1>Your guide is ready</h1><p>Tap below to download the WhatsApp AI Growth Engine PDF. This private access works once.</p><form method="post" action="/api/whatsapp-ai-guides/complimentary-download"><input type="hidden" name="token" value="${token}"><button type="submit">Download your PDF</button></form></main></html>`, {
+      headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "private, no-store, max-age=0", "X-Robots-Tag": "noindex, nofollow", "Referrer-Policy": "no-referrer", "X-Content-Type-Options": "nosniff" },
+    });
+  }
   const asset = ASSETS["growth-engine"];
   const object = await env.WHATSAPP_AI_GUIDES_BUCKET.get(asset.key);
   if (!object) return json({ message: "This file is temporarily unavailable. Please contact WTB support." }, 503);
