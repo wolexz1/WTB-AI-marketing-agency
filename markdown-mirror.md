@@ -23,6 +23,7 @@ Representative coverage links include:
 
 ## Latest Blog Guide
 
+- [AI Video Ads in Nigeria: Make Videos That Sell](https://wtbaimarketing.com/blog/ai-video-ads-nigeria-2026/) explains how Nigerian brands can use AI-assisted video without inventing proof and how to test qualified enquiries rather than views.
 - [Is WhatsApp Business Charging in Nigeria?](https://wtbaimarketing.com/blog/whatsapp-business-charges-nigeria-2026/) explains the free app, optional Meta One and separate Platform/API charges, plus when AI-supported replies can help a busy business.
 - [TikTok Ads in Nigeria: Turn Views Into Sales](https://wtbaimarketing.com/blog/tiktok-ads-manager-nigeria-2026/) shows product and service businesses how to structure buyer-focused videos, measure qualified demand and fix the route from attention to sales.
 
