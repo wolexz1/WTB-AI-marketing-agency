@@ -20,7 +20,7 @@ function request(email = "reader@example.com") {
   });
 }
 
-test("Kit signup creates a subscriber and adds them to the confirmed form", async () => {
+test("Kit signup activates a consenting subscriber and adds them to the website form", async () => {
   const calls = [];
   globalThis.fetch = async (url, options) => {
     calls.push({ url, options });
@@ -33,7 +33,7 @@ test("Kit signup creates a subscriber and adds them to the confirmed form", asyn
   });
 
   assert.equal(response.status, 200);
-  assert.match((await response.json()).message, /confirm/i);
+  assert.match((await response.json()).message, /You are in/i);
   assert.deepEqual(calls.map(({ url }) => url), [
     "https://api.kit.com/v4/subscribers",
     "https://api.kit.com/v4/forms/9989263/subscribers",
@@ -42,7 +42,7 @@ test("Kit signup creates a subscriber and adds them to the confirmed form", asyn
   assert.deepEqual(JSON.parse(calls[0].options.body), {
     email_address: "reader@example.com",
     first_name: "Reader",
-    state: "inactive",
+    state: "active",
   });
   assert.match(JSON.parse(calls[1].options.body).referrer, /utm_source=newsletter-test/);
 });

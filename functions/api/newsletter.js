@@ -109,7 +109,7 @@ async function subscribeWithKit(env, { email, firstname, requestUrl, input }) {
   const created = await fetch(KIT_SUBSCRIBERS_ENDPOINT, {
     method: "POST",
     headers,
-    body: JSON.stringify({ email_address: email, first_name: firstname, state: "inactive" }),
+    body: JSON.stringify({ email_address: email, first_name: firstname, state: "active" }),
   });
   if (!created.ok) {
     console.error("Kit subscriber creation failed", created.status);
@@ -137,7 +137,7 @@ async function subscribeWithKit(env, { email, firstname, requestUrl, input }) {
     return json({ ok: false, message: "We could not add you just now. Please try again." }, 502);
   }
 
-  return json({ ok: true, message: "Check your inbox to confirm your WTB subscription." });
+  return json({ ok: true, message: "You are in. Watch your inbox for the next WTB growth note." });
 }
 
 async function sendWelcomeEmail(env, subscriber) {
