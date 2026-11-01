@@ -633,7 +633,12 @@ statNumbers.forEach((stat) => {
 
 const openModal = () => {
   if (!modal) {
-    document.querySelector("#briefForm")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    const briefForm = document.querySelector("#briefForm");
+    if (briefForm) {
+      briefForm.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      window.location.assign("/contact/#briefForm");
+    }
     return;
   }
 

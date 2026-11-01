@@ -1,0 +1,15 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const vm = require('node:vm');
+
+const source = fs.readFileSync('script.js', 'utf8');
+const openModal = source.match(/const openModal = \(\) => \{[\s\S]*?\n\};/)[0];
+const navigations = [];
+const context = {
+  modal: null,
+  document: { querySelector: () => null },
+  window: { location: { assign: (url) => navigations.push(url) } },
+};
+vm.runInNewContext(`${openModal}\nopenModal();`, context);
+assert.deepEqual(navigations, ['/contact/#briefForm']);
+console.log('Brief button navigates to the contact form when no local form exists.');
