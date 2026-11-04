@@ -13,3 +13,9 @@ const context = {
 vm.runInNewContext(`${openModal}\nopenModal();`, context);
 assert.deepEqual(navigations, ['/contact/#briefForm']);
 console.log('Brief button navigates to the contact form when no local form exists.');
+
+const contactPage = fs.readFileSync('contact/index.html', 'utf8');
+const hero = contactPage.match(/<section class="page-hero">[\s\S]*?<\/section>/)[0];
+assert.match(hero, /href="#briefForm"/);
+assert.match(contactPage, /<input name="brand" type="text" placeholder="Brand name">/);
+console.log('Contact page links directly to the form and does not require a brand name.');

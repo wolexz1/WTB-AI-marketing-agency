@@ -4,24 +4,29 @@ const READINESS_THANK_YOU_PATH = "/ai-business-readiness-check/thank-you/";
 const MAX_ATTACHMENT_BYTES = 7 * 1024 * 1024;
 
 export async function onRequestPost({ request, env }) {
+  const wantsJson = (request.headers.get("accept") || "").includes("application/json");
+  const fail = (title, message, status = 503) => wantsJson
+    ? Response.json({ success: false, message }, { status })
+    : friendlyError(title, message);
   try {
     const formData = await request.formData();
 
     if (isLikelySpam(formData, request)) {
+      if (wantsJson) return fail("Unable to submit", "Please check your details and try again, or contact us on WhatsApp.", 400);
       return Response.redirect(new URL(THANK_YOU_PATH, request.url), 303);
     }
 
     const apiKey = env.RESEND_API_KEY;
     if (!apiKey) {
-      return friendlyError("Email setup is almost ready", "The website form is connected, but the email sending key has not been added in Cloudflare yet. Please message us on WhatsApp so we can take your brief immediately.");
+      return fail("Email setup is almost ready", "The website form is connected, but the email sending key has not been added in Cloudflare yet. Please message us on WhatsApp so we can take your brief immediately.");
     }
 
     const lead = collectLead(formData);
     if (!lead.email) {
-      return friendlyError("Email address is missing", "Please go back and add your email address so we can reply to your brief.");
+      return fail("Email address is missing", "Please go back and add your email address so we can reply to your brief.", 400);
     }
     if (lead.isReadinessPlan && !lead.selected_fix) {
-      return friendlyError("No fixes selected", "Please go back and add at least one improvement to your plan before sending it.");
+      return fail("No fixes selected", "Please go back and add at least one improvement to your plan before sending it.", 400);
     }
 
     const attachments = await collectAttachments(formData);
@@ -54,7 +59,7 @@ export async function onRequestPost({ request, env }) {
 
     if (!adminResult.ok) {
       console.error("WTB form admin email failed", await adminResult.text());
-      return friendlyError("We could not send the brief yet", "Please message us on WhatsApp so we can collect your details immediately. We are checking the email connection.");
+      return fail("We could not send the brief yet", "Please message us on WhatsApp so we can collect your details immediately. We are checking the email connection.");
     }
 
     const visitorResult = await sendEmail({
@@ -71,6 +76,7 @@ export async function onRequestPost({ request, env }) {
       console.error("WTB form autoresponse failed", await visitorResult.text());
     }
 
+    if (wantsJson) return Response.json({ success: true });
     const next = safeNextUrl(formData.get("_next"), request.url);
     if (next.pathname !== THANK_YOU_PATH && next.pathname !== READINESS_THANK_YOU_PATH) {
       return Response.redirect(next, 303);
@@ -85,7 +91,7 @@ export async function onRequestPost({ request, env }) {
     });
   } catch (error) {
     console.error("WTB form handler error", error);
-    return friendlyError("Something interrupted the form", "Please message us on WhatsApp so we can collect your brief immediately.");
+    return fail("Something interrupted the form", "Please message us on WhatsApp so we can collect your brief immediately.");
   }
 }
 

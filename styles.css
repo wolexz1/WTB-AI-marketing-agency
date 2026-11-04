@@ -4386,6 +4386,7 @@ input[type="file"] {
 
 .brief-modal {
   position: fixed;
+  visibility: hidden;
   inset: 0;
   z-index: 80;
   display: grid;
@@ -4397,6 +4398,7 @@ input[type="file"] {
 }
 
 .brief-modal.is-open {
+  visibility: visible;
   opacity: 1;
   pointer-events: auto;
 }

@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { afterEach, test } from "node:test";
 import { onRequestPost } from "../functions/api/submit.js";
+import { readFileSync } from "node:fs";
 
 const originalFetch = globalThis.fetch;
 afterEach(() => { globalThis.fetch = originalFetch; });
@@ -28,12 +29,59 @@ function makeRequest({ spam = false, readiness = false } = {}) {
   return new Request("https://wtbaimarketing.com/api/submit", { method: "POST", body: data });
 }
 
+test("in-page form receives a success response only after the admin email is accepted", async () => {
+  const original = makeRequest();
+  const data = await original.formData();
+  const request = new Request(original.url, { method: "POST", headers: { Accept: "application/json" }, body: data });
+  globalThis.fetch = async () => new Response("{}", { status: 200 });
+  const response = await onRequestPost({ request, env: { RESEND_API_KEY: "test" } });
+  assert.equal(response.status, 200);
+  assert.equal((await response.json()).success, true);
+});
+
+test("in-page form reports an error when the email fails", async () => {
+  const original = makeRequest();
+  const data = await original.formData();
+  const request = new Request(original.url, { method: "POST", headers: { Accept: "application/json" }, body: data });
+  globalThis.fetch = async () => new Response("failed", { status: 500 });
+  const response = await onRequestPost({ request, env: { RESEND_API_KEY: "test" } });
+  assert.equal(response.status, 503);
+  assert.equal((await response.json()).success, false);
+});
+
 test("successful brief sets a short-lived lead marker", async () => {
   globalThis.fetch = async () => new Response("{}", { status: 200 });
   const response = await onRequestPost({ request: makeRequest(), env: { RESEND_API_KEY: "test" } });
   assert.equal(response.status, 303);
   assert.equal(response.headers.get("location"), "https://wtbaimarketing.com/thank-you/");
   assert.match(response.headers.get("set-cookie"), /^wtb_brief_received=1;/);
+});
+
+test("each contact service choice is included in the admin email", async () => {
+  const source = readFileSync(new URL("../script.js", import.meta.url), "utf8");
+  const optionBlock = source.match(/const setupCompactBriefServiceOptions = \(\) => \{[\s\S]*?\n  \];/)[0];
+  const choices = [...optionBlock.matchAll(/\["([^"]+)", "[^"]+"\]/g)].map((match) => match[1]);
+  assert.equal(choices.length, 9);
+  for (const choice of choices) {
+    const emails = [];
+    globalThis.fetch = async (_, options) => {
+      emails.push(JSON.parse(options.body));
+      return new Response("{}", { status: 200 });
+    };
+    const startedAt = Date.now() - 5000;
+    const data = new FormData();
+    data.set("name", "Test Founder");
+    data.set("email", "founder@example.com");
+    data.set("message", "Test enquiry");
+    data.set("service", choice);
+    data.set("_form_started_at", String(startedAt));
+    data.set("_form_token", `wtb-${startedAt}-wtbaimarketing.com`);
+    const request = new Request("https://wtbaimarketing.com/api/submit", { method: "POST", body: data });
+    const response = await onRequestPost({ request, env: { RESEND_API_KEY: "test" } });
+    assert.equal(response.status, 303, choice);
+    assert.equal(emails.length, 2, choice);
+    assert.ok(emails[0].text.includes(choice), choice);
+  }
 });
 
 test("rejected spam does not set a lead marker", async () => {

@@ -58,6 +58,36 @@ const setupTestimonialSlider = () => {
   track.dataset.cloned = "true";
 };
 
+const createBlogBriefModal = () => {
+  if (!document.body.classList.contains("blog-article-page") || document.querySelector("#briefModal")) return;
+  const wrapper = document.createElement("div");
+  wrapper.className = "brief-modal";
+  wrapper.id = "briefModal";
+  wrapper.setAttribute("aria-hidden", "true");
+  wrapper.innerHTML = `<div class="brief-modal-backdrop" data-modal-close></div>
+    <section class="brief-modal-panel" role="dialog" aria-modal="true" aria-labelledby="briefModalTitle">
+      <button class="modal-close" type="button" data-modal-close aria-label="Close brief form">Close</button>
+      <p class="eyebrow">Let's talk</p><h2 id="briefModalTitle">Tell us what you want to grow.</h2>
+      <p>Share a few details and our team will get back to you.</p>
+      <form id="quickBriefForm" class="brief-form compact-brief-form" action="/api/submit" method="POST">
+        <input type="hidden" name="_subject" value="New WTB blog enquiry">
+        <input type="hidden" name="source_page">
+        <input type="text" name="_honey" class="hidden-field" tabindex="-1" autocomplete="off">
+        <label><span>Your name</span><input name="name" autocomplete="name" required></label>
+        <label><span>Your email</span><input name="email" type="email" autocomplete="email" required></label>
+        <label><span>What do you need?</span><select name="service" required></select></label>
+        <label><span>Your brief</span><textarea name="message" rows="3" placeholder="What would you like help with?" required></textarea></label>
+        <button class="button" type="submit">Send my brief</button>
+        <p id="quickFormNote" class="form-note" role="status" aria-live="polite"></p>
+        <a href="https://wa.me/2348097585489?text=Hello%20WTB%2C%20I%20need%20marketing%20support." target="_blank" rel="noopener noreferrer">Or chat with us on WhatsApp</a>
+      </form>
+    </section>`;
+  document.body.appendChild(wrapper);
+  wrapper.querySelector('input[name="source_page"]').value = window.location.pathname;
+};
+
+createBlogBriefModal();
+
 const setupCompactBriefServiceOptions = () => {
   const options = [
     ["", "Choose a focus"],
@@ -188,6 +218,10 @@ const createPageLoader = () => {
         return;
       }
 
+      if (document.body.classList.contains("blog-article-page") && document.querySelector("#briefModal") && /^\/contact\/?$/.test(nextUrl.pathname) && (!nextUrl.hash || nextUrl.hash === "#briefForm")) {
+        return;
+      }
+
       const samePage =
         nextUrl.pathname === window.location.pathname &&
         nextUrl.search === window.location.search;
@@ -303,23 +337,23 @@ const setupBlogNewsletterPopup = () => {
   let previouslyFocused = null;
   let opened = false;
 
-  const close = () => {
+  const close = (dismiss = true) => {
     if (!opened) return;
     opened = false;
     window.clearTimeout(timer);
     modal.classList.remove("is-open");
     document.body.classList.remove("newsletter-open");
-    if (localStorage.getItem(subscribedStorageKey) !== "true") {
+    if (dismiss && localStorage.getItem(subscribedStorageKey) !== "true") {
       localStorage.setItem(dismissedStorageKey, String(Date.now()));
     }
     window.setTimeout(() => {
       modal.hidden = true;
-      previouslyFocused?.focus?.();
+      if (dismiss) previouslyFocused?.focus?.();
     }, 220);
   };
 
   const open = () => {
-    if (opened) return;
+    if (opened || document.querySelector(".brief-modal.is-open")) return;
     opened = true;
     previouslyFocused = document.activeElement;
     modal.hidden = false;
@@ -334,7 +368,8 @@ const setupBlogNewsletterPopup = () => {
     trackAnalyticsEvent("newsletter_popup_view", { page_path: window.location.pathname });
   };
 
-  modal.querySelectorAll("[data-newsletter-close]").forEach((button) => button.addEventListener("click", close));
+  modal.querySelectorAll("[data-newsletter-close]").forEach((button) => button.addEventListener("click", () => close()));
+  document.addEventListener("wtb:open-brief", () => close(false));
   document.addEventListener("keydown", (event) => {
     if (opened && event.key === "Escape") close();
   });
@@ -480,6 +515,22 @@ if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", addHighIntentConversionLinks, { once: true });
 } else {
   addHighIntentConversionLinks();
+}
+
+const directContactLinks = () => {
+  document.querySelectorAll('a[href]').forEach((link) => {
+    const destination = new URL(link.href, window.location.href);
+    if (destination.origin === window.location.origin && /^\/contact\/?$/.test(destination.pathname) && !destination.hash) {
+      destination.hash = 'briefForm';
+      link.href = destination.href;
+    }
+  });
+};
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", directContactLinks, { once: true });
+} else {
+  directContactLinks();
 }
 
 const addXTrendProofPanel = () => {
@@ -642,6 +693,7 @@ const openModal = () => {
     return;
   }
 
+  document.dispatchEvent(new Event("wtb:open-brief"));
   modal?.classList.add("is-open");
   modal?.setAttribute("aria-hidden", "false");
   document.body.classList.add("modal-open");
@@ -661,6 +713,55 @@ modalTriggers.forEach((trigger) => {
 modalClosers.forEach((closer) => {
   closer.addEventListener("click", closeModal);
 });
+
+if (document.body.classList.contains("blog-article-page") && modal) {
+  let lastBriefTrigger = null;
+  document.addEventListener("click", (event) => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const trigger = event.target.closest(".brief-modal-trigger");
+    if (trigger) { lastBriefTrigger = trigger; return; }
+    const link = event.target.closest("a[href]");
+    if (!link) return;
+    const destination = new URL(link.href, window.location.href);
+    if (destination.origin !== window.location.origin || !/^\/contact\/?$/.test(destination.pathname) || (destination.hash && destination.hash !== "#briefForm")) return;
+    event.preventDefault();
+    lastBriefTrigger = link;
+    openModal();
+  });
+  modal.querySelectorAll("[data-modal-close]").forEach((closer) => {
+    closer.addEventListener("click", () => lastBriefTrigger?.focus());
+  });
+  modal.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") lastBriefTrigger?.focus();
+    if (event.key !== "Tab") return;
+    const focusable = Array.from(modal.querySelectorAll('button:not([disabled]), input:not([type="hidden"]):not([tabindex="-1"]), select, textarea, a[href]'));
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+  });
+  const blogBriefForm = modal.querySelector("#quickBriefForm");
+  blogBriefForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const note = blogBriefForm.querySelector("#quickFormNote");
+    const submit = blogBriefForm.querySelector('button[type="submit"]');
+    submit.disabled = true;
+    note.textContent = "Sending your brief…";
+    try {
+      const response = await fetch(blogBriefForm.action, { method: "POST", headers: { Accept: "application/json" }, body: new FormData(blogBriefForm) });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || !result.success) throw new Error(result.message || "Please try again or contact us on WhatsApp.");
+      blogBriefForm.reset();
+      note.textContent = "Thank you. Your brief has been sent and our team will get back to you.";
+      try { window.gtag?.("event", "form_submit_success", { form_type: "blog_quick_brief", source_path: window.location.pathname }); } catch {}
+    } catch (error) {
+      note.textContent = error.message || "We could not send your brief. Please try again or use WhatsApp.";
+    } finally {
+      submit.disabled = false;
+    }
+  });
+}
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && modal?.classList.contains("is-open")) {
