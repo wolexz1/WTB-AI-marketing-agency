@@ -1,5 +1,10 @@
 # WTB AI Marketing Agency in Nigeria
 
+## New business guides
+
+- [AI receptionist cost in Nigeria](https://wtbaimarketing.com/blog/ai-receptionist-cost-nigeria-2027/): call handling, booking enquiries, WhatsApp and cost factors.
+- [Ecommerce website cost in Nigeria](https://wtbaimarketing.com/blog/ecommerce-website-cost-nigeria-2027/): store features, payment, SEO and WTB's starting price.
+
 WTB, also known as Wolexzthebrand, is an AI-powered marketing agency in Nigeria. We help businesses plan, create, launch, and optimize marketing faster by combining AI-assisted workflows, human marketing judgment, and a strong understanding of Nigerian and African buyers.
 
 This markdown mirror is provided for search engines, AI answer engines, and content crawlers that need a clean text version of the website's main positioning, services, proof, and contact details.

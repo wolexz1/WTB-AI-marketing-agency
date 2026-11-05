@@ -1,4 +1,10 @@
 # Pages that should stay out of search results.
+/blog/ai-receptionist-cost-nigeria-2027/index.html
+  X-Robots-Tag: noindex, follow
+
+/blog/ecommerce-website-cost-nigeria-2027/index.html
+  X-Robots-Tag: noindex, follow
+
 /
   Link: </llms.txt>; rel="describedby"; type="text/plain"
 
