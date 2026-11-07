@@ -1,3 +1,39 @@
+@font-face {
+  font-family: "Bricolage Grotesque";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("/assets/fonts/bricolage-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("/assets/fonts/bricolage-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Fraunces";
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/assets/fonts/fraunces-italic-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Fraunces";
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/assets/fonts/fraunces-italic-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
 :root {
   --ink: #15171c;
   --muted: #5d6574;
@@ -13,7 +49,9 @@
   --shadow-strong: 0 32px 90px rgba(13, 16, 24, 0.16);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --radius: 8px;
-  --display: Georgia, "Times New Roman", serif;
+  --display: "Bricolage Grotesque", Arial, sans-serif;
+  --body-font: "Bricolage Grotesque", Arial, sans-serif;
+  --accent-font: "Fraunces", Georgia, serif;
 }
 
 /* Site-wide design QA polish: keep shared components tidy across every page. */
@@ -213,8 +251,15 @@ body {
     var(--paper);
   background-size: 32px 32px;
   color: var(--ink);
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--body-font);
   text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: var(--body-font);
 }
 
 body::before {
@@ -680,10 +725,12 @@ a {
 .eyebrow {
   margin: 0 0 16px;
   color: var(--blue);
-  font-size: 0.78rem;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-family: var(--accent-font);
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 h1,
@@ -699,12 +746,21 @@ h2 {
   letter-spacing: 0;
 }
 
+h1 em,
+h2 em,
+h3 em,
+.type-accent {
+  font-family: var(--accent-font);
+  font-style: italic;
+  font-weight: 600;
+}
+
 h1 {
   max-width: 920px;
   margin-bottom: 24px;
   font-size: clamp(3.8rem, 8vw, 8rem);
-  font-weight: 700;
-  line-height: 0.9;
+  font-weight: 800;
+  line-height: 1.02;
 }
 
 .drop-line {
@@ -757,14 +813,14 @@ h1 {
 h2 {
   margin-bottom: 18px;
   font-size: clamp(2.4rem, 5vw, 5.3rem);
-  font-weight: 700;
-  line-height: 0.94;
+  font-weight: 800;
+  line-height: 1.08;
 }
 
 h3 {
   margin-bottom: 10px;
   font-size: 1.35rem;
-  line-height: 1.1;
+  line-height: 1.22;
 }
 
 .hero-content p:not(.eyebrow),
@@ -1487,7 +1543,7 @@ h3 {
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.94);
   color: var(--ink);
-  font: 400 1.55rem/1 Arial, sans-serif;
+  font: 400 1.55rem/1 var(--body-font);
   cursor: pointer;
 }
 
@@ -1535,7 +1591,7 @@ h3 {
   display: flex;
   align-items: center;
   gap: 14px;
-  font: 800 1.35rem/1 Arial, sans-serif;
+  font: 800 1.35rem/1 var(--body-font);
   letter-spacing: 0;
 }
 
@@ -1639,7 +1695,7 @@ h3 {
   border-radius: 6px;
   background: #ffffff;
   color: var(--ink);
-  font: 600 0.94rem/1.2 Arial, sans-serif;
+  font: 600 0.94rem/1.2 var(--body-font);
 }
 
 .newsletter-form input:focus {
@@ -1682,7 +1738,7 @@ h3 {
   background: var(--blue);
   box-shadow: 0 14px 32px rgba(21, 93, 252, 0.24);
   color: #ffffff;
-  font: 800 0.95rem/1 Arial, sans-serif;
+  font: 800 0.95rem/1 var(--body-font);
   cursor: pointer;
   transition: background 180ms ease, transform 180ms ease, box-shadow 180ms ease;
 }
@@ -1969,7 +2025,7 @@ h3 {
 .x-proof-copy h3,
 .x-proof-cta h3 {
   color: #fff;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--display);
   font-size: clamp(1.45rem, 2vw, 2rem);
   line-height: 1.06;
 }
@@ -2038,7 +2094,7 @@ h3 {
 
 .x-proof-mini h2 {
   margin: 0 0 10px;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--display);
   font-size: clamp(1.45rem, 2.6vw, 2.25rem);
   line-height: 1.08;
 }
@@ -2421,7 +2477,7 @@ h3 {
   display: block;
   margin-top: 12px;
   color: var(--gold);
-  font-family: Georgia, serif;
+  font-family: var(--display);
   font-size: clamp(1.35rem, 2.4vw, 2.15rem);
   line-height: 1.05;
   overflow-wrap: anywhere;
@@ -2454,7 +2510,7 @@ h3 {
   display: block;
   margin-top: 8px;
   color: var(--gold);
-  font-family: Georgia, serif;
+  font-family: var(--display);
   font-size: clamp(1.25rem, 2vw, 1.7rem);
   line-height: 1;
 }
@@ -2474,7 +2530,7 @@ h3 {
 .estimate-insight strong {
   display: block;
   color: var(--gold);
-  font-family: Georgia, serif;
+  font-family: var(--display);
   font-size: clamp(1.4rem, 2vw, 1.95rem);
   line-height: 1;
 }
@@ -3324,7 +3380,7 @@ h3 {
 }
 
 .team-openai {
-  font-family: Arial, sans-serif;
+  font-family: var(--body-font);
   font-weight: 800;
 }
 
@@ -3753,7 +3809,7 @@ h3 {
   display: block;
   margin-bottom: 16px;
   color: var(--gold);
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--display);
   font-size: 3.8rem;
   line-height: 1;
 }
@@ -3889,7 +3945,7 @@ h3 {
 
 .service-grid article > span {
   color: var(--gold);
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--display);
   font-size: 1.45rem;
   text-transform: none;
 }
@@ -4037,7 +4093,8 @@ h3 {
 
 .quote-card p {
   color: #fff;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--accent-font);
+  font-style: italic;
   font-size: 1.65rem;
   line-height: 1.2;
 }
@@ -4076,7 +4133,7 @@ h3 {
   display: block;
   margin: 8px 0 10px;
   color: var(--ink);
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--display);
   font-size: 2.25rem;
   line-height: 1;
 }
@@ -4277,7 +4334,7 @@ textarea:focus {
 
 .budget-estimator span {
   color: var(--blue);
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--display);
   font-size: clamp(1.7rem, 4vw, 2.7rem);
   font-weight: 900;
   line-height: 1;
@@ -5039,7 +5096,7 @@ body.modal-open {
   display: block;
   margin-bottom: 16px;
   color: var(--blue);
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--display);
   font-size: 1.8rem;
   line-height: 1;
 }
@@ -6526,7 +6583,7 @@ body.modal-open {
 
 .case-hero-proof strong {
   color: #fff;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--display);
   font-size: clamp(1.6rem, 3vw, 2.4rem);
   line-height: 1.05;
 }
@@ -6636,7 +6693,7 @@ body.modal-open {
   padding-top: 18px;
   border-top: 1px solid rgba(21, 23, 28, 0.1);
   color: var(--ink);
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--display);
   font-size: 1.16rem;
   font-weight: 800;
   line-height: 1.4;
@@ -7053,3 +7110,47 @@ body.modal-open {
 .footer-products small { display:block; max-width:18ch; margin-top:6px; color:#a8b6ca; line-height:1.45; }
 @media (max-width:980px) { .learning-products-grid{grid-template-columns:1fr}.learning-product-card{min-height:430px}.learning-product-cover{max-width:220px} }
 @media (max-width:720px) { .learning-products-heading{grid-template-columns:1fr;gap:18px}.learning-products-heading .eyebrow{grid-column:auto;margin-bottom:0}.learning-product-card{grid-template-columns:1fr;min-height:0;padding:26px 22px}.learning-product-cover{justify-self:center;max-width:260px;min-height:300px;order:-1}.learning-product-cover img{width:min(170px,68%)}.learning-product-actions .button{width:100%;justify-content:center} }
+
+/* Keep the stronger Wolexz face spacious enough to read at every breakpoint. */
+.eyebrow {
+  font-family: var(--accent-font);
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.hero-content h1 {
+  max-width: 18ch;
+  font-size: 5rem;
+  line-height: 1.05;
+}
+
+.page-hero h1,
+.tool-hero-copy h1,
+.case-hero h1 {
+  font-size: 4.5rem;
+  line-height: 1.06;
+}
+
+.blog-page .page-hero h1,
+.blog-article-page .page-hero h1 {
+  font-size: 3.6rem;
+  line-height: 1.12;
+}
+
+h2 {
+  font-size: 3.7rem;
+  line-height: 1.12;
+}
+
+@media (max-width: 680px) {
+  .hero-content h1 { font-size: 2.7rem; line-height: 1.1; }
+  .page-hero h1,
+  .tool-hero-copy h1,
+  .case-hero h1 { font-size: 2.8rem; line-height: 1.1; }
+  .blog-page .page-hero h1,
+  .blog-article-page .page-hero h1 { font-size: 2.45rem; line-height: 1.14; }
+  h2 { font-size: 2.35rem; line-height: 1.16; }
+}
