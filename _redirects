@@ -1,6 +1,7 @@
 # Canonical URL cleanup for Google indexing.
 # Keep one indexable version of every page: clean folder URLs.
 /index.html / 301
+/business-name-generator-nigeria/index.html /business-name-generator-nigeria/ 301
 /blog/ai-receptionist-cost-nigeria-2027/index.html /blog/ai-receptionist-cost-nigeria-2027/ 301
 /blog/ecommerce-website-cost-nigeria-2027/index.html /blog/ecommerce-website-cost-nigeria-2027/ 301
 /blog/whatsapp-business-charges-nigeria-2026/index.html /blog/whatsapp-business-charges-nigeria-2026/ 301
