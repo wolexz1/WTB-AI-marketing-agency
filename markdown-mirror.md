@@ -2,6 +2,7 @@
 
 ## New business guides
 
+- [ChatGPT Business Hub and GEO for Nigerian and African businesses](https://wtbaimarketing.com/blog/chatgpt-business-hub-geo-nigeria-africa-2027/): profile eligibility, verification and practical AI discovery steps.
 - [AI receptionist cost in Nigeria](https://wtbaimarketing.com/blog/ai-receptionist-cost-nigeria-2027/): call handling, booking enquiries, WhatsApp and cost factors.
 - [Ecommerce website cost in Nigeria](https://wtbaimarketing.com/blog/ecommerce-website-cost-nigeria-2027/): store features, payment, SEO and WTB's starting price.
 
