@@ -755,6 +755,7 @@ if (document.body.classList.contains("blog-article-page") && modal) {
       blogBriefForm.reset();
       note.textContent = "Thank you. Your brief has been sent and our team will get back to you.";
       try { window.gtag?.("event", "form_submit_success", { form_type: "blog_quick_brief", source_path: window.location.pathname }); } catch {}
+      try { window.gtag?.("event", "generate_lead", { lead_type: "blog_quick_brief", source_path: window.location.pathname }); } catch {}
     } catch (error) {
       note.textContent = error.message || "We could not send your brief. Please try again or use WhatsApp.";
     } finally {
